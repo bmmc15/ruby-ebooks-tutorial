@@ -8,10 +8,15 @@ Rails.application.routes.draw do
 
       # User routes
       get 'users/index', to: 'users#index'  
+
+
     end
   end
   root 'homepage#index'
   get '/*path' => 'homepage#index'
+  get 'signup', to: 'signup#index'  
+
+  # signup routes
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
   # root "articles#index"
