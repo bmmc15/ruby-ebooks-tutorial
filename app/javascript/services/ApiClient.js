@@ -17,6 +17,14 @@ const ApiClient = {
       throw err;
     }
   },
+  registerUser: async (registerUserBody) => {
+    try {
+      console.log("Register User Request: ", registerUserBody);
+      const response = await apiInstance.post("/users", registerUserBody);
+      return response?.data;
+    } catch (err) {
+      throw err;
+    }
+  },
 };
-
 export default ApiClient;
