@@ -26,5 +26,13 @@ const ApiClient = {
       throw err;
     }
   },
+  login: async (loginBody) => {
+    try {
+      const response = await apiInstance.post("/login", loginBody);
+      return response?.data;
+    } catch (err) {
+      throw err;
+    }
+  },
 };
 export default ApiClient;
