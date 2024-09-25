@@ -11,20 +11,13 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-// import { useMutation } from "react-query";
-// import { ApiClient } from "../services";
+import { useMutation } from "react-query";
+import { ApiClient } from "../services";
 import {
   validateEmail,
   validateRequiredField,
   validatePassword,
 } from "../utils/validators";
-
-// type SignUpFormValues = {
-//   firstName: string,
-//   lastName: string,
-//   email: string,
-//   password: string,
-// };
 
 const resolver = async (values) => {
   const errors = {};
@@ -60,23 +53,22 @@ const Signup = () => {
     formState: { errors },
   } = useForm({ resolver });
 
-  //   const { mutate, isLoading } = useMutation(ApiClient.registerUser, {
-  //     onSuccess: (data) => {
-  //       localStorage.setItem("authToken", data.token);
-  //       setUser(data.user);
-  //       navigate(RoutesPath.home);
-  //     },
-  //     onError: (error) => {
-  //       console.error("Sign-up failed:", error);
-  //       alert("SignUp failed");
-  //       navigate(RoutesPath["sign-up"]);
-  //     },
-  //   });
+  const { mutate, isLoading } = useMutation(ApiClient.registerUser, {
+    onSuccess: (data) => {
+      //   setUser(data.user);
+      navigate("/");
+    },
+    onError: (error) => {
+      console.error("Sign-up failed:", error);
+      alert("SignUp failed");
+      navigate("/signup");
+    },
+  });
 
   const onFormSubmit = handleSubmit(async (data) => {
     const { username, email, password } = data;
     console.log(`email ${email}, password ${password}`);
-    await mutate({ name: `${username}`, email, password });
+    await mutate({ username: `${username}`, email, password });
   });
 
   return (

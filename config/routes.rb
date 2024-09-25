@@ -5,9 +5,8 @@ Rails.application.routes.draw do
       post 'exercises/create'
       get '/show/:id', to: 'exercises#show'
       delete '/destroy/:id', to: 'exercises#destroy'
+      resources :users, except: [:new]
 
-      # User routes
-      get 'users/index', to: 'users#index'  
 
 
     end
