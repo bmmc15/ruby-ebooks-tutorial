@@ -1,0 +1,22 @@
+import axios from "axios";
+
+const apiInstance = axios.create({
+  baseURL: "http://127.0.0.1:3000/api/v1",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+const ApiClient = {
+  fetchUsers: async () => {
+    try {
+      console.log("FetchUsers Request");
+      const response = await apiInstance.get("/users/index");
+      return response?.data;
+    } catch (err) {
+      throw err;
+    }
+  },
+};
+
+export default ApiClient;

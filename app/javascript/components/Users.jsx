@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
+import { useQuery } from "react-query";
+import { USERS_QUERY_KEY } from "../utils/constants";
+import { ApiClient } from "../services";
 const Users = () => {
+  const [users, setUsers] = useState([]);
+
+  const { isLoading } = useQuery(USERS_QUERY_KEY, ApiClient.fetchUsers, {
+    onSuccess: (data) => {
+      console.log("First Rails useQuery sucessful:", data);
+      setUsers(data);
+    },
+  });
+
   return (
     <div className="vw-100 vh-100 primary-color d-flex align-items-center justify-content-center">
       <div className="jumbotron jumbotron-fluid bg-transparent">
@@ -16,6 +27,11 @@ const Users = () => {
           >
             Users
           </Link>
+
+          {users &&
+            users.map((elem, idx) => {
+              return <div key={idx}>{elem.username}</div>;
+            })}
         </div>
       </div>
     </div>
