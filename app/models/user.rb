@@ -9,4 +9,5 @@ class User < ApplicationRecord
                          length: {minimum: 3, maximium: 25},
                          format: {with: VALID_EMAIL_REGEX}
     has_secure_password
+    has_many :ebooks, foreign_key: :seller_id
 end
