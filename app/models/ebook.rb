@@ -1,5 +1,5 @@
 class Ebook < ApplicationRecord
-    before_save { self.status = status.downcase}
+    before_save { self.status = status.downcase }
 
     validates :title, presence: true
     validates :description, presence: true
@@ -10,5 +10,5 @@ class Ebook < ApplicationRecord
 
     enum status: { draft: 0, pending: 1, live: 2 }
     validates :status, presence: true, inclusion: { in: statuses.keys, message: "%{value} is not a valid status" }
-    belongs_to :seller, class_name: 'User', foreign_key: 'seller_id'
+    belongs_to :seller, class_name: "User", foreign_key: "seller_id"
 end

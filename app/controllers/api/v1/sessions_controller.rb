@@ -6,9 +6,9 @@ class Api::V1::SessionsController < ApplicationController
     def create
         user = User.find_by(email: params[:session][:email])
         if user && user.authenticate(params[:session][:password])
-            render json: { message: 'Success' }, status: :ok
+            render json: { message: "Success" }, status: :ok
         else
-            render json: { error: 'Invalid user credentials' }, status: :forbidden
+            render json: { error: "Invalid user credentials" }, status: :forbidden
         end
     end
 

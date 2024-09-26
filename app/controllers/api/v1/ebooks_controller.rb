@@ -8,7 +8,7 @@ class Api::V1::EbooksController < ApplicationController
 
   def show
     ebook = Ebook.find_by(id: params[:id])
-    
+
     if ebook
       render json: ebook
     else
@@ -17,16 +17,15 @@ class Api::V1::EbooksController < ApplicationController
   end
 
   def create
-
     @ebook = Ebook.new(ebook_params)
     if @ebook.save
-      render json: { message: 'Ebook created successfully', ebook: @ebook }, status: :created
+      render json: { message: "Ebook created successfully", ebook: @ebook }, status: :created
     else
-      render json: { error: 'Invalid ebook creation', details: @ebook.errors.full_messages }, status: :unprocessable_entity
+      render json: { error: "Invalid ebook creation", details: @ebook.errors.full_messages }, status: :unprocessable_entity
     end
 
   rescue ArgumentError => e
-    render json: { error: 'Invalid status', details: 'Status must be one of: draft, pending, live' }, status: :bad_request
+    render json: { error: "Invalid status", details: "Status must be one of: draft, pending, live" }, status: :bad_request
   end
 
   def update
@@ -34,26 +33,26 @@ class Api::V1::EbooksController < ApplicationController
 
     if ebook
       if ebook.update(ebook_params)
-        render json: { message: 'Ebook updated successfully', ebook: ebook }, status: :ok
+        render json: { message: "Ebook updated successfully", ebook: ebook }, status: :ok
       else
-        render json: { error: 'Invalid ebook update', details: ebook.errors.full_messages }, status: :unprocessable_entity
+        render json: { error: "Invalid ebook update", details: ebook.errors.full_messages }, status: :unprocessable_entity
       end
     else
-      render json: { error: 'Ebook not found' }, status: :not_found
+      render json: { error: "Ebook not found" }, status: :not_found
     end
 
   rescue ArgumentError => e
-    render json: { error: 'Invalid status', details: 'Status must be one of: draft, pending, live' }, status: :bad_request
+    render json: { error: "Invalid status", details: "Status must be one of: draft, pending, live" }, status: :bad_request
   end
 
   def destroy
     ebook = Ebook.find_by(id: params[:id])
-  
+
     if ebook
       ebook.destroy
-      render json: { message: 'Ebook deleted successfully' }, status: :ok
+      render json: { message: "Ebook deleted successfully" }, status: :ok
     else
-      render json: { error: 'Ebook not found' }, status: :not_found
+      render json: { error: "Ebook not found" }, status: :not_found
     end
   end
 
