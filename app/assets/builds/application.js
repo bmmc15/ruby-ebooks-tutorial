@@ -1170,7 +1170,7 @@ var require_react_development = __commonJS({
           var newElement = ReactElement(oldElement.type, newKey, oldElement.ref, oldElement._self, oldElement._source, oldElement._owner, oldElement.props);
           return newElement;
         }
-        function cloneElement10(element, config2, children) {
+        function cloneElement12(element, config2, children) {
           if (element === null || element === void 0) {
             throw new Error("React.cloneElement(...): The argument must be a React element, but you passed " + element + ".");
           }
@@ -1563,7 +1563,7 @@ var require_react_development = __commonJS({
           }
           return lazyType;
         }
-        function forwardRef38(render) {
+        function forwardRef41(render) {
           {
             if (render != null && render.$$typeof === REACT_MEMO_TYPE) {
               error2("forwardRef requires a render function but received a `memo` component. Instead of forwardRef(memo(...)), use memo(forwardRef(...)).");
@@ -2240,7 +2240,7 @@ var require_react_development = __commonJS({
           return validatedFactory;
         }
         function cloneElementWithValidation(element, props, children) {
-          var newElement = cloneElement10.apply(this, arguments);
+          var newElement = cloneElement12.apply(this, arguments);
           for (var i = 2; i < arguments.length; i++) {
             validateChildKeys(arguments[i], newElement.type);
           }
@@ -2461,7 +2461,7 @@ var require_react_development = __commonJS({
         exports.createElement = createElement$1;
         exports.createFactory = createFactory;
         exports.createRef = createRef;
-        exports.forwardRef = forwardRef38;
+        exports.forwardRef = forwardRef41;
         exports.isValidElement = isValidElement10;
         exports.lazy = lazy;
         exports.memo = memo3;
@@ -2975,9 +2975,9 @@ var require_react_dom_development = __commonJS({
         if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
           __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
         }
-        var React87 = require_react();
+        var React94 = require_react();
         var Scheduler = require_scheduler();
-        var ReactSharedInternals = React87.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        var ReactSharedInternals = React94.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
         var suppressWarning = false;
         function setSuppressWarning(newSuppressWarning) {
           {
@@ -4584,7 +4584,7 @@ var require_react_dom_development = __commonJS({
           {
             if (props.value == null) {
               if (typeof props.children === "object" && props.children !== null) {
-                React87.Children.forEach(props.children, function(child) {
+                React94.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -25045,7 +25045,7 @@ var require_react_jsx_runtime_development = __commonJS({
     if (true) {
       (function() {
         "use strict";
-        var React87 = require_react();
+        var React94 = require_react();
         var REACT_ELEMENT_TYPE = Symbol.for("react.element");
         var REACT_PORTAL_TYPE = Symbol.for("react.portal");
         var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
@@ -25071,7 +25071,7 @@ var require_react_jsx_runtime_development = __commonJS({
           }
           return null;
         }
-        var ReactSharedInternals = React87.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        var ReactSharedInternals = React94.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
         function error2(format) {
           {
             {
@@ -39291,14 +39291,14 @@ enableDismissTrigger(Toast);
 defineJQueryPlugin(Toast);
 
 // app/javascript/components/index.jsx
-var import_react20 = __toESM(require_react());
+var import_react21 = __toESM(require_react());
 var import_client = __toESM(require_client());
 
 // app/javascript/components/App.jsx
-var import_react19 = __toESM(require_react());
+var import_react20 = __toESM(require_react());
 
 // app/javascript/routes/index.jsx
-var import_react18 = __toESM(require_react());
+var import_react19 = __toESM(require_react());
 
 // node_modules/react-router-dom/dist/index.js
 var React2 = __toESM(require_react());
@@ -46268,6 +46268,14 @@ var ApiClient = {
     try {
       console.log("Register User Request: ", registerUserBody);
       const response = await apiInstance.post("/users", registerUserBody);
+      return response?.data;
+    } catch (err) {
+      throw err;
+    }
+  },
+  login: async (loginBody) => {
+    try {
+      const response = await apiInstance.post("/login", loginBody);
       return response?.data;
     } catch (err) {
       throw err;
@@ -66118,13 +66126,946 @@ var Signup = () => {
 };
 var Signup_default = Signup;
 
+// app/javascript/components/Login.jsx
+var import_react18 = __toESM(require_react());
+
+// node_modules/@mui/material/Checkbox/Checkbox.js
+var React88 = __toESM(require_react());
+var import_prop_types53 = __toESM(require_prop_types());
+
+// node_modules/@mui/material/internal/SwitchBase.js
+var React84 = __toESM(require_react());
+var import_prop_types52 = __toESM(require_prop_types());
+
+// node_modules/@mui/material/internal/switchBaseClasses.js
+function getSwitchBaseUtilityClass(slot) {
+  return generateUtilityClass("PrivateSwitchBase", slot);
+}
+var switchBaseClasses = generateUtilityClasses("PrivateSwitchBase", ["root", "checked", "disabled", "input", "edgeStart", "edgeEnd"]);
+
+// node_modules/@mui/material/internal/SwitchBase.js
+var import_jsx_runtime49 = __toESM(require_jsx_runtime());
+var useUtilityClasses27 = (ownerState) => {
+  const {
+    classes,
+    checked,
+    disabled,
+    edge
+  } = ownerState;
+  const slots = {
+    root: ["root", checked && "checked", disabled && "disabled", edge && `edge${capitalize_default(edge)}`],
+    input: ["input"]
+  };
+  return composeClasses(slots, getSwitchBaseUtilityClass, classes);
+};
+var SwitchBaseRoot = styled_default2(ButtonBase_default)({
+  padding: 9,
+  borderRadius: "50%",
+  variants: [{
+    props: {
+      edge: "start",
+      size: "small"
+    },
+    style: {
+      marginLeft: -3
+    }
+  }, {
+    props: ({
+      edge,
+      ownerState
+    }) => edge === "start" && ownerState.size !== "small",
+    style: {
+      marginLeft: -12
+    }
+  }, {
+    props: {
+      edge: "end",
+      size: "small"
+    },
+    style: {
+      marginRight: -3
+    }
+  }, {
+    props: ({
+      edge,
+      ownerState
+    }) => edge === "end" && ownerState.size !== "small",
+    style: {
+      marginRight: -12
+    }
+  }]
+});
+var SwitchBaseInput = styled_default2("input", {
+  shouldForwardProp: rootShouldForwardProp_default
+})({
+  cursor: "inherit",
+  position: "absolute",
+  opacity: 0,
+  width: "100%",
+  height: "100%",
+  top: 0,
+  left: 0,
+  margin: 0,
+  padding: 0,
+  zIndex: 1
+});
+var SwitchBase = /* @__PURE__ */ React84.forwardRef(function SwitchBase2(props, ref) {
+  const {
+    autoFocus,
+    checked: checkedProp,
+    checkedIcon,
+    className,
+    defaultChecked,
+    disabled: disabledProp,
+    disableFocusRipple = false,
+    edge = false,
+    icon,
+    id,
+    inputProps,
+    inputRef,
+    name,
+    onBlur,
+    onChange,
+    onFocus,
+    readOnly,
+    required = false,
+    tabIndex,
+    type,
+    value,
+    ...other
+  } = props;
+  const [checked, setCheckedState] = useControlled_default({
+    controlled: checkedProp,
+    default: Boolean(defaultChecked),
+    name: "SwitchBase",
+    state: "checked"
+  });
+  const muiFormControl = useFormControl();
+  const handleFocus = (event) => {
+    if (onFocus) {
+      onFocus(event);
+    }
+    if (muiFormControl && muiFormControl.onFocus) {
+      muiFormControl.onFocus(event);
+    }
+  };
+  const handleBlur = (event) => {
+    if (onBlur) {
+      onBlur(event);
+    }
+    if (muiFormControl && muiFormControl.onBlur) {
+      muiFormControl.onBlur(event);
+    }
+  };
+  const handleInputChange = (event) => {
+    if (event.nativeEvent.defaultPrevented) {
+      return;
+    }
+    const newChecked = event.target.checked;
+    setCheckedState(newChecked);
+    if (onChange) {
+      onChange(event, newChecked);
+    }
+  };
+  let disabled = disabledProp;
+  if (muiFormControl) {
+    if (typeof disabled === "undefined") {
+      disabled = muiFormControl.disabled;
+    }
+  }
+  const hasLabelFor = type === "checkbox" || type === "radio";
+  const ownerState = {
+    ...props,
+    checked,
+    disabled,
+    disableFocusRipple,
+    edge
+  };
+  const classes = useUtilityClasses27(ownerState);
+  return /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(SwitchBaseRoot, {
+    component: "span",
+    className: clsx_default(classes.root, className),
+    centerRipple: true,
+    focusRipple: !disableFocusRipple,
+    disabled,
+    tabIndex: null,
+    role: void 0,
+    onFocus: handleFocus,
+    onBlur: handleBlur,
+    ownerState,
+    ref,
+    ...other,
+    children: [/* @__PURE__ */ (0, import_jsx_runtime49.jsx)(SwitchBaseInput, {
+      autoFocus,
+      checked: checkedProp,
+      defaultChecked,
+      className: classes.input,
+      disabled,
+      id: hasLabelFor ? id : void 0,
+      name,
+      onChange: handleInputChange,
+      readOnly,
+      ref: inputRef,
+      required,
+      ownerState,
+      tabIndex,
+      type,
+      ...type === "checkbox" && value === void 0 ? {} : {
+        value
+      },
+      ...inputProps
+    }), checked ? checkedIcon : icon]
+  });
+});
+true ? SwitchBase.propTypes = {
+  /**
+   * If `true`, the `input` element is focused during the first mount.
+   */
+  autoFocus: import_prop_types52.default.bool,
+  /**
+   * If `true`, the component is checked.
+   */
+  checked: import_prop_types52.default.bool,
+  /**
+   * The icon to display when the component is checked.
+   */
+  checkedIcon: import_prop_types52.default.node.isRequired,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: import_prop_types52.default.object,
+  /**
+   * @ignore
+   */
+  className: import_prop_types52.default.string,
+  /**
+   * @ignore
+   */
+  defaultChecked: import_prop_types52.default.bool,
+  /**
+   * If `true`, the component is disabled.
+   */
+  disabled: import_prop_types52.default.bool,
+  /**
+   * If `true`, the  keyboard focus ripple is disabled.
+   * @default false
+   */
+  disableFocusRipple: import_prop_types52.default.bool,
+  /**
+   * If given, uses a negative margin to counteract the padding on one
+   * side (this is often helpful for aligning the left or right
+   * side of the icon with content above or below, without ruining the border
+   * size and shape).
+   * @default false
+   */
+  edge: import_prop_types52.default.oneOf(["end", "start", false]),
+  /**
+   * The icon to display when the component is unchecked.
+   */
+  icon: import_prop_types52.default.node.isRequired,
+  /**
+   * The id of the `input` element.
+   */
+  id: import_prop_types52.default.string,
+  /**
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   */
+  inputProps: import_prop_types52.default.object,
+  /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef: refType_default,
+  /*
+   * @ignore
+   */
+  name: import_prop_types52.default.string,
+  /**
+   * @ignore
+   */
+  onBlur: import_prop_types52.default.func,
+  /**
+   * Callback fired when the state is changed.
+   *
+   * @param {object} event The event source of the callback.
+   * You can pull out the new checked state by accessing `event.target.checked` (boolean).
+   */
+  onChange: import_prop_types52.default.func,
+  /**
+   * @ignore
+   */
+  onFocus: import_prop_types52.default.func,
+  /**
+   * It prevents the user from changing the value of the field
+   * (not from interacting with the field).
+   */
+  readOnly: import_prop_types52.default.bool,
+  /**
+   * If `true`, the `input` element is required.
+   */
+  required: import_prop_types52.default.bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: import_prop_types52.default.object,
+  /**
+   * @ignore
+   */
+  tabIndex: import_prop_types52.default.oneOfType([import_prop_types52.default.number, import_prop_types52.default.string]),
+  /**
+   * The input component prop `type`.
+   */
+  type: import_prop_types52.default.string.isRequired,
+  /**
+   * The value of the component.
+   */
+  value: import_prop_types52.default.any
+} : void 0;
+var SwitchBase_default = SwitchBase;
+
+// node_modules/@mui/material/internal/svg-icons/CheckBoxOutlineBlank.js
+var React85 = __toESM(require_react());
+var import_jsx_runtime50 = __toESM(require_jsx_runtime());
+var CheckBoxOutlineBlank_default = createSvgIcon(/* @__PURE__ */ (0, import_jsx_runtime50.jsx)("path", {
+  d: "M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+}), "CheckBoxOutlineBlank");
+
+// node_modules/@mui/material/internal/svg-icons/CheckBox.js
+var React86 = __toESM(require_react());
+var import_jsx_runtime51 = __toESM(require_jsx_runtime());
+var CheckBox_default = createSvgIcon(/* @__PURE__ */ (0, import_jsx_runtime51.jsx)("path", {
+  d: "M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+}), "CheckBox");
+
+// node_modules/@mui/material/internal/svg-icons/IndeterminateCheckBox.js
+var React87 = __toESM(require_react());
+var import_jsx_runtime52 = __toESM(require_jsx_runtime());
+var IndeterminateCheckBox_default = createSvgIcon(/* @__PURE__ */ (0, import_jsx_runtime52.jsx)("path", {
+  d: "M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2z"
+}), "IndeterminateCheckBox");
+
+// node_modules/@mui/material/Checkbox/checkboxClasses.js
+function getCheckboxUtilityClass(slot) {
+  return generateUtilityClass("MuiCheckbox", slot);
+}
+var checkboxClasses = generateUtilityClasses("MuiCheckbox", ["root", "checked", "disabled", "indeterminate", "colorPrimary", "colorSecondary", "sizeSmall", "sizeMedium"]);
+var checkboxClasses_default = checkboxClasses;
+
+// node_modules/@mui/material/Checkbox/Checkbox.js
+var import_jsx_runtime53 = __toESM(require_jsx_runtime());
+var useUtilityClasses28 = (ownerState) => {
+  const {
+    classes,
+    indeterminate,
+    color: color2,
+    size
+  } = ownerState;
+  const slots = {
+    root: ["root", indeterminate && "indeterminate", `color${capitalize_default(color2)}`, `size${capitalize_default(size)}`]
+  };
+  const composedClasses = composeClasses(slots, getCheckboxUtilityClass, classes);
+  return {
+    ...classes,
+    // forward the disabled and checked classes to the SwitchBase
+    ...composedClasses
+  };
+};
+var CheckboxRoot = styled_default2(SwitchBase_default, {
+  shouldForwardProp: (prop) => rootShouldForwardProp_default(prop) || prop === "classes",
+  name: "MuiCheckbox",
+  slot: "Root",
+  overridesResolver: (props, styles5) => {
+    const {
+      ownerState
+    } = props;
+    return [styles5.root, ownerState.indeterminate && styles5.indeterminate, styles5[`size${capitalize_default(ownerState.size)}`], ownerState.color !== "default" && styles5[`color${capitalize_default(ownerState.color)}`]];
+  }
+})(memoTheme(({
+  theme
+}) => ({
+  color: (theme.vars || theme).palette.text.secondary,
+  variants: [{
+    props: {
+      color: "default",
+      disableRipple: false
+    },
+    style: {
+      "&:hover": {
+        backgroundColor: theme.vars ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})` : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity)
+      }
+    }
+  }, ...Object.entries(theme.palette).filter(createSimplePaletteValueFilter()).map(([color2]) => ({
+    props: {
+      color: color2,
+      disableRipple: false
+    },
+    style: {
+      "&:hover": {
+        backgroundColor: theme.vars ? `rgba(${theme.vars.palette[color2].mainChannel} / ${theme.vars.palette.action.hoverOpacity})` : alpha(theme.palette[color2].main, theme.palette.action.hoverOpacity)
+      }
+    }
+  })), ...Object.entries(theme.palette).filter(createSimplePaletteValueFilter()).map(([color2]) => ({
+    props: {
+      color: color2
+    },
+    style: {
+      [`&.${checkboxClasses_default.checked}, &.${checkboxClasses_default.indeterminate}`]: {
+        color: (theme.vars || theme).palette[color2].main
+      },
+      [`&.${checkboxClasses_default.disabled}`]: {
+        color: (theme.vars || theme).palette.action.disabled
+      }
+    }
+  })), {
+    // Should be last to override other colors
+    props: {
+      disableRipple: false
+    },
+    style: {
+      // Reset on touch devices, it doesn't add specificity
+      "&:hover": {
+        "@media (hover: none)": {
+          backgroundColor: "transparent"
+        }
+      }
+    }
+  }]
+})));
+var defaultCheckedIcon = /* @__PURE__ */ (0, import_jsx_runtime53.jsx)(CheckBox_default, {});
+var defaultIcon = /* @__PURE__ */ (0, import_jsx_runtime53.jsx)(CheckBoxOutlineBlank_default, {});
+var defaultIndeterminateIcon = /* @__PURE__ */ (0, import_jsx_runtime53.jsx)(IndeterminateCheckBox_default, {});
+var Checkbox = /* @__PURE__ */ React88.forwardRef(function Checkbox2(inProps, ref) {
+  const props = useDefaultProps2({
+    props: inProps,
+    name: "MuiCheckbox"
+  });
+  const {
+    checkedIcon = defaultCheckedIcon,
+    color: color2 = "primary",
+    icon: iconProp = defaultIcon,
+    indeterminate = false,
+    indeterminateIcon: indeterminateIconProp = defaultIndeterminateIcon,
+    inputProps,
+    size = "medium",
+    disableRipple = false,
+    className,
+    ...other
+  } = props;
+  const icon = indeterminate ? indeterminateIconProp : iconProp;
+  const indeterminateIcon = indeterminate ? indeterminateIconProp : checkedIcon;
+  const ownerState = {
+    ...props,
+    disableRipple,
+    color: color2,
+    indeterminate,
+    size
+  };
+  const classes = useUtilityClasses28(ownerState);
+  return /* @__PURE__ */ (0, import_jsx_runtime53.jsx)(CheckboxRoot, {
+    type: "checkbox",
+    inputProps: {
+      "data-indeterminate": indeterminate,
+      ...inputProps
+    },
+    icon: /* @__PURE__ */ React88.cloneElement(icon, {
+      fontSize: icon.props.fontSize ?? size
+    }),
+    checkedIcon: /* @__PURE__ */ React88.cloneElement(indeterminateIcon, {
+      fontSize: indeterminateIcon.props.fontSize ?? size
+    }),
+    ownerState,
+    ref,
+    className: clsx_default(classes.root, className),
+    ...other,
+    classes
+  });
+});
+true ? Checkbox.propTypes = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * If `true`, the component is checked.
+   */
+  checked: import_prop_types53.default.bool,
+  /**
+   * The icon to display when the component is checked.
+   * @default <CheckBoxIcon />
+   */
+  checkedIcon: import_prop_types53.default.node,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: import_prop_types53.default.object,
+  /**
+   * @ignore
+   */
+  className: import_prop_types53.default.string,
+  /**
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
+   * @default 'primary'
+   */
+  color: import_prop_types53.default.oneOfType([import_prop_types53.default.oneOf(["default", "primary", "secondary", "error", "info", "success", "warning"]), import_prop_types53.default.string]),
+  /**
+   * The default checked state. Use when the component is not controlled.
+   */
+  defaultChecked: import_prop_types53.default.bool,
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: import_prop_types53.default.bool,
+  /**
+   * If `true`, the ripple effect is disabled.
+   * @default false
+   */
+  disableRipple: import_prop_types53.default.bool,
+  /**
+   * The icon to display when the component is unchecked.
+   * @default <CheckBoxOutlineBlankIcon />
+   */
+  icon: import_prop_types53.default.node,
+  /**
+   * The id of the `input` element.
+   */
+  id: import_prop_types53.default.string,
+  /**
+   * If `true`, the component appears indeterminate.
+   * This does not set the native input element to indeterminate due
+   * to inconsistent behavior across browsers.
+   * However, we set a `data-indeterminate` attribute on the `input`.
+   * @default false
+   */
+  indeterminate: import_prop_types53.default.bool,
+  /**
+   * The icon to display when the component is indeterminate.
+   * @default <IndeterminateCheckBoxIcon />
+   */
+  indeterminateIcon: import_prop_types53.default.node,
+  /**
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   */
+  inputProps: import_prop_types53.default.object,
+  /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef: refType_default,
+  /**
+   * Callback fired when the state is changed.
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} event The event source of the callback.
+   * You can pull out the new checked state by accessing `event.target.checked` (boolean).
+   */
+  onChange: import_prop_types53.default.func,
+  /**
+   * If `true`, the `input` element is required.
+   * @default false
+   */
+  required: import_prop_types53.default.bool,
+  /**
+   * The size of the component.
+   * `small` is equivalent to the dense checkbox styling.
+   * @default 'medium'
+   */
+  size: import_prop_types53.default.oneOfType([import_prop_types53.default.oneOf(["medium", "small"]), import_prop_types53.default.string]),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: import_prop_types53.default.oneOfType([import_prop_types53.default.arrayOf(import_prop_types53.default.oneOfType([import_prop_types53.default.func, import_prop_types53.default.object, import_prop_types53.default.bool])), import_prop_types53.default.func, import_prop_types53.default.object]),
+  /**
+   * The value of the component. The DOM API casts this to a string.
+   * The browser uses "on" as the default value.
+   */
+  value: import_prop_types53.default.any
+} : void 0;
+var Checkbox_default = Checkbox;
+
+// node_modules/@mui/material/FormControlLabel/FormControlLabel.js
+var React89 = __toESM(require_react());
+var import_prop_types54 = __toESM(require_prop_types());
+
+// node_modules/@mui/material/FormControlLabel/formControlLabelClasses.js
+function getFormControlLabelUtilityClasses(slot) {
+  return generateUtilityClass("MuiFormControlLabel", slot);
+}
+var formControlLabelClasses = generateUtilityClasses("MuiFormControlLabel", ["root", "labelPlacementStart", "labelPlacementTop", "labelPlacementBottom", "disabled", "label", "error", "required", "asterisk"]);
+var formControlLabelClasses_default = formControlLabelClasses;
+
+// node_modules/@mui/material/FormControlLabel/FormControlLabel.js
+var import_jsx_runtime54 = __toESM(require_jsx_runtime());
+var useUtilityClasses29 = (ownerState) => {
+  const {
+    classes,
+    disabled,
+    labelPlacement,
+    error: error2,
+    required
+  } = ownerState;
+  const slots = {
+    root: ["root", disabled && "disabled", `labelPlacement${capitalize_default(labelPlacement)}`, error2 && "error", required && "required"],
+    label: ["label", disabled && "disabled"],
+    asterisk: ["asterisk", error2 && "error"]
+  };
+  return composeClasses(slots, getFormControlLabelUtilityClasses, classes);
+};
+var FormControlLabelRoot = styled_default2("label", {
+  name: "MuiFormControlLabel",
+  slot: "Root",
+  overridesResolver: (props, styles5) => {
+    const {
+      ownerState
+    } = props;
+    return [{
+      [`& .${formControlLabelClasses_default.label}`]: styles5.label
+    }, styles5.root, styles5[`labelPlacement${capitalize_default(ownerState.labelPlacement)}`]];
+  }
+})(memoTheme(({
+  theme
+}) => ({
+  display: "inline-flex",
+  alignItems: "center",
+  cursor: "pointer",
+  // For correct alignment with the text.
+  verticalAlign: "middle",
+  WebkitTapHighlightColor: "transparent",
+  marginLeft: -11,
+  marginRight: 16,
+  // used for row presentation of radio/checkbox
+  [`&.${formControlLabelClasses_default.disabled}`]: {
+    cursor: "default"
+  },
+  [`& .${formControlLabelClasses_default.label}`]: {
+    [`&.${formControlLabelClasses_default.disabled}`]: {
+      color: (theme.vars || theme).palette.text.disabled
+    }
+  },
+  variants: [{
+    props: {
+      labelPlacement: "start"
+    },
+    style: {
+      flexDirection: "row-reverse",
+      marginRight: -11
+    }
+  }, {
+    props: {
+      labelPlacement: "top"
+    },
+    style: {
+      flexDirection: "column-reverse"
+    }
+  }, {
+    props: {
+      labelPlacement: "bottom"
+    },
+    style: {
+      flexDirection: "column"
+    }
+  }, {
+    props: ({
+      labelPlacement
+    }) => labelPlacement === "start" || labelPlacement === "top" || labelPlacement === "bottom",
+    style: {
+      marginLeft: 16
+      // used for row presentation of radio/checkbox
+    }
+  }]
+})));
+var AsteriskComponent2 = styled_default2("span", {
+  name: "MuiFormControlLabel",
+  slot: "Asterisk",
+  overridesResolver: (props, styles5) => styles5.asterisk
+})(memoTheme(({
+  theme
+}) => ({
+  [`&.${formControlLabelClasses_default.error}`]: {
+    color: (theme.vars || theme).palette.error.main
+  }
+})));
+var FormControlLabel = /* @__PURE__ */ React89.forwardRef(function FormControlLabel2(inProps, ref) {
+  const props = useDefaultProps2({
+    props: inProps,
+    name: "MuiFormControlLabel"
+  });
+  const {
+    checked,
+    className,
+    componentsProps = {},
+    control,
+    disabled: disabledProp,
+    disableTypography,
+    inputRef,
+    label: labelProp,
+    labelPlacement = "end",
+    name,
+    onChange,
+    required: requiredProp,
+    slots = {},
+    slotProps = {},
+    value,
+    ...other
+  } = props;
+  const muiFormControl = useFormControl();
+  const disabled = disabledProp ?? control.props.disabled ?? muiFormControl?.disabled;
+  const required = requiredProp ?? control.props.required;
+  const controlProps = {
+    disabled,
+    required
+  };
+  ["checked", "name", "onChange", "value", "inputRef"].forEach((key) => {
+    if (typeof control.props[key] === "undefined" && typeof props[key] !== "undefined") {
+      controlProps[key] = props[key];
+    }
+  });
+  const fcs = formControlState({
+    props,
+    muiFormControl,
+    states: ["error"]
+  });
+  const ownerState = {
+    ...props,
+    disabled,
+    labelPlacement,
+    required,
+    error: fcs.error
+  };
+  const classes = useUtilityClasses29(ownerState);
+  const externalForwardedProps = {
+    slots,
+    slotProps: {
+      ...componentsProps,
+      ...slotProps
+    }
+  };
+  const [TypographySlot, typographySlotProps] = useSlot("typography", {
+    elementType: Typography_default,
+    externalForwardedProps,
+    ownerState
+  });
+  let label = labelProp;
+  if (label != null && label.type !== Typography_default && !disableTypography) {
+    label = /* @__PURE__ */ (0, import_jsx_runtime54.jsx)(TypographySlot, {
+      component: "span",
+      ...typographySlotProps,
+      className: clsx_default(classes.label, typographySlotProps?.className),
+      children: label
+    });
+  }
+  return /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)(FormControlLabelRoot, {
+    className: clsx_default(classes.root, className),
+    ownerState,
+    ref,
+    ...other,
+    children: [/* @__PURE__ */ React89.cloneElement(control, controlProps), required ? /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("div", {
+      children: [label, /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)(AsteriskComponent2, {
+        ownerState,
+        "aria-hidden": true,
+        className: classes.asterisk,
+        children: ["\u2009", "*"]
+      })]
+    }) : label]
+  });
+});
+true ? FormControlLabel.propTypes = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * If `true`, the component appears selected.
+   */
+  checked: import_prop_types54.default.bool,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: import_prop_types54.default.object,
+  /**
+   * @ignore
+   */
+  className: import_prop_types54.default.string,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   */
+  componentsProps: import_prop_types54.default.shape({
+    typography: import_prop_types54.default.object
+  }),
+  /**
+   * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
+   */
+  control: import_prop_types54.default.element.isRequired,
+  /**
+   * If `true`, the control is disabled.
+   */
+  disabled: import_prop_types54.default.bool,
+  /**
+   * If `true`, the label is rendered as it is passed without an additional typography node.
+   */
+  disableTypography: import_prop_types54.default.bool,
+  /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef: refType_default,
+  /**
+   * A text or an element to be used in an enclosing label element.
+   */
+  label: import_prop_types54.default.node,
+  /**
+   * The position of the label.
+   * @default 'end'
+   */
+  labelPlacement: import_prop_types54.default.oneOf(["bottom", "end", "start", "top"]),
+  /**
+   * @ignore
+   */
+  name: import_prop_types54.default.string,
+  /**
+   * Callback fired when the state is changed.
+   *
+   * @param {React.SyntheticEvent} event The event source of the callback.
+   * You can pull out the new checked state by accessing `event.target.checked` (boolean).
+   */
+  onChange: import_prop_types54.default.func,
+  /**
+   * If `true`, the label will indicate that the `input` is required.
+   */
+  required: import_prop_types54.default.bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: import_prop_types54.default.shape({
+    typography: import_prop_types54.default.oneOfType([import_prop_types54.default.func, import_prop_types54.default.object])
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: import_prop_types54.default.shape({
+    typography: import_prop_types54.default.elementType
+  }),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: import_prop_types54.default.oneOfType([import_prop_types54.default.arrayOf(import_prop_types54.default.oneOfType([import_prop_types54.default.func, import_prop_types54.default.object, import_prop_types54.default.bool])), import_prop_types54.default.func, import_prop_types54.default.object]),
+  /**
+   * The value of the component.
+   */
+  value: import_prop_types54.default.any
+} : void 0;
+var FormControlLabel_default = FormControlLabel;
+
+// app/javascript/components/Login.jsx
+var Login = () => {
+  const navigate = useNavigate();
+  const resolver2 = (values3) => {
+    const errors2 = {};
+    const emailError = validateEmail(values3.email);
+    if (emailError) {
+      errors2.email = emailError;
+    }
+    const passwordError = validatePassword(values3.password);
+    if (passwordError) {
+      errors2.password = passwordError;
+    }
+    return {
+      values: Object.keys(errors2).length === 0 ? values3 : {},
+      errors: errors2
+    };
+  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({ resolver: resolver2 });
+  const { mutate: login, isLoading } = useMutation(ApiClient_default.login, {
+    onSuccess: (data) => {
+      console.log("Login successful");
+      navigate("/");
+    },
+    onError: (error2) => {
+      console.error("Login failed:", error2);
+      alert("login failed");
+      navigate("/login");
+    }
+  });
+  const onFormSubmit = handleSubmit(async (data) => {
+    console.log("handleSubmit(async (data) => {", data);
+    const { email, password } = data;
+    await login({
+      email,
+      password
+    });
+  });
+  return /* @__PURE__ */ import_react18.default.createElement(Container_default, { component: "main", maxWidth: "xs" }, /* @__PURE__ */ import_react18.default.createElement(CssBaseline_default, null), /* @__PURE__ */ import_react18.default.createElement(
+    Box_default,
+    {
+      sx: {
+        marginTop: 8,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center"
+      }
+    },
+    /* @__PURE__ */ import_react18.default.createElement(Avatar_default, { sx: { m: 1, bgcolor: "secondary.main" } }, /* @__PURE__ */ import_react18.default.createElement(LockOutlined_default, null)),
+    /* @__PURE__ */ import_react18.default.createElement(Typography_default, { component: "h1", variant: "h5" }, "Sign in"),
+    /* @__PURE__ */ import_react18.default.createElement(Box_default, { component: "form", onSubmit: onFormSubmit, noValidate: true, sx: { mt: 1 } }, /* @__PURE__ */ import_react18.default.createElement(
+      TextField_default,
+      {
+        margin: "normal",
+        required: true,
+        fullWidth: true,
+        label: "Email Address",
+        autoComplete: "email",
+        autoFocus: true,
+        ...register("email"),
+        error: !!errors?.email,
+        helperText: errors?.email?.message || ""
+      }
+    ), /* @__PURE__ */ import_react18.default.createElement(
+      TextField_default,
+      {
+        margin: "normal",
+        required: true,
+        fullWidth: true,
+        label: "Password",
+        type: "password",
+        autoComplete: "current-password",
+        ...register("password"),
+        error: !!errors?.password,
+        helperText: errors?.password?.message || ""
+      }
+    ), /* @__PURE__ */ import_react18.default.createElement(
+      FormControlLabel_default,
+      {
+        control: /* @__PURE__ */ import_react18.default.createElement(Checkbox_default, { value: "remember", color: "primary" }),
+        label: "Remember me"
+      }
+    ), /* @__PURE__ */ import_react18.default.createElement(
+      Button_default,
+      {
+        type: "submit",
+        fullWidth: true,
+        variant: "contained",
+        sx: { mt: 3, mb: 2 },
+        disabled: isLoading
+      },
+      "Sign In"
+    ), /* @__PURE__ */ import_react18.default.createElement(Grid_default, { container: true }, /* @__PURE__ */ import_react18.default.createElement(Grid_default, { item: true, xs: true }, /* @__PURE__ */ import_react18.default.createElement(Link_default, { href: "#", variant: "body2" }, "Forgot password?")), /* @__PURE__ */ import_react18.default.createElement(Grid_default, { item: true }, /* @__PURE__ */ import_react18.default.createElement(Link_default, { href: "/signup", variant: "body2" }, "Don't have an account? Sign Up"))))
+  ));
+};
+var Login_default = Login;
+
 // app/javascript/routes/index.jsx
-var routes_default = /* @__PURE__ */ import_react18.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react18.default.createElement(Routes, null, /* @__PURE__ */ import_react18.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react18.default.createElement(Home_default, null) }), /* @__PURE__ */ import_react18.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react18.default.createElement(Signup_default, null) }), /* @__PURE__ */ import_react18.default.createElement(Route, { path: "/users", element: /* @__PURE__ */ import_react18.default.createElement(Users_default, null) })));
+var routes_default = /* @__PURE__ */ import_react19.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react19.default.createElement(Routes, null, /* @__PURE__ */ import_react19.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react19.default.createElement(Home_default, null) }), /* @__PURE__ */ import_react19.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react19.default.createElement(Signup_default, null) }), /* @__PURE__ */ import_react19.default.createElement(Route, { path: "/login", element: /* @__PURE__ */ import_react19.default.createElement(Login_default, null) }), /* @__PURE__ */ import_react19.default.createElement(Route, { path: "/users", element: /* @__PURE__ */ import_react19.default.createElement(Users_default, null) })));
 
 // app/javascript/components/App.jsx
 var queryClient = new QueryClient();
 var App = () => {
-  return /* @__PURE__ */ import_react19.default.createElement(QueryClientProvider, { client: queryClient }, /* @__PURE__ */ import_react19.default.createElement(import_react19.default.Fragment, null, routes_default), ";");
+  return /* @__PURE__ */ import_react20.default.createElement(QueryClientProvider, { client: queryClient }, /* @__PURE__ */ import_react20.default.createElement(import_react20.default.Fragment, null, routes_default), ";");
 };
 var App_default = App;
 
@@ -66133,7 +67074,7 @@ document.addEventListener("turbo:load", () => {
   const root = (0, import_client.createRoot)(
     document.body.appendChild(document.createElement("div"))
   );
-  root.render(/* @__PURE__ */ import_react20.default.createElement(App_default, null));
+  root.render(/* @__PURE__ */ import_react21.default.createElement(App_default, null));
 });
 /*! Bundled license information:
 
@@ -66294,6 +67235,15 @@ react-router-dom/dist/index.js:
 @mui/system/index.js:
   (**
    * @mui/system v6.1.1
+   *
+   * @license MIT
+   * This source code is licensed under the MIT license found in the
+   * LICENSE file in the root directory of this source tree.
+   *)
+
+@mui/material/index.js:
+  (**
+   * @mui/material v6.1.1
    *
    * @license MIT
    * This source code is licensed under the MIT license found in the
