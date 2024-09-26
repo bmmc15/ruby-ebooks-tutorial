@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_26_145126) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_26_150313) do
   create_table "ebooks", force: :cascade do |t|
     t.string "title"
     t.string "description"
     t.float "price"
     t.float "seller_fee"
-    t.string "status"
     t.integer "seller_id"
     t.string "pdf_preview"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", null: false
     t.index ["seller_id"], name: "index_ebooks_on_seller_id"
   end
 
