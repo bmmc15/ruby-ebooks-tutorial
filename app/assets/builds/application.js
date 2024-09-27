@@ -41229,15 +41229,25 @@ function useViewTransitionState(to, opts) {
 
 // app/javascript/components/Home.jsx
 var import_react = __toESM(require_react());
-var Home_default = () => /* @__PURE__ */ import_react.default.createElement("div", { className: "vw-100 vh-100 primary-color d-flex align-items-center justify-content-center" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "jumbotron jumbotron-fluid bg-transparent" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "container secondary-color" }, /* @__PURE__ */ import_react.default.createElement("h1", { className: "display-4" }, "Sport exercises"), /* @__PURE__ */ import_react.default.createElement("p", { className: "lead" }, "A list of sport exercises to boost your workout."), /* @__PURE__ */ import_react.default.createElement("hr", { className: "my-4" }), /* @__PURE__ */ import_react.default.createElement(
-  Link,
-  {
-    to: "/exercises",
-    className: "btn btn-lg custom-button",
-    role: "button"
-  },
-  "View Exercises"
-))));
+var Home_default = () => (
+  // <div className="vw-100 vh-100 primary-color d-flex align-items-center justify-content-center">
+  //   <div className="jumbotron jumbotron-fluid bg-transparent">
+  //     <div className="container secondary-color">
+  //       <h1 className="display-4">Sport exercises</h1>
+  //       <p className="lead">A list of sport exercises to boost your workout.</p>
+  //       <hr className="my-4" />
+  //       <Link
+  //         to="/exercises"
+  //         className="btn btn-lg custom-button"
+  //         role="button"
+  //       >
+  //         View Exercises
+  //       </Link>
+  //     </div>
+  //   </div>
+  // </div>
+  /* @__PURE__ */ import_react.default.createElement("div", null)
+);
 
 // app/javascript/components/Users.jsx
 var import_react6 = __toESM(require_react());
