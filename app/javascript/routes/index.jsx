@@ -4,11 +4,12 @@ import Home from "../components/Home";
 import Users from "../components/Users";
 import Signup from "../components/Signup";
 import Login from "../components/Login";
+import Navbar from "../components/Navbar/Navbar"
 
 export default (
   <Router>
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Navbar />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/users" element={<Users />} />
