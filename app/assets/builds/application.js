@@ -1676,7 +1676,7 @@ var require_react_development = __commonJS({
           }
           return dispatcher.useContext(Context2);
         }
-        function useState19(initialState) {
+        function useState20(initialState) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useState(initialState);
         }
@@ -2479,7 +2479,7 @@ var require_react_development = __commonJS({
         exports.useMemo = useMemo6;
         exports.useReducer = useReducer;
         exports.useRef = useRef20;
-        exports.useState = useState19;
+        exports.useState = useState20;
         exports.useSyncExternalStore = useSyncExternalStore;
         exports.useTransition = useTransition;
         exports.version = ReactVersion;
@@ -2975,9 +2975,9 @@ var require_react_dom_development = __commonJS({
         if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
           __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
         }
-        var React101 = require_react();
+        var React102 = require_react();
         var Scheduler = require_scheduler();
-        var ReactSharedInternals = React101.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        var ReactSharedInternals = React102.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
         var suppressWarning = false;
         function setSuppressWarning(newSuppressWarning) {
           {
@@ -4584,7 +4584,7 @@ var require_react_dom_development = __commonJS({
           {
             if (props.value == null) {
               if (typeof props.children === "object" && props.children !== null) {
-                React101.Children.forEach(props.children, function(child) {
+                React102.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -25045,7 +25045,7 @@ var require_react_jsx_runtime_development = __commonJS({
     if (true) {
       (function() {
         "use strict";
-        var React101 = require_react();
+        var React102 = require_react();
         var REACT_ELEMENT_TYPE = Symbol.for("react.element");
         var REACT_PORTAL_TYPE = Symbol.for("react.portal");
         var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
@@ -25071,7 +25071,7 @@ var require_react_jsx_runtime_development = __commonJS({
           }
           return null;
         }
-        var ReactSharedInternals = React101.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        var ReactSharedInternals = React102.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
         function error2(format) {
           {
             {
@@ -39291,11 +39291,11 @@ enableDismissTrigger(Toast);
 defineJQueryPlugin(Toast);
 
 // app/javascript/components/index.jsx
-var import_react28 = __toESM(require_react());
+var import_react29 = __toESM(require_react());
 var import_client = __toESM(require_client());
 
 // app/javascript/components/App.jsx
-var import_react27 = __toESM(require_react());
+var import_react28 = __toESM(require_react());
 
 // node_modules/react-router-dom/dist/index.js
 var React2 = __toESM(require_react());
@@ -41225,7 +41225,7 @@ function useViewTransitionState(to, opts) {
 }
 
 // app/javascript/routes/index.jsx
-var import_react25 = __toESM(require_react());
+var import_react26 = __toESM(require_react());
 
 // app/javascript/components/Users.jsx
 var import_react5 = __toESM(require_react());
@@ -43721,6 +43721,7 @@ function useQuery(arg1, arg2, arg3) {
 
 // app/javascript/utils/constants.js
 var USERS_QUERY_KEY = "users";
+var EBOOKS_QUERY_KEY = "ebooks";
 
 // node_modules/axios/lib/helpers/bind.js
 function bind(fn2, thisArg) {
@@ -46264,6 +46265,15 @@ var ApiClient = {
   login: async (loginBody) => {
     try {
       const response = await apiInstance.post("/login", loginBody);
+      return response?.data;
+    } catch (err) {
+      throw err;
+    }
+  },
+  fetchEbooks: async () => {
+    try {
+      console.log("FetchEbooks Request");
+      const response = await apiInstance.get("/ebooks");
       return response?.data;
     } catch (err) {
       throw err;
@@ -67078,67 +67088,81 @@ var useGetNavigate = () => {
 
 // app/javascript/components/Items/Item.jsx
 var import_react24 = __toESM(require_react());
-var Item = () => {
-  return /* @__PURE__ */ import_react24.default.createElement("div", { className: "flex items-center justify-between p-4 border-indigo-400 rounded-lg max-w-xl mx-auto shadow-xl" }, /* @__PURE__ */ import_react24.default.createElement("div", { className: "w-1/3" }, /* @__PURE__ */ import_react24.default.createElement(
+var Item = ({ title, description }) => {
+  return /* @__PURE__ */ import_react24.default.createElement("div", { className: "flex items-center justify-between p-4 border-indigo-400 rounded-lg w-1/3 mx-auto shadow-xl" }, /* @__PURE__ */ import_react24.default.createElement("div", { className: "w-1/3" }, /* @__PURE__ */ import_react24.default.createElement(
     "img",
     {
-      src: "https://placehold.co/150x150/e4e4e4/818cf8?text=Invalid+Image&font=roboto",
+      src: "https://placehold.co/150x150/efefef/4f46e5?text=Invalid+Image&font=roboto",
       alt: "Product",
       className: "w-full h-auto rounded-lg"
     }
-  )), /* @__PURE__ */ import_react24.default.createElement("div", { className: "w-2/3 pl-4 flex flex-col justify-center" }, /* @__PURE__ */ import_react24.default.createElement("h2", { className: "text-xl font-bold text-gray-800 mb-2" }, "Product Title"), /* @__PURE__ */ import_react24.default.createElement("p", { className: "text-gray-600 mb-4" }, "This is a short description of the product. It highlights the key features and benefits."), /* @__PURE__ */ import_react24.default.createElement("button", { className: "bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg" }, "Add to Cart")));
+  )), /* @__PURE__ */ import_react24.default.createElement("div", { className: "w-2/3 pl-4 flex flex-col justify-center" }, /* @__PURE__ */ import_react24.default.createElement("h2", { className: "text-xl font-bold text-gray-800 mb-2" }, title ?? "Product Title"), /* @__PURE__ */ import_react24.default.createElement("p", { className: "text-gray-600 mb-4" }, description ?? "This is a short description of the product. It highlights the key features and benefits."), /* @__PURE__ */ import_react24.default.createElement("button", { className: "bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg" }, "Add to Cart")));
 };
 var Item_default = Item;
 
+// app/javascript/components/Items/ItemList.jsx
+var import_react25 = __toESM(require_react());
+var ItemList = () => {
+  const [items, setItems] = (0, import_react25.useState)([]);
+  const { isLoading } = useQuery(EBOOKS_QUERY_KEY, ApiClient_default.fetchEbooks, {
+    onSuccess: (data) => {
+      console.log("First Rails useQuery sucessful:", data);
+      setItems(data);
+    }
+  });
+  return /* @__PURE__ */ import_react25.default.createElement("div", { className: "flex flex-col" }, items.map((item, index) => /* @__PURE__ */ import_react25.default.createElement(Item_default, { key: index, title: item.title, description: item.description })));
+};
+var ItemList_default = ItemList;
+
 // app/javascript/routes/index.jsx
 var AppRoutes = () => {
-  return /* @__PURE__ */ import_react25.default.createElement(import_react25.default.Fragment, null, /* @__PURE__ */ import_react25.default.createElement(Routes, null, /* @__PURE__ */ import_react25.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react25.default.createElement(Item_default, null) }), /* @__PURE__ */ import_react25.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react25.default.createElement(Signup_default, null) }), /* @__PURE__ */ import_react25.default.createElement(Route, { path: "/login", element: /* @__PURE__ */ import_react25.default.createElement(Login_default, null) }), /* @__PURE__ */ import_react25.default.createElement(Route, { path: "/users", element: /* @__PURE__ */ import_react25.default.createElement(Users_default, null) })));
+  return /* @__PURE__ */ import_react26.default.createElement(import_react26.default.Fragment, null, /* @__PURE__ */ import_react26.default.createElement(Routes, null, /* @__PURE__ */ import_react26.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react26.default.createElement(ItemList_default, null) }), /* @__PURE__ */ import_react26.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react26.default.createElement(Signup_default, null) }), /* @__PURE__ */ import_react26.default.createElement(Route, { path: "/login", element: /* @__PURE__ */ import_react26.default.createElement(Login_default, null) }), /* @__PURE__ */ import_react26.default.createElement(Route, { path: "/users", element: /* @__PURE__ */ import_react26.default.createElement(Users_default, null) })));
 };
 var routes_default = AppRoutes;
 
 // app/javascript/components/Navbar/Navbar.jsx
-var import_react26 = __toESM(require_react());
+var import_react27 = __toESM(require_react());
 var Navbar = () => {
-  const [open, setOpen] = (0, import_react26.useState)(false);
+  const [open, setOpen] = (0, import_react27.useState)(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const { navigateTo } = useGetNavigate();
-  return /* @__PURE__ */ import_react26.default.createElement("header", { className: "bg-white shadow" }, /* @__PURE__ */ import_react26.default.createElement("div", { className: "container mx-auto flex justify-between items-center p-6" }, /* @__PURE__ */ import_react26.default.createElement(
+  return /* @__PURE__ */ import_react27.default.createElement("header", { className: "bg-white shadow" }, /* @__PURE__ */ import_react27.default.createElement("div", { className: "container mx-auto flex justify-between items-center p-6" }, /* @__PURE__ */ import_react27.default.createElement(
     "button",
     {
       onClick: navigateTo("/"),
       className: "text-xl font-bold text-indigo-500"
     },
     "ebooks.buy"
-  ), /* @__PURE__ */ import_react26.default.createElement("nav", { className: "space-x-6" }, /* @__PURE__ */ import_react26.default.createElement(
+  ), /* @__PURE__ */ import_react27.default.createElement("nav", { className: "space-x-6" }, /* @__PURE__ */ import_react27.default.createElement(
     "button",
     {
       onClick: navigateTo("/"),
       className: "text-gray-700 hover:text-indigo-600"
     },
     "Ebooks"
-  ), /* @__PURE__ */ import_react26.default.createElement(
+  ), /* @__PURE__ */ import_react27.default.createElement(
     "button",
     {
       onClick: navigateTo("/"),
       className: "text-gray-700 hover:text-indigo-600"
     },
     "Sellers"
-  ), /* @__PURE__ */ import_react26.default.createElement(
+  ), /* @__PURE__ */ import_react27.default.createElement(
     "button",
     {
       onClick: navigateTo("/"),
       className: "text-gray-700 hover:text-indigo-600"
     },
     "About"
-  )), /* @__PURE__ */ import_react26.default.createElement("div", { className: "space-x-4" }, /* @__PURE__ */ import_react26.default.createElement(
+  )), /* @__PURE__ */ import_react27.default.createElement("div", { className: "space-x-4" }, /* @__PURE__ */ import_react27.default.createElement(
     "button",
     {
       onClick: navigateTo("/"),
       className: "text-gray-700 hover:text-indigo-600"
     },
     "Login"
-  ), /* @__PURE__ */ import_react26.default.createElement(
+  ), /* @__PURE__ */ import_react27.default.createElement(
     "button",
     {
       className: "bg-indigo-600 text-white px-4 py-2 rounded-lg",
@@ -67152,7 +67176,7 @@ var Navbar_default = Navbar;
 // app/javascript/components/App.jsx
 var queryClient = new QueryClient();
 var App = () => {
-  return /* @__PURE__ */ import_react27.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react27.default.createElement(import_react27.default.Fragment, null, /* @__PURE__ */ import_react27.default.createElement(Navbar_default, null), /* @__PURE__ */ import_react27.default.createElement(QueryClientProvider, { client: queryClient }, /* @__PURE__ */ import_react27.default.createElement(routes_default, null))));
+  return /* @__PURE__ */ import_react28.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react28.default.createElement(import_react28.default.Fragment, null, /* @__PURE__ */ import_react28.default.createElement(Navbar_default, null), /* @__PURE__ */ import_react28.default.createElement(QueryClientProvider, { client: queryClient }, /* @__PURE__ */ import_react28.default.createElement(routes_default, null))));
 };
 var App_default = App;
 
@@ -67161,7 +67185,7 @@ document.addEventListener("turbo:load", () => {
   const root = (0, import_client.createRoot)(
     document.body.appendChild(document.createElement("div"))
   );
-  root.render(/* @__PURE__ */ import_react28.default.createElement(App_default, null));
+  root.render(/* @__PURE__ */ import_react29.default.createElement(App_default, null));
 });
 /*! Bundled license information:
 

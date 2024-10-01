@@ -34,5 +34,15 @@ const ApiClient = {
       throw err;
     }
   },
+
+  fetchEbooks: async () => {
+    try {
+      console.log("FetchEbooks Request");
+      const response = await apiInstance.get("/ebooks");
+      return response?.data;
+    } catch (err) {
+      throw err;
+    }
+  },
 };
 export default ApiClient;
