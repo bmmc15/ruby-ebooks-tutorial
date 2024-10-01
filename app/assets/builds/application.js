@@ -39297,9 +39297,6 @@ var import_client = __toESM(require_client());
 // app/javascript/components/App.jsx
 var import_react27 = __toESM(require_react());
 
-// app/javascript/routes/index.jsx
-var import_react26 = __toESM(require_react());
-
 // node_modules/react-router-dom/dist/index.js
 var React2 = __toESM(require_react());
 var ReactDOM = __toESM(require_react_dom());
@@ -41227,11 +41224,11 @@ function useViewTransitionState(to, opts) {
   return matchPath(path.pathname, nextPath) != null || matchPath(path.pathname, currentPath) != null;
 }
 
-// app/javascript/components/Home.jsx
-var import_react = __toESM(require_react());
+// app/javascript/routes/index.jsx
+var import_react25 = __toESM(require_react());
 
 // app/javascript/components/Users.jsx
-var import_react6 = __toESM(require_react());
+var import_react5 = __toESM(require_react());
 
 // node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js
 function _setPrototypeOf(t, e) {
@@ -43533,9 +43530,9 @@ var logger2 = console;
 setLogger(logger2);
 
 // node_modules/react-query/es/react/QueryClientProvider.js
-var import_react2 = __toESM(require_react());
-var defaultContext = /* @__PURE__ */ import_react2.default.createContext(void 0);
-var QueryClientSharingContext = /* @__PURE__ */ import_react2.default.createContext(false);
+var import_react = __toESM(require_react());
+var defaultContext = /* @__PURE__ */ import_react.default.createContext(void 0);
+var QueryClientSharingContext = /* @__PURE__ */ import_react.default.createContext(false);
 function getQueryClientContext(contextSharing) {
   if (contextSharing && typeof window !== "undefined") {
     if (!window.ReactQueryClientContext) {
@@ -43546,7 +43543,7 @@ function getQueryClientContext(contextSharing) {
   return defaultContext;
 }
 var useQueryClient = function useQueryClient2() {
-  var queryClient2 = import_react2.default.useContext(getQueryClientContext(import_react2.default.useContext(QueryClientSharingContext)));
+  var queryClient2 = import_react.default.useContext(getQueryClientContext(import_react.default.useContext(QueryClientSharingContext)));
   if (!queryClient2) {
     throw new Error("No QueryClient set, use QueryClientProvider to set one");
   }
@@ -43554,22 +43551,22 @@ var useQueryClient = function useQueryClient2() {
 };
 var QueryClientProvider = function QueryClientProvider2(_ref) {
   var client = _ref.client, _ref$contextSharing = _ref.contextSharing, contextSharing = _ref$contextSharing === void 0 ? false : _ref$contextSharing, children = _ref.children;
-  import_react2.default.useEffect(function() {
+  import_react.default.useEffect(function() {
     client.mount();
     return function() {
       client.unmount();
     };
   }, [client]);
   var Context2 = getQueryClientContext(contextSharing);
-  return /* @__PURE__ */ import_react2.default.createElement(QueryClientSharingContext.Provider, {
+  return /* @__PURE__ */ import_react.default.createElement(QueryClientSharingContext.Provider, {
     value: contextSharing
-  }, /* @__PURE__ */ import_react2.default.createElement(Context2.Provider, {
+  }, /* @__PURE__ */ import_react.default.createElement(Context2.Provider, {
     value: client
   }, children));
 };
 
 // node_modules/react-query/es/react/QueryErrorResetBoundary.js
-var import_react3 = __toESM(require_react());
+var import_react2 = __toESM(require_react());
 function createValue() {
   var _isReset = false;
   return {
@@ -43584,13 +43581,13 @@ function createValue() {
     }
   };
 }
-var QueryErrorResetBoundaryContext = /* @__PURE__ */ import_react3.default.createContext(createValue());
+var QueryErrorResetBoundaryContext = /* @__PURE__ */ import_react2.default.createContext(createValue());
 var useQueryErrorResetBoundary = function useQueryErrorResetBoundary2() {
-  return import_react3.default.useContext(QueryErrorResetBoundaryContext);
+  return import_react2.default.useContext(QueryErrorResetBoundaryContext);
 };
 
 // node_modules/react-query/es/react/useMutation.js
-var import_react4 = __toESM(require_react());
+var import_react3 = __toESM(require_react());
 
 // node_modules/react-query/es/react/utils.js
 function shouldThrowError(suspense, _useErrorBoundary, params) {
@@ -43603,18 +43600,18 @@ function shouldThrowError(suspense, _useErrorBoundary, params) {
 
 // node_modules/react-query/es/react/useMutation.js
 function useMutation(arg1, arg2, arg3) {
-  var mountedRef = import_react4.default.useRef(false);
-  var _React$useState = import_react4.default.useState(0), forceUpdate = _React$useState[1];
+  var mountedRef = import_react3.default.useRef(false);
+  var _React$useState = import_react3.default.useState(0), forceUpdate = _React$useState[1];
   var options = parseMutationArgs(arg1, arg2, arg3);
   var queryClient2 = useQueryClient();
-  var obsRef = import_react4.default.useRef();
+  var obsRef = import_react3.default.useRef();
   if (!obsRef.current) {
     obsRef.current = new MutationObserver2(queryClient2, options);
   } else {
     obsRef.current.setOptions(options);
   }
   var currentResult = obsRef.current.getCurrentResult();
-  import_react4.default.useEffect(function() {
+  import_react3.default.useEffect(function() {
     mountedRef.current = true;
     var unsubscribe = obsRef.current.subscribe(notifyManager.batchCalls(function() {
       if (mountedRef.current) {
@@ -43628,7 +43625,7 @@ function useMutation(arg1, arg2, arg3) {
       unsubscribe();
     };
   }, []);
-  var mutate = import_react4.default.useCallback(function(variables, mutateOptions) {
+  var mutate = import_react3.default.useCallback(function(variables, mutateOptions) {
     obsRef.current.mutate(variables, mutateOptions).catch(noop2);
   }, []);
   if (currentResult.error && shouldThrowError(void 0, obsRef.current.options.useErrorBoundary, [currentResult.error])) {
@@ -43641,10 +43638,10 @@ function useMutation(arg1, arg2, arg3) {
 }
 
 // node_modules/react-query/es/react/useBaseQuery.js
-var import_react5 = __toESM(require_react());
+var import_react4 = __toESM(require_react());
 function useBaseQuery(options, Observer) {
-  var mountedRef = import_react5.default.useRef(false);
-  var _React$useState = import_react5.default.useState(0), forceUpdate = _React$useState[1];
+  var mountedRef = import_react4.default.useRef(false);
+  var _React$useState = import_react4.default.useState(0), forceUpdate = _React$useState[1];
   var queryClient2 = useQueryClient();
   var errorResetBoundary = useQueryErrorResetBoundary();
   var defaultedOptions = queryClient2.defaultQueryObserverOptions(options);
@@ -43671,11 +43668,11 @@ function useBaseQuery(options, Observer) {
       defaultedOptions.retryOnMount = false;
     }
   }
-  var _React$useState2 = import_react5.default.useState(function() {
+  var _React$useState2 = import_react4.default.useState(function() {
     return new Observer(queryClient2, defaultedOptions);
   }), observer = _React$useState2[0];
   var result = observer.getOptimisticResult(defaultedOptions);
-  import_react5.default.useEffect(function() {
+  import_react4.default.useEffect(function() {
     mountedRef.current = true;
     errorResetBoundary.clearReset();
     var unsubscribe = observer.subscribe(notifyManager.batchCalls(function() {
@@ -43691,7 +43688,7 @@ function useBaseQuery(options, Observer) {
       unsubscribe();
     };
   }, [errorResetBoundary, observer]);
-  import_react5.default.useEffect(function() {
+  import_react4.default.useEffect(function() {
     observer.setOptions(defaultedOptions, {
       listeners: false
     });
@@ -46277,14 +46274,14 @@ var ApiClient_default = ApiClient;
 
 // app/javascript/components/Users.jsx
 var Users = () => {
-  const [users, setUsers] = (0, import_react6.useState)([]);
+  const [users, setUsers] = (0, import_react5.useState)([]);
   const { isLoading } = useQuery(USERS_QUERY_KEY, ApiClient_default.fetchUsers, {
     onSuccess: (data) => {
       console.log("First Rails useQuery sucessful:", data);
       setUsers(data);
     }
   });
-  return /* @__PURE__ */ import_react6.default.createElement("div", { className: "vw-100 vh-100 primary-color d-flex align-items-center justify-content-center" }, /* @__PURE__ */ import_react6.default.createElement("div", { className: "jumbotron jumbotron-fluid bg-transparent" }, /* @__PURE__ */ import_react6.default.createElement("div", { className: "container secondary-color" }, /* @__PURE__ */ import_react6.default.createElement("h1", { className: "display-4" }, "Users"), /* @__PURE__ */ import_react6.default.createElement("p", { className: "lead" }, "A list of all the users."), /* @__PURE__ */ import_react6.default.createElement("hr", { className: "my-4" }), /* @__PURE__ */ import_react6.default.createElement(
+  return /* @__PURE__ */ import_react5.default.createElement("div", { className: "vw-100 vh-100 primary-color d-flex align-items-center justify-content-center" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "jumbotron jumbotron-fluid bg-transparent" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "container secondary-color" }, /* @__PURE__ */ import_react5.default.createElement("h1", { className: "display-4" }, "Users"), /* @__PURE__ */ import_react5.default.createElement("p", { className: "lead" }, "A list of all the users."), /* @__PURE__ */ import_react5.default.createElement("hr", { className: "my-4" }), /* @__PURE__ */ import_react5.default.createElement(
     Link,
     {
       to: "/exercises",
@@ -46293,16 +46290,16 @@ var Users = () => {
     },
     "Users"
   ), users && users.map((elem, idx) => {
-    return /* @__PURE__ */ import_react6.default.createElement("div", { key: idx }, elem.username);
+    return /* @__PURE__ */ import_react5.default.createElement("div", { key: idx }, elem.username);
   }))));
 };
 var Users_default = Users;
 
 // app/javascript/components/Signup.jsx
-var import_react17 = __toESM(require_react());
+var import_react16 = __toESM(require_react());
 
 // node_modules/@mui/material/Avatar/Avatar.js
-var React36 = __toESM(require_react());
+var React35 = __toESM(require_react());
 var import_prop_types13 = __toESM(require_prop_types());
 
 // node_modules/clsx/dist/clsx.mjs
@@ -46344,7 +46341,7 @@ function composeClasses(slots, getUtilityClass, classes = void 0) {
 }
 
 // node_modules/@mui/material/zero-styled/index.js
-var React31 = __toESM(require_react());
+var React30 = __toESM(require_react());
 
 // node_modules/@mui/utils/esm/capitalize/capitalize.js
 function capitalize2(string) {
@@ -47491,10 +47488,10 @@ function extendSxProp(props) {
 }
 
 // node_modules/@mui/material/styles/useTheme.js
-var React29 = __toESM(require_react());
+var React28 = __toESM(require_react());
 
 // node_modules/@emotion/styled/base/dist/emotion-styled-base.browser.esm.js
-var React12 = __toESM(require_react());
+var React11 = __toESM(require_react());
 
 // node_modules/@emotion/memoize/dist/emotion-memoize.esm.js
 function memoize2(fn2) {
@@ -47515,8 +47512,8 @@ var isPropValid = /* @__PURE__ */ memoize2(
 );
 
 // node_modules/@emotion/react/dist/emotion-element-5486c51c.browser.esm.js
-var React10 = __toESM(require_react());
-var import_react7 = __toESM(require_react());
+var React9 = __toESM(require_react());
+var import_react6 = __toESM(require_react());
 
 // node_modules/@emotion/sheet/dist/emotion-sheet.esm.js
 var isDevelopment = false;
@@ -48614,16 +48611,16 @@ function serializeStyles(args, registered, mergedProps) {
 }
 
 // node_modules/@emotion/use-insertion-effect-with-fallbacks/dist/emotion-use-insertion-effect-with-fallbacks.browser.esm.js
-var React9 = __toESM(require_react());
+var React8 = __toESM(require_react());
 var syncFallback = function syncFallback2(create) {
   return create();
 };
-var useInsertionEffect2 = React9["useInsertionEffect"] ? React9["useInsertionEffect"] : false;
+var useInsertionEffect2 = React8["useInsertionEffect"] ? React8["useInsertionEffect"] : false;
 var useInsertionEffectAlwaysWithSyncFallback = useInsertionEffect2 || syncFallback;
-var useInsertionEffectWithLayoutFallback = useInsertionEffect2 || React9.useLayoutEffect;
+var useInsertionEffectWithLayoutFallback = useInsertionEffect2 || React8.useLayoutEffect;
 
 // node_modules/@emotion/react/dist/emotion-element-5486c51c.browser.esm.js
-var EmotionCacheContext = /* @__PURE__ */ React10.createContext(
+var EmotionCacheContext = /* @__PURE__ */ React9.createContext(
   // we're doing this to avoid preconstruct's dead code elimination in this one case
   // because this module is primarily intended for the browser and node
   // but it's also required in react native and similar environments sometimes
@@ -48636,21 +48633,21 @@ var EmotionCacheContext = /* @__PURE__ */ React10.createContext(
 );
 var CacheProvider = EmotionCacheContext.Provider;
 var withEmotionCache = function withEmotionCache2(func) {
-  return /* @__PURE__ */ (0, import_react7.forwardRef)(function(props, ref) {
-    var cache2 = (0, import_react7.useContext)(EmotionCacheContext);
+  return /* @__PURE__ */ (0, import_react6.forwardRef)(function(props, ref) {
+    var cache2 = (0, import_react6.useContext)(EmotionCacheContext);
     return func(props, cache2, ref);
   });
 };
-var ThemeContext = /* @__PURE__ */ React10.createContext({});
+var ThemeContext = /* @__PURE__ */ React9.createContext({});
 var hasOwn = {}.hasOwnProperty;
 
 // node_modules/@emotion/react/dist/emotion-react.browser.esm.js
-var React11 = __toESM(require_react());
+var React10 = __toESM(require_react());
 var import_hoist_non_react_statics = __toESM(require_hoist_non_react_statics_cjs());
 var Global = /* @__PURE__ */ withEmotionCache(function(props, cache2) {
   var styles5 = props.styles;
-  var serialized = serializeStyles([styles5], void 0, React11.useContext(ThemeContext));
-  var sheetRef = React11.useRef();
+  var serialized = serializeStyles([styles5], void 0, React10.useContext(ThemeContext));
+  var sheetRef = React10.useRef();
   useInsertionEffectWithLayoutFallback(function() {
     var key = cache2.key + "-global";
     var sheet = new cache2.sheet.constructor({
@@ -48783,7 +48780,7 @@ var createStyled = function createStyled2(tag, options) {
         for (var key in props) {
           mergedProps[key] = props[key];
         }
-        mergedProps.theme = React12.useContext(ThemeContext);
+        mergedProps.theme = React11.useContext(ThemeContext);
       }
       if (typeof props.className === "string") {
         className = getRegisteredStyles(cache2.registered, classInterpolations, props.className);
@@ -48807,11 +48804,11 @@ var createStyled = function createStyled2(tag, options) {
       if (ref) {
         newProps.ref = ref;
       }
-      return /* @__PURE__ */ React12.createElement(React12.Fragment, null, /* @__PURE__ */ React12.createElement(Insertion, {
+      return /* @__PURE__ */ React11.createElement(React11.Fragment, null, /* @__PURE__ */ React11.createElement(Insertion, {
         cache: cache2,
         serialized,
         isStringTag: typeof FinalTag === "string"
-      }), /* @__PURE__ */ React12.createElement(FinalTag, newProps));
+      }), /* @__PURE__ */ React11.createElement(FinalTag, newProps));
     });
     Styled.displayName = identifierName !== void 0 ? identifierName : "Styled(" + (typeof baseTag === "string" ? baseTag : baseTag.displayName || baseTag.name || "Component") + ")";
     Styled.defaultProps = tag.defaultProps;
@@ -48837,7 +48834,7 @@ var createStyled = function createStyled2(tag, options) {
 };
 
 // node_modules/@emotion/styled/dist/emotion-styled.browser.esm.js
-var import_react9 = __toESM(require_react());
+var import_react8 = __toESM(require_react());
 var tags = [
   "a",
   "abbr",
@@ -48981,7 +48978,7 @@ tags.forEach(function(tagName) {
 });
 
 // node_modules/@mui/styled-engine/GlobalStyles/GlobalStyles.js
-var React13 = __toESM(require_react());
+var React12 = __toESM(require_react());
 var import_prop_types2 = __toESM(require_prop_types());
 var import_jsx_runtime = __toESM(require_jsx_runtime());
 function isEmpty(obj) {
@@ -49025,7 +49022,7 @@ var internal_processStyles = (tag, processor) => {
 };
 
 // node_modules/@mui/system/GlobalStyles/GlobalStyles.js
-var React15 = __toESM(require_react());
+var React14 = __toESM(require_react());
 var import_prop_types3 = __toESM(require_prop_types());
 
 // node_modules/@mui/system/createBreakpoints/createBreakpoints.js
@@ -49202,12 +49199,12 @@ function createTheme(options = {}, ...args) {
 var createTheme_default = createTheme;
 
 // node_modules/@mui/system/useThemeWithoutDefault/useThemeWithoutDefault.js
-var React14 = __toESM(require_react());
+var React13 = __toESM(require_react());
 function isObjectEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
 function useTheme2(defaultTheme4 = null) {
-  const contextTheme = React14.useContext(ThemeContext);
+  const contextTheme = React13.useContext(ThemeContext);
   return !contextTheme || isObjectEmpty(contextTheme) ? defaultTheme4 : contextTheme;
 }
 var useThemeWithoutDefault_default = useTheme2;
@@ -49272,7 +49269,7 @@ var ClassNameGenerator = createClassNameGenerator();
 var ClassNameGenerator_default = ClassNameGenerator;
 
 // node_modules/@mui/system/createBox/createBox.js
-var React16 = __toESM(require_react());
+var React15 = __toESM(require_react());
 var import_jsx_runtime3 = __toESM(require_jsx_runtime());
 function createBox(options = {}) {
   const {
@@ -49284,7 +49281,7 @@ function createBox(options = {}) {
   const BoxRoot = styled("div", {
     shouldForwardProp: (prop) => prop !== "theme" && prop !== "sx" && prop !== "as"
   })(styleFunctionSx_default);
-  const Box2 = /* @__PURE__ */ React16.forwardRef(function Box3(inProps, ref) {
+  const Box2 = /* @__PURE__ */ React15.forwardRef(function Box3(inProps, ref) {
     const theme = useTheme_default(defaultTheme4);
     const {
       className,
@@ -49648,8 +49645,8 @@ function useThemeProps({
 }
 
 // node_modules/@mui/utils/esm/useEnhancedEffect/useEnhancedEffect.js
-var React17 = __toESM(require_react());
-var useEnhancedEffect = typeof window !== "undefined" ? React17.useLayoutEffect : React17.useEffect;
+var React16 = __toESM(require_react());
+var useEnhancedEffect = typeof window !== "undefined" ? React16.useLayoutEffect : React16.useEffect;
 var useEnhancedEffect_default = useEnhancedEffect;
 
 // node_modules/@mui/utils/esm/clamp/clamp.js
@@ -50011,9 +50008,9 @@ function debounce3(func, wait = 166) {
 }
 
 // node_modules/@mui/utils/esm/isMuiElement/isMuiElement.js
-var React18 = __toESM(require_react());
+var React17 = __toESM(require_react());
 function isMuiElement(element, muiNames) {
-  return /* @__PURE__ */ React18.isValidElement(element) && muiNames.indexOf(
+  return /* @__PURE__ */ React17.isValidElement(element) && muiNames.indexOf(
     // For server components `muiName` is avaialble in element.type._payload.value.muiName
     // relevant info - https://github.com/facebook/react/blob/2807d781a08db8e9873687fccc25c0f12b4fb3d4/packages/react/src/ReactLazy.js#L45
     // eslint-disable-next-line no-underscore-dangle
@@ -50067,12 +50064,12 @@ function setRef(ref, value) {
 }
 
 // node_modules/@mui/utils/esm/useId/useId.js
-var React19 = __toESM(require_react());
+var React18 = __toESM(require_react());
 var globalId = 0;
 function useGlobalId(idOverride) {
-  const [defaultId, setDefaultId] = React19.useState(idOverride);
+  const [defaultId, setDefaultId] = React18.useState(idOverride);
   const id = idOverride || defaultId;
-  React19.useEffect(() => {
+  React18.useEffect(() => {
     if (defaultId == null) {
       globalId += 1;
       setDefaultId(`mui-${globalId}`);
@@ -50081,7 +50078,7 @@ function useGlobalId(idOverride) {
   return id;
 }
 var safeReact = {
-  ...React19
+  ...React18
 };
 var maybeReactUseId = safeReact.useId;
 function useId(idOverride) {
@@ -50093,7 +50090,7 @@ function useId(idOverride) {
 }
 
 // node_modules/@mui/utils/esm/useControlled/useControlled.js
-var React20 = __toESM(require_react());
+var React19 = __toESM(require_react());
 function useControlled({
   controlled,
   default: defaultProp,
@@ -50102,25 +50099,25 @@ function useControlled({
 }) {
   const {
     current: isControlled
-  } = React20.useRef(controlled !== void 0);
-  const [valueState, setValue] = React20.useState(defaultProp);
+  } = React19.useRef(controlled !== void 0);
+  const [valueState, setValue] = React19.useState(defaultProp);
   const value = isControlled ? controlled : valueState;
   if (true) {
-    React20.useEffect(() => {
+    React19.useEffect(() => {
       if (isControlled !== (controlled !== void 0)) {
         console.error([`MUI: A component is changing the ${isControlled ? "" : "un"}controlled ${state} state of ${name} to be ${isControlled ? "un" : ""}controlled.`, "Elements should not switch from uncontrolled to controlled (or vice versa).", `Decide between using a controlled or uncontrolled ${name} element for the lifetime of the component.`, "The nature of the state is determined during the first render. It's considered controlled if the value is not `undefined`.", "More info: https://fb.me/react-controlled-components"].join("\n"));
       }
     }, [state, name, controlled]);
     const {
       current: defaultValue
-    } = React20.useRef(defaultProp);
-    React20.useEffect(() => {
+    } = React19.useRef(defaultProp);
+    React19.useEffect(() => {
       if (!isControlled && !Object.is(defaultValue, defaultProp)) {
         console.error([`MUI: A component is changing the default ${state} state of an uncontrolled ${name} after being initialized. To suppress this warning opt to use a controlled ${name}.`].join("\n"));
       }
     }, [JSON.stringify(defaultProp)]);
   }
-  const setValueIfUncontrolled = React20.useCallback((newValue) => {
+  const setValueIfUncontrolled = React19.useCallback((newValue) => {
     if (!isControlled) {
       setValue(newValue);
     }
@@ -50129,13 +50126,13 @@ function useControlled({
 }
 
 // node_modules/@mui/utils/esm/useEventCallback/useEventCallback.js
-var React21 = __toESM(require_react());
+var React20 = __toESM(require_react());
 function useEventCallback(fn2) {
-  const ref = React21.useRef(fn2);
+  const ref = React20.useRef(fn2);
   useEnhancedEffect_default(() => {
     ref.current = fn2;
   });
-  return React21.useRef((...args) => (
+  return React20.useRef((...args) => (
     // @ts-expect-error hide `this`
     (0, ref.current)(...args)
   )).current;
@@ -50143,9 +50140,9 @@ function useEventCallback(fn2) {
 var useEventCallback_default = useEventCallback;
 
 // node_modules/@mui/utils/esm/useForkRef/useForkRef.js
-var React22 = __toESM(require_react());
+var React21 = __toESM(require_react());
 function useForkRef(...refs) {
-  return React22.useMemo(() => {
+  return React21.useMemo(() => {
     if (refs.every((ref) => ref == null)) {
       return null;
     }
@@ -50158,10 +50155,10 @@ function useForkRef(...refs) {
 }
 
 // node_modules/@mui/utils/esm/useLazyRef/useLazyRef.js
-var React23 = __toESM(require_react());
+var React22 = __toESM(require_react());
 var UNINITIALIZED = {};
 function useLazyRef(init, initArg) {
-  const ref = React23.useRef(UNINITIALIZED);
+  const ref = React22.useRef(UNINITIALIZED);
   if (ref.current === UNINITIALIZED) {
     ref.current = init(initArg);
   }
@@ -50169,10 +50166,10 @@ function useLazyRef(init, initArg) {
 }
 
 // node_modules/@mui/utils/esm/useOnMount/useOnMount.js
-var React24 = __toESM(require_react());
+var React23 = __toESM(require_react());
 var EMPTY = [];
 function useOnMount(fn2) {
-  React24.useEffect(fn2, EMPTY);
+  React23.useEffect(fn2, EMPTY);
 }
 
 // node_modules/@mui/utils/esm/useTimeout/useTimeout.js
@@ -50419,9 +50416,9 @@ function useSlotProps(parameters) {
 var useSlotProps_default = useSlotProps;
 
 // node_modules/@mui/utils/esm/getReactNodeRef/getReactNodeRef.js
-var React25 = __toESM(require_react());
+var React24 = __toESM(require_react());
 function getReactNodeRef(element) {
-  if (!element || !/* @__PURE__ */ React25.isValidElement(element)) {
+  if (!element || !/* @__PURE__ */ React24.isValidElement(element)) {
     return null;
   }
   return element.props.propertyIsEnumerable("ref") ? element.props.ref : (
@@ -50433,10 +50430,10 @@ function getReactNodeRef(element) {
 }
 
 // node_modules/@mui/system/RtlProvider/index.js
-var React26 = __toESM(require_react());
+var React25 = __toESM(require_react());
 var import_prop_types7 = __toESM(require_prop_types());
 var import_jsx_runtime4 = __toESM(require_jsx_runtime());
-var RtlContext = /* @__PURE__ */ React26.createContext();
+var RtlContext = /* @__PURE__ */ React25.createContext();
 function RtlProvider({
   value,
   ...props
@@ -50451,15 +50448,15 @@ true ? RtlProvider.propTypes = {
   value: import_prop_types7.default.bool
 } : void 0;
 var useRtl = () => {
-  const value = React26.useContext(RtlContext);
+  const value = React25.useContext(RtlContext);
   return value ?? false;
 };
 
 // node_modules/@mui/system/DefaultPropsProvider/DefaultPropsProvider.js
-var React27 = __toESM(require_react());
+var React26 = __toESM(require_react());
 var import_prop_types8 = __toESM(require_prop_types());
 var import_jsx_runtime5 = __toESM(require_jsx_runtime());
-var PropsContext = /* @__PURE__ */ React27.createContext(void 0);
+var PropsContext = /* @__PURE__ */ React26.createContext(void 0);
 function DefaultPropsProvider({
   value,
   children
@@ -50505,7 +50502,7 @@ function useDefaultProps({
   props,
   name
 }) {
-  const ctx = React27.useContext(PropsContext);
+  const ctx = React26.useContext(PropsContext);
   return getThemeProps2({
     props,
     name,
@@ -50791,7 +50788,7 @@ function createGetColorSchemeSelector(selector) {
 }
 
 // node_modules/@mui/system/Container/createContainer.js
-var React28 = __toESM(require_react());
+var React27 = __toESM(require_react());
 var import_prop_types9 = __toESM(require_prop_types());
 var import_jsx_runtime6 = __toESM(require_jsx_runtime());
 var defaultTheme = createTheme_default();
@@ -50882,7 +50879,7 @@ function createContainer(options = {}) {
       }
     }
   }));
-  const Container2 = /* @__PURE__ */ React28.forwardRef(function Container3(inProps, ref) {
+  const Container2 = /* @__PURE__ */ React27.forwardRef(function Container3(inProps, ref) {
     const props = useThemeProps3(inProps);
     const {
       className,
@@ -52253,13 +52250,13 @@ var identifier_default = "$$material";
 function useTheme4() {
   const theme = useTheme_default(defaultTheme_default);
   if (true) {
-    React29.useDebugValue(theme);
+    React28.useDebugValue(theme);
   }
   return theme[identifier_default] || theme;
 }
 
 // node_modules/@mui/material/GlobalStyles/GlobalStyles.js
-var React30 = __toESM(require_react());
+var React29 = __toESM(require_react());
 var import_prop_types10 = __toESM(require_prop_types());
 var import_jsx_runtime7 = __toESM(require_jsx_runtime());
 function GlobalStyles3(props) {
@@ -52340,7 +52337,7 @@ function memoTheme(styleFn) {
 }
 
 // node_modules/@mui/material/DefaultPropsProvider/DefaultPropsProvider.js
-var React32 = __toESM(require_react());
+var React31 = __toESM(require_react());
 var import_prop_types11 = __toESM(require_prop_types());
 var import_jsx_runtime9 = __toESM(require_jsx_runtime());
 function DefaultPropsProvider2(props) {
@@ -52367,13 +52364,13 @@ function useDefaultProps2(params) {
 }
 
 // node_modules/@mui/material/internal/svg-icons/Person.js
-var React35 = __toESM(require_react());
-
-// node_modules/@mui/material/utils/createSvgIcon.js
 var React34 = __toESM(require_react());
 
-// node_modules/@mui/material/SvgIcon/SvgIcon.js
+// node_modules/@mui/material/utils/createSvgIcon.js
 var React33 = __toESM(require_react());
+
+// node_modules/@mui/material/SvgIcon/SvgIcon.js
+var React32 = __toESM(require_react());
 var import_prop_types12 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/utils/capitalize.js
@@ -52494,7 +52491,7 @@ var SvgIconRoot = styled_default2("svg", {
     }
   ]
 })));
-var SvgIcon = /* @__PURE__ */ React33.forwardRef(function SvgIcon2(inProps, ref) {
+var SvgIcon = /* @__PURE__ */ React32.forwardRef(function SvgIcon2(inProps, ref) {
   const props = useDefaultProps2({
     props: inProps,
     name: "MuiSvgIcon"
@@ -52511,7 +52508,7 @@ var SvgIcon = /* @__PURE__ */ React33.forwardRef(function SvgIcon2(inProps, ref)
     viewBox = "0 0 24 24",
     ...other
   } = props;
-  const hasSvgAsChild = /* @__PURE__ */ React33.isValidElement(children) && children.type === "svg";
+  const hasSvgAsChild = /* @__PURE__ */ React32.isValidElement(children) && children.type === "svg";
   const ownerState = {
     ...props,
     color: color2,
@@ -52636,7 +52633,7 @@ function createSvgIcon(path, displayName) {
     Component2.displayName = `${displayName}Icon`;
   }
   Component2.muiName = SvgIcon_default.muiName;
-  return /* @__PURE__ */ React34.memo(/* @__PURE__ */ React34.forwardRef(Component2));
+  return /* @__PURE__ */ React33.memo(/* @__PURE__ */ React33.forwardRef(Component2));
 }
 
 // node_modules/@mui/material/internal/svg-icons/Person.js
@@ -52808,8 +52805,8 @@ function useLoaded({
   src,
   srcSet
 }) {
-  const [loaded, setLoaded] = React36.useState(false);
-  React36.useEffect(() => {
+  const [loaded, setLoaded] = React35.useState(false);
+  React35.useEffect(() => {
     if (!src && !srcSet) {
       return void 0;
     }
@@ -52840,7 +52837,7 @@ function useLoaded({
   }, [crossOrigin, referrerPolicy, src, srcSet]);
   return loaded;
 }
-var Avatar = /* @__PURE__ */ React36.forwardRef(function Avatar2(inProps, ref) {
+var Avatar = /* @__PURE__ */ React35.forwardRef(function Avatar2(inProps, ref) {
   const props = useDefaultProps2({
     props: inProps,
     name: "MuiAvatar"
@@ -52991,11 +52988,11 @@ true ? Avatar.propTypes = {
 var Avatar_default = Avatar;
 
 // node_modules/@mui/material/Button/Button.js
-var React46 = __toESM(require_react());
+var React45 = __toESM(require_react());
 var import_prop_types20 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/ButtonBase/ButtonBase.js
-var React43 = __toESM(require_react());
+var React42 = __toESM(require_react());
 var import_prop_types19 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/utils/useForkRef.js
@@ -53005,7 +53002,7 @@ var useForkRef_default = useForkRef;
 var useEventCallback_default2 = useEventCallback_default;
 
 // node_modules/@mui/material/useLazyRipple/useLazyRipple.js
-var React37 = __toESM(require_react());
+var React36 = __toESM(require_react());
 var LazyRipple = class _LazyRipple {
   /** React ref to the ripple instance */
   /** If the ripple component should be mounted */
@@ -53017,10 +53014,10 @@ var LazyRipple = class _LazyRipple {
   }
   static use() {
     const ripple = useLazyRef(_LazyRipple.create).current;
-    const [shouldMount, setShouldMount] = React37.useState(false);
+    const [shouldMount, setShouldMount] = React36.useState(false);
     ripple.shouldMount = shouldMount;
     ripple.setShouldMount = setShouldMount;
-    React37.useEffect(ripple.mountEffect, [shouldMount]);
+    React36.useEffect(ripple.mountEffect, [shouldMount]);
     return ripple;
   }
   constructor() {
@@ -53075,7 +53072,7 @@ function createControlledPromise() {
 }
 
 // node_modules/@mui/material/ButtonBase/TouchRipple.js
-var React42 = __toESM(require_react());
+var React41 = __toESM(require_react());
 var import_prop_types18 = __toESM(require_prop_types());
 
 // node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
@@ -53091,7 +53088,7 @@ function _objectWithoutPropertiesLoose2(r2, e) {
 
 // node_modules/react-transition-group/esm/Transition.js
 var import_prop_types15 = __toESM(require_prop_types());
-var import_react13 = __toESM(require_react());
+var import_react12 = __toESM(require_react());
 var import_react_dom2 = __toESM(require_react_dom());
 
 // node_modules/react-transition-group/esm/config.js
@@ -53120,8 +53117,8 @@ var classNamesShape = true ? import_prop_types14.default.oneOfType([import_prop_
 })]) : null;
 
 // node_modules/react-transition-group/esm/TransitionGroupContext.js
-var import_react12 = __toESM(require_react());
-var TransitionGroupContext_default = import_react12.default.createContext(null);
+var import_react11 = __toESM(require_react());
+var TransitionGroupContext_default = import_react11.default.createContext(null);
 
 // node_modules/react-transition-group/esm/utils/reflow.js
 var forceReflow = function forceReflow2(node2) {
@@ -53336,13 +53333,13 @@ var Transition = /* @__PURE__ */ function(_React$Component) {
     var _this$props = this.props, children = _this$props.children, _in = _this$props.in, _mountOnEnter = _this$props.mountOnEnter, _unmountOnExit = _this$props.unmountOnExit, _appear = _this$props.appear, _enter = _this$props.enter, _exit = _this$props.exit, _timeout = _this$props.timeout, _addEndListener = _this$props.addEndListener, _onEnter = _this$props.onEnter, _onEntering = _this$props.onEntering, _onEntered = _this$props.onEntered, _onExit = _this$props.onExit, _onExiting = _this$props.onExiting, _onExited = _this$props.onExited, _nodeRef = _this$props.nodeRef, childProps = _objectWithoutPropertiesLoose2(_this$props, ["children", "in", "mountOnEnter", "unmountOnExit", "appear", "enter", "exit", "timeout", "addEndListener", "onEnter", "onEntering", "onEntered", "onExit", "onExiting", "onExited", "nodeRef"]);
     return (
       // allows for nested Transitions
-      /* @__PURE__ */ import_react13.default.createElement(TransitionGroupContext_default.Provider, {
+      /* @__PURE__ */ import_react12.default.createElement(TransitionGroupContext_default.Provider, {
         value: null
-      }, typeof children === "function" ? children(status, childProps) : import_react13.default.cloneElement(import_react13.default.Children.only(children), childProps))
+      }, typeof children === "function" ? children(status, childProps) : import_react12.default.cloneElement(import_react12.default.Children.only(children), childProps))
     );
   };
   return Transition2;
-}(import_react13.default.Component);
+}(import_react12.default.Component);
 Transition.contextType = TransitionGroupContext_default;
 Transition.propTypes = true ? {
   /**
@@ -53545,16 +53542,16 @@ function _assertThisInitialized(e) {
 
 // node_modules/react-transition-group/esm/TransitionGroup.js
 var import_prop_types16 = __toESM(require_prop_types());
-var import_react15 = __toESM(require_react());
+var import_react14 = __toESM(require_react());
 
 // node_modules/react-transition-group/esm/utils/ChildMapping.js
-var import_react14 = __toESM(require_react());
+var import_react13 = __toESM(require_react());
 function getChildMapping(children, mapFn) {
   var mapper = function mapper2(child) {
-    return mapFn && (0, import_react14.isValidElement)(child) ? mapFn(child) : child;
+    return mapFn && (0, import_react13.isValidElement)(child) ? mapFn(child) : child;
   };
   var result = /* @__PURE__ */ Object.create(null);
-  if (children) import_react14.Children.map(children, function(c) {
+  if (children) import_react13.Children.map(children, function(c) {
     return c;
   }).forEach(function(child) {
     result[child.key] = mapper(child);
@@ -53600,7 +53597,7 @@ function getProp(child, prop, props) {
 }
 function getInitialChildMapping(props, onExited) {
   return getChildMapping(props.children, function(child) {
-    return (0, import_react14.cloneElement)(child, {
+    return (0, import_react13.cloneElement)(child, {
       onExited: onExited.bind(null, child),
       in: true,
       appear: getProp(child, "appear", props),
@@ -53614,24 +53611,24 @@ function getNextChildMapping(nextProps, prevChildMapping, onExited) {
   var children = mergeChildMappings(prevChildMapping, nextChildMapping);
   Object.keys(children).forEach(function(key) {
     var child = children[key];
-    if (!(0, import_react14.isValidElement)(child)) return;
+    if (!(0, import_react13.isValidElement)(child)) return;
     var hasPrev = key in prevChildMapping;
     var hasNext = key in nextChildMapping;
     var prevChild = prevChildMapping[key];
-    var isLeaving = (0, import_react14.isValidElement)(prevChild) && !prevChild.props.in;
+    var isLeaving = (0, import_react13.isValidElement)(prevChild) && !prevChild.props.in;
     if (hasNext && (!hasPrev || isLeaving)) {
-      children[key] = (0, import_react14.cloneElement)(child, {
+      children[key] = (0, import_react13.cloneElement)(child, {
         onExited: onExited.bind(null, child),
         in: true,
         exit: getProp(child, "exit", nextProps),
         enter: getProp(child, "enter", nextProps)
       });
     } else if (!hasNext && hasPrev && !isLeaving) {
-      children[key] = (0, import_react14.cloneElement)(child, {
+      children[key] = (0, import_react13.cloneElement)(child, {
         in: false
       });
-    } else if (hasNext && hasPrev && (0, import_react14.isValidElement)(prevChild)) {
-      children[key] = (0, import_react14.cloneElement)(child, {
+    } else if (hasNext && hasPrev && (0, import_react13.isValidElement)(prevChild)) {
+      children[key] = (0, import_react13.cloneElement)(child, {
         onExited: onExited.bind(null, child),
         in: prevChild.props.in,
         exit: getProp(child, "exit", nextProps),
@@ -53712,16 +53709,16 @@ var TransitionGroup = /* @__PURE__ */ function(_React$Component) {
     delete props.enter;
     delete props.exit;
     if (Component2 === null) {
-      return /* @__PURE__ */ import_react15.default.createElement(TransitionGroupContext_default.Provider, {
+      return /* @__PURE__ */ import_react14.default.createElement(TransitionGroupContext_default.Provider, {
         value: contextValue
       }, children);
     }
-    return /* @__PURE__ */ import_react15.default.createElement(TransitionGroupContext_default.Provider, {
+    return /* @__PURE__ */ import_react14.default.createElement(TransitionGroupContext_default.Provider, {
       value: contextValue
-    }, /* @__PURE__ */ import_react15.default.createElement(Component2, props, children));
+    }, /* @__PURE__ */ import_react14.default.createElement(Component2, props, children));
   };
   return TransitionGroup2;
-}(import_react15.default.Component);
+}(import_react14.default.Component);
 TransitionGroup.propTypes = true ? {
   /**
    * `<TransitionGroup>` renders a `<div>` by default. You can change this
@@ -53779,7 +53776,7 @@ TransitionGroup.defaultProps = defaultProps;
 var TransitionGroup_default = TransitionGroup;
 
 // node_modules/@mui/material/ButtonBase/Ripple.js
-var React41 = __toESM(require_react());
+var React40 = __toESM(require_react());
 var import_prop_types17 = __toESM(require_prop_types());
 var import_jsx_runtime14 = __toESM(require_jsx_runtime());
 function Ripple(props) {
@@ -53794,7 +53791,7 @@ function Ripple(props) {
     onExited,
     timeout: timeout2
   } = props;
-  const [leaving, setLeaving] = React41.useState(false);
+  const [leaving, setLeaving] = React40.useState(false);
   const rippleClassName = clsx_default(className, classes.ripple, classes.rippleVisible, pulsate && classes.ripplePulsate);
   const rippleStyles = {
     width: rippleSize,
@@ -53806,7 +53803,7 @@ function Ripple(props) {
   if (!inProp && !leaving) {
     setLeaving(true);
   }
-  React41.useEffect(() => {
+  React40.useEffect(() => {
     if (!inProp && onExited != null) {
       const timeoutId = setTimeout(onExited, timeout2);
       return () => {
@@ -53970,7 +53967,7 @@ var TouchRippleRipple = styled_default2(Ripple_default, {
     animation-delay: 200ms;
   }
 `;
-var TouchRipple = /* @__PURE__ */ React42.forwardRef(function TouchRipple2(inProps, ref) {
+var TouchRipple = /* @__PURE__ */ React41.forwardRef(function TouchRipple2(inProps, ref) {
   const props = useDefaultProps2({
     props: inProps,
     name: "MuiTouchRipple"
@@ -53981,20 +53978,20 @@ var TouchRipple = /* @__PURE__ */ React42.forwardRef(function TouchRipple2(inPro
     className,
     ...other
   } = props;
-  const [ripples, setRipples] = React42.useState([]);
-  const nextKey = React42.useRef(0);
-  const rippleCallback = React42.useRef(null);
-  React42.useEffect(() => {
+  const [ripples, setRipples] = React41.useState([]);
+  const nextKey = React41.useRef(0);
+  const rippleCallback = React41.useRef(null);
+  React41.useEffect(() => {
     if (rippleCallback.current) {
       rippleCallback.current();
       rippleCallback.current = null;
     }
   }, [ripples]);
-  const ignoringMouseDown = React42.useRef(false);
+  const ignoringMouseDown = React41.useRef(false);
   const startTimer = useTimeout();
-  const startTimerCommit = React42.useRef(null);
-  const container = React42.useRef(null);
-  const startCommit = React42.useCallback((params) => {
+  const startTimerCommit = React41.useRef(null);
+  const container = React41.useRef(null);
+  const startCommit = React41.useCallback((params) => {
     const {
       pulsate: pulsate2,
       rippleX,
@@ -54020,7 +54017,7 @@ var TouchRipple = /* @__PURE__ */ React42.forwardRef(function TouchRipple2(inPro
     nextKey.current += 1;
     rippleCallback.current = cb;
   }, [classes]);
-  const start3 = React42.useCallback((event = {}, options = {}, cb = () => {
+  const start3 = React41.useCallback((event = {}, options = {}, cb = () => {
   }) => {
     const {
       pulsate: pulsate2 = false,
@@ -54094,12 +54091,12 @@ var TouchRipple = /* @__PURE__ */ React42.forwardRef(function TouchRipple2(inPro
       });
     }
   }, [centerProp, startCommit, startTimer]);
-  const pulsate = React42.useCallback(() => {
+  const pulsate = React41.useCallback(() => {
     start3({}, {
       pulsate: true
     });
   }, [start3]);
-  const stop = React42.useCallback((event, cb) => {
+  const stop = React41.useCallback((event, cb) => {
     startTimer.clear();
     if (event?.type === "touchend" && startTimerCommit.current) {
       startTimerCommit.current();
@@ -54118,7 +54115,7 @@ var TouchRipple = /* @__PURE__ */ React42.forwardRef(function TouchRipple2(inPro
     });
     rippleCallback.current = cb;
   }, [startTimer]);
-  React42.useImperativeHandle(ref, () => ({
+  React41.useImperativeHandle(ref, () => ({
     pulsate,
     start: start3,
     stop
@@ -54220,7 +54217,7 @@ var ButtonBaseRoot = styled_default2("button", {
     colorAdjust: "exact"
   }
 });
-var ButtonBase = /* @__PURE__ */ React43.forwardRef(function ButtonBase2(inProps, ref) {
+var ButtonBase = /* @__PURE__ */ React42.forwardRef(function ButtonBase2(inProps, ref) {
   const props = useDefaultProps2({
     props: inProps,
     name: "MuiButtonBase"
@@ -54257,21 +54254,21 @@ var ButtonBase = /* @__PURE__ */ React43.forwardRef(function ButtonBase2(inProps
     type,
     ...other
   } = props;
-  const buttonRef = React43.useRef(null);
+  const buttonRef = React42.useRef(null);
   const ripple = useLazyRipple();
   const handleRippleRef = useForkRef_default(ripple.ref, touchRippleRef);
-  const [focusVisible, setFocusVisible] = React43.useState(false);
+  const [focusVisible, setFocusVisible] = React42.useState(false);
   if (disabled && focusVisible) {
     setFocusVisible(false);
   }
-  React43.useImperativeHandle(action, () => ({
+  React42.useImperativeHandle(action, () => ({
     focusVisible: () => {
       setFocusVisible(true);
       buttonRef.current.focus();
     }
   }), []);
   const enableTouchRipple = ripple.shouldMount && !disableRipple && !disabled;
-  React43.useEffect(() => {
+  React42.useEffect(() => {
     if (focusVisible && focusRipple && !disableRipple) {
       ripple.pulsate();
     }
@@ -54606,16 +54603,16 @@ var buttonClasses = generateUtilityClasses("MuiButton", ["root", "text", "textIn
 var buttonClasses_default = buttonClasses;
 
 // node_modules/@mui/material/ButtonGroup/ButtonGroupContext.js
-var React44 = __toESM(require_react());
-var ButtonGroupContext = /* @__PURE__ */ React44.createContext({});
+var React43 = __toESM(require_react());
+var ButtonGroupContext = /* @__PURE__ */ React43.createContext({});
 if (true) {
   ButtonGroupContext.displayName = "ButtonGroupContext";
 }
 var ButtonGroupContext_default = ButtonGroupContext;
 
 // node_modules/@mui/material/ButtonGroup/ButtonGroupButtonContext.js
-var React45 = __toESM(require_react());
-var ButtonGroupButtonContext = /* @__PURE__ */ React45.createContext(void 0);
+var React44 = __toESM(require_react());
+var ButtonGroupButtonContext = /* @__PURE__ */ React44.createContext(void 0);
 if (true) {
   ButtonGroupButtonContext.displayName = "ButtonGroupButtonContext";
 }
@@ -54917,9 +54914,9 @@ var ButtonEndIcon = styled_default2("span", {
     }
   }, ...commonIconStyles]
 });
-var Button2 = /* @__PURE__ */ React46.forwardRef(function Button3(inProps, ref) {
-  const contextProps = React46.useContext(ButtonGroupContext_default);
-  const buttonGroupButtonContextPositionClassName = React46.useContext(ButtonGroupButtonContext_default);
+var Button2 = /* @__PURE__ */ React45.forwardRef(function Button3(inProps, ref) {
+  const contextProps = React45.useContext(ButtonGroupContext_default);
+  const buttonGroupButtonContextPositionClassName = React45.useContext(ButtonGroupButtonContext_default);
   const resolvedProps = resolveProps(contextProps, inProps);
   const props = useDefaultProps2({
     props: resolvedProps,
@@ -55077,7 +55074,7 @@ true ? Button2.propTypes = {
 var Button_default = Button2;
 
 // node_modules/@mui/material/CssBaseline/CssBaseline.js
-var React47 = __toESM(require_react());
+var React46 = __toESM(require_react());
 var import_prop_types21 = __toESM(require_prop_types());
 var import_jsx_runtime18 = __toESM(require_jsx_runtime());
 var isDynamicSupport = typeof globalCss({}) === "function";
@@ -55193,7 +55190,7 @@ function CssBaseline(inProps) {
     children,
     enableColorScheme = false
   } = props;
-  return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(React47.Fragment, {
+  return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(React46.Fragment, {
     children: [isDynamicSupport && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(GlobalStyles4, {
       enableColorScheme
     }), !isDynamicSupport && !enableColorScheme && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", {
@@ -55224,19 +55221,19 @@ true ? CssBaseline.propTypes = {
 var CssBaseline_default = CssBaseline;
 
 // node_modules/@mui/material/TextField/TextField.js
-var React77 = __toESM(require_react());
+var React76 = __toESM(require_react());
 var import_prop_types46 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/Input/Input.js
-var React52 = __toESM(require_react());
+var React51 = __toESM(require_react());
 var import_prop_types24 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/InputBase/InputBase.js
-var React51 = __toESM(require_react());
+var React50 = __toESM(require_react());
 var import_prop_types23 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/TextareaAutosize/TextareaAutosize.js
-var React48 = __toESM(require_react());
+var React47 = __toESM(require_react());
 var import_prop_types22 = __toESM(require_prop_types());
 var import_jsx_runtime19 = __toESM(require_jsx_runtime());
 function getStyleValue2(value) {
@@ -55260,7 +55257,7 @@ var styles2 = {
 function isEmpty2(obj) {
   return obj === void 0 || obj === null || Object.keys(obj).length === 0 || obj.outerHeightStyle === 0 && !obj.overflowing;
 }
-var TextareaAutosize = /* @__PURE__ */ React48.forwardRef(function TextareaAutosize2(props, forwardedRef) {
+var TextareaAutosize = /* @__PURE__ */ React47.forwardRef(function TextareaAutosize2(props, forwardedRef) {
   const {
     onChange,
     maxRows,
@@ -55271,12 +55268,12 @@ var TextareaAutosize = /* @__PURE__ */ React48.forwardRef(function TextareaAutos
   } = props;
   const {
     current: isControlled
-  } = React48.useRef(value != null);
-  const inputRef = React48.useRef(null);
+  } = React47.useRef(value != null);
+  const inputRef = React47.useRef(null);
   const handleRef = useForkRef(forwardedRef, inputRef);
-  const heightRef = React48.useRef(null);
-  const shadowRef = React48.useRef(null);
-  const calculateTextareaStyles = React48.useCallback(() => {
+  const heightRef = React47.useRef(null);
+  const shadowRef = React47.useRef(null);
+  const calculateTextareaStyles = React47.useCallback(() => {
     const input = inputRef.current;
     const containerWindow = ownerWindow(input);
     const computedStyle = containerWindow.getComputedStyle(input);
@@ -55313,7 +55310,7 @@ var TextareaAutosize = /* @__PURE__ */ React48.forwardRef(function TextareaAutos
       overflowing
     };
   }, [maxRows, minRows, props.placeholder]);
-  const syncHeight = React48.useCallback(() => {
+  const syncHeight = React47.useCallback(() => {
     const textareaStyles = calculateTextareaStyles();
     if (isEmpty2(textareaStyles)) {
       return;
@@ -55366,7 +55363,7 @@ var TextareaAutosize = /* @__PURE__ */ React48.forwardRef(function TextareaAutos
       onChange(event);
     }
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(React48.Fragment, {
+  return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(React47.Fragment, {
     children: [/* @__PURE__ */ (0, import_jsx_runtime19.jsx)("textarea", {
       value,
       onChange: handleChange,
@@ -55450,17 +55447,17 @@ function formControlState({
 }
 
 // node_modules/@mui/material/FormControl/FormControlContext.js
-var React49 = __toESM(require_react());
-var FormControlContext = /* @__PURE__ */ React49.createContext(void 0);
+var React48 = __toESM(require_react());
+var FormControlContext = /* @__PURE__ */ React48.createContext(void 0);
 if (true) {
   FormControlContext.displayName = "FormControlContext";
 }
 var FormControlContext_default = FormControlContext;
 
 // node_modules/@mui/material/FormControl/useFormControl.js
-var React50 = __toESM(require_react());
+var React49 = __toESM(require_react());
 function useFormControl() {
-  return React50.useContext(FormControlContext_default);
+  return React49.useContext(FormControlContext_default);
 }
 
 // node_modules/@mui/material/utils/useEnhancedEffect.js
@@ -55698,7 +55695,7 @@ var InputGlobalStyles = globalCss({
     }
   }
 });
-var InputBase = /* @__PURE__ */ React51.forwardRef(function InputBase2(inProps, ref) {
+var InputBase = /* @__PURE__ */ React50.forwardRef(function InputBase2(inProps, ref) {
   const props = useDefaultProps2({
     props: inProps,
     name: "MuiInputBase"
@@ -55747,9 +55744,9 @@ var InputBase = /* @__PURE__ */ React51.forwardRef(function InputBase2(inProps, 
   const value = inputPropsProp.value != null ? inputPropsProp.value : valueProp;
   const {
     current: isControlled
-  } = React51.useRef(value != null);
-  const inputRef = React51.useRef();
-  const handleInputRefWarning = React51.useCallback((instance) => {
+  } = React50.useRef(value != null);
+  const inputRef = React50.useRef();
+  const handleInputRefWarning = React50.useCallback((instance) => {
     if (true) {
       if (instance && instance.nodeName !== "INPUT" && !instance.focus) {
         console.error(["MUI: You have provided a `inputComponent` to the input component", "that does not correctly handle the `ref` prop.", "Make sure the `ref` prop is called with a HTMLInputElement."].join("\n"));
@@ -55757,10 +55754,10 @@ var InputBase = /* @__PURE__ */ React51.forwardRef(function InputBase2(inProps, 
     }
   }, []);
   const handleInputRef = useForkRef_default(inputRef, inputRefProp, inputPropsProp.ref, handleInputRefWarning);
-  const [focused, setFocused] = React51.useState(false);
+  const [focused, setFocused] = React50.useState(false);
   const muiFormControl = useFormControl();
   if (true) {
-    React51.useEffect(() => {
+    React50.useEffect(() => {
       if (muiFormControl) {
         return muiFormControl.registerEffect();
       }
@@ -55773,7 +55770,7 @@ var InputBase = /* @__PURE__ */ React51.forwardRef(function InputBase2(inProps, 
     states: ["color", "disabled", "error", "hiddenLabel", "size", "required", "filled"]
   });
   fcs.focused = muiFormControl ? muiFormControl.focused : focused;
-  React51.useEffect(() => {
+  React50.useEffect(() => {
     if (!muiFormControl && disabled && focused) {
       setFocused(false);
       if (onBlur) {
@@ -55783,7 +55780,7 @@ var InputBase = /* @__PURE__ */ React51.forwardRef(function InputBase2(inProps, 
   }, [muiFormControl, disabled, focused, onBlur]);
   const onFilled = muiFormControl && muiFormControl.onFilled;
   const onEmpty = muiFormControl && muiFormControl.onEmpty;
-  const checkDirty = React51.useCallback((obj) => {
+  const checkDirty = React50.useCallback((obj) => {
     if (isFilled(obj)) {
       if (onFilled) {
         onFilled();
@@ -55842,7 +55839,7 @@ var InputBase = /* @__PURE__ */ React51.forwardRef(function InputBase2(inProps, 
       onChange(event, ...args);
     }
   };
-  React51.useEffect(() => {
+  React50.useEffect(() => {
     checkDirty(inputRef.current);
   }, []);
   const handleClick = (event) => {
@@ -55883,7 +55880,7 @@ var InputBase = /* @__PURE__ */ React51.forwardRef(function InputBase2(inProps, 
       value: "x"
     });
   };
-  React51.useEffect(() => {
+  React50.useEffect(() => {
     if (muiFormControl) {
       muiFormControl.setAdornedStart(Boolean(startAdornment));
     }
@@ -55911,7 +55908,7 @@ var InputBase = /* @__PURE__ */ React51.forwardRef(function InputBase2(inProps, 
     ...inputProps,
     ...slotProps.input ?? componentsProps.input
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(React51.Fragment, {
+  return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(React50.Fragment, {
     children: [!disableInjectingGlobalStyles && typeof InputGlobalStyles === "function" && // For Emotion/Styled-components, InputGlobalStyles will be a function
     // For Pigment CSS, this has no effect because the InputGlobalStyles will be null.
     (_InputGlobalStyles || (_InputGlobalStyles = /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(InputGlobalStyles, {}))), /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(Root, {
@@ -56325,7 +56322,7 @@ var InputInput = styled_default2(InputBaseInput, {
   slot: "Input",
   overridesResolver: inputOverridesResolver
 })({});
-var Input = /* @__PURE__ */ React52.forwardRef(function Input2(inProps, ref) {
+var Input = /* @__PURE__ */ React51.forwardRef(function Input2(inProps, ref) {
   const props = useDefaultProps2({
     props: inProps,
     name: "MuiInput"
@@ -56560,7 +56557,7 @@ if (Input) {
 var Input_default = Input;
 
 // node_modules/@mui/material/FilledInput/FilledInput.js
-var React53 = __toESM(require_react());
+var React52 = __toESM(require_react());
 var import_prop_types25 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/FilledInput/filledInputClasses.js
@@ -56845,7 +56842,7 @@ var FilledInputInput = styled_default2(InputBaseInput, {
     }
   }]
 })));
-var FilledInput = /* @__PURE__ */ React53.forwardRef(function FilledInput2(inProps, ref) {
+var FilledInput = /* @__PURE__ */ React52.forwardRef(function FilledInput2(inProps, ref) {
   const props = useDefaultProps2({
     props: inProps,
     name: "MuiFilledInput"
@@ -57097,11 +57094,11 @@ if (FilledInput) {
 var FilledInput_default = FilledInput;
 
 // node_modules/@mui/material/OutlinedInput/OutlinedInput.js
-var React55 = __toESM(require_react());
+var React54 = __toESM(require_react());
 var import_prop_types27 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/OutlinedInput/NotchedOutline.js
-var React54 = __toESM(require_react());
+var React53 = __toESM(require_react());
 var import_prop_types26 = __toESM(require_prop_types());
 var import_jsx_runtime23 = __toESM(require_jsx_runtime());
 var _span;
@@ -57422,7 +57419,7 @@ var OutlinedInputInput = styled_default2(InputBaseInput, {
     }
   }]
 })));
-var OutlinedInput = /* @__PURE__ */ React55.forwardRef(function OutlinedInput2(inProps, ref) {
+var OutlinedInput = /* @__PURE__ */ React54.forwardRef(function OutlinedInput2(inProps, ref) {
   var _React$Fragment;
   const props = useDefaultProps2({
     props: inProps,
@@ -57469,7 +57466,7 @@ var OutlinedInput = /* @__PURE__ */ React55.forwardRef(function OutlinedInput2(i
     renderSuffix: (state) => /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(NotchedOutlineRoot2, {
       ownerState,
       className: classes.notchedOutline,
-      label: label != null && label !== "" && fcs.required ? _React$Fragment || (_React$Fragment = /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(React55.Fragment, {
+      label: label != null && label !== "" && fcs.required ? _React$Fragment || (_React$Fragment = /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(React54.Fragment, {
         children: [label, "\u2009", "*"]
       })) : label,
       notched: typeof notched !== "undefined" ? notched : Boolean(state.startAdornment || state.filled || state.focused)
@@ -57657,11 +57654,11 @@ if (OutlinedInput) {
 var OutlinedInput_default = OutlinedInput;
 
 // node_modules/@mui/material/InputLabel/InputLabel.js
-var React57 = __toESM(require_react());
+var React56 = __toESM(require_react());
 var import_prop_types29 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/FormLabel/FormLabel.js
-var React56 = __toESM(require_react());
+var React55 = __toESM(require_react());
 var import_prop_types28 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/FormLabel/formLabelClasses.js
@@ -57741,7 +57738,7 @@ var AsteriskComponent = styled_default2("span", {
     color: (theme.vars || theme).palette.error.main
   }
 })));
-var FormLabel = /* @__PURE__ */ React56.forwardRef(function FormLabel2(inProps, ref) {
+var FormLabel = /* @__PURE__ */ React55.forwardRef(function FormLabel2(inProps, ref) {
   const props = useDefaultProps2({
     props: inProps,
     name: "MuiFormLabel"
@@ -58008,7 +58005,7 @@ var InputLabelRoot = styled_default2(FormLabel_default, {
     }
   }]
 })));
-var InputLabel = /* @__PURE__ */ React57.forwardRef(function InputLabel2(inProps, ref) {
+var InputLabel = /* @__PURE__ */ React56.forwardRef(function InputLabel2(inProps, ref) {
   const props = useDefaultProps2({
     name: "MuiInputLabel",
     props: inProps
@@ -58121,7 +58118,7 @@ true ? InputLabel.propTypes = {
 var InputLabel_default = InputLabel;
 
 // node_modules/@mui/material/FormControl/FormControl.js
-var React58 = __toESM(require_react());
+var React57 = __toESM(require_react());
 var import_prop_types30 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/FormControl/formControlClasses.js
@@ -58191,7 +58188,7 @@ var FormControlRoot = styled_default2("div", {
     }
   }]
 });
-var FormControl = /* @__PURE__ */ React58.forwardRef(function FormControl2(inProps, ref) {
+var FormControl = /* @__PURE__ */ React57.forwardRef(function FormControl2(inProps, ref) {
   const props = useDefaultProps2({
     props: inProps,
     name: "MuiFormControl"
@@ -58226,10 +58223,10 @@ var FormControl = /* @__PURE__ */ React58.forwardRef(function FormControl2(inPro
     variant
   };
   const classes = useUtilityClasses12(ownerState);
-  const [adornedStart, setAdornedStart] = React58.useState(() => {
+  const [adornedStart, setAdornedStart] = React57.useState(() => {
     let initialAdornedStart = false;
     if (children) {
-      React58.Children.forEach(children, (child) => {
+      React57.Children.forEach(children, (child) => {
         if (!isMuiElement_default(child, ["Input", "Select"])) {
           return;
         }
@@ -58241,10 +58238,10 @@ var FormControl = /* @__PURE__ */ React58.forwardRef(function FormControl2(inPro
     }
     return initialAdornedStart;
   });
-  const [filled, setFilled] = React58.useState(() => {
+  const [filled, setFilled] = React57.useState(() => {
     let initialFilled = false;
     if (children) {
-      React58.Children.forEach(children, (child) => {
+      React57.Children.forEach(children, (child) => {
         if (!isMuiElement_default(child, ["Input", "Select"])) {
           return;
         }
@@ -58255,13 +58252,13 @@ var FormControl = /* @__PURE__ */ React58.forwardRef(function FormControl2(inPro
     }
     return initialFilled;
   });
-  const [focusedState, setFocused] = React58.useState(false);
+  const [focusedState, setFocused] = React57.useState(false);
   if (disabled && focusedState) {
     setFocused(false);
   }
   const focused = visuallyFocused !== void 0 && !disabled ? visuallyFocused : focusedState;
   let registerEffect;
-  const registeredInput = React58.useRef(false);
+  const registeredInput = React57.useRef(false);
   if (true) {
     registerEffect = () => {
       if (registeredInput.current) {
@@ -58273,7 +58270,7 @@ var FormControl = /* @__PURE__ */ React58.forwardRef(function FormControl2(inPro
       };
     };
   }
-  const childContext = React58.useMemo(() => {
+  const childContext = React57.useMemo(() => {
     return {
       adornedStart,
       setAdornedStart,
@@ -58397,7 +58394,7 @@ true ? FormControl.propTypes = {
 var FormControl_default = FormControl;
 
 // node_modules/@mui/material/FormHelperText/FormHelperText.js
-var React59 = __toESM(require_react());
+var React58 = __toESM(require_react());
 var import_prop_types31 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/FormHelperText/formHelperTextClasses.js
@@ -58468,7 +58465,7 @@ var FormHelperTextRoot = styled_default2("p", {
     }
   }]
 })));
-var FormHelperText = /* @__PURE__ */ React59.forwardRef(function FormHelperText2(inProps, ref) {
+var FormHelperText = /* @__PURE__ */ React58.forwardRef(function FormHelperText2(inProps, ref) {
   const props = useDefaultProps2({
     props: inProps,
     name: "MuiFormHelperText"
@@ -58582,31 +58579,31 @@ true ? FormHelperText.propTypes = {
 var FormHelperText_default = FormHelperText;
 
 // node_modules/@mui/material/Select/Select.js
-var React76 = __toESM(require_react());
+var React75 = __toESM(require_react());
 var import_prop_types45 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/Select/SelectInput.js
-var React74 = __toESM(require_react());
+var React73 = __toESM(require_react());
 var import_react_is4 = __toESM(require_react_is3());
 var import_prop_types44 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/Menu/Menu.js
-var React72 = __toESM(require_react());
+var React71 = __toESM(require_react());
 var import_react_is3 = __toESM(require_react_is3());
 var import_prop_types42 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/MenuList/MenuList.js
-var React62 = __toESM(require_react());
+var React61 = __toESM(require_react());
 var import_react_is2 = __toESM(require_react_is3());
 var import_prop_types33 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/List/List.js
-var React61 = __toESM(require_react());
+var React60 = __toESM(require_react());
 var import_prop_types32 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/List/ListContext.js
-var React60 = __toESM(require_react());
-var ListContext = /* @__PURE__ */ React60.createContext({});
+var React59 = __toESM(require_react());
+var ListContext = /* @__PURE__ */ React59.createContext({});
 if (true) {
   ListContext.displayName = "ListContext";
 }
@@ -58663,7 +58660,7 @@ var ListRoot = styled_default2("ul", {
     }
   }]
 });
-var List = /* @__PURE__ */ React61.forwardRef(function List2(inProps, ref) {
+var List = /* @__PURE__ */ React60.forwardRef(function List2(inProps, ref) {
   const props = useDefaultProps2({
     props: inProps,
     name: "MuiList"
@@ -58677,7 +58674,7 @@ var List = /* @__PURE__ */ React61.forwardRef(function List2(inProps, ref) {
     subheader,
     ...other
   } = props;
-  const context = React61.useMemo(() => ({
+  const context = React60.useMemo(() => ({
     dense
   }), [dense]);
   const ownerState = {
@@ -58804,7 +58801,7 @@ function moveFocus(list, currentFocus, disableListWrap, disabledItemsFocusable, 
   }
   return false;
 }
-var MenuList = /* @__PURE__ */ React62.forwardRef(function MenuList2(props, ref) {
+var MenuList = /* @__PURE__ */ React61.forwardRef(function MenuList2(props, ref) {
   const {
     // private
     // eslint-disable-next-line react/prop-types
@@ -58819,8 +58816,8 @@ var MenuList = /* @__PURE__ */ React62.forwardRef(function MenuList2(props, ref)
     variant = "selectedMenu",
     ...other
   } = props;
-  const listRef = React62.useRef(null);
-  const textCriteriaRef = React62.useRef({
+  const listRef = React61.useRef(null);
+  const textCriteriaRef = React61.useRef({
     keys: [],
     repeating: true,
     previousKeyMatched: true,
@@ -58831,7 +58828,7 @@ var MenuList = /* @__PURE__ */ React62.forwardRef(function MenuList2(props, ref)
       listRef.current.focus();
     }
   }, [autoFocus]);
-  React62.useImperativeHandle(actions, () => ({
+  React61.useImperativeHandle(actions, () => ({
     adjustStyleForScrollbar: (containerElement, {
       direction
     }) => {
@@ -58895,8 +58892,8 @@ var MenuList = /* @__PURE__ */ React62.forwardRef(function MenuList2(props, ref)
   };
   const handleRef = useForkRef_default(listRef, ref);
   let activeItemIndex = -1;
-  React62.Children.forEach(children, (child, index) => {
-    if (!/* @__PURE__ */ React62.isValidElement(child)) {
+  React61.Children.forEach(children, (child, index) => {
+    if (!/* @__PURE__ */ React61.isValidElement(child)) {
       if (activeItemIndex === index) {
         activeItemIndex += 1;
         if (activeItemIndex >= children.length) {
@@ -58924,7 +58921,7 @@ var MenuList = /* @__PURE__ */ React62.forwardRef(function MenuList2(props, ref)
       }
     }
   });
-  const items = React62.Children.map(children, (child, index) => {
+  const items = React61.Children.map(children, (child, index) => {
     if (index === activeItemIndex) {
       const newChildProps = {};
       if (autoFocusItem) {
@@ -58933,7 +58930,7 @@ var MenuList = /* @__PURE__ */ React62.forwardRef(function MenuList2(props, ref)
       if (child.props.tabIndex === void 0 && variant === "selectedMenu") {
         newChildProps.tabIndex = 0;
       }
-      return /* @__PURE__ */ React62.cloneElement(child, newChildProps);
+      return /* @__PURE__ */ React61.cloneElement(child, newChildProps);
     }
     return child;
   });
@@ -58995,11 +58992,11 @@ true ? MenuList.propTypes = {
 var MenuList_default = MenuList;
 
 // node_modules/@mui/material/Popover/Popover.js
-var React71 = __toESM(require_react());
+var React70 = __toESM(require_react());
 var import_prop_types41 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/Grow/Grow.js
-var React63 = __toESM(require_react());
+var React62 = __toESM(require_react());
 var import_prop_types34 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/transitions/utils.js
@@ -59033,7 +59030,7 @@ var styles3 = {
   }
 };
 var isWebKit154 = typeof navigator !== "undefined" && /^((?!chrome|android).)*(safari|mobile)/i.test(navigator.userAgent) && /(os |version\/)15(.|_)4/i.test(navigator.userAgent);
-var Grow = /* @__PURE__ */ React63.forwardRef(function Grow2(props, ref) {
+var Grow = /* @__PURE__ */ React62.forwardRef(function Grow2(props, ref) {
   const {
     addEndListener,
     appear = true,
@@ -59053,9 +59050,9 @@ var Grow = /* @__PURE__ */ React63.forwardRef(function Grow2(props, ref) {
     ...other
   } = props;
   const timer = useTimeout();
-  const autoTimeout = React63.useRef();
+  const autoTimeout = React62.useRef();
   const theme = useTheme4();
-  const nodeRef = React63.useRef(null);
+  const nodeRef = React62.useRef(null);
   const handleRef = useForkRef_default(nodeRef, getReactNodeRef(children), ref);
   const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
     if (callback) {
@@ -59158,7 +59155,7 @@ var Grow = /* @__PURE__ */ React63.forwardRef(function Grow2(props, ref) {
     timeout: timeout2 === "auto" ? null : timeout2,
     ...other,
     children: (state, childProps) => {
-      return /* @__PURE__ */ React63.cloneElement(children, {
+      return /* @__PURE__ */ React62.cloneElement(children, {
         style: {
           opacity: 0,
           transform: getScale(0.75),
@@ -59435,11 +59432,11 @@ var ModalManager = class {
 };
 
 // node_modules/@mui/material/Modal/Modal.js
-var React69 = __toESM(require_react());
+var React68 = __toESM(require_react());
 var import_prop_types39 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/Unstable_TrapFocus/FocusTrap.js
-var React64 = __toESM(require_react());
+var React63 = __toESM(require_react());
 var import_prop_types35 = __toESM(require_prop_types());
 var import_jsx_runtime32 = __toESM(require_jsx_runtime());
 var candidatesSelector = ["input", "select", "textarea", "a[href]", "button", "[tabindex]", "audio[controls]", "video[controls]", '[contenteditable]:not([contenteditable="false"])'].join(",");
@@ -59506,22 +59503,22 @@ function FocusTrap2(props) {
     isEnabled = defaultIsEnabled,
     open
   } = props;
-  const ignoreNextEnforceFocus = React64.useRef(false);
-  const sentinelStart = React64.useRef(null);
-  const sentinelEnd = React64.useRef(null);
-  const nodeToRestore = React64.useRef(null);
-  const reactFocusEventTarget = React64.useRef(null);
-  const activated = React64.useRef(false);
-  const rootRef = React64.useRef(null);
+  const ignoreNextEnforceFocus = React63.useRef(false);
+  const sentinelStart = React63.useRef(null);
+  const sentinelEnd = React63.useRef(null);
+  const nodeToRestore = React63.useRef(null);
+  const reactFocusEventTarget = React63.useRef(null);
+  const activated = React63.useRef(false);
+  const rootRef = React63.useRef(null);
   const handleRef = useForkRef(getReactNodeRef(children), rootRef);
-  const lastKeydown = React64.useRef(null);
-  React64.useEffect(() => {
+  const lastKeydown = React63.useRef(null);
+  React63.useEffect(() => {
     if (!open || !rootRef.current) {
       return;
     }
     activated.current = !disableAutoFocus;
   }, [disableAutoFocus, open]);
-  React64.useEffect(() => {
+  React63.useEffect(() => {
     if (!open || !rootRef.current) {
       return;
     }
@@ -59547,7 +59544,7 @@ function FocusTrap2(props) {
       }
     };
   }, [open]);
-  React64.useEffect(() => {
+  React63.useEffect(() => {
     if (!open || !rootRef.current) {
       return;
     }
@@ -59636,13 +59633,13 @@ function FocusTrap2(props) {
     }
     activated.current = true;
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)(React64.Fragment, {
+  return /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)(React63.Fragment, {
     children: [/* @__PURE__ */ (0, import_jsx_runtime32.jsx)("div", {
       tabIndex: open ? 0 : -1,
       onFocus: handleFocusSentinel,
       ref: sentinelStart,
       "data-testid": "sentinelStart"
-    }), /* @__PURE__ */ React64.cloneElement(children, {
+    }), /* @__PURE__ */ React63.cloneElement(children, {
       ref: handleRef,
       onFocus
     }), /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("div", {
@@ -59713,20 +59710,20 @@ if (true) {
 var FocusTrap_default = FocusTrap2;
 
 // node_modules/@mui/material/Portal/Portal.js
-var React65 = __toESM(require_react());
+var React64 = __toESM(require_react());
 var ReactDOM4 = __toESM(require_react_dom());
 var import_prop_types36 = __toESM(require_prop_types());
 var import_jsx_runtime33 = __toESM(require_jsx_runtime());
 function getContainer(container) {
   return typeof container === "function" ? container() : container;
 }
-var Portal = /* @__PURE__ */ React65.forwardRef(function Portal2(props, forwardedRef) {
+var Portal = /* @__PURE__ */ React64.forwardRef(function Portal2(props, forwardedRef) {
   const {
     children,
     container,
     disablePortal = false
   } = props;
-  const [mountNode, setMountNode] = React65.useState(null);
+  const [mountNode, setMountNode] = React64.useState(null);
   const handleRef = useForkRef(getReactNodeRef(children), forwardedRef);
   useEnhancedEffect_default(() => {
     if (!disablePortal) {
@@ -59743,17 +59740,17 @@ var Portal = /* @__PURE__ */ React65.forwardRef(function Portal2(props, forwarde
     return void 0;
   }, [forwardedRef, mountNode, disablePortal]);
   if (disablePortal) {
-    if (/* @__PURE__ */ React65.isValidElement(children)) {
+    if (/* @__PURE__ */ React64.isValidElement(children)) {
       const newProps = {
         ref: handleRef
       };
-      return /* @__PURE__ */ React65.cloneElement(children, newProps);
+      return /* @__PURE__ */ React64.cloneElement(children, newProps);
     }
-    return /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(React65.Fragment, {
+    return /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(React64.Fragment, {
       children
     });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(React65.Fragment, {
+  return /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(React64.Fragment, {
     children: mountNode ? /* @__PURE__ */ ReactDOM4.createPortal(children, mountNode) : mountNode
   });
 });
@@ -59789,11 +59786,11 @@ if (true) {
 var Portal_default = Portal;
 
 // node_modules/@mui/material/Backdrop/Backdrop.js
-var React67 = __toESM(require_react());
+var React66 = __toESM(require_react());
 var import_prop_types38 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/Fade/Fade.js
-var React66 = __toESM(require_react());
+var React65 = __toESM(require_react());
 var import_prop_types37 = __toESM(require_prop_types());
 var import_jsx_runtime34 = __toESM(require_jsx_runtime());
 var styles4 = {
@@ -59804,7 +59801,7 @@ var styles4 = {
     opacity: 1
   }
 };
-var Fade = /* @__PURE__ */ React66.forwardRef(function Fade2(props, ref) {
+var Fade = /* @__PURE__ */ React65.forwardRef(function Fade2(props, ref) {
   const theme = useTheme4();
   const defaultTimeout = {
     enter: theme.transitions.duration.enteringScreen,
@@ -59829,7 +59826,7 @@ var Fade = /* @__PURE__ */ React66.forwardRef(function Fade2(props, ref) {
     ...other
   } = props;
   const enableStrictModeCompat = true;
-  const nodeRef = React66.useRef(null);
+  const nodeRef = React65.useRef(null);
   const handleRef = useForkRef_default(nodeRef, getReactNodeRef(children), ref);
   const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
     if (callback) {
@@ -59893,7 +59890,7 @@ var Fade = /* @__PURE__ */ React66.forwardRef(function Fade2(props, ref) {
     timeout: timeout2,
     ...other,
     children: (state, childProps) => {
-      return /* @__PURE__ */ React66.cloneElement(children, {
+      return /* @__PURE__ */ React65.cloneElement(children, {
         style: {
           opacity: 0,
           visibility: state === "exited" && !inProp ? "hidden" : void 0,
@@ -60038,7 +60035,7 @@ var BackdropRoot = styled_default2("div", {
     }
   }]
 });
-var Backdrop2 = /* @__PURE__ */ React67.forwardRef(function Backdrop3(inProps, ref) {
+var Backdrop2 = /* @__PURE__ */ React66.forwardRef(function Backdrop3(inProps, ref) {
   const props = useDefaultProps2({
     props: inProps,
     name: "MuiBackdrop"
@@ -60194,7 +60191,7 @@ true ? Backdrop2.propTypes = {
 var Backdrop_default = Backdrop2;
 
 // node_modules/@mui/material/Modal/useModal.js
-var React68 = __toESM(require_react());
+var React67 = __toESM(require_react());
 function getContainer2(container) {
   return typeof container === "function" ? container() : container;
 }
@@ -60217,11 +60214,11 @@ function useModal(parameters) {
     open,
     rootRef
   } = parameters;
-  const modal = React68.useRef({});
-  const mountNodeRef = React68.useRef(null);
-  const modalRef = React68.useRef(null);
+  const modal = React67.useRef({});
+  const mountNodeRef = React67.useRef(null);
+  const modalRef = React67.useRef(null);
   const handleRef = useForkRef(modalRef, rootRef);
-  const [exited, setExited] = React68.useState(!open);
+  const [exited, setExited] = React67.useState(!open);
   const hasTransition = getHasTransition(children);
   let ariaHiddenProp = true;
   if (parameters["aria-hidden"] === "false" || parameters["aria-hidden"] === false) {
@@ -60248,7 +60245,7 @@ function useModal(parameters) {
       handleMounted();
     }
   });
-  const isTopModal = React68.useCallback(() => manager.isTopModal(getModal()), [manager]);
+  const isTopModal = React67.useCallback(() => manager.isTopModal(getModal()), [manager]);
   const handlePortalRef = useEventCallback_default((node2) => {
     mountNodeRef.current = node2;
     if (!node2) {
@@ -60260,15 +60257,15 @@ function useModal(parameters) {
       ariaHidden(modalRef.current, ariaHiddenProp);
     }
   });
-  const handleClose = React68.useCallback(() => {
+  const handleClose = React67.useCallback(() => {
     manager.remove(getModal(), ariaHiddenProp);
   }, [ariaHiddenProp, manager]);
-  React68.useEffect(() => {
+  React67.useEffect(() => {
     return () => {
       handleClose();
     };
   }, [handleClose]);
-  React68.useEffect(() => {
+  React67.useEffect(() => {
     if (open) {
       handleOpen();
     } else if (!hasTransition || !closeAfterTransition) {
@@ -60411,7 +60408,7 @@ var ModalBackdrop = styled_default2(Backdrop_default, {
 })({
   zIndex: -1
 });
-var Modal2 = /* @__PURE__ */ React69.forwardRef(function Modal3(inProps, ref) {
+var Modal2 = /* @__PURE__ */ React68.forwardRef(function Modal3(inProps, ref) {
   const props = useDefaultProps2({
     name: "MuiModal",
     props: inProps
@@ -60549,7 +60546,7 @@ var Modal2 = /* @__PURE__ */ React69.forwardRef(function Modal3(inProps, ref) {
         disableRestoreFocus,
         isEnabled: isTopModal,
         open,
-        children: /* @__PURE__ */ React69.cloneElement(children, childProps)
+        children: /* @__PURE__ */ React68.cloneElement(children, childProps)
       })]
     })
   });
@@ -60736,7 +60733,7 @@ true ? Modal2.propTypes = {
 var Modal_default = Modal2;
 
 // node_modules/@mui/material/Paper/Paper.js
-var React70 = __toESM(require_react());
+var React69 = __toESM(require_react());
 var import_prop_types40 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/Paper/paperClasses.js
@@ -60798,7 +60795,7 @@ var PaperRoot = styled_default2("div", {
     }
   }]
 })));
-var Paper = /* @__PURE__ */ React70.forwardRef(function Paper2(inProps, ref) {
+var Paper = /* @__PURE__ */ React69.forwardRef(function Paper2(inProps, ref) {
   const props = useDefaultProps2({
     props: inProps,
     name: "MuiPaper"
@@ -60971,7 +60968,7 @@ var PopoverPaper = styled_default2(Paper_default, {
   // We disable the focus ring for mouse, touch and keyboard users.
   outline: 0
 });
-var Popover2 = /* @__PURE__ */ React71.forwardRef(function Popover3(inProps, ref) {
+var Popover2 = /* @__PURE__ */ React70.forwardRef(function Popover3(inProps, ref) {
   const props = useDefaultProps2({
     props: inProps,
     name: "MuiPopover"
@@ -61008,7 +61005,7 @@ var Popover2 = /* @__PURE__ */ React71.forwardRef(function Popover3(inProps, ref
     ...other
   } = props;
   const externalPaperSlotProps = slotProps?.paper ?? PaperPropsProp;
-  const paperRef = React71.useRef();
+  const paperRef = React70.useRef();
   const ownerState = {
     ...props,
     anchorOrigin,
@@ -61022,7 +61019,7 @@ var Popover2 = /* @__PURE__ */ React71.forwardRef(function Popover3(inProps, ref
     TransitionProps
   };
   const classes = useUtilityClasses18(ownerState);
-  const getAnchorOffset = React71.useCallback(() => {
+  const getAnchorOffset = React70.useCallback(() => {
     if (anchorReference === "anchorPosition") {
       if (true) {
         if (!anchorPosition) {
@@ -61045,13 +61042,13 @@ var Popover2 = /* @__PURE__ */ React71.forwardRef(function Popover3(inProps, ref
       left: anchorRect.left + getOffsetLeft(anchorRect, anchorOrigin.horizontal)
     };
   }, [anchorEl, anchorOrigin.horizontal, anchorOrigin.vertical, anchorPosition, anchorReference]);
-  const getTransformOrigin = React71.useCallback((elemRect) => {
+  const getTransformOrigin = React70.useCallback((elemRect) => {
     return {
       vertical: getOffsetTop(elemRect, transformOrigin.vertical),
       horizontal: getOffsetLeft(elemRect, transformOrigin.horizontal)
     };
   }, [transformOrigin.horizontal, transformOrigin.vertical]);
-  const getPositioningStyle = React71.useCallback((element) => {
+  const getPositioningStyle = React70.useCallback((element) => {
     const elemRect = {
       width: element.offsetWidth,
       height: element.offsetHeight
@@ -61101,8 +61098,8 @@ var Popover2 = /* @__PURE__ */ React71.forwardRef(function Popover3(inProps, ref
       transformOrigin: getTransformOriginValue(elemTransformOrigin)
     };
   }, [anchorEl, anchorReference, getAnchorOffset, getTransformOrigin, marginThreshold]);
-  const [isPositioned, setIsPositioned] = React71.useState(open);
-  const setPositioningStyles = React71.useCallback(() => {
+  const [isPositioned, setIsPositioned] = React70.useState(open);
+  const setPositioningStyles = React70.useCallback(() => {
     const element = paperRef.current;
     if (!element) {
       return;
@@ -61117,7 +61114,7 @@ var Popover2 = /* @__PURE__ */ React71.forwardRef(function Popover3(inProps, ref
     element.style.transformOrigin = positioning.transformOrigin;
     setIsPositioned(true);
   }, [getPositioningStyle]);
-  React71.useEffect(() => {
+  React70.useEffect(() => {
     if (disableScrollLock) {
       window.addEventListener("scroll", setPositioningStyles);
     }
@@ -61132,17 +61129,17 @@ var Popover2 = /* @__PURE__ */ React71.forwardRef(function Popover3(inProps, ref
   const handleExited = () => {
     setIsPositioned(false);
   };
-  React71.useEffect(() => {
+  React70.useEffect(() => {
     if (open) {
       setPositioningStyles();
     }
   });
-  React71.useImperativeHandle(action, () => open ? {
+  React70.useImperativeHandle(action, () => open ? {
     updatePosition: () => {
       setPositioningStyles();
     }
   } : null, [open, setPositioningStyles]);
-  React71.useEffect(() => {
+  React70.useEffect(() => {
     if (!open) {
       return void 0;
     }
@@ -61472,7 +61469,7 @@ var MenuMenuList = styled_default2(MenuList_default, {
   // We disable the focus ring for mouse, touch and keyboard users.
   outline: 0
 });
-var Menu = /* @__PURE__ */ React72.forwardRef(function Menu2(inProps, ref) {
+var Menu = /* @__PURE__ */ React71.forwardRef(function Menu2(inProps, ref) {
   const props = useDefaultProps2({
     props: inProps,
     name: "MuiMenu"
@@ -61511,7 +61508,7 @@ var Menu = /* @__PURE__ */ React72.forwardRef(function Menu2(inProps, ref) {
   };
   const classes = useUtilityClasses19(ownerState);
   const autoFocusItem = autoFocus && !disableAutoFocusItem && open;
-  const menuListActionsRef = React72.useRef(null);
+  const menuListActionsRef = React71.useRef(null);
   const handleEntering = (element, isAppearing) => {
     if (menuListActionsRef.current) {
       menuListActionsRef.current.adjustStyleForScrollbar(element, {
@@ -61531,8 +61528,8 @@ var Menu = /* @__PURE__ */ React72.forwardRef(function Menu2(inProps, ref) {
     }
   };
   let activeItemIndex = -1;
-  React72.Children.map(children, (child, index) => {
-    if (!/* @__PURE__ */ React72.isValidElement(child)) {
+  React71.Children.map(children, (child, index) => {
+    if (!/* @__PURE__ */ React71.isValidElement(child)) {
       return;
     }
     if (true) {
@@ -61705,7 +61702,7 @@ true ? Menu.propTypes = {
 var Menu_default = Menu;
 
 // node_modules/@mui/material/NativeSelect/NativeSelectInput.js
-var React73 = __toESM(require_react());
+var React72 = __toESM(require_react());
 var import_prop_types43 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/NativeSelect/nativeSelectClasses.js
@@ -61856,7 +61853,7 @@ var NativeSelectIcon = styled_default2(StyledSelectIcon, {
     return [styles5.icon, ownerState.variant && styles5[`icon${capitalize_default(ownerState.variant)}`], ownerState.open && styles5.iconOpen];
   }
 })({});
-var NativeSelectInput = /* @__PURE__ */ React73.forwardRef(function NativeSelectInput2(props, ref) {
+var NativeSelectInput = /* @__PURE__ */ React72.forwardRef(function NativeSelectInput2(props, ref) {
   const {
     className,
     disabled,
@@ -61873,7 +61870,7 @@ var NativeSelectInput = /* @__PURE__ */ React73.forwardRef(function NativeSelect
     error: error2
   };
   const classes = useUtilityClasses20(ownerState);
-  return /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)(React73.Fragment, {
+  return /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)(React72.Fragment, {
     children: [/* @__PURE__ */ (0, import_jsx_runtime40.jsx)(NativeSelectSelect, {
       ownerState,
       className: clsx_default(classes.select, className),
@@ -62038,7 +62035,7 @@ var useUtilityClasses21 = (ownerState) => {
   };
   return composeClasses(slots, getSelectUtilityClasses, classes);
 };
-var SelectInput = /* @__PURE__ */ React74.forwardRef(function SelectInput2(props, ref) {
+var SelectInput = /* @__PURE__ */ React73.forwardRef(function SelectInput2(props, ref) {
   const {
     "aria-describedby": ariaDescribedby,
     "aria-label": ariaLabel,
@@ -62083,40 +62080,40 @@ var SelectInput = /* @__PURE__ */ React74.forwardRef(function SelectInput2(props
     default: defaultOpen,
     name: "Select"
   });
-  const inputRef = React74.useRef(null);
-  const displayRef = React74.useRef(null);
-  const [displayNode, setDisplayNode] = React74.useState(null);
+  const inputRef = React73.useRef(null);
+  const displayRef = React73.useRef(null);
+  const [displayNode, setDisplayNode] = React73.useState(null);
   const {
     current: isOpenControlled
-  } = React74.useRef(openProp != null);
-  const [menuMinWidthState, setMenuMinWidthState] = React74.useState();
+  } = React73.useRef(openProp != null);
+  const [menuMinWidthState, setMenuMinWidthState] = React73.useState();
   const handleRef = useForkRef_default(ref, inputRefProp);
-  const handleDisplayRef = React74.useCallback((node2) => {
+  const handleDisplayRef = React73.useCallback((node2) => {
     displayRef.current = node2;
     if (node2) {
       setDisplayNode(node2);
     }
   }, []);
   const anchorElement = displayNode?.parentNode;
-  React74.useImperativeHandle(handleRef, () => ({
+  React73.useImperativeHandle(handleRef, () => ({
     focus: () => {
       displayRef.current.focus();
     },
     node: inputRef.current,
     value
   }), [value]);
-  React74.useEffect(() => {
+  React73.useEffect(() => {
     if (defaultOpen && openState && displayNode && !isOpenControlled) {
       setMenuMinWidthState(autoWidth ? null : anchorElement.clientWidth);
       displayRef.current.focus();
     }
   }, [displayNode, autoWidth]);
-  React74.useEffect(() => {
+  React73.useEffect(() => {
     if (autoFocus) {
       displayRef.current.focus();
     }
   }, [autoFocus]);
-  React74.useEffect(() => {
+  React73.useEffect(() => {
     if (!labelId) {
       return void 0;
     }
@@ -62158,7 +62155,7 @@ var SelectInput = /* @__PURE__ */ React74.forwardRef(function SelectInput2(props
   const handleClose = (event) => {
     update(false, event);
   };
-  const childrenArray = React74.Children.toArray(children);
+  const childrenArray = React73.Children.toArray(children);
   const handleChange = (event) => {
     const child = childrenArray.find((childItem) => childItem.props.value === event.target.value);
     if (child === void 0) {
@@ -62252,7 +62249,7 @@ var SelectInput = /* @__PURE__ */ React74.forwardRef(function SelectInput2(props
     }
   }
   const items = childrenArray.map((child) => {
-    if (!/* @__PURE__ */ React74.isValidElement(child)) {
+    if (!/* @__PURE__ */ React73.isValidElement(child)) {
       return null;
     }
     if (true) {
@@ -62278,7 +62275,7 @@ var SelectInput = /* @__PURE__ */ React74.forwardRef(function SelectInput2(props
     if (selected) {
       foundMatch = true;
     }
-    return /* @__PURE__ */ React74.cloneElement(child, {
+    return /* @__PURE__ */ React73.cloneElement(child, {
       "aria-selected": selected ? "true" : "false",
       onClick: handleItemClick(child),
       onKeyUp: (event) => {
@@ -62298,7 +62295,7 @@ var SelectInput = /* @__PURE__ */ React74.forwardRef(function SelectInput2(props
     });
   });
   if (true) {
-    React74.useEffect(() => {
+    React73.useEffect(() => {
       if (!foundMatch && !multiple && value !== "") {
         const values3 = childrenArray.map((child) => child.props.value);
         console.warn([`MUI: You have provided an out-of-range value \`${value}\` for the select ${name ? `(name="${name}") ` : ""}component.`, "Consider providing a value that matches one of the available options or ''.", `The available values are ${values3.filter((x) => x != null).map((x) => `\`${x}\``).join(", ") || '""'}.`].join("\n"));
@@ -62346,7 +62343,7 @@ var SelectInput = /* @__PURE__ */ React74.forwardRef(function SelectInput2(props
     ...MenuProps.slotProps?.paper
   };
   const listboxId = useId();
-  return /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)(React74.Fragment, {
+  return /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)(React73.Fragment, {
     children: [/* @__PURE__ */ (0, import_jsx_runtime41.jsx)(SelectSelect, {
       as: "div",
       ref: handleDisplayRef,
@@ -62574,7 +62571,7 @@ true ? SelectInput.propTypes = {
 var SelectInput_default = SelectInput;
 
 // node_modules/@mui/material/internal/svg-icons/ArrowDropDown.js
-var React75 = __toESM(require_react());
+var React74 = __toESM(require_react());
 var import_jsx_runtime42 = __toESM(require_jsx_runtime());
 var ArrowDropDown_default = createSvgIcon(/* @__PURE__ */ (0, import_jsx_runtime42.jsx)("path", {
   d: "M7 10l5 5 5-5z"
@@ -62610,7 +62607,7 @@ var styledRootConfig = {
 var StyledInput = styled_default2(Input_default, styledRootConfig)("");
 var StyledOutlinedInput = styled_default2(OutlinedInput_default, styledRootConfig)("");
 var StyledFilledInput = styled_default2(FilledInput_default, styledRootConfig)("");
-var Select = /* @__PURE__ */ React76.forwardRef(function Select2(inProps, ref) {
+var Select = /* @__PURE__ */ React75.forwardRef(function Select2(inProps, ref) {
   const props = useThemeProps2({
     name: "MuiSelect",
     props: inProps
@@ -62670,8 +62667,8 @@ var Select = /* @__PURE__ */ React76.forwardRef(function Select2(inProps, ref) {
     })
   }[variant];
   const inputComponentRef = useForkRef_default(ref, getReactNodeRef(InputComponent));
-  return /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(React76.Fragment, {
-    children: /* @__PURE__ */ React76.cloneElement(InputComponent, {
+  return /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(React75.Fragment, {
+    children: /* @__PURE__ */ React75.cloneElement(InputComponent, {
       // Most of the logic is implemented in `SelectInput`.
       // The `Select` component is a simple API wrapper to expose something better to play with.
       inputComponent,
@@ -62894,7 +62891,7 @@ var TextFieldRoot = styled_default2(FormControl_default, {
   slot: "Root",
   overridesResolver: (props, styles5) => styles5.root
 })({});
-var TextField = /* @__PURE__ */ React77.forwardRef(function TextField2(inProps, ref) {
+var TextField = /* @__PURE__ */ React76.forwardRef(function TextField2(inProps, ref) {
   const props = useDefaultProps2({
     props: inProps,
     name: "MuiTextField"
@@ -63268,11 +63265,11 @@ true ? TextField.propTypes = {
 var TextField_default = TextField;
 
 // node_modules/@mui/material/Link/Link.js
-var React79 = __toESM(require_react());
+var React78 = __toESM(require_react());
 var import_prop_types48 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/Typography/Typography.js
-var React78 = __toESM(require_react());
+var React77 = __toESM(require_react());
 var import_prop_types47 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/Typography/typographyClasses.js
@@ -63396,7 +63393,7 @@ var defaultVariantMapping = {
   body2: "p",
   inherit: "p"
 };
-var Typography = /* @__PURE__ */ React78.forwardRef(function Typography2(inProps, ref) {
+var Typography = /* @__PURE__ */ React77.forwardRef(function Typography2(inProps, ref) {
   const {
     color: color2,
     ...themeProps
@@ -63700,7 +63697,7 @@ var LinkRoot = styled_default2(Typography_default, {
     }]
   };
 }));
-var Link2 = /* @__PURE__ */ React79.forwardRef(function Link3(inProps, ref) {
+var Link2 = /* @__PURE__ */ React78.forwardRef(function Link3(inProps, ref) {
   const props = useDefaultProps2({
     props: inProps,
     name: "MuiLink"
@@ -63718,7 +63715,7 @@ var Link2 = /* @__PURE__ */ React79.forwardRef(function Link3(inProps, ref) {
     sx,
     ...other
   } = props;
-  const [focusVisible, setFocusVisible] = React79.useState(false);
+  const [focusVisible, setFocusVisible] = React78.useState(false);
   const handleBlur = (event) => {
     if (!isFocusVisible(event.target)) {
       setFocusVisible(false);
@@ -63830,12 +63827,12 @@ true ? Link2.propTypes = {
 var Link_default = Link2;
 
 // node_modules/@mui/material/Grid/Grid.js
-var React81 = __toESM(require_react());
+var React80 = __toESM(require_react());
 var import_prop_types49 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/Grid/GridContext.js
-var React80 = __toESM(require_react());
-var GridContext = /* @__PURE__ */ React80.createContext();
+var React79 = __toESM(require_react());
+var GridContext = /* @__PURE__ */ React79.createContext();
 if (true) {
   GridContext.displayName = "GridContext";
 }
@@ -64185,7 +64182,7 @@ var useUtilityClasses26 = (ownerState) => {
   };
   return composeClasses(slots, getGridUtilityClass, classes);
 };
-var Grid = /* @__PURE__ */ React81.forwardRef(function Grid2(inProps, ref) {
+var Grid = /* @__PURE__ */ React80.forwardRef(function Grid2(inProps, ref) {
   const themeProps = useThemeProps2({
     props: inProps,
     name: "MuiGrid"
@@ -64210,7 +64207,7 @@ var Grid = /* @__PURE__ */ React81.forwardRef(function Grid2(inProps, ref) {
   } = props;
   const rowSpacing = rowSpacingProp || spacing2;
   const columnSpacing = columnSpacingProp || spacing2;
-  const columnsContext = React81.useContext(GridContext_default);
+  const columnsContext = React80.useContext(GridContext_default);
   const columns = container ? columnsProp || 12 : columnsContext;
   const breakpointsValues = {};
   const otherFiltered = {
@@ -64499,7 +64496,7 @@ true ? Container.propTypes = {
 var Container_default = Container;
 
 // node_modules/react-hook-form/dist/index.esm.mjs
-var import_react16 = __toESM(require_react(), 1);
+var import_react15 = __toESM(require_react(), 1);
 var isCheckBoxInput = (element) => element.type === "checkbox";
 var isDateObject = (value) => value instanceof Date;
 var isNullOrUndefined = (value) => value == null;
@@ -64589,7 +64586,7 @@ var INPUT_VALIDATION_RULES = {
   required: "required",
   validate: "validate"
 };
-var HookFormContext = import_react16.default.createContext(null);
+var HookFormContext = import_react15.default.createContext(null);
 var getProxyFormState = (formState, control, localProxyFormState, isRoot = true) => {
   const result = {
     defaultValues: control._defaultValues
@@ -64616,9 +64613,9 @@ var shouldRenderFormState = (formStateData, _proxyFormState, updateFormState, is
 };
 var convertToArrayPayload = (value) => Array.isArray(value) ? value : [value];
 function useSubscribe(props) {
-  const _props = import_react16.default.useRef(props);
+  const _props = import_react15.default.useRef(props);
   _props.current = props;
-  import_react16.default.useEffect(() => {
+  import_react15.default.useEffect(() => {
     const subscription = !props.disabled && _props.current.subject && _props.current.subject.subscribe({
       next: _props.current.next
     });
@@ -65892,9 +65889,9 @@ function createFormControl(props = {}) {
   };
 }
 function useForm(props = {}) {
-  const _formControl = import_react16.default.useRef();
-  const _values = import_react16.default.useRef();
-  const [formState, updateFormState] = import_react16.default.useState({
+  const _formControl = import_react15.default.useRef();
+  const _values = import_react15.default.useRef();
+  const [formState, updateFormState] = import_react15.default.useState({
     isDirty: false,
     isValidating: false,
     isLoading: isFunction2(props.defaultValues),
@@ -65926,8 +65923,8 @@ function useForm(props = {}) {
       }
     }
   });
-  import_react16.default.useEffect(() => control._disableForm(props.disabled), [control, props.disabled]);
-  import_react16.default.useEffect(() => {
+  import_react15.default.useEffect(() => control._disableForm(props.disabled), [control, props.disabled]);
+  import_react15.default.useEffect(() => {
     if (control._proxyFormState.isDirty) {
       const isDirty = control._getDirty();
       if (isDirty !== formState.isDirty) {
@@ -65937,7 +65934,7 @@ function useForm(props = {}) {
       }
     }
   }, [control, formState.isDirty]);
-  import_react16.default.useEffect(() => {
+  import_react15.default.useEffect(() => {
     if (props.values && !deepEqual(props.values, _values.current)) {
       control._reset(props.values, control._options.resetOptions);
       _values.current = props.values;
@@ -65946,12 +65943,12 @@ function useForm(props = {}) {
       control._resetDefaultValues();
     }
   }, [props.values, control]);
-  import_react16.default.useEffect(() => {
+  import_react15.default.useEffect(() => {
     if (props.errors) {
       control._setErrors(props.errors);
     }
   }, [props.errors, control]);
-  import_react16.default.useEffect(() => {
+  import_react15.default.useEffect(() => {
     if (!control._state.mount) {
       control._updateValid();
       control._state.mount = true;
@@ -65962,7 +65959,7 @@ function useForm(props = {}) {
     }
     control._removeUnmounted();
   });
-  import_react16.default.useEffect(() => {
+  import_react15.default.useEffect(() => {
     props.shouldUnregister && control._subjects.values.next({
       values: control._getWatch()
     });
@@ -66053,7 +66050,7 @@ var Signup = () => {
     console.log(`email ${email}, password ${password}`);
     await mutate({ username: `${username}`, email, password });
   });
-  return /* @__PURE__ */ import_react17.default.createElement(Container_default, { component: "main", maxWidth: "xs" }, /* @__PURE__ */ import_react17.default.createElement(CssBaseline_default, null), /* @__PURE__ */ import_react17.default.createElement(
+  return /* @__PURE__ */ import_react16.default.createElement(Container_default, { component: "main", maxWidth: "xs" }, /* @__PURE__ */ import_react16.default.createElement(CssBaseline_default, null), /* @__PURE__ */ import_react16.default.createElement(
     Box_default,
     {
       sx: {
@@ -66063,9 +66060,9 @@ var Signup = () => {
         alignItems: "center"
       }
     },
-    /* @__PURE__ */ import_react17.default.createElement(Avatar_default, { sx: { m: 1, bgcolor: "secondary.main" } }, /* @__PURE__ */ import_react17.default.createElement(LockOutlined_default, null)),
-    /* @__PURE__ */ import_react17.default.createElement(Typography_default, { component: "h1", variant: "h5" }, "Sign up"),
-    /* @__PURE__ */ import_react17.default.createElement(Box_default, { component: "form", noValidate: true, onSubmit: onFormSubmit, sx: { mt: 3 } }, /* @__PURE__ */ import_react17.default.createElement(Grid_default, { container: true, spacing: 2 }, /* @__PURE__ */ import_react17.default.createElement(Grid_default, { item: true, xs: 12 }, /* @__PURE__ */ import_react17.default.createElement(
+    /* @__PURE__ */ import_react16.default.createElement(Avatar_default, { sx: { m: 1, bgcolor: "secondary.main" } }, /* @__PURE__ */ import_react16.default.createElement(LockOutlined_default, null)),
+    /* @__PURE__ */ import_react16.default.createElement(Typography_default, { component: "h1", variant: "h5" }, "Sign up"),
+    /* @__PURE__ */ import_react16.default.createElement(Box_default, { component: "form", noValidate: true, onSubmit: onFormSubmit, sx: { mt: 3 } }, /* @__PURE__ */ import_react16.default.createElement(Grid_default, { container: true, spacing: 2 }, /* @__PURE__ */ import_react16.default.createElement(Grid_default, { item: true, xs: 12 }, /* @__PURE__ */ import_react16.default.createElement(
       TextField_default,
       {
         autoComplete: "given-name",
@@ -66078,7 +66075,7 @@ var Signup = () => {
         error: !!errors?.username,
         helperText: errors?.username?.message || ""
       }
-    )), /* @__PURE__ */ import_react17.default.createElement(Grid_default, { item: true, xs: 12 }, /* @__PURE__ */ import_react17.default.createElement(
+    )), /* @__PURE__ */ import_react16.default.createElement(Grid_default, { item: true, xs: 12 }, /* @__PURE__ */ import_react16.default.createElement(
       TextField_default,
       {
         required: true,
@@ -66090,7 +66087,7 @@ var Signup = () => {
         error: !!errors?.email,
         helperText: errors?.email?.message || ""
       }
-    )), /* @__PURE__ */ import_react17.default.createElement(Grid_default, { item: true, xs: 12 }, /* @__PURE__ */ import_react17.default.createElement(
+    )), /* @__PURE__ */ import_react16.default.createElement(Grid_default, { item: true, xs: 12 }, /* @__PURE__ */ import_react16.default.createElement(
       TextField_default,
       {
         required: true,
@@ -66103,7 +66100,7 @@ var Signup = () => {
         error: !!errors?.password,
         helperText: errors?.password?.message || ""
       }
-    ))), /* @__PURE__ */ import_react17.default.createElement(
+    ))), /* @__PURE__ */ import_react16.default.createElement(
       Button_default,
       {
         type: "submit",
@@ -66112,20 +66109,20 @@ var Signup = () => {
         sx: { mt: 3, mb: 2 }
       },
       "Sign Up"
-    ), /* @__PURE__ */ import_react17.default.createElement(Grid_default, { container: true, justifyContent: "flex-end" }, /* @__PURE__ */ import_react17.default.createElement(Grid_default, { item: true }, /* @__PURE__ */ import_react17.default.createElement(Link_default, { href: "#", variant: "body2" }, "Already have an account? Sign in"))))
+    ), /* @__PURE__ */ import_react16.default.createElement(Grid_default, { container: true, justifyContent: "flex-end" }, /* @__PURE__ */ import_react16.default.createElement(Grid_default, { item: true }, /* @__PURE__ */ import_react16.default.createElement(Link_default, { href: "#", variant: "body2" }, "Already have an account? Sign in"))))
   ));
 };
 var Signup_default = Signup;
 
 // app/javascript/components/Login.jsx
-var import_react18 = __toESM(require_react());
+var import_react17 = __toESM(require_react());
 
 // node_modules/@mui/material/Checkbox/Checkbox.js
-var React88 = __toESM(require_react());
+var React87 = __toESM(require_react());
 var import_prop_types53 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/internal/SwitchBase.js
-var React84 = __toESM(require_react());
+var React83 = __toESM(require_react());
 var import_prop_types52 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/internal/switchBaseClasses.js
@@ -66200,7 +66197,7 @@ var SwitchBaseInput = styled_default2("input", {
   padding: 0,
   zIndex: 1
 });
-var SwitchBase = /* @__PURE__ */ React84.forwardRef(function SwitchBase2(props, ref) {
+var SwitchBase = /* @__PURE__ */ React83.forwardRef(function SwitchBase2(props, ref) {
   const {
     autoFocus,
     checked: checkedProp,
@@ -66414,21 +66411,21 @@ true ? SwitchBase.propTypes = {
 var SwitchBase_default = SwitchBase;
 
 // node_modules/@mui/material/internal/svg-icons/CheckBoxOutlineBlank.js
-var React85 = __toESM(require_react());
+var React84 = __toESM(require_react());
 var import_jsx_runtime50 = __toESM(require_jsx_runtime());
 var CheckBoxOutlineBlank_default = createSvgIcon(/* @__PURE__ */ (0, import_jsx_runtime50.jsx)("path", {
   d: "M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
 }), "CheckBoxOutlineBlank");
 
 // node_modules/@mui/material/internal/svg-icons/CheckBox.js
-var React86 = __toESM(require_react());
+var React85 = __toESM(require_react());
 var import_jsx_runtime51 = __toESM(require_jsx_runtime());
 var CheckBox_default = createSvgIcon(/* @__PURE__ */ (0, import_jsx_runtime51.jsx)("path", {
   d: "M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
 }), "CheckBox");
 
 // node_modules/@mui/material/internal/svg-icons/IndeterminateCheckBox.js
-var React87 = __toESM(require_react());
+var React86 = __toESM(require_react());
 var import_jsx_runtime52 = __toESM(require_jsx_runtime());
 var IndeterminateCheckBox_default = createSvgIcon(/* @__PURE__ */ (0, import_jsx_runtime52.jsx)("path", {
   d: "M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2z"
@@ -66524,7 +66521,7 @@ var CheckboxRoot = styled_default2(SwitchBase_default, {
 var defaultCheckedIcon = /* @__PURE__ */ (0, import_jsx_runtime53.jsx)(CheckBox_default, {});
 var defaultIcon = /* @__PURE__ */ (0, import_jsx_runtime53.jsx)(CheckBoxOutlineBlank_default, {});
 var defaultIndeterminateIcon = /* @__PURE__ */ (0, import_jsx_runtime53.jsx)(IndeterminateCheckBox_default, {});
-var Checkbox = /* @__PURE__ */ React88.forwardRef(function Checkbox2(inProps, ref) {
+var Checkbox = /* @__PURE__ */ React87.forwardRef(function Checkbox2(inProps, ref) {
   const props = useDefaultProps2({
     props: inProps,
     name: "MuiCheckbox"
@@ -66557,10 +66554,10 @@ var Checkbox = /* @__PURE__ */ React88.forwardRef(function Checkbox2(inProps, re
       "data-indeterminate": indeterminate,
       ...inputProps
     },
-    icon: /* @__PURE__ */ React88.cloneElement(icon, {
+    icon: /* @__PURE__ */ React87.cloneElement(icon, {
       fontSize: icon.props.fontSize ?? size
     }),
-    checkedIcon: /* @__PURE__ */ React88.cloneElement(indeterminateIcon, {
+    checkedIcon: /* @__PURE__ */ React87.cloneElement(indeterminateIcon, {
       fontSize: indeterminateIcon.props.fontSize ?? size
     }),
     ownerState,
@@ -66674,7 +66671,7 @@ true ? Checkbox.propTypes = {
 var Checkbox_default = Checkbox;
 
 // node_modules/@mui/material/FormControlLabel/FormControlLabel.js
-var React89 = __toESM(require_react());
+var React88 = __toESM(require_react());
 var import_prop_types54 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/FormControlLabel/formControlLabelClasses.js
@@ -66775,7 +66772,7 @@ var AsteriskComponent2 = styled_default2("span", {
     color: (theme.vars || theme).palette.error.main
   }
 })));
-var FormControlLabel = /* @__PURE__ */ React89.forwardRef(function FormControlLabel2(inProps, ref) {
+var FormControlLabel = /* @__PURE__ */ React88.forwardRef(function FormControlLabel2(inProps, ref) {
   const props = useDefaultProps2({
     props: inProps,
     name: "MuiFormControlLabel"
@@ -66849,7 +66846,7 @@ var FormControlLabel = /* @__PURE__ */ React89.forwardRef(function FormControlLa
     ownerState,
     ref,
     ...other,
-    children: [/* @__PURE__ */ React89.cloneElement(control, controlProps), required ? /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("div", {
+    children: [/* @__PURE__ */ React88.cloneElement(control, controlProps), required ? /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("div", {
       children: [label, /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)(AsteriskComponent2, {
         ownerState,
         "aria-hidden": true,
@@ -66991,7 +66988,7 @@ var Login = () => {
       password
     });
   });
-  return /* @__PURE__ */ import_react18.default.createElement(Container_default, { component: "main", maxWidth: "xs" }, /* @__PURE__ */ import_react18.default.createElement(CssBaseline_default, null), /* @__PURE__ */ import_react18.default.createElement(
+  return /* @__PURE__ */ import_react17.default.createElement(Container_default, { component: "main", maxWidth: "xs" }, /* @__PURE__ */ import_react17.default.createElement(CssBaseline_default, null), /* @__PURE__ */ import_react17.default.createElement(
     Box_default,
     {
       sx: {
@@ -67001,9 +66998,9 @@ var Login = () => {
         alignItems: "center"
       }
     },
-    /* @__PURE__ */ import_react18.default.createElement(Avatar_default, { sx: { m: 1, bgcolor: "secondary.main" } }, /* @__PURE__ */ import_react18.default.createElement(LockOutlined_default, null)),
-    /* @__PURE__ */ import_react18.default.createElement(Typography_default, { component: "h1", variant: "h5" }, "Sign in"),
-    /* @__PURE__ */ import_react18.default.createElement(Box_default, { component: "form", onSubmit: onFormSubmit, noValidate: true, sx: { mt: 1 } }, /* @__PURE__ */ import_react18.default.createElement(
+    /* @__PURE__ */ import_react17.default.createElement(Avatar_default, { sx: { m: 1, bgcolor: "secondary.main" } }, /* @__PURE__ */ import_react17.default.createElement(LockOutlined_default, null)),
+    /* @__PURE__ */ import_react17.default.createElement(Typography_default, { component: "h1", variant: "h5" }, "Sign in"),
+    /* @__PURE__ */ import_react17.default.createElement(Box_default, { component: "form", onSubmit: onFormSubmit, noValidate: true, sx: { mt: 1 } }, /* @__PURE__ */ import_react17.default.createElement(
       TextField_default,
       {
         margin: "normal",
@@ -67016,7 +67013,7 @@ var Login = () => {
         error: !!errors?.email,
         helperText: errors?.email?.message || ""
       }
-    ), /* @__PURE__ */ import_react18.default.createElement(
+    ), /* @__PURE__ */ import_react17.default.createElement(
       TextField_default,
       {
         margin: "normal",
@@ -67029,13 +67026,13 @@ var Login = () => {
         error: !!errors?.password,
         helperText: errors?.password?.message || ""
       }
-    ), /* @__PURE__ */ import_react18.default.createElement(
+    ), /* @__PURE__ */ import_react17.default.createElement(
       FormControlLabel_default,
       {
-        control: /* @__PURE__ */ import_react18.default.createElement(Checkbox_default, { value: "remember", color: "primary" }),
+        control: /* @__PURE__ */ import_react17.default.createElement(Checkbox_default, { value: "remember", color: "primary" }),
         label: "Remember me"
       }
-    ), /* @__PURE__ */ import_react18.default.createElement(
+    ), /* @__PURE__ */ import_react17.default.createElement(
       Button_default,
       {
         type: "submit",
@@ -67045,13 +67042,28 @@ var Login = () => {
         disabled: isLoading
       },
       "Sign In"
-    ), /* @__PURE__ */ import_react18.default.createElement(Grid_default, { container: true }, /* @__PURE__ */ import_react18.default.createElement(Grid_default, { item: true, xs: true }, /* @__PURE__ */ import_react18.default.createElement(Link_default, { href: "#", variant: "body2" }, "Forgot password?")), /* @__PURE__ */ import_react18.default.createElement(Grid_default, { item: true }, /* @__PURE__ */ import_react18.default.createElement(Link_default, { href: "/signup", variant: "body2" }, "Don't have an account? Sign Up"))))
+    ), /* @__PURE__ */ import_react17.default.createElement(Grid_default, { container: true }, /* @__PURE__ */ import_react17.default.createElement(Grid_default, { item: true, xs: true }, /* @__PURE__ */ import_react17.default.createElement(Link_default, { href: "#", variant: "body2" }, "Forgot password?")), /* @__PURE__ */ import_react17.default.createElement(Grid_default, { item: true }, /* @__PURE__ */ import_react17.default.createElement(Link_default, { href: "/signup", variant: "body2" }, "Don't have an account? Sign Up"))))
   ));
 };
 var Login_default = Login;
 
-// app/javascript/components/Navbar/Navbar.jsx
+// app/javascript/components/LandingPage/LandingPage.jsx
+var import_react23 = __toESM(require_react());
+
+// app/javascript/components/LandingPage/Footer.jsx
+var import_react18 = __toESM(require_react());
+
+// app/javascript/components/LandingPage/PricingPlans.jsx
+var import_react20 = __toESM(require_react());
+
+// app/javascript/components/LandingPage/PlanCard.jsx
 var import_react19 = __toESM(require_react());
+
+// app/javascript/components/LandingPage/Advantages.jsx
+var import_react21 = __toESM(require_react());
+
+// app/javascript/components/LandingPage/LandingInto.jsx
+var import_react22 = __toESM(require_react());
 
 // app/javascript/hooks/useGetNavigate.ts
 var useGetNavigate = () => {
@@ -67064,48 +67076,69 @@ var useGetNavigate = () => {
   };
 };
 
+// app/javascript/components/Items/Item.jsx
+var import_react24 = __toESM(require_react());
+var Item = () => {
+  return /* @__PURE__ */ import_react24.default.createElement("div", { className: "flex items-center justify-between p-4 border-indigo-400 rounded-lg max-w-xl mx-auto shadow-xl" }, /* @__PURE__ */ import_react24.default.createElement("div", { className: "w-1/3" }, /* @__PURE__ */ import_react24.default.createElement(
+    "img",
+    {
+      src: "https://placehold.co/150x150/e4e4e4/818cf8?text=Invalid+Image&font=roboto",
+      alt: "Product",
+      className: "w-full h-auto rounded-lg"
+    }
+  )), /* @__PURE__ */ import_react24.default.createElement("div", { className: "w-2/3 pl-4 flex flex-col justify-center" }, /* @__PURE__ */ import_react24.default.createElement("h2", { className: "text-xl font-bold text-gray-800 mb-2" }, "Product Title"), /* @__PURE__ */ import_react24.default.createElement("p", { className: "text-gray-600 mb-4" }, "This is a short description of the product. It highlights the key features and benefits."), /* @__PURE__ */ import_react24.default.createElement("button", { className: "bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg" }, "Add to Cart")));
+};
+var Item_default = Item;
+
+// app/javascript/routes/index.jsx
+var AppRoutes = () => {
+  return /* @__PURE__ */ import_react25.default.createElement(import_react25.default.Fragment, null, /* @__PURE__ */ import_react25.default.createElement(Routes, null, /* @__PURE__ */ import_react25.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react25.default.createElement(Item_default, null) }), /* @__PURE__ */ import_react25.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react25.default.createElement(Signup_default, null) }), /* @__PURE__ */ import_react25.default.createElement(Route, { path: "/login", element: /* @__PURE__ */ import_react25.default.createElement(Login_default, null) }), /* @__PURE__ */ import_react25.default.createElement(Route, { path: "/users", element: /* @__PURE__ */ import_react25.default.createElement(Users_default, null) })));
+};
+var routes_default = AppRoutes;
+
 // app/javascript/components/Navbar/Navbar.jsx
+var import_react26 = __toESM(require_react());
 var Navbar = () => {
-  const [open, setOpen] = (0, import_react19.useState)(false);
+  const [open, setOpen] = (0, import_react26.useState)(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const { navigateTo } = useGetNavigate();
-  return /* @__PURE__ */ import_react19.default.createElement("header", { className: "bg-white shadow" }, /* @__PURE__ */ import_react19.default.createElement("div", { className: "container mx-auto flex justify-between items-center p-6" }, /* @__PURE__ */ import_react19.default.createElement(
+  return /* @__PURE__ */ import_react26.default.createElement("header", { className: "bg-white shadow" }, /* @__PURE__ */ import_react26.default.createElement("div", { className: "container mx-auto flex justify-between items-center p-6" }, /* @__PURE__ */ import_react26.default.createElement(
     "button",
     {
       onClick: navigateTo("/"),
-      className: "text-xl font-bold text-lime-500"
+      className: "text-xl font-bold text-indigo-500"
     },
     "ebooks.buy"
-  ), /* @__PURE__ */ import_react19.default.createElement("nav", { className: "space-x-6" }, /* @__PURE__ */ import_react19.default.createElement(
+  ), /* @__PURE__ */ import_react26.default.createElement("nav", { className: "space-x-6" }, /* @__PURE__ */ import_react26.default.createElement(
     "button",
     {
       onClick: navigateTo("/"),
       className: "text-gray-700 hover:text-indigo-600"
     },
     "Ebooks"
-  ), /* @__PURE__ */ import_react19.default.createElement(
+  ), /* @__PURE__ */ import_react26.default.createElement(
     "button",
     {
       onClick: navigateTo("/"),
       className: "text-gray-700 hover:text-indigo-600"
     },
     "Sellers"
-  ), /* @__PURE__ */ import_react19.default.createElement(
+  ), /* @__PURE__ */ import_react26.default.createElement(
     "button",
     {
       onClick: navigateTo("/"),
       className: "text-gray-700 hover:text-indigo-600"
     },
     "About"
-  )), /* @__PURE__ */ import_react19.default.createElement("div", { className: "space-x-4" }, /* @__PURE__ */ import_react19.default.createElement(
+  )), /* @__PURE__ */ import_react26.default.createElement("div", { className: "space-x-4" }, /* @__PURE__ */ import_react26.default.createElement(
     "button",
     {
       onClick: navigateTo("/"),
       className: "text-gray-700 hover:text-indigo-600"
     },
     "Login"
-  ), /* @__PURE__ */ import_react19.default.createElement(
+  ), /* @__PURE__ */ import_react26.default.createElement(
     "button",
     {
       className: "bg-indigo-600 text-white px-4 py-2 rounded-lg",
@@ -67116,59 +67149,10 @@ var Navbar = () => {
 };
 var Navbar_default = Navbar;
 
-// app/javascript/components/LandingPage/LandingPage.jsx
-var import_react25 = __toESM(require_react());
-
-// app/javascript/components/LandingPage/Footer.jsx
-var import_react20 = __toESM(require_react());
-var Footer = () => {
-  return /* @__PURE__ */ import_react20.default.createElement("footer", { className: "bg-gray-800 py-8 mt-20" }, /* @__PURE__ */ import_react20.default.createElement("div", { className: "container mx-auto text-center text-white" }, /* @__PURE__ */ import_react20.default.createElement("p", null, "\xA9 2024 Ebooks.Buy. All rights reserved.")));
-};
-
-// app/javascript/components/LandingPage/PricingPlans.jsx
-var import_react22 = __toESM(require_react());
-
-// app/javascript/components/LandingPage/PlanCard.jsx
-var import_react21 = __toESM(require_react());
-
-// app/javascript/components/LandingPage/Advantages.jsx
-var import_react23 = __toESM(require_react());
-
-// app/javascript/components/LandingPage/LandingInto.jsx
-var import_react24 = __toESM(require_react());
-var landingPageImage = "/images/landing_ebooks_image.png";
-var LandingIntro = () => {
-  const { navigateTo } = useGetNavigate();
-  return /* @__PURE__ */ import_react24.default.createElement("section", { className: "container mx-auto py-12 px-6 flex flex-row items-center gap-48" }, /* @__PURE__ */ import_react24.default.createElement("div", { className: " flex flex-col text-left w-1/2" }, /* @__PURE__ */ import_react24.default.createElement("h5", { className: "text-sm text-indigo-600 " }, "A REVOLUTION TO YOUR READING"), /* @__PURE__ */ import_react24.default.createElement("h1", { className: "text-6xl font-bold text-gray-900 mt-4 " }, "Elevate Your"), /* @__PURE__ */ import_react24.default.createElement("h1", { className: "text-6xl font-bold text-indigo-600" }, "Reading Journey"), /* @__PURE__ */ import_react24.default.createElement("p", { className: "text-lg text-gray-600 mt-4" }, "Effortlessly transform your ebook collection into high-quality digital experiences. Our platform converts your passion for reading into a seamless and immersive adventure, bringing every story to life instantly and with ease."), /* @__PURE__ */ import_react24.default.createElement("div", { className: "mt-8 flex justify-center space-x-4" }, /* @__PURE__ */ import_react24.default.createElement(
-    "button",
-    {
-      onClick: navigateTo("/"),
-      className: "bg-indigo-600 text-white px-6 py-3 rounded-lg"
-    },
-    "Buy Now !"
-  ))), /* @__PURE__ */ import_react24.default.createElement("div", { className: "flex justify-end" }, /* @__PURE__ */ import_react24.default.createElement(
-    "img",
-    {
-      src: landingPageImage,
-      alt: "UI Development Preview",
-      className: "rounded-lg shadow-lg max-w-full mx-auto"
-    }
-  )));
-};
-
-// app/javascript/components/LandingPage/LandingPage.jsx
-var LandingPage = () => {
-  return /* @__PURE__ */ import_react25.default.createElement("div", { className: "bg-gray-100 min-h-screen" }, /* @__PURE__ */ import_react25.default.createElement(LandingIntro, null), /* @__PURE__ */ import_react25.default.createElement(Footer, null));
-};
-var LandingPage_default = LandingPage;
-
-// app/javascript/routes/index.jsx
-var routes_default = /* @__PURE__ */ import_react26.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react26.default.createElement(Routes, null, /* @__PURE__ */ import_react26.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react26.default.createElement(LandingPage_default, null) }), /* @__PURE__ */ import_react26.default.createElement(Route, { path: "/navbar", element: /* @__PURE__ */ import_react26.default.createElement(Navbar_default, null) }), /* @__PURE__ */ import_react26.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react26.default.createElement(Signup_default, null) }), /* @__PURE__ */ import_react26.default.createElement(Route, { path: "/login", element: /* @__PURE__ */ import_react26.default.createElement(Login_default, null) }), /* @__PURE__ */ import_react26.default.createElement(Route, { path: "/users", element: /* @__PURE__ */ import_react26.default.createElement(Users_default, null) })));
-
 // app/javascript/components/App.jsx
 var queryClient = new QueryClient();
 var App = () => {
-  return /* @__PURE__ */ import_react27.default.createElement(QueryClientProvider, { client: queryClient }, /* @__PURE__ */ import_react27.default.createElement(import_react27.default.Fragment, null, routes_default), ";");
+  return /* @__PURE__ */ import_react27.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react27.default.createElement(import_react27.default.Fragment, null, /* @__PURE__ */ import_react27.default.createElement(Navbar_default, null), /* @__PURE__ */ import_react27.default.createElement(QueryClientProvider, { client: queryClient }, /* @__PURE__ */ import_react27.default.createElement(routes_default, null))));
 };
 var App_default = App;
 
