@@ -14,7 +14,7 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center p-6">
         <button
           onClick={navigateTo("/")}
-          className="text-xl font-bold text-lime-500"
+          className="text-xl font-bold text-indigo-500"
         >
           ebooks.buy
         </button>

@@ -73,3 +73,9 @@ yarn-debug.log*
 !/app/assets/builds/.keep
 
 app/assets/builds
+app/assets/builds/application.css
+app/assets/builds/application.js
+app/assets/builds/application.js.map
+app/assets/builds/application.css
+app/assets/builds/application.js
+app/assets/builds/application.js.map
