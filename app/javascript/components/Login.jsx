@@ -18,7 +18,6 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { ApiClient } from "../services";
-import "./styles/Login.css";
 import { validateEmail, validatePassword } from "../utils/validators";
 
 const Login = () => {

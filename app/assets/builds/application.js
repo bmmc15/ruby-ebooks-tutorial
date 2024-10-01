@@ -1676,7 +1676,7 @@ var require_react_development = __commonJS({
           }
           return dispatcher.useContext(Context2);
         }
-        function useState18(initialState) {
+        function useState19(initialState) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useState(initialState);
         }
@@ -2479,7 +2479,7 @@ var require_react_development = __commonJS({
         exports.useMemo = useMemo6;
         exports.useReducer = useReducer;
         exports.useRef = useRef20;
-        exports.useState = useState18;
+        exports.useState = useState19;
         exports.useSyncExternalStore = useSyncExternalStore;
         exports.useTransition = useTransition;
         exports.version = ReactVersion;
@@ -2975,9 +2975,9 @@ var require_react_dom_development = __commonJS({
         if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
           __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
         }
-        var React94 = require_react();
+        var React101 = require_react();
         var Scheduler = require_scheduler();
-        var ReactSharedInternals = React94.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        var ReactSharedInternals = React101.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
         var suppressWarning = false;
         function setSuppressWarning(newSuppressWarning) {
           {
@@ -4584,7 +4584,7 @@ var require_react_dom_development = __commonJS({
           {
             if (props.value == null) {
               if (typeof props.children === "object" && props.children !== null) {
-                React94.Children.forEach(props.children, function(child) {
+                React101.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -25045,7 +25045,7 @@ var require_react_jsx_runtime_development = __commonJS({
     if (true) {
       (function() {
         "use strict";
-        var React94 = require_react();
+        var React101 = require_react();
         var REACT_ELEMENT_TYPE = Symbol.for("react.element");
         var REACT_PORTAL_TYPE = Symbol.for("react.portal");
         var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
@@ -25071,7 +25071,7 @@ var require_react_jsx_runtime_development = __commonJS({
           }
           return null;
         }
-        var ReactSharedInternals = React94.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        var ReactSharedInternals = React101.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
         function error2(format) {
           {
             {
@@ -39291,14 +39291,14 @@ enableDismissTrigger(Toast);
 defineJQueryPlugin(Toast);
 
 // app/javascript/components/index.jsx
-var import_react21 = __toESM(require_react());
+var import_react28 = __toESM(require_react());
 var import_client = __toESM(require_client());
 
 // app/javascript/components/App.jsx
-var import_react20 = __toESM(require_react());
+var import_react27 = __toESM(require_react());
 
 // app/javascript/routes/index.jsx
-var import_react19 = __toESM(require_react());
+var import_react26 = __toESM(require_react());
 
 // node_modules/react-router-dom/dist/index.js
 var React2 = __toESM(require_react());
@@ -41229,15 +41229,6 @@ function useViewTransitionState(to, opts) {
 
 // app/javascript/components/Home.jsx
 var import_react = __toESM(require_react());
-var Home_default = () => /* @__PURE__ */ import_react.default.createElement("div", { className: "vw-100 vh-100 primary-color d-flex align-items-center justify-content-center" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "jumbotron jumbotron-fluid bg-transparent" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "container secondary-color" }, /* @__PURE__ */ import_react.default.createElement("h1", { className: "display-4" }, "Sport exercises"), /* @__PURE__ */ import_react.default.createElement("p", { className: "lead" }, "A list of sport exercises to boost your workout."), /* @__PURE__ */ import_react.default.createElement("hr", { className: "my-4" }), /* @__PURE__ */ import_react.default.createElement(
-  Link,
-  {
-    to: "/exercises",
-    className: "btn btn-lg custom-button",
-    role: "button"
-  },
-  "View Exercises"
-))));
 
 // app/javascript/components/Users.jsx
 var import_react6 = __toESM(require_react());
@@ -67059,13 +67050,125 @@ var Login = () => {
 };
 var Login_default = Login;
 
+// app/javascript/components/Navbar/Navbar.jsx
+var import_react19 = __toESM(require_react());
+
+// app/javascript/hooks/useGetNavigate.ts
+var useGetNavigate = () => {
+  const navigate = useNavigate();
+  const navigateTo = (url) => () => {
+    navigate(url);
+  };
+  return {
+    navigateTo
+  };
+};
+
+// app/javascript/components/Navbar/Navbar.jsx
+var Navbar = () => {
+  const [open, setOpen] = (0, import_react19.useState)(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const { navigateTo } = useGetNavigate();
+  return /* @__PURE__ */ import_react19.default.createElement("header", { className: "bg-white shadow" }, /* @__PURE__ */ import_react19.default.createElement("div", { className: "container mx-auto flex justify-between items-center p-6" }, /* @__PURE__ */ import_react19.default.createElement(
+    "button",
+    {
+      onClick: navigateTo("/"),
+      className: "text-xl font-bold text-lime-500"
+    },
+    "ebooks.buy"
+  ), /* @__PURE__ */ import_react19.default.createElement("nav", { className: "space-x-6" }, /* @__PURE__ */ import_react19.default.createElement(
+    "button",
+    {
+      onClick: navigateTo("/"),
+      className: "text-gray-700 hover:text-indigo-600"
+    },
+    "Ebooks"
+  ), /* @__PURE__ */ import_react19.default.createElement(
+    "button",
+    {
+      onClick: navigateTo("/"),
+      className: "text-gray-700 hover:text-indigo-600"
+    },
+    "Sellers"
+  ), /* @__PURE__ */ import_react19.default.createElement(
+    "button",
+    {
+      onClick: navigateTo("/"),
+      className: "text-gray-700 hover:text-indigo-600"
+    },
+    "About"
+  )), /* @__PURE__ */ import_react19.default.createElement("div", { className: "space-x-4" }, /* @__PURE__ */ import_react19.default.createElement(
+    "button",
+    {
+      onClick: navigateTo("/"),
+      className: "text-gray-700 hover:text-indigo-600"
+    },
+    "Login"
+  ), /* @__PURE__ */ import_react19.default.createElement(
+    "button",
+    {
+      className: "bg-indigo-600 text-white px-4 py-2 rounded-lg",
+      onClick: handleOpen
+    },
+    "Settings"
+  ))));
+};
+var Navbar_default = Navbar;
+
+// app/javascript/components/LandingPage/LandingPage.jsx
+var import_react25 = __toESM(require_react());
+
+// app/javascript/components/LandingPage/Footer.jsx
+var import_react20 = __toESM(require_react());
+var Footer = () => {
+  return /* @__PURE__ */ import_react20.default.createElement("footer", { className: "bg-gray-800 py-8 mt-20" }, /* @__PURE__ */ import_react20.default.createElement("div", { className: "container mx-auto text-center text-white" }, /* @__PURE__ */ import_react20.default.createElement("p", null, "\xA9 2024 Ebooks.Buy. All rights reserved.")));
+};
+
+// app/javascript/components/LandingPage/PricingPlans.jsx
+var import_react22 = __toESM(require_react());
+
+// app/javascript/components/LandingPage/PlanCard.jsx
+var import_react21 = __toESM(require_react());
+
+// app/javascript/components/LandingPage/Advantages.jsx
+var import_react23 = __toESM(require_react());
+
+// app/javascript/components/LandingPage/LandingInto.jsx
+var import_react24 = __toESM(require_react());
+var landingPageImage = "/images/landing_ebooks_image.png";
+var LandingIntro = () => {
+  const { navigateTo } = useGetNavigate();
+  return /* @__PURE__ */ import_react24.default.createElement("section", { className: "container mx-auto py-12 px-6 flex flex-row items-center gap-48" }, /* @__PURE__ */ import_react24.default.createElement("div", { className: " flex flex-col text-left w-1/2" }, /* @__PURE__ */ import_react24.default.createElement("h5", { className: "text-sm text-indigo-600 " }, "A REVOLUTION TO YOUR READING"), /* @__PURE__ */ import_react24.default.createElement("h1", { className: "text-6xl font-bold text-gray-900 mt-4 " }, "Elevate Your"), /* @__PURE__ */ import_react24.default.createElement("h1", { className: "text-6xl font-bold text-indigo-600" }, "Reading Journey"), /* @__PURE__ */ import_react24.default.createElement("p", { className: "text-lg text-gray-600 mt-4" }, "Effortlessly transform your ebook collection into high-quality digital experiences. Our platform converts your passion for reading into a seamless and immersive adventure, bringing every story to life instantly and with ease."), /* @__PURE__ */ import_react24.default.createElement("div", { className: "mt-8 flex justify-center space-x-4" }, /* @__PURE__ */ import_react24.default.createElement(
+    "button",
+    {
+      onClick: navigateTo("/"),
+      className: "bg-indigo-600 text-white px-6 py-3 rounded-lg"
+    },
+    "Buy Now !"
+  ))), /* @__PURE__ */ import_react24.default.createElement("div", { className: "flex justify-end" }, /* @__PURE__ */ import_react24.default.createElement(
+    "img",
+    {
+      src: landingPageImage,
+      alt: "UI Development Preview",
+      className: "rounded-lg shadow-lg max-w-full mx-auto"
+    }
+  )));
+};
+
+// app/javascript/components/LandingPage/LandingPage.jsx
+var LandingPage = () => {
+  return /* @__PURE__ */ import_react25.default.createElement("div", { className: "bg-gray-100 min-h-screen" }, /* @__PURE__ */ import_react25.default.createElement(LandingIntro, null), /* @__PURE__ */ import_react25.default.createElement(Footer, null));
+};
+var LandingPage_default = LandingPage;
+
 // app/javascript/routes/index.jsx
-var routes_default = /* @__PURE__ */ import_react19.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react19.default.createElement(Routes, null, /* @__PURE__ */ import_react19.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react19.default.createElement(Home_default, null) }), /* @__PURE__ */ import_react19.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react19.default.createElement(Signup_default, null) }), /* @__PURE__ */ import_react19.default.createElement(Route, { path: "/login", element: /* @__PURE__ */ import_react19.default.createElement(Login_default, null) }), /* @__PURE__ */ import_react19.default.createElement(Route, { path: "/users", element: /* @__PURE__ */ import_react19.default.createElement(Users_default, null) })));
+var routes_default = /* @__PURE__ */ import_react26.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react26.default.createElement(Routes, null, /* @__PURE__ */ import_react26.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react26.default.createElement(LandingPage_default, null) }), /* @__PURE__ */ import_react26.default.createElement(Route, { path: "/navbar", element: /* @__PURE__ */ import_react26.default.createElement(Navbar_default, null) }), /* @__PURE__ */ import_react26.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react26.default.createElement(Signup_default, null) }), /* @__PURE__ */ import_react26.default.createElement(Route, { path: "/login", element: /* @__PURE__ */ import_react26.default.createElement(Login_default, null) }), /* @__PURE__ */ import_react26.default.createElement(Route, { path: "/users", element: /* @__PURE__ */ import_react26.default.createElement(Users_default, null) })));
 
 // app/javascript/components/App.jsx
 var queryClient = new QueryClient();
 var App = () => {
-  return /* @__PURE__ */ import_react20.default.createElement(QueryClientProvider, { client: queryClient }, /* @__PURE__ */ import_react20.default.createElement(import_react20.default.Fragment, null, routes_default), ";");
+  return /* @__PURE__ */ import_react27.default.createElement(QueryClientProvider, { client: queryClient }, /* @__PURE__ */ import_react27.default.createElement(import_react27.default.Fragment, null, routes_default), ";");
 };
 var App_default = App;
 
@@ -67074,7 +67177,7 @@ document.addEventListener("turbo:load", () => {
   const root = (0, import_client.createRoot)(
     document.body.appendChild(document.createElement("div"))
   );
-  root.render(/* @__PURE__ */ import_react21.default.createElement(App_default, null));
+  root.render(/* @__PURE__ */ import_react28.default.createElement(App_default, null));
 });
 /*! Bundled license information:
 
