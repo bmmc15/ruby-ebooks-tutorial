@@ -10,11 +10,7 @@ class Api::V1::PurchaseController < ApplicationController
         return
       end
 
-
-
       ebooks_ids = purchase_params[:ebooks_ids]
-
-      byebug
 
       if ebooks_ids.blank?
         render json: { message: "No ebooks selected for purchase." }, status: :bad_request
@@ -27,8 +23,12 @@ class Api::V1::PurchaseController < ApplicationController
         end
       end
 
+      @user = buyer
+
+      PurchaseMailer.with(user: @user).purchase_email.deliver_now
+
       render json: { message: "Thank you for your purchase", purchase: @purchase }, status: :created
-      
+
     rescue ActiveRecord::RecordInvalid => e
         render json: { message: "Purchase failed: #{e.message}" }, status: :unpr
     end

@@ -13,7 +13,6 @@ Rails.application.routes.draw do
       resources :ebooks
 
       post "purchase", to: "purchase#create"
-      
     end
   end
   root "homepage#index"
