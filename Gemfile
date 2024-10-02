@@ -57,3 +57,5 @@ group :development do
 end
 
 gem "tailwindcss-rails", "~> 2.7"
+
+gem "rack-cors", require: "rack/cors"
