@@ -23,9 +23,12 @@ class Api::V1::PurchaseController < ApplicationController
         end
       end
 
+      # Email for the buyer
       @user = buyer
-
       PurchaseMailer.with(user: @user).purchase_email.deliver_now
+
+      # Email for the seller(s)
+      PurchaseMailer.with(user: @user).notify_author_of_sale_fee.deliver_now
 
       render json: { message: "Thank you for your purchase", purchase: @purchase }, status: :created
 
