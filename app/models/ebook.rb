@@ -11,4 +11,5 @@ class Ebook < ApplicationRecord
     enum status: { draft: 0, pending: 1, live: 2 }
     validates :status, presence: true, inclusion: { in: statuses.keys, message: "%{value} is not a valid status" }
     belongs_to :seller, class_name: "User", foreign_key: "seller_id"
+    has_many :purchases, foreign_key: :ebook_id
 end
