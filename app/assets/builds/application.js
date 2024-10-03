@@ -67062,6 +67062,9 @@ var import_react23 = __toESM(require_react());
 
 // app/javascript/components/LandingPage/Footer.jsx
 var import_react18 = __toESM(require_react());
+var Footer = () => {
+  return /* @__PURE__ */ import_react18.default.createElement("footer", { className: "bg-gray-800 py-8 mt-20" }, /* @__PURE__ */ import_react18.default.createElement("div", { className: "container mx-auto text-center text-white" }, /* @__PURE__ */ import_react18.default.createElement("p", null, "\xA9 2024 Ebooks.Buy. All rights reserved.")));
+};
 
 // app/javascript/components/LandingPage/PricingPlans.jsx
 var import_react20 = __toESM(require_react());
@@ -67085,6 +67088,33 @@ var useGetNavigate = () => {
     navigateTo
   };
 };
+
+// app/javascript/components/LandingPage/LandingInto.jsx
+var landingPageImage = "/images/landing_ebooks_image.png";
+var LandingIntro = () => {
+  const { navigateTo } = useGetNavigate();
+  return /* @__PURE__ */ import_react22.default.createElement("section", { className: "container mx-auto py-12 px-6 flex flex-row items-center gap-48" }, /* @__PURE__ */ import_react22.default.createElement("div", { className: " flex flex-col text-left w-1/2" }, /* @__PURE__ */ import_react22.default.createElement("h5", { className: "text-sm text-indigo-600 " }, "A REVOLUTION TO YOUR READING"), /* @__PURE__ */ import_react22.default.createElement("h1", { className: "text-6xl font-bold text-gray-900 mt-4 " }, "Elevate Your"), /* @__PURE__ */ import_react22.default.createElement("h1", { className: "text-6xl font-bold text-indigo-600" }, "Reading Journey"), /* @__PURE__ */ import_react22.default.createElement("p", { className: "text-lg text-gray-600 mt-4" }, "Effortlessly transform your ebook collection into high-quality digital experiences. Our platform converts your passion for reading into a seamless and immersive adventure, bringing every story to life instantly and with ease."), /* @__PURE__ */ import_react22.default.createElement("div", { className: "mt-8 flex justify-center space-x-4" }, /* @__PURE__ */ import_react22.default.createElement(
+    "button",
+    {
+      onClick: navigateTo("/ebooks"),
+      className: "bg-indigo-600 text-white px-6 py-3 rounded-lg"
+    },
+    "Buy Now !"
+  ))), /* @__PURE__ */ import_react22.default.createElement("div", { className: "flex justify-end" }, /* @__PURE__ */ import_react22.default.createElement(
+    "img",
+    {
+      src: landingPageImage,
+      alt: "UI Development Preview",
+      className: "rounded-lg shadow-lg max-w-full mx-auto"
+    }
+  )));
+};
+
+// app/javascript/components/LandingPage/LandingPage.jsx
+var LandingPage = () => {
+  return /* @__PURE__ */ import_react23.default.createElement("div", { className: "bg-gray-100 min-h-screen" }, /* @__PURE__ */ import_react23.default.createElement(LandingIntro, null), /* @__PURE__ */ import_react23.default.createElement(Footer, null));
+};
+var LandingPage_default = LandingPage;
 
 // app/javascript/components/Items/Item.jsx
 var import_react24 = __toESM(require_react());
@@ -67116,7 +67146,7 @@ var ItemList_default = ItemList;
 
 // app/javascript/routes/index.jsx
 var AppRoutes = () => {
-  return /* @__PURE__ */ import_react26.default.createElement(import_react26.default.Fragment, null, /* @__PURE__ */ import_react26.default.createElement(Routes, null, /* @__PURE__ */ import_react26.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react26.default.createElement(ItemList_default, null) }), /* @__PURE__ */ import_react26.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react26.default.createElement(Signup_default, null) }), /* @__PURE__ */ import_react26.default.createElement(Route, { path: "/login", element: /* @__PURE__ */ import_react26.default.createElement(Login_default, null) }), /* @__PURE__ */ import_react26.default.createElement(Route, { path: "/users", element: /* @__PURE__ */ import_react26.default.createElement(Users_default, null) })));
+  return /* @__PURE__ */ import_react26.default.createElement(import_react26.default.Fragment, null, /* @__PURE__ */ import_react26.default.createElement(Routes, null, /* @__PURE__ */ import_react26.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react26.default.createElement(LandingPage_default, null) }), /* @__PURE__ */ import_react26.default.createElement(Route, { path: "/ebooks", element: /* @__PURE__ */ import_react26.default.createElement(ItemList_default, null) }), /* @__PURE__ */ import_react26.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react26.default.createElement(Signup_default, null) }), /* @__PURE__ */ import_react26.default.createElement(Route, { path: "/login", element: /* @__PURE__ */ import_react26.default.createElement(Login_default, null) }), /* @__PURE__ */ import_react26.default.createElement(Route, { path: "/users", element: /* @__PURE__ */ import_react26.default.createElement(Users_default, null) })));
 };
 var routes_default = AppRoutes;
 
@@ -67158,17 +67188,10 @@ var Navbar = () => {
   )), /* @__PURE__ */ import_react27.default.createElement("div", { className: "space-x-4" }, /* @__PURE__ */ import_react27.default.createElement(
     "button",
     {
-      onClick: navigateTo("/"),
-      className: "text-gray-700 hover:text-indigo-600"
+      className: "bg-indigo-600 text-white px-4 py-2 rounded-lg",
+      onClick: navigateTo("/login")
     },
     "Login"
-  ), /* @__PURE__ */ import_react27.default.createElement(
-    "button",
-    {
-      className: "bg-indigo-600 text-white px-4 py-2 rounded-lg",
-      onClick: handleOpen
-    },
-    "Settings"
   ))));
 };
 var Navbar_default = Navbar;

@@ -16,8 +16,9 @@ Rails.application.routes.draw do
     end
   end
   root "homepage#index"
-  get "/*path" => "homepage#index"
+  get "ebooks", to: "ebooks#index"
   get "signup", to: "users#new"
+  get "/*path" => "homepage#index"
 
 
 

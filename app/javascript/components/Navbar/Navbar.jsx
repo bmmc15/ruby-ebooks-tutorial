@@ -40,16 +40,10 @@ const Navbar = () => {
         </nav>
         <div className="space-x-4">
           <button
-            onClick={navigateTo("/")}
-            className="text-gray-700 hover:text-indigo-600"
+            className="bg-indigo-600 text-white px-4 py-2 rounded-lg"
+            onClick={navigateTo("/login")}
           >
             Login
-          </button>
-          <button
-            className="bg-indigo-600 text-white px-4 py-2 rounded-lg"
-            onClick={handleOpen}
-          >
-            Settings
           </button>
         </div>
       </div>
