@@ -11,11 +11,14 @@ Rails.application.routes.draw do
       delete "logout", to: "sessions#destroy"
 
       resources :ebooks
+
+      post "purchase", to: "purchase#create"
     end
   end
   root "homepage#index"
   get "/*path" => "homepage#index"
   get "signup", to: "users#new"
+
 
 
     # signup routes

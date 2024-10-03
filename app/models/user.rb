@@ -10,4 +10,5 @@ class User < ApplicationRecord
                          format: { with: VALID_EMAIL_REGEX }
     has_secure_password
     has_many :ebooks, foreign_key: :seller_id
+    has_many :purchases, foreign_key: :buyer_id
 end
