@@ -22,7 +22,7 @@ export const LandingIntro = () => {
         </p>
         <div className="mt-8 flex justify-center space-x-4">
           <button
-            onClick={navigateTo("/")}
+            onClick={navigateTo("/ebooks")}
             className="bg-indigo-600 text-white px-6 py-3 rounded-lg"
           >
             Buy Now !
