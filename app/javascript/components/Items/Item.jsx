@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { toPriceFormat } from '../../utils/utils';
 
-const Item = ({ title, description }) => {
+const Item = ({ item, selected, onAdd, onRemove }) => {
   return (
     <div className="flex items-center justify-between p-4 border-indigo-400 rounded-lg w-1/3 mx-auto shadow-xl">
       <div className="w-1/3">
         <img
-          src="https://placehold.co/150x150/efefef/4f46e5?text=Invalid+Image&font=roboto"
+          src={
+            item.imageSrc ??
+            'https://placehold.co/150x150/efefef/4f46e5?text=Invalid+Image&font=roboto'
+          }
           alt="Product"
           className="w-full h-auto rounded-lg"
         />
@@ -13,15 +17,24 @@ const Item = ({ title, description }) => {
 
       <div className="w-2/3 pl-4 flex flex-col justify-center">
         <h2 className="text-xl font-bold text-gray-800 mb-2">
-          {title ?? 'Product Title'}
+          {item.title ?? 'Product Title'}
         </h2>
         <p className="text-gray-600 mb-4">
-          {description ??
+          {item.description ??
             'This is a short description of the product. It highlights the key features and benefits.'}
         </p>
-
-        <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg">
-          Add to Cart
+        <h2 className="text-xl font-bold text-gray-800 mb-2">
+          {toPriceFormat(item.price)}
+        </h2>
+        <button
+          className={`${
+            selected
+              ? 'bg-red-600 hover:bg-red-700'
+              : 'bg-indigo-600 hover:bg-indigo-700'
+          } text-white font-bold py-2 px-4 rounded-lg`}
+          onClick={() => (selected ? onRemove(item) : onAdd(item))}
+        >
+          {selected ? 'Remove from the cart' : 'Add to Cart'}
         </button>
       </div>
     </div>
