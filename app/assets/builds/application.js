@@ -70398,7 +70398,10 @@ var ShoppingCart = ({
     }, 0);
   };
   const handleCheckoutClick = async () => {
-    await purchaseEbooks({ buyerId: 2, ebooksIds: [2, 3, 4, 5] });
+    await purchaseEbooks({
+      buyerId: 1,
+      ebooksIds: selectedProducts.map((elem) => elem.id)
+    });
   };
   return /* @__PURE__ */ import_react60.default.createElement(Pt, { open, onClose: setOpen, className: "relative z-10" }, /* @__PURE__ */ import_react60.default.createElement(
     ct,
