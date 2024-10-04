@@ -67325,7 +67325,7 @@ var Login = () => {
     onSuccess: (data) => {
       console.log("Login successful: data", data);
       localStorage.setItem("jwt", data.token);
-      navigate("/ebooks");
+      navigate("/ebooks-buy");
     },
     onError: (error2) => {
       console.error("Login failed:", error2);
@@ -67577,7 +67577,7 @@ var LandingIntro = () => {
   return /* @__PURE__ */ import_react24.default.createElement("section", { className: "container mx-auto py-12 px-6 flex flex-row items-center gap-48" }, /* @__PURE__ */ import_react24.default.createElement("div", { className: " flex flex-col text-left w-1/2" }, /* @__PURE__ */ import_react24.default.createElement("h5", { className: "text-sm text-indigo-600 " }, "A REVOLUTION TO YOUR READING"), /* @__PURE__ */ import_react24.default.createElement("h1", { className: "text-6xl font-bold text-gray-900 mt-4 " }, "Elevate Your"), /* @__PURE__ */ import_react24.default.createElement("h1", { className: "text-6xl font-bold text-indigo-600" }, "Reading Journey"), /* @__PURE__ */ import_react24.default.createElement("p", { className: "text-lg text-gray-600 mt-4" }, "Effortlessly transform your ebook collection into high-quality digital experiences. Our platform converts your passion for reading into a seamless and immersive adventure, bringing every story to life instantly and with ease."), /* @__PURE__ */ import_react24.default.createElement("div", { className: "mt-8 flex justify-center space-x-4" }, /* @__PURE__ */ import_react24.default.createElement(
     "button",
     {
-      onClick: navigateTo("/ebooks"),
+      onClick: navigateTo("/ebooks-buy"),
       className: "bg-indigo-600 text-white px-6 py-3 rounded-lg"
     },
     "Buy Now !"
@@ -70644,7 +70644,7 @@ var ProtectedRoute = ({ children }) => {
   return children;
 };
 var AppRoutes = () => {
-  return /* @__PURE__ */ import_react63.default.createElement(import_react63.default.Fragment, null, /* @__PURE__ */ import_react63.default.createElement(Routes, null, /* @__PURE__ */ import_react63.default.createElement(Route, { element: /* @__PURE__ */ import_react63.default.createElement(ProtectedRoute, null) }, /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/ebooks", element: /* @__PURE__ */ import_react63.default.createElement(ItemList_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/users", element: /* @__PURE__ */ import_react63.default.createElement(Users_default, null) })), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react63.default.createElement(LandingPage_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react63.default.createElement(Signup_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/login", element: /* @__PURE__ */ import_react63.default.createElement(Login_default, null) })));
+  return /* @__PURE__ */ import_react63.default.createElement(import_react63.default.Fragment, null, /* @__PURE__ */ import_react63.default.createElement(Routes, null, /* @__PURE__ */ import_react63.default.createElement(Route, { element: /* @__PURE__ */ import_react63.default.createElement(ProtectedRoute, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/users", element: /* @__PURE__ */ import_react63.default.createElement(Users_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/ebooks-buy", element: /* @__PURE__ */ import_react63.default.createElement(ItemList_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react63.default.createElement(LandingPage_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react63.default.createElement(Signup_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/login", element: /* @__PURE__ */ import_react63.default.createElement(Login_default, null) })));
 };
 var routes_default = AppRoutes;
 
