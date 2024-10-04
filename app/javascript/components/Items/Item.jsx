@@ -7,7 +7,7 @@ const Item = ({ item, selected, onAdd, onRemove }) => {
       <div className="w-1/3">
         <img
           src={
-            item.imageSrc ??
+            item.ebook_cover_url ??
             'https://placehold.co/150x150/efefef/4f46e5?text=Invalid+Image&font=roboto'
           }
           alt="Product"
