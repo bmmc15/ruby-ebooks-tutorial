@@ -18,8 +18,10 @@ class Api::V1::EbooksController < ApplicationController
 
   def create
     @ebook = Ebook.new(ebook_params)
+    @ebook.pdf.attach(params[:pdf])
+
     if @ebook.save
-      render json: { message: "Ebook created successfully", ebook: @ebook }, status: :created
+      render json: { message: "Ebook created successfully, check here the pdf preview:#{rails_storage_redirect_path(@ebook.pdf)}", ebook: @ebook }, status: :created
     else
       render json: { error: "Invalid ebook creation", details: @ebook.errors.full_messages }, status: :unprocessable_entity
     end
@@ -56,8 +58,18 @@ class Api::V1::EbooksController < ApplicationController
     end
   end
 
+  def show_pdf
+    @ebook = Ebook.find(params[:id])
+
+    if @ebook.pdf.attached?
+      redirect_to rails_blob_url(@ebook.pdf, disposition: 'inline') # inline para exibir no browser
+    else
+      render json: { error: "PDF not found" }, status: :not_found
+    end
+  end
+
   private
   def ebook_params
-    params.permit(:title, :description, :price, :status, :seller_id, :seller_fee, :pdf_review)
+    params.permit(:title, :description, :price, :status, :seller_id, :seller_fee, :pdf)
   end
 end

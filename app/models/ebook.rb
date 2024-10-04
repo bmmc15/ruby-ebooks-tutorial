@@ -12,4 +12,5 @@ class Ebook < ApplicationRecord
     validates :status, presence: true, inclusion: { in: statuses.keys, message: "%{value} is not a valid status" }
     belongs_to :seller, class_name: "User", foreign_key: "seller_id"
     has_many :purchases, foreign_key: :ebook_id
+    has_one_attached :pdf
 end
