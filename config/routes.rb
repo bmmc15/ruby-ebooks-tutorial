@@ -15,4 +15,4 @@ Rails.application.routes.draw do
     end
   end
   root "homepage#index"
-  end
+end

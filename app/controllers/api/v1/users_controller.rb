@@ -1,9 +1,9 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username
+  attributes :id, :email
 end
 
 
-class Api::V1::UsersController < Api::V1::BaseController
+class Api::V1::UsersController < BaseController
   skip_before_action :authorized, only: [ :create ]
   rescue_from ActiveRecord::RecordInvalid, with: :handle_invalid_record
 

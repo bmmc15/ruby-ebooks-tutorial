@@ -28,7 +28,19 @@ const ApiClient = {
   },
   login: async (loginBody) => {
     try {
-      const response = await apiInstance.post("/login", loginBody);
+      const response = await apiInstance.post("/auth/login", {
+        auth: {
+          email: "john-doe2@runtime.com",
+          password: "securepassword",
+        },
+      });
+      const token = response?.data?.token || null;
+      if (token) {
+        console.log("Login successful, saving token:", token);
+        localStorage.setItem("jwt", token);
+      } else {
+        console.error("Login response does not contain a valid token");
+      }
       return response?.data;
     } catch (err) {
       throw err;
@@ -38,7 +50,15 @@ const ApiClient = {
   fetchEbooks: async () => {
     try {
       console.log("FetchEbooks Request");
-      const response = await apiInstance.get("/ebooks");
+      const token = localStorage.getItem("jwt");
+
+      const response = await apiInstance.get("/ebooks", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      console.log("Fetch books with sucess");
       return response?.data;
     } catch (err) {
       throw err;
@@ -48,10 +68,20 @@ const ApiClient = {
   placeOrder: async ({ buyerId, ebooksIds }) => {
     try {
       console.log("PlaceOrder Request");
-      const response = await apiInstance.post("/purchase", {
-        buyer_id: buyerId,
-        ebooks_ids: ebooksIds,
-      });
+      const token = localStorage.getItem("jwt");
+
+      const response = await apiInstance.post(
+        "/purchase",
+        {
+          buyer_id: buyerId,
+          ebooks_ids: ebooksIds,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Inclui o token
+          },
+        }
+      );
       return response?.data;
     } catch (err) {
       throw err;

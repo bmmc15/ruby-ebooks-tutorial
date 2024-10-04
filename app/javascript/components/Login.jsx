@@ -49,8 +49,9 @@ const Login = () => {
 
   const { mutate: login, isLoading } = useMutation(ApiClient.login, {
     onSuccess: (data) => {
-      console.log("Login successful")
-      navigate('/');
+      console.log("Login successful: data", data)
+      localStorage.setItem('jwt', data.token)
+      navigate('/ebooks');
     },
     onError: (error) => {
       console.error("Login failed:", error);

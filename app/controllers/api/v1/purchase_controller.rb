@@ -1,4 +1,4 @@
-class Api::V1::PurchaseController < Api::V1::BaseController
+class Api::V1::PurchaseController < BaseController
     verify_authenticity_token
 
     def create

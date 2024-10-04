@@ -1,13 +1,13 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username
+  attributes :id, :email
 end
 
-class Api::V1::AuthController < Api::V1::BaseController
+class Api::V1::AuthController < BaseController
   skip_before_action :authorized, only: [ :login ]
   rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
 
   def login
-      @user = User.find_by!(username: login_params[:username])
+      @user = User.find_by!(email: login_params[:email])
       if @user.authenticate(login_params[:password])
           @token = encode_token(user_id: @user.id)
           render json: {
@@ -22,7 +22,7 @@ class Api::V1::AuthController < Api::V1::BaseController
   private
 
   def login_params
-      params.permit(:username, :password)
+      params.require(:auth).permit(:email, :password)
   end
 
   def handle_record_not_found(e)

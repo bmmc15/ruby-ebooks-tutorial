@@ -1,5 +1,5 @@
 
-class Api::V1::BaseController < ActionController::API
+class BaseController < ActionController::API
     before_action :authorized
 
     def encode_token(payload)

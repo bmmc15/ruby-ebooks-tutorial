@@ -1,4 +1,4 @@
-class Api::V1::EbooksController < Api::V1::BaseController
+class Api::V1::EbooksController < BaseController
   before_action :authorized
 
   def index

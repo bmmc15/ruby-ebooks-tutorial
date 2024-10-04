@@ -36570,8 +36570,8 @@ var Carousel = class _Carousel extends BaseComponent {
     this.cycle();
   }
   to(index) {
-    const items = this._getItems();
-    if (index > items.length - 1 || index < 0) {
+    const items2 = this._getItems();
+    if (index > items2.length - 1 || index < 0) {
       return;
     }
     if (this._isSliding) {
@@ -36583,7 +36583,7 @@ var Carousel = class _Carousel extends BaseComponent {
       return;
     }
     const order2 = index > activeIndex ? ORDER_NEXT : ORDER_PREV;
-    this._slide(order2, items[index]);
+    this._slide(order2, items2[index]);
   }
   dispose() {
     if (this._swipeHelper) {
@@ -37211,11 +37211,11 @@ var Dropdown = class _Dropdown extends BaseComponent {
     key,
     target
   }) {
-    const items = SelectorEngine.find(SELECTOR_VISIBLE_ITEMS, this._menu).filter((element) => isVisible(element));
-    if (!items.length) {
+    const items2 = SelectorEngine.find(SELECTOR_VISIBLE_ITEMS, this._menu).filter((element) => isVisible(element));
+    if (!items2.length) {
       return;
     }
-    getNextActiveElement(items, target, key === ARROW_DOWN_KEY$1, !items.includes(target)).focus();
+    getNextActiveElement(items2, target, key === ARROW_DOWN_KEY$1, !items2.includes(target)).focus();
   }
   // Static
   static jQueryInterface(config2) {
@@ -40456,6 +40456,40 @@ function warningOnce(key, cond, message) {
 }
 var START_TRANSITION = "startTransition";
 var startTransitionImpl = React[START_TRANSITION];
+function Navigate(_ref4) {
+  let {
+    to,
+    replace: replace3,
+    state,
+    relative
+  } = _ref4;
+  !useInRouterContext() ? true ? invariant(
+    false,
+    // TODO: This error is probably because they somehow have 2 versions of
+    // the router loaded. We can help them understand how to avoid that.
+    "<Navigate> may be used only in the context of a <Router> component."
+  ) : invariant(false) : void 0;
+  let {
+    future,
+    static: isStatic
+  } = React.useContext(NavigationContext);
+  true ? warning(!isStatic, "<Navigate> must not be used on the initial render in a <StaticRouter>. This is a no-op, but you should modify your code so the <Navigate> is only ever rendered in response to some user interaction or state change.") : void 0;
+  let {
+    matches
+  } = React.useContext(RouteContext);
+  let {
+    pathname: locationPathname
+  } = useLocation();
+  let navigate = useNavigate();
+  let path = resolveTo(to, getResolveToMatches(matches, future.v7_relativeSplatPath), locationPathname, relative === "path");
+  let jsonPath = JSON.stringify(path);
+  React.useEffect(() => navigate(JSON.parse(jsonPath), {
+    replace: replace3,
+    state,
+    relative
+  }), [navigate, jsonPath, relative, replace3, state]);
+  return null;
+}
 function Route(_props) {
   true ? invariant(false, "A <Route> is only ever to be used as the child of <Routes> element, never rendered directly. Please wrap your <Route> in a <Routes>.") : invariant(false);
 }
@@ -43721,7 +43755,6 @@ function useQuery(arg1, arg2, arg3) {
 
 // app/javascript/utils/constants.js
 var USERS_QUERY_KEY = "users";
-var EBOOKS_QUERY_KEY = "ebooks";
 
 // node_modules/axios/lib/helpers/bind.js
 function bind(fn2, thisArg) {
@@ -46264,7 +46297,19 @@ var ApiClient = {
   },
   login: async (loginBody) => {
     try {
-      const response = await apiInstance.post("/login", loginBody);
+      const response = await apiInstance.post("/auth/login", {
+        auth: {
+          email: "john-doe2@runtime.com",
+          password: "securepassword"
+        }
+      });
+      const token2 = response?.data?.token || null;
+      if (token2) {
+        console.log("Login successful, saving token:", token2);
+        localStorage.setItem("jwt", token2);
+      } else {
+        console.error("Login response does not contain a valid token");
+      }
       return response?.data;
     } catch (err) {
       throw err;
@@ -46273,7 +46318,13 @@ var ApiClient = {
   fetchEbooks: async () => {
     try {
       console.log("FetchEbooks Request");
-      const response = await apiInstance.get("/ebooks");
+      const token2 = localStorage.getItem("jwt");
+      const response = await apiInstance.get("/ebooks", {
+        headers: {
+          Authorization: `Bearer ${token2}`
+        }
+      });
+      console.log("Fetch books with sucess");
       return response?.data;
     } catch (err) {
       throw err;
@@ -46282,10 +46333,20 @@ var ApiClient = {
   placeOrder: async ({ buyerId, ebooksIds }) => {
     try {
       console.log("PlaceOrder Request");
-      const response = await apiInstance.post("/purchase", {
-        buyer_id: buyerId,
-        ebooks_ids: ebooksIds
-      });
+      const token2 = localStorage.getItem("jwt");
+      const response = await apiInstance.post(
+        "/purchase",
+        {
+          buyer_id: buyerId,
+          ebooks_ids: ebooksIds
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token2}`
+            // Inclui o token
+          }
+        }
+      );
       return response?.data;
     } catch (err) {
       throw err;
@@ -58943,7 +59004,7 @@ var MenuList = /* @__PURE__ */ React61.forwardRef(function MenuList2(props, ref)
       }
     }
   });
-  const items = React61.Children.map(children, (child, index) => {
+  const items2 = React61.Children.map(children, (child, index) => {
     if (index === activeItemIndex) {
       const newChildProps = {};
       if (autoFocusItem) {
@@ -58963,7 +59024,7 @@ var MenuList = /* @__PURE__ */ React61.forwardRef(function MenuList2(props, ref)
     onKeyDown: handleKeyDown,
     tabIndex: autoFocus ? 0 : -1,
     ...other,
-    children: items
+    children: items2
   });
 });
 true ? MenuList.propTypes = {
@@ -59305,9 +59366,9 @@ function ariaHiddenSiblings(container, mountElement, currentElement, elementsToE
     }
   });
 }
-function findIndexOf(items, callback) {
+function findIndexOf(items2, callback) {
   let idx = -1;
-  items.some((item, index) => {
+  items2.some((item, index) => {
     if (callback(item)) {
       idx = index;
       return true;
@@ -62270,7 +62331,7 @@ var SelectInput = /* @__PURE__ */ React73.forwardRef(function SelectInput2(props
       computeDisplay = true;
     }
   }
-  const items = childrenArray.map((child) => {
+  const items2 = childrenArray.map((child) => {
     if (!/* @__PURE__ */ React73.isValidElement(child)) {
       return null;
     }
@@ -62442,7 +62503,7 @@ var SelectInput = /* @__PURE__ */ React73.forwardRef(function SelectInput2(props
           }
         }
       },
-      children: items
+      children: items2
     })]
   });
 });
@@ -67262,8 +67323,9 @@ var Login = () => {
   } = useForm({ resolver: resolver2 });
   const { mutate: login, isLoading } = useMutation(ApiClient_default.login, {
     onSuccess: (data) => {
-      console.log("Login successful");
-      navigate("/");
+      console.log("Login successful: data", data);
+      localStorage.setItem("jwt", data.token);
+      navigate("/ebooks");
     },
     onError: (error2) => {
       console.error("Login failed:", error2);
@@ -70475,11 +70537,51 @@ function FaCartShopping(props) {
 }
 
 // app/javascript/components/Items/ItemList.jsx
+var lawsOfPowerImage = "/images/48-laws-of-power.png";
+var atomicHabitsImage = "/images/atomic-habits.png";
+var priceTomorrowImage = "/images/the-price-of-tomorrow.png";
+var items = [
+  {
+    id: 1,
+    title: "The Price of Tomorrow",
+    description: "The Price of Tomorrow Description",
+    href: "#",
+    color: "Salmon",
+    price: 19.99,
+    quantity: 1,
+    ebook_cover_url: priceTomorrowImage,
+    imageAlt: "The Price of Tomorrow",
+    pdf_url: "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTEsInB1ciI6ImJsb2JfaWQifX0=--f01abf8d10dff5d368032e5cb6f57299189fcc59/In%20This%20Economy%20-%20How%20Money%20%20Markets%20Really%20Work%20-%20Kyla%20Scanlon.pdf"
+  },
+  {
+    id: 2,
+    title: "48 Laws of Power",
+    description: "48 Laws of Power description",
+    href: "#",
+    color: "Blue",
+    price: 32,
+    quantity: 1,
+    ebook_cover_url: lawsOfPowerImage,
+    imageAlt: "48 Laws of Power",
+    pdf_url: "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTEsInB1ciI6ImJsb2JfaWQifX0=--f01abf8d10dff5d368032e5cb6f57299189fcc59/In%20This%20Economy%20-%20How%20Money%20%20Markets%20Really%20Work%20-%20Kyla%20Scanlon.pdf"
+  },
+  {
+    id: 3,
+    title: "Atomic Habits",
+    description: "Atomic Habits description",
+    href: "#",
+    color: "Blue",
+    price: 23.99,
+    quantity: 1,
+    ebook_cover_url: atomicHabitsImage,
+    imageAlt: "Atomic Habits",
+    pdf_url: "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTEsInB1ciI6ImJsb2JfaWQifX0=--f01abf8d10dff5d368032e5cb6f57299189fcc59/In%20This%20Economy%20-%20How%20Money%20%20Markets%20Really%20Work%20-%20Kyla%20Scanlon.pdf"
+  }
+];
 var ItemList = () => {
   const [isCheckoutOpen, setIsCheckoutOpen] = (0, import_react62.useState)(false);
   const [isAnimating, setIsAnimating] = (0, import_react62.useState)(false);
   const [selectedProducts, setSelectedProducts] = (0, import_react62.useState)([]);
-  const [items, setItems] = (0, import_react62.useState)([]);
   const handleAddToCart = (item) => {
     setSelectedProducts((prev2) => [...prev2, item]);
     console.log("Item added to the cart");
@@ -70491,12 +70593,6 @@ var ItemList = () => {
       (prev2) => prev2.filter((selectedItem) => selectedItem.id !== item.id)
     );
   };
-  const { isLoading } = useQuery(EBOOKS_QUERY_KEY, ApiClient_default.fetchEbooks, {
-    onSuccess: (data) => {
-      console.log("First Rails useQuery sucessful:", data);
-      setItems(data);
-    }
-  });
   return /* @__PURE__ */ import_react62.default.createElement(import_react62.default.Fragment, null, /* @__PURE__ */ import_react62.default.createElement("div", { className: "flex flex-col" }, items.map((item, index) => /* @__PURE__ */ import_react62.default.createElement(
     Item_default,
     {
@@ -70539,8 +70635,16 @@ var ItemList = () => {
 var ItemList_default = ItemList;
 
 // app/javascript/routes/index.jsx
+var ProtectedRoute = ({ children }) => {
+  const token2 = localStorage.getItem("jwt");
+  console.log("Acessing a restricted area, token:", token2);
+  if (!token2) {
+    return /* @__PURE__ */ import_react63.default.createElement(Navigate, { to: "/login" });
+  }
+  return children;
+};
 var AppRoutes = () => {
-  return /* @__PURE__ */ import_react63.default.createElement(import_react63.default.Fragment, null, /* @__PURE__ */ import_react63.default.createElement(Routes, null, /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react63.default.createElement(LandingPage_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/ebooks", element: /* @__PURE__ */ import_react63.default.createElement(ItemList_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react63.default.createElement(Signup_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/login", element: /* @__PURE__ */ import_react63.default.createElement(Login_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/users", element: /* @__PURE__ */ import_react63.default.createElement(Users_default, null) })));
+  return /* @__PURE__ */ import_react63.default.createElement(import_react63.default.Fragment, null, /* @__PURE__ */ import_react63.default.createElement(Routes, null, /* @__PURE__ */ import_react63.default.createElement(Route, { element: /* @__PURE__ */ import_react63.default.createElement(ProtectedRoute, null) }, /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/ebooks", element: /* @__PURE__ */ import_react63.default.createElement(ItemList_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/users", element: /* @__PURE__ */ import_react63.default.createElement(Users_default, null) })), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react63.default.createElement(LandingPage_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react63.default.createElement(Signup_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/login", element: /* @__PURE__ */ import_react63.default.createElement(Login_default, null) })));
 };
 var routes_default = AppRoutes;
 
