@@ -1676,7 +1676,7 @@ var require_react_development = __commonJS({
           }
           return dispatcher.useContext(Context2);
         }
-        function useState23(initialState) {
+        function useState22(initialState) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useState(initialState);
         }
@@ -2479,7 +2479,7 @@ var require_react_development = __commonJS({
         exports.useMemo = useMemo7;
         exports.useReducer = useReducer;
         exports.useRef = useRef21;
-        exports.useState = useState23;
+        exports.useState = useState22;
         exports.useSyncExternalStore = useSyncExternalStore;
         exports.useTransition = useTransition;
         exports.version = ReactVersion;
@@ -67550,6 +67550,15 @@ var Item = ({ item, selected, onAdd, onRemove }) => {
       className: "w-full h-auto rounded-lg"
     }
   )), /* @__PURE__ */ import_react26.default.createElement("div", { className: "w-2/3 pl-4 flex flex-col justify-center" }, /* @__PURE__ */ import_react26.default.createElement("h2", { className: "text-xl font-bold text-gray-800 mb-2" }, item.title ?? "Product Title"), /* @__PURE__ */ import_react26.default.createElement("p", { className: "text-gray-600 mb-4" }, item.description ?? "This is a short description of the product. It highlights the key features and benefits."), /* @__PURE__ */ import_react26.default.createElement("h2", { className: "text-xl font-bold text-gray-800 mb-2" }, toPriceFormat(item.price)), /* @__PURE__ */ import_react26.default.createElement(
+    "a",
+    {
+      className: "mt-0.5 text-sm text-gray-500 hover:text-indigo-700 mb-4 transition duration-200 ease-in-out",
+      href: item.pdf_url,
+      target: "_blank",
+      rel: "noopener noreferrer"
+    },
+    "Click here to preview the ebook"
+  ), /* @__PURE__ */ import_react26.default.createElement(
     "button",
     {
       className: `${selected ? "bg-red-600 hover:bg-red-700" : "bg-indigo-600 hover:bg-indigo-700"} text-white font-bold py-2 px-4 rounded-lg`,
@@ -70475,7 +70484,8 @@ var items = [
     price: 19.99,
     quantity: 1,
     imageSrc: priceTomorrowImage,
-    imageAlt: "The Price of Tomorrow"
+    imageAlt: "The Price of Tomorrow",
+    pdf_url: "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTEsInB1ciI6ImJsb2JfaWQifX0=--f01abf8d10dff5d368032e5cb6f57299189fcc59/In%20This%20Economy%20-%20How%20Money%20%20Markets%20Really%20Work%20-%20Kyla%20Scanlon.pdf"
   },
   {
     id: 2,
@@ -70486,7 +70496,8 @@ var items = [
     price: 32,
     quantity: 1,
     imageSrc: lawsOfPowerImage,
-    imageAlt: "48 Laws of Power"
+    imageAlt: "48 Laws of Power",
+    pdf_url: "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTEsInB1ciI6ImJsb2JfaWQifX0=--f01abf8d10dff5d368032e5cb6f57299189fcc59/In%20This%20Economy%20-%20How%20Money%20%20Markets%20Really%20Work%20-%20Kyla%20Scanlon.pdf"
   },
   {
     id: 3,
@@ -70497,7 +70508,8 @@ var items = [
     price: 23.99,
     quantity: 1,
     imageSrc: atomicHabitsImage,
-    imageAlt: "Atomic Habits"
+    imageAlt: "Atomic Habits",
+    pdf_url: "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTEsInB1ciI6ImJsb2JfaWQifX0=--f01abf8d10dff5d368032e5cb6f57299189fcc59/In%20This%20Economy%20-%20How%20Money%20%20Markets%20Really%20Work%20-%20Kyla%20Scanlon.pdf"
   }
 ];
 var ItemList = () => {

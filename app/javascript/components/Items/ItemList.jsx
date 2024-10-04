@@ -22,6 +22,8 @@ const items = [
     quantity: 1,
     imageSrc: priceTomorrowImage,
     imageAlt: "The Price of Tomorrow",
+    pdf_url:
+      "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTEsInB1ciI6ImJsb2JfaWQifX0=--f01abf8d10dff5d368032e5cb6f57299189fcc59/In%20This%20Economy%20-%20How%20Money%20%20Markets%20Really%20Work%20-%20Kyla%20Scanlon.pdf",
   },
   {
     id: 2,
@@ -33,6 +35,8 @@ const items = [
     quantity: 1,
     imageSrc: lawsOfPowerImage,
     imageAlt: "48 Laws of Power",
+    pdf_url:
+      "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTEsInB1ciI6ImJsb2JfaWQifX0=--f01abf8d10dff5d368032e5cb6f57299189fcc59/In%20This%20Economy%20-%20How%20Money%20%20Markets%20Really%20Work%20-%20Kyla%20Scanlon.pdf",
   },
   {
     id: 3,
@@ -44,6 +48,8 @@ const items = [
     quantity: 1,
     imageSrc: atomicHabitsImage,
     imageAlt: "Atomic Habits",
+    pdf_url:
+      "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTEsInB1ciI6ImJsb2JfaWQifX0=--f01abf8d10dff5d368032e5cb6f57299189fcc59/In%20This%20Economy%20-%20How%20Money%20%20Markets%20Really%20Work%20-%20Kyla%20Scanlon.pdf",
   },
 ];
 
