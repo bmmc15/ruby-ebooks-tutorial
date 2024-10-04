@@ -1,49 +1,16 @@
 import React from "react";
-import { toPriceFormat } from '../../utils/utils';
+import { toPriceFormat } from "../../utils/utils";
 import {
   Dialog,
   DialogBackdrop,
   DialogPanel,
   DialogTitle,
-} from '@headlessui/react';
-import { XMarkIcon } from '@heroicons/react/24/outline';
-import { Button } from '@mui/material';
-import { useSnackbar } from 'notistack';
-import { useMutation } from 'react-query';
+} from "@headlessui/react";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import { useSnackbar } from "notistack";
+import { useMutation } from "react-query";
 
-import axios from 'axios';
-
-const apiInstance = axios.create({
-  baseURL: 'http://localhost:3000/api/v1',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
-export const purchaseEbooks = async ({ buyerId, ebooksIds }) => {
-  try {
-    //Body:
-    //   {
-    //     "buyer_id": 2,
-    //     "ebooks_ids": [
-    //         2,
-    //         3,
-    //         4,
-    //         5
-    //     ]
-    // }
-    // const response = await apiInstance.post('/purchase', {
-    //   buyer_id: buyerId,
-    //   ebooks_ids: ebooksIds,
-    // });
-
-    // return response;
-
-    return ""
-  } catch (err) {
-    throw err;
-  }
-};
+import ApiClient from "../../services/ApiClient";
 
 const ShoppingCart = ({
   open,
@@ -53,17 +20,17 @@ const ShoppingCart = ({
 }) => {
   const { enqueueSnackbar } = useSnackbar();
   const {
-    mutate: placeOrder,
+    mutate: purchaseEbooks,
     isLoading: orderResultLoading,
     isError: orderResultError,
-  } = useMutation(purchaseEbooks, {
+  } = useMutation(ApiClient.placeOrder, {
     onSuccess: (data: any) => {
-      enqueueSnackbar('Your order was placed, check your email!', {
-        variant: 'success',
+      enqueueSnackbar("Your order was placed, check your email!", {
+        variant: "success",
       });
     },
     onError: (error: any) => {
-      console.error('Something failed', error);
+      console.error("Something failed", error);
     },
   });
 
@@ -81,7 +48,7 @@ const ShoppingCart = ({
   };
 
   const handleCheckoutClick = async () => {
-    await placeOrder({ buyerId: 2, ebooksIds: [2, 3, 4, 5] });
+    await purchaseEbooks({ buyerId: 2, ebooksIds: [2, 3, 4, 5] });
   };
 
   return (
@@ -186,7 +153,7 @@ const ShoppingCart = ({
                   </div>
                   <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                     <p>
-                      or{' '}
+                      or{" "}
                       <button
                         type="button"
                         onClick={() => setOpen(false)}

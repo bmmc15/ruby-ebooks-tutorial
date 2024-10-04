@@ -46277,6 +46277,18 @@ var ApiClient = {
     } catch (err) {
       throw err;
     }
+  },
+  placeOrder: async ({ buyerId, ebooksIds }) => {
+    try {
+      console.log("PlaceOrder Request");
+      const response = await apiInstance.post("/purchase", {
+        buyer_id: buyerId,
+        ebooks_ids: ebooksIds
+      });
+      return response?.data;
+    } catch (err) {
+      throw err;
+    }
   }
 };
 var ApiClient_default = ApiClient;
@@ -70343,19 +70355,6 @@ var useSnackbar = function() {
 };
 
 // app/javascript/components/ShoppingCart/ShoppingCart.tsx
-var apiInstance2 = axios_default.create({
-  baseURL: "http://localhost:3000/api/v1",
-  headers: {
-    "Content-Type": "application/json"
-  }
-});
-var purchaseEbooks = async ({ buyerId, ebooksIds }) => {
-  try {
-    return "";
-  } catch (err) {
-    throw err;
-  }
-};
 var ShoppingCart = ({
   open,
   setOpen,
@@ -70364,10 +70363,10 @@ var ShoppingCart = ({
 }) => {
   const { enqueueSnackbar: enqueueSnackbar2 } = useSnackbar();
   const {
-    mutate: placeOrder,
+    mutate: purchaseEbooks,
     isLoading: orderResultLoading,
     isError: orderResultError
-  } = useMutation(purchaseEbooks, {
+  } = useMutation(ApiClient_default.placeOrder, {
     onSuccess: (data) => {
       enqueueSnackbar2("Your order was placed, check your email!", {
         variant: "success"
@@ -70389,7 +70388,7 @@ var ShoppingCart = ({
     }, 0);
   };
   const handleCheckoutClick = async () => {
-    await placeOrder({ buyerId: 2, ebooksIds: [2, 3, 4, 5] });
+    await purchaseEbooks({ buyerId: 2, ebooksIds: [2, 3, 4, 5] });
   };
   return /* @__PURE__ */ import_react60.default.createElement(Pt, { open, onClose: setOpen, className: "relative z-10" }, /* @__PURE__ */ import_react60.default.createElement(
     ct,

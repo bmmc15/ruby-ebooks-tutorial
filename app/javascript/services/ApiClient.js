@@ -44,5 +44,18 @@ const ApiClient = {
       throw err;
     }
   },
+
+  placeOrder: async ({ buyerId, ebooksIds }) => {
+    try {
+      console.log("PlaceOrder Request");
+      const response = await apiInstance.post("/purchase", {
+        buyer_id: buyerId,
+        ebooks_ids: ebooksIds,
+      });
+      return response?.data;
+    } catch (err) {
+      throw err;
+    }
+  },
 };
 export default ApiClient;
