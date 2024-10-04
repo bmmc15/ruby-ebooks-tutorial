@@ -59,3 +59,9 @@ end
 gem "tailwindcss-rails", "~> 2.7"
 
 gem "rack-cors", require: "rack/cors"
+
+gem "jwt", "~> 2.5"
+
+gem "active_model_serializers", "~> 0.10.12"
+
+gem "dotenv-rails"

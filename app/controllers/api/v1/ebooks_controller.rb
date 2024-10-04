@@ -1,4 +1,4 @@
-class Api::V1::EbooksController < ApplicationController
+class Api::V1::EbooksController < Api::V1::BaseController
   skip_before_action :verify_authenticity_token
 
   def index

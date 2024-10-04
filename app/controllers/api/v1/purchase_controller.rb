@@ -1,4 +1,4 @@
-class Api::V1::PurchaseController < ApplicationController
+class Api::V1::PurchaseController < Api::V1::BaseController
     skip_before_action :verify_authenticity_token
 
 
