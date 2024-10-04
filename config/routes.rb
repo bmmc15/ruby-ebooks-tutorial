@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :ebooks do
         member do
-          get 'show_pdf'
+          get "show_pdf"
         end
       end
 
@@ -20,8 +20,8 @@ Rails.application.routes.draw do
   end
   root "homepage#index"
   get "signup", to: "users#new"
-  
-  # get "/*path" => "homepage#index"
+
+    # get "/*path" => "homepage#index"
 
 
 
