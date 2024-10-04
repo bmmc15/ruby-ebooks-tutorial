@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      resources :ebooks do
+        member do
+          get "show_pdf"
+        end
+      end
+
       get "exercises/index"
       post "exercises/create"
       get "/show/:id", to: "exercises#show"
@@ -9,16 +15,13 @@ Rails.application.routes.draw do
       get "login", to: "sessions#new"
       post "login", to: "sessions#create"
       delete "logout", to: "sessions#destroy"
-
-      resources :ebooks
-
       post "purchase", to: "purchase#create"
     end
   end
   root "homepage#index"
-  get "ebooks", to: "ebooks#index"
   get "signup", to: "users#new"
-  get "/*path" => "homepage#index"
+
+    # get "/*path" => "homepage#index"
 
 
 

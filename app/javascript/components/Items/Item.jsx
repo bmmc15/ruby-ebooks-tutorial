@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { toPriceFormat } from '../../utils/utils';
 
 const Item = ({ item, selected, onAdd, onRemove }) => {
@@ -7,7 +7,7 @@ const Item = ({ item, selected, onAdd, onRemove }) => {
       <div className="w-1/3">
         <img
           src={
-            item.imageSrc ??
+            item.ebook_cover_url ??
             'https://placehold.co/150x150/efefef/4f46e5?text=Invalid+Image&font=roboto'
           }
           alt="Product"
@@ -26,6 +26,14 @@ const Item = ({ item, selected, onAdd, onRemove }) => {
         <h2 className="text-xl font-bold text-gray-800 mb-2">
           {toPriceFormat(item.price)}
         </h2>
+        <a
+          className="mt-0.5 text-sm text-gray-500 hover:text-indigo-700 mb-4 transition duration-200 ease-in-out"
+          href={item.pdf_url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Click here to preview the ebook
+        </a>
         <button
           className={`${
             selected

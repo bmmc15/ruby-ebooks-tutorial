@@ -1676,7 +1676,7 @@ var require_react_development = __commonJS({
           }
           return dispatcher.useContext(Context2);
         }
-        function useState23(initialState) {
+        function useState22(initialState) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useState(initialState);
         }
@@ -2479,7 +2479,7 @@ var require_react_development = __commonJS({
         exports.useMemo = useMemo7;
         exports.useReducer = useReducer;
         exports.useRef = useRef21;
-        exports.useState = useState23;
+        exports.useState = useState22;
         exports.useSyncExternalStore = useSyncExternalStore;
         exports.useTransition = useTransition;
         exports.version = ReactVersion;
@@ -36570,8 +36570,8 @@ var Carousel = class _Carousel extends BaseComponent {
     this.cycle();
   }
   to(index) {
-    const items2 = this._getItems();
-    if (index > items2.length - 1 || index < 0) {
+    const items = this._getItems();
+    if (index > items.length - 1 || index < 0) {
       return;
     }
     if (this._isSliding) {
@@ -36583,7 +36583,7 @@ var Carousel = class _Carousel extends BaseComponent {
       return;
     }
     const order2 = index > activeIndex ? ORDER_NEXT : ORDER_PREV;
-    this._slide(order2, items2[index]);
+    this._slide(order2, items[index]);
   }
   dispose() {
     if (this._swipeHelper) {
@@ -37211,11 +37211,11 @@ var Dropdown = class _Dropdown extends BaseComponent {
     key,
     target
   }) {
-    const items2 = SelectorEngine.find(SELECTOR_VISIBLE_ITEMS, this._menu).filter((element) => isVisible(element));
-    if (!items2.length) {
+    const items = SelectorEngine.find(SELECTOR_VISIBLE_ITEMS, this._menu).filter((element) => isVisible(element));
+    if (!items.length) {
       return;
     }
-    getNextActiveElement(items2, target, key === ARROW_DOWN_KEY$1, !items2.includes(target)).focus();
+    getNextActiveElement(items, target, key === ARROW_DOWN_KEY$1, !items.includes(target)).focus();
   }
   // Static
   static jQueryInterface(config2) {
@@ -43721,6 +43721,7 @@ function useQuery(arg1, arg2, arg3) {
 
 // app/javascript/utils/constants.js
 var USERS_QUERY_KEY = "users";
+var EBOOKS_QUERY_KEY = "ebooks";
 
 // node_modules/axios/lib/helpers/bind.js
 function bind(fn2, thisArg) {
@@ -58942,7 +58943,7 @@ var MenuList = /* @__PURE__ */ React61.forwardRef(function MenuList2(props, ref)
       }
     }
   });
-  const items2 = React61.Children.map(children, (child, index) => {
+  const items = React61.Children.map(children, (child, index) => {
     if (index === activeItemIndex) {
       const newChildProps = {};
       if (autoFocusItem) {
@@ -58962,7 +58963,7 @@ var MenuList = /* @__PURE__ */ React61.forwardRef(function MenuList2(props, ref)
     onKeyDown: handleKeyDown,
     tabIndex: autoFocus ? 0 : -1,
     ...other,
-    children: items2
+    children: items
   });
 });
 true ? MenuList.propTypes = {
@@ -59304,9 +59305,9 @@ function ariaHiddenSiblings(container, mountElement, currentElement, elementsToE
     }
   });
 }
-function findIndexOf(items2, callback) {
+function findIndexOf(items, callback) {
   let idx = -1;
-  items2.some((item, index) => {
+  items.some((item, index) => {
     if (callback(item)) {
       idx = index;
       return true;
@@ -62269,7 +62270,7 @@ var SelectInput = /* @__PURE__ */ React73.forwardRef(function SelectInput2(props
       computeDisplay = true;
     }
   }
-  const items2 = childrenArray.map((child) => {
+  const items = childrenArray.map((child) => {
     if (!/* @__PURE__ */ React73.isValidElement(child)) {
       return null;
     }
@@ -62441,7 +62442,7 @@ var SelectInput = /* @__PURE__ */ React73.forwardRef(function SelectInput2(props
           }
         }
       },
-      children: items2
+      children: items
     })]
   });
 });
@@ -67545,11 +67546,20 @@ var Item = ({ item, selected, onAdd, onRemove }) => {
   return /* @__PURE__ */ import_react26.default.createElement("div", { className: "flex items-center justify-between p-4 border-indigo-400 rounded-lg w-1/3 mx-auto shadow-xl" }, /* @__PURE__ */ import_react26.default.createElement("div", { className: "w-1/3" }, /* @__PURE__ */ import_react26.default.createElement(
     "img",
     {
-      src: item.imageSrc ?? "https://placehold.co/150x150/efefef/4f46e5?text=Invalid+Image&font=roboto",
+      src: item.ebook_cover_url ?? "https://placehold.co/150x150/efefef/4f46e5?text=Invalid+Image&font=roboto",
       alt: "Product",
       className: "w-full h-auto rounded-lg"
     }
   )), /* @__PURE__ */ import_react26.default.createElement("div", { className: "w-2/3 pl-4 flex flex-col justify-center" }, /* @__PURE__ */ import_react26.default.createElement("h2", { className: "text-xl font-bold text-gray-800 mb-2" }, item.title ?? "Product Title"), /* @__PURE__ */ import_react26.default.createElement("p", { className: "text-gray-600 mb-4" }, item.description ?? "This is a short description of the product. It highlights the key features and benefits."), /* @__PURE__ */ import_react26.default.createElement("h2", { className: "text-xl font-bold text-gray-800 mb-2" }, toPriceFormat(item.price)), /* @__PURE__ */ import_react26.default.createElement(
+    "a",
+    {
+      className: "mt-0.5 text-sm text-gray-500 hover:text-indigo-700 mb-4 transition duration-200 ease-in-out",
+      href: item.pdf_url,
+      target: "_blank",
+      rel: "noopener noreferrer"
+    },
+    "Click here to preview the ebook"
+  ), /* @__PURE__ */ import_react26.default.createElement(
     "button",
     {
       className: `${selected ? "bg-red-600 hover:bg-red-700" : "bg-indigo-600 hover:bg-indigo-700"} text-white font-bold py-2 px-4 rounded-lg`,
@@ -70421,8 +70431,8 @@ var ShoppingCart = ({
       selectedProducts.map((product) => /* @__PURE__ */ import_react60.default.createElement("li", { key: product.id, className: "flex py-6" }, /* @__PURE__ */ import_react60.default.createElement("div", { className: "h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200" }, /* @__PURE__ */ import_react60.default.createElement(
         "img",
         {
-          alt: product.imageAlt,
-          src: product.imageSrc,
+          alt: product.title,
+          src: product.ebook_cover_url,
           className: "h-full w-full object-contain object-center"
         }
       )), /* @__PURE__ */ import_react60.default.createElement("div", { className: "ml-4 flex flex-1 flex-col" }, /* @__PURE__ */ import_react60.default.createElement("div", null, /* @__PURE__ */ import_react60.default.createElement("div", { className: "flex justify-between text-base font-medium text-gray-900" }, /* @__PURE__ */ import_react60.default.createElement("h3", null, /* @__PURE__ */ import_react60.default.createElement("a", { href: product.href }, product.title)), /* @__PURE__ */ import_react60.default.createElement("p", { className: "ml-4" }, toPriceFormat(product.price)))), /* @__PURE__ */ import_react60.default.createElement("div", { className: "flex flex-1 items-end justify-between text-sm" }, /* @__PURE__ */ import_react60.default.createElement("p", { className: "text-gray-500" }, "Qty 1"), /* @__PURE__ */ import_react60.default.createElement("div", { className: "flex" }, /* @__PURE__ */ import_react60.default.createElement(
@@ -70462,48 +70472,11 @@ function FaCartShopping(props) {
 }
 
 // app/javascript/components/Items/ItemList.jsx
-var lawsOfPowerImage = "/images/48-laws-of-power.png";
-var atomicHabitsImage = "/images/atomic-habits.png";
-var priceTomorrowImage = "/images/the-price-of-tomorrow.png";
-var items = [
-  {
-    id: 1,
-    title: "The Price of Tomorrow",
-    description: "The Price of Tomorrow Description",
-    href: "#",
-    color: "Salmon",
-    price: 19.99,
-    quantity: 1,
-    imageSrc: priceTomorrowImage,
-    imageAlt: "The Price of Tomorrow"
-  },
-  {
-    id: 2,
-    title: "48 Laws of Power",
-    description: "48 Laws of Power description",
-    href: "#",
-    color: "Blue",
-    price: 32,
-    quantity: 1,
-    imageSrc: lawsOfPowerImage,
-    imageAlt: "48 Laws of Power"
-  },
-  {
-    id: 3,
-    title: "Atomic Habits",
-    description: "Atomic Habits description",
-    href: "#",
-    color: "Blue",
-    price: 23.99,
-    quantity: 1,
-    imageSrc: atomicHabitsImage,
-    imageAlt: "Atomic Habits"
-  }
-];
 var ItemList = () => {
   const [isCheckoutOpen, setIsCheckoutOpen] = (0, import_react62.useState)(false);
   const [isAnimating, setIsAnimating] = (0, import_react62.useState)(false);
   const [selectedProducts, setSelectedProducts] = (0, import_react62.useState)([]);
+  const [items, setItems] = (0, import_react62.useState)([]);
   const handleAddToCart = (item) => {
     setSelectedProducts((prev2) => [...prev2, item]);
     console.log("Item added to the cart");
@@ -70515,6 +70488,12 @@ var ItemList = () => {
       (prev2) => prev2.filter((selectedItem) => selectedItem.id !== item.id)
     );
   };
+  const { isLoading } = useQuery(EBOOKS_QUERY_KEY, ApiClient_default.fetchEbooks, {
+    onSuccess: (data) => {
+      console.log("First Rails useQuery sucessful:", data);
+      setItems(data);
+    }
+  });
   return /* @__PURE__ */ import_react62.default.createElement(import_react62.default.Fragment, null, /* @__PURE__ */ import_react62.default.createElement("div", { className: "flex flex-col" }, items.map((item, index) => /* @__PURE__ */ import_react62.default.createElement(
     Item_default,
     {
