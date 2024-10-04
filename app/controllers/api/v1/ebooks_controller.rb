@@ -3,14 +3,14 @@ class Api::V1::EbooksController < ApplicationController
 
   def index
     ebooks = Ebook.all.order(created_at: :desc)
-    render json: ebooks
+    render json: ebooks.as_json(methods: :pdf_url)
   end
 
   def show
     ebook = Ebook.find_by(id: params[:id])
 
     if ebook
-      render json: ebook
+      render json: ebook.as_json(methods: :pdf_url)
     else
       render json: { error: "Ebook not found" }, status: :not_found
     end
@@ -21,7 +21,7 @@ class Api::V1::EbooksController < ApplicationController
     @ebook.pdf.attach(params[:pdf])
 
     if @ebook.save
-      render json: { message: "Ebook created successfully, check here the pdf preview:#{rails_storage_redirect_path(@ebook.pdf)}", ebook: @ebook }, status: :created
+      render json: { message: "Ebook created successfully, check here the pdf preview:#{rails_storage_redirect_path(@ebook.pdf)}", ebook: @ebook.as_json(methods: :pdf_url) }, status: :created
     else
       render json: { error: "Invalid ebook creation", details: @ebook.errors.full_messages }, status: :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class Api::V1::EbooksController < ApplicationController
 
     if ebook
       if ebook.update(ebook_params)
-        render json: { message: "Ebook updated successfully", ebook: ebook }, status: :ok
+        render json: { message: "Ebook updated successfully", ebook: ebook.as_json(methods: :pdf_url) }, status: :ok
       else
         render json: { error: "Invalid ebook update", details: ebook.errors.full_messages }, status: :unprocessable_entity
       end
