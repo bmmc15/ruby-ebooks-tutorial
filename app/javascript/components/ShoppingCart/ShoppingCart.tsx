@@ -48,7 +48,10 @@ const ShoppingCart = ({
   };
 
   const handleCheckoutClick = async () => {
-    await purchaseEbooks({ buyerId: 2, ebooksIds: [2, 3, 4, 5] });
+    await purchaseEbooks({
+      buyerId: 1,
+      ebooksIds: selectedProducts.map((elem) => elem.id),
+    });
   };
 
   return (
