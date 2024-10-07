@@ -19,9 +19,11 @@ Rails.application.routes.draw do
     end
   end
   root "homepage#index"
-  get "signup", to: "users#new"
 
-    # get "/*path" => "homepage#index"
+  get '*path', to: 'home#index', constraints: ->(req) { req.format.html? && !req.path.start_with?('/images', '/rails/active_storage') }
+
+  # get "signup", to: "users#new"
+
 
 
 
