@@ -36570,8 +36570,8 @@ var Carousel = class _Carousel extends BaseComponent {
     this.cycle();
   }
   to(index) {
-    const items2 = this._getItems();
-    if (index > items2.length - 1 || index < 0) {
+    const items = this._getItems();
+    if (index > items.length - 1 || index < 0) {
       return;
     }
     if (this._isSliding) {
@@ -36583,7 +36583,7 @@ var Carousel = class _Carousel extends BaseComponent {
       return;
     }
     const order2 = index > activeIndex ? ORDER_NEXT : ORDER_PREV;
-    this._slide(order2, items2[index]);
+    this._slide(order2, items[index]);
   }
   dispose() {
     if (this._swipeHelper) {
@@ -37211,11 +37211,11 @@ var Dropdown = class _Dropdown extends BaseComponent {
     key,
     target
   }) {
-    const items2 = SelectorEngine.find(SELECTOR_VISIBLE_ITEMS, this._menu).filter((element) => isVisible(element));
-    if (!items2.length) {
+    const items = SelectorEngine.find(SELECTOR_VISIBLE_ITEMS, this._menu).filter((element) => isVisible(element));
+    if (!items.length) {
       return;
     }
-    getNextActiveElement(items2, target, key === ARROW_DOWN_KEY$1, !items2.includes(target)).focus();
+    getNextActiveElement(items, target, key === ARROW_DOWN_KEY$1, !items.includes(target)).focus();
   }
   // Static
   static jQueryInterface(config2) {
@@ -40060,6 +40060,16 @@ function useNavigateUnstable() {
   }, [basename, navigator2, routePathnamesJson, locationPathname, dataRouterContext]);
   return navigate;
 }
+var OutletContext = /* @__PURE__ */ React.createContext(null);
+function useOutlet(context) {
+  let outlet = React.useContext(RouteContext).outlet;
+  if (outlet) {
+    return /* @__PURE__ */ React.createElement(OutletContext.Provider, {
+      value: context
+    }, outlet);
+  }
+  return outlet;
+}
 function useResolvedPath(to, _temp2) {
   let {
     relative
@@ -40489,6 +40499,9 @@ function Navigate(_ref4) {
     relative
   }), [navigate, jsonPath, relative, replace3, state]);
   return null;
+}
+function Outlet(props) {
+  return useOutlet(props.context);
 }
 function Route(_props) {
   true ? invariant(false, "A <Route> is only ever to be used as the child of <Routes> element, never rendered directly. Please wrap your <Route> in a <Routes>.") : invariant(false);
@@ -43755,6 +43768,7 @@ function useQuery(arg1, arg2, arg3) {
 
 // app/javascript/utils/constants.js
 var USERS_QUERY_KEY = "users";
+var EBOOKS_QUERY_KEY = "ebooks";
 
 // node_modules/axios/lib/helpers/bind.js
 function bind(fn2, thisArg) {
@@ -59004,7 +59018,7 @@ var MenuList = /* @__PURE__ */ React61.forwardRef(function MenuList2(props, ref)
       }
     }
   });
-  const items2 = React61.Children.map(children, (child, index) => {
+  const items = React61.Children.map(children, (child, index) => {
     if (index === activeItemIndex) {
       const newChildProps = {};
       if (autoFocusItem) {
@@ -59024,7 +59038,7 @@ var MenuList = /* @__PURE__ */ React61.forwardRef(function MenuList2(props, ref)
     onKeyDown: handleKeyDown,
     tabIndex: autoFocus ? 0 : -1,
     ...other,
-    children: items2
+    children: items
   });
 });
 true ? MenuList.propTypes = {
@@ -59366,9 +59380,9 @@ function ariaHiddenSiblings(container, mountElement, currentElement, elementsToE
     }
   });
 }
-function findIndexOf(items2, callback) {
+function findIndexOf(items, callback) {
   let idx = -1;
-  items2.some((item, index) => {
+  items.some((item, index) => {
     if (callback(item)) {
       idx = index;
       return true;
@@ -62331,7 +62345,7 @@ var SelectInput = /* @__PURE__ */ React73.forwardRef(function SelectInput2(props
       computeDisplay = true;
     }
   }
-  const items2 = childrenArray.map((child) => {
+  const items = childrenArray.map((child) => {
     if (!/* @__PURE__ */ React73.isValidElement(child)) {
       return null;
     }
@@ -62503,7 +62517,7 @@ var SelectInput = /* @__PURE__ */ React73.forwardRef(function SelectInput2(props
           }
         }
       },
-      children: items2
+      children: items
     })]
   });
 });
@@ -67325,7 +67339,7 @@ var Login = () => {
     onSuccess: (data) => {
       console.log("Login successful: data", data);
       localStorage.setItem("jwt", data.token);
-      navigate("/ebooks-buy");
+      navigate("/ebooks");
     },
     onError: (error2) => {
       console.error("Login failed:", error2);
@@ -67577,7 +67591,7 @@ var LandingIntro = () => {
   return /* @__PURE__ */ import_react24.default.createElement("section", { className: "container mx-auto py-12 px-6 flex flex-row items-center gap-48" }, /* @__PURE__ */ import_react24.default.createElement("div", { className: " flex flex-col text-left w-1/2" }, /* @__PURE__ */ import_react24.default.createElement("h5", { className: "text-sm text-indigo-600 " }, "A REVOLUTION TO YOUR READING"), /* @__PURE__ */ import_react24.default.createElement("h1", { className: "text-6xl font-bold text-gray-900 mt-4 " }, "Elevate Your"), /* @__PURE__ */ import_react24.default.createElement("h1", { className: "text-6xl font-bold text-indigo-600" }, "Reading Journey"), /* @__PURE__ */ import_react24.default.createElement("p", { className: "text-lg text-gray-600 mt-4" }, "Effortlessly transform your ebook collection into high-quality digital experiences. Our platform converts your passion for reading into a seamless and immersive adventure, bringing every story to life instantly and with ease."), /* @__PURE__ */ import_react24.default.createElement("div", { className: "mt-8 flex justify-center space-x-4" }, /* @__PURE__ */ import_react24.default.createElement(
     "button",
     {
-      onClick: navigateTo("/ebooks-buy"),
+      onClick: navigateTo("/ebooks"),
       className: "bg-indigo-600 text-white px-6 py-3 rounded-lg"
     },
     "Buy Now !"
@@ -67596,6 +67610,9 @@ var LandingPage = () => {
   return /* @__PURE__ */ import_react25.default.createElement("div", { className: "bg-gray-100 min-h-screen" }, /* @__PURE__ */ import_react25.default.createElement(LandingIntro, null), /* @__PURE__ */ import_react25.default.createElement(Footer, null));
 };
 var LandingPage_default = LandingPage;
+
+// app/javascript/components/Items/ItemList.jsx
+var import_react62 = __toESM(require_react());
 
 // app/javascript/components/Items/Item.jsx
 var import_react26 = __toESM(require_react());
@@ -67631,9 +67648,6 @@ var Item = ({ item, selected, onAdd, onRemove }) => {
   )));
 };
 var Item_default = Item;
-
-// app/javascript/components/Items/ItemList.jsx
-var import_react62 = __toESM(require_react());
 
 // app/javascript/components/ShoppingCart/ShoppingCart.tsx
 var import_react60 = __toESM(require_react());
@@ -70537,51 +70551,11 @@ function FaCartShopping(props) {
 }
 
 // app/javascript/components/Items/ItemList.jsx
-var lawsOfPowerImage = "/images/48-laws-of-power.png";
-var atomicHabitsImage = "/images/atomic-habits.png";
-var priceTomorrowImage = "/images/the-price-of-tomorrow.png";
-var items = [
-  {
-    id: 1,
-    title: "The Price of Tomorrow",
-    description: "The Price of Tomorrow Description",
-    href: "#",
-    color: "Salmon",
-    price: 19.99,
-    quantity: 1,
-    ebook_cover_url: priceTomorrowImage,
-    imageAlt: "The Price of Tomorrow",
-    pdf_url: "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTEsInB1ciI6ImJsb2JfaWQifX0=--f01abf8d10dff5d368032e5cb6f57299189fcc59/In%20This%20Economy%20-%20How%20Money%20%20Markets%20Really%20Work%20-%20Kyla%20Scanlon.pdf"
-  },
-  {
-    id: 2,
-    title: "48 Laws of Power",
-    description: "48 Laws of Power description",
-    href: "#",
-    color: "Blue",
-    price: 32,
-    quantity: 1,
-    ebook_cover_url: lawsOfPowerImage,
-    imageAlt: "48 Laws of Power",
-    pdf_url: "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTEsInB1ciI6ImJsb2JfaWQifX0=--f01abf8d10dff5d368032e5cb6f57299189fcc59/In%20This%20Economy%20-%20How%20Money%20%20Markets%20Really%20Work%20-%20Kyla%20Scanlon.pdf"
-  },
-  {
-    id: 3,
-    title: "Atomic Habits",
-    description: "Atomic Habits description",
-    href: "#",
-    color: "Blue",
-    price: 23.99,
-    quantity: 1,
-    ebook_cover_url: atomicHabitsImage,
-    imageAlt: "Atomic Habits",
-    pdf_url: "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTEsInB1ciI6ImJsb2JfaWQifX0=--f01abf8d10dff5d368032e5cb6f57299189fcc59/In%20This%20Economy%20-%20How%20Money%20%20Markets%20Really%20Work%20-%20Kyla%20Scanlon.pdf"
-  }
-];
 var ItemList = () => {
   const [isCheckoutOpen, setIsCheckoutOpen] = (0, import_react62.useState)(false);
   const [isAnimating, setIsAnimating] = (0, import_react62.useState)(false);
   const [selectedProducts, setSelectedProducts] = (0, import_react62.useState)([]);
+  const [items, setItems] = (0, import_react62.useState)([]);
   const handleAddToCart = (item) => {
     setSelectedProducts((prev2) => [...prev2, item]);
     console.log("Item added to the cart");
@@ -70593,6 +70567,12 @@ var ItemList = () => {
       (prev2) => prev2.filter((selectedItem) => selectedItem.id !== item.id)
     );
   };
+  const { isLoading } = useQuery(EBOOKS_QUERY_KEY, ApiClient_default.fetchEbooks, {
+    onSuccess: (data) => {
+      console.log("First Rails useQuery sucessful:", data);
+      setItems(data);
+    }
+  });
   return /* @__PURE__ */ import_react62.default.createElement(import_react62.default.Fragment, null, /* @__PURE__ */ import_react62.default.createElement("div", { className: "flex flex-col" }, items.map((item, index) => /* @__PURE__ */ import_react62.default.createElement(
     Item_default,
     {
@@ -70635,16 +70615,16 @@ var ItemList = () => {
 var ItemList_default = ItemList;
 
 // app/javascript/routes/index.jsx
-var ProtectedRoute = ({ children }) => {
+var ProtectedRoute = () => {
   const token2 = localStorage.getItem("jwt");
   console.log("Acessing a restricted area, token:", token2);
   if (!token2) {
     return /* @__PURE__ */ import_react63.default.createElement(Navigate, { to: "/login" });
   }
-  return children;
+  return /* @__PURE__ */ import_react63.default.createElement(Outlet, null);
 };
 var AppRoutes = () => {
-  return /* @__PURE__ */ import_react63.default.createElement(import_react63.default.Fragment, null, /* @__PURE__ */ import_react63.default.createElement(Routes, null, /* @__PURE__ */ import_react63.default.createElement(Route, { element: /* @__PURE__ */ import_react63.default.createElement(ProtectedRoute, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/users", element: /* @__PURE__ */ import_react63.default.createElement(Users_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/ebooks-buy", element: /* @__PURE__ */ import_react63.default.createElement(ItemList_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react63.default.createElement(LandingPage_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react63.default.createElement(Signup_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/login", element: /* @__PURE__ */ import_react63.default.createElement(Login_default, null) })));
+  return /* @__PURE__ */ import_react63.default.createElement(import_react63.default.Fragment, null, /* @__PURE__ */ import_react63.default.createElement(Routes, null, /* @__PURE__ */ import_react63.default.createElement(Route, { element: /* @__PURE__ */ import_react63.default.createElement(ProtectedRoute, null) }, /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/ebooks", element: /* @__PURE__ */ import_react63.default.createElement(ItemList_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/users", element: /* @__PURE__ */ import_react63.default.createElement(Users_default, null) })), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react63.default.createElement(LandingPage_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react63.default.createElement(Signup_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/login", element: /* @__PURE__ */ import_react63.default.createElement(Login_default, null) })));
 };
 var routes_default = AppRoutes;
 

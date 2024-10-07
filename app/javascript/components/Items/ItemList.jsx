@@ -60,7 +60,7 @@ const ItemList = () => {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
-  // const [items, setItems] = useState([]);
+  const [items, setItems] = useState([]);
 
   const handleAddToCart = (item) => {
     setSelectedProducts((prev) => [...prev, item]);
@@ -80,12 +80,12 @@ const ItemList = () => {
     );
   };
 
-  // const { isLoading } = useQuery(EBOOKS_QUERY_KEY, ApiClient.fetchEbooks, {
-  //   onSuccess: (data) => {
-  //     console.log("First Rails useQuery sucessful:", data);
-  //     setItems(data);
-  //   },
-  // });
+  const { isLoading } = useQuery(EBOOKS_QUERY_KEY, ApiClient.fetchEbooks, {
+    onSuccess: (data) => {
+      console.log("First Rails useQuery sucessful:", data);
+      setItems(data);
+    },
+  });
 
   return (
     <>
