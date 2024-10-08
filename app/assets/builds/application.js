@@ -70632,14 +70632,9 @@ var routes_default = AppRoutes;
 var import_react64 = __toESM(require_react());
 var Navbar = () => {
   const { navigateTo } = useGetNavigate();
-  const [isLoggedIn, setIsLoggedIn] = (0, import_react64.useState)(false);
-  (0, import_react64.useEffect)(() => {
-    const token2 = localStorage.getItem("jwt");
-    setIsLoggedIn(!!token2);
-  }, []);
+  const isLoggedIn = !!localStorage.getItem("jwt");
   const handleLogout = () => {
     localStorage.removeItem("jwt");
-    setIsLoggedIn(false);
     navigateTo("/")();
   };
   return /* @__PURE__ */ import_react64.default.createElement("header", { className: "bg-white shadow" }, /* @__PURE__ */ import_react64.default.createElement("div", { className: "container mx-auto flex justify-between items-center p-6" }, /* @__PURE__ */ import_react64.default.createElement(
