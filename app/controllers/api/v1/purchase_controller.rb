@@ -1,6 +1,5 @@
-class Api::V1::PurchaseController < ApplicationController
-    skip_before_action :verify_authenticity_token
-
+class Api::V1::PurchaseController < BaseController
+    verify_authenticity_token
 
     def create
       buyer = User.find_by(id: purchase_params[:buyer_id])

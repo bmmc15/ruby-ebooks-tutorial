@@ -84,4 +84,14 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   Rails.application.routes.default_url_options[:host] = "localhost:3000"
+
+  Rails.application.config.middleware.insert_before 0, Rack::Cors do
+    allow do
+      origins "*"
+
+      resource "*",
+        headers: :any,
+        methods: [ :get, :post, :put, :patch, :delete, :options, :head ]
+    end
+  end
 end

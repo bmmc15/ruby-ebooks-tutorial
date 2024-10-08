@@ -55,7 +55,7 @@ const Signup = () => {
 
   const { mutate, isLoading } = useMutation(ApiClient.registerUser, {
     onSuccess: (data) => {
-      //   setUser(data.user);
+      localStorage.setItem("jwt", data.token);
       navigate("/");
     },
     onError: (error) => {

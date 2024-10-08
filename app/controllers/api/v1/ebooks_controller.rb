@@ -1,5 +1,5 @@
-class Api::V1::EbooksController < ApplicationController
-  skip_before_action :verify_authenticity_token
+class Api::V1::EbooksController < BaseController
+  before_action :authorized
 
   def index
     ebooks = Ebook.all.order(created_at: :desc)

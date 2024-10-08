@@ -1688,7 +1688,7 @@ var require_react_development = __commonJS({
           var dispatcher = resolveDispatcher();
           return dispatcher.useRef(initialValue);
         }
-        function useEffect19(create, deps) {
+        function useEffect20(create, deps) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useEffect(create, deps);
         }
@@ -2471,7 +2471,7 @@ var require_react_development = __commonJS({
         exports.useContext = useContext14;
         exports.useDebugValue = useDebugValue2;
         exports.useDeferredValue = useDeferredValue;
-        exports.useEffect = useEffect19;
+        exports.useEffect = useEffect20;
         exports.useId = useId2;
         exports.useImperativeHandle = useImperativeHandle6;
         exports.useInsertionEffect = useInsertionEffect3;
@@ -40060,6 +40060,16 @@ function useNavigateUnstable() {
   }, [basename, navigator2, routePathnamesJson, locationPathname, dataRouterContext]);
   return navigate;
 }
+var OutletContext = /* @__PURE__ */ React.createContext(null);
+function useOutlet(context) {
+  let outlet = React.useContext(RouteContext).outlet;
+  if (outlet) {
+    return /* @__PURE__ */ React.createElement(OutletContext.Provider, {
+      value: context
+    }, outlet);
+  }
+  return outlet;
+}
 function useResolvedPath(to, _temp2) {
   let {
     relative
@@ -40456,6 +40466,43 @@ function warningOnce(key, cond, message) {
 }
 var START_TRANSITION = "startTransition";
 var startTransitionImpl = React[START_TRANSITION];
+function Navigate(_ref4) {
+  let {
+    to,
+    replace: replace3,
+    state,
+    relative
+  } = _ref4;
+  !useInRouterContext() ? true ? invariant(
+    false,
+    // TODO: This error is probably because they somehow have 2 versions of
+    // the router loaded. We can help them understand how to avoid that.
+    "<Navigate> may be used only in the context of a <Router> component."
+  ) : invariant(false) : void 0;
+  let {
+    future,
+    static: isStatic
+  } = React.useContext(NavigationContext);
+  true ? warning(!isStatic, "<Navigate> must not be used on the initial render in a <StaticRouter>. This is a no-op, but you should modify your code so the <Navigate> is only ever rendered in response to some user interaction or state change.") : void 0;
+  let {
+    matches
+  } = React.useContext(RouteContext);
+  let {
+    pathname: locationPathname
+  } = useLocation();
+  let navigate = useNavigate();
+  let path = resolveTo(to, getResolveToMatches(matches, future.v7_relativeSplatPath), locationPathname, relative === "path");
+  let jsonPath = JSON.stringify(path);
+  React.useEffect(() => navigate(JSON.parse(jsonPath), {
+    replace: replace3,
+    state,
+    relative
+  }), [navigate, jsonPath, relative, replace3, state]);
+  return null;
+}
+function Outlet(props) {
+  return useOutlet(props.context);
+}
 function Route(_props) {
   true ? invariant(false, "A <Route> is only ever to be used as the child of <Routes> element, never rendered directly. Please wrap your <Route> in a <Routes>.") : invariant(false);
 }
@@ -46264,7 +46311,13 @@ var ApiClient = {
   },
   login: async (loginBody) => {
     try {
-      const response = await apiInstance.post("/login", loginBody);
+      const response = await apiInstance.post("/auth/login", loginBody);
+      const token2 = response?.data?.token || null;
+      if (token2) {
+        localStorage.setItem("jwt", token2);
+      } else {
+        console.error("Login response does not contain a valid token");
+      }
       return response?.data;
     } catch (err) {
       throw err;
@@ -46273,7 +46326,13 @@ var ApiClient = {
   fetchEbooks: async () => {
     try {
       console.log("FetchEbooks Request");
-      const response = await apiInstance.get("/ebooks");
+      const token2 = localStorage.getItem("jwt");
+      const response = await apiInstance.get("/ebooks", {
+        headers: {
+          Authorization: `Bearer ${token2}`
+        }
+      });
+      console.log("Fetch books with sucess");
       return response?.data;
     } catch (err) {
       throw err;
@@ -46281,11 +46340,19 @@ var ApiClient = {
   },
   placeOrder: async ({ buyerId, ebooksIds }) => {
     try {
-      console.log("PlaceOrder Request");
-      const response = await apiInstance.post("/purchase", {
-        buyer_id: buyerId,
-        ebooks_ids: ebooksIds
-      });
+      const token2 = localStorage.getItem("jwt");
+      const response = await apiInstance.post(
+        "/purchase",
+        {
+          buyer_id: buyerId,
+          ebooks_ids: ebooksIds
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token2}`
+          }
+        }
+      );
       return response?.data;
     } catch (err) {
       throw err;
@@ -66059,6 +66126,7 @@ var Signup = () => {
   } = useForm({ resolver });
   const { mutate, isLoading } = useMutation(ApiClient_default.registerUser, {
     onSuccess: (data) => {
+      localStorage.setItem("jwt", data.token);
       navigate("/");
     },
     onError: (error2) => {
@@ -67262,17 +67330,16 @@ var Login = () => {
   } = useForm({ resolver: resolver2 });
   const { mutate: login, isLoading } = useMutation(ApiClient_default.login, {
     onSuccess: (data) => {
-      console.log("Login successful");
-      navigate("/");
+      localStorage.setItem("jwt", data.token);
+      navigate("/ebooks");
     },
     onError: (error2) => {
       console.error("Login failed:", error2);
-      alert("login failed");
+      alert("Login Failed");
       navigate("/login");
     }
   });
   const onFormSubmit = handleSubmit(async (data) => {
-    console.log("handleSubmit(async (data) => {", data);
     const { email, password } = data;
     await login({
       email,
@@ -67535,6 +67602,9 @@ var LandingPage = () => {
 };
 var LandingPage_default = LandingPage;
 
+// app/javascript/components/Items/ItemList.jsx
+var import_react62 = __toESM(require_react());
+
 // app/javascript/components/Items/Item.jsx
 var import_react26 = __toESM(require_react());
 
@@ -67569,9 +67639,6 @@ var Item = ({ item, selected, onAdd, onRemove }) => {
   )));
 };
 var Item_default = Item;
-
-// app/javascript/components/Items/ItemList.jsx
-var import_react62 = __toESM(require_react());
 
 // app/javascript/components/ShoppingCart/ShoppingCart.tsx
 var import_react60 = __toESM(require_react());
@@ -70539,18 +70606,28 @@ var ItemList = () => {
 var ItemList_default = ItemList;
 
 // app/javascript/routes/index.jsx
+var ProtectedRoute = () => {
+  const token2 = localStorage.getItem("jwt");
+  console.log("Acessing a restricted area, token:", token2);
+  if (!token2) {
+    return /* @__PURE__ */ import_react63.default.createElement(Navigate, { to: "/login" });
+  }
+  return /* @__PURE__ */ import_react63.default.createElement(Outlet, null);
+};
 var AppRoutes = () => {
-  return /* @__PURE__ */ import_react63.default.createElement(import_react63.default.Fragment, null, /* @__PURE__ */ import_react63.default.createElement(Routes, null, /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react63.default.createElement(LandingPage_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/ebooks", element: /* @__PURE__ */ import_react63.default.createElement(ItemList_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react63.default.createElement(Signup_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/login", element: /* @__PURE__ */ import_react63.default.createElement(Login_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/users", element: /* @__PURE__ */ import_react63.default.createElement(Users_default, null) })));
+  return /* @__PURE__ */ import_react63.default.createElement(import_react63.default.Fragment, null, /* @__PURE__ */ import_react63.default.createElement(Routes, null, /* @__PURE__ */ import_react63.default.createElement(Route, { element: /* @__PURE__ */ import_react63.default.createElement(ProtectedRoute, null) }, /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/ebooks", element: /* @__PURE__ */ import_react63.default.createElement(ItemList_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/users", element: /* @__PURE__ */ import_react63.default.createElement(Users_default, null) })), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react63.default.createElement(LandingPage_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react63.default.createElement(Signup_default, null) }), /* @__PURE__ */ import_react63.default.createElement(Route, { path: "/login", element: /* @__PURE__ */ import_react63.default.createElement(Login_default, null) })));
 };
 var routes_default = AppRoutes;
 
 // app/javascript/components/Navbar/Navbar.jsx
 var import_react64 = __toESM(require_react());
 var Navbar = () => {
-  const [open, setOpen] = (0, import_react64.useState)(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   const { navigateTo } = useGetNavigate();
+  const isLoggedIn = !!localStorage.getItem("jwt");
+  const handleLogout = () => {
+    localStorage.removeItem("jwt");
+    navigateTo("/")();
+  };
   return /* @__PURE__ */ import_react64.default.createElement("header", { className: "bg-white shadow" }, /* @__PURE__ */ import_react64.default.createElement("div", { className: "container mx-auto flex justify-between items-center p-6" }, /* @__PURE__ */ import_react64.default.createElement(
     "button",
     {
@@ -70579,7 +70656,14 @@ var Navbar = () => {
       className: "text-gray-700 hover:text-indigo-600"
     },
     "About"
-  )), /* @__PURE__ */ import_react64.default.createElement("div", { className: "space-x-4" }, /* @__PURE__ */ import_react64.default.createElement(
+  )), /* @__PURE__ */ import_react64.default.createElement("div", { className: "space-x-4" }, isLoggedIn ? /* @__PURE__ */ import_react64.default.createElement(
+    "button",
+    {
+      className: "bg-red-500 text-white px-4 py-2 rounded-lg",
+      onClick: handleLogout
+    },
+    "Logout"
+  ) : /* @__PURE__ */ import_react64.default.createElement(
     "button",
     {
       className: "bg-indigo-600 text-white px-4 py-2 rounded-lg",

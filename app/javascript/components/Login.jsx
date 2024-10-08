@@ -49,19 +49,18 @@ const Login = () => {
 
   const { mutate: login, isLoading } = useMutation(ApiClient.login, {
     onSuccess: (data) => {
-      console.log("Login successful")
-      navigate('/');
+      localStorage.setItem('jwt', data.token)
+      navigate('/ebooks');
     },
     onError: (error) => {
       console.error("Login failed:", error);
-      alert("login failed");
+      alert("Login Failed");
       navigate('/login');
     },
   });
 
   const onFormSubmit = handleSubmit(async (data) => {
 
-    console.log("handleSubmit(async (data) => {", data)
     const { email, password } = data;
 
     await login({

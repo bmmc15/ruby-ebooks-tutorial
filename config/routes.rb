@@ -6,29 +6,22 @@ Rails.application.routes.draw do
           get "show_pdf"
         end
       end
-
-      get "exercises/index"
-      post "exercises/create"
-      get "/show/:id", to: "exercises#show"
-      delete "/destroy/:id", to: "exercises#destroy"
       resources :users, except: [ :new ]
-      get "login", to: "sessions#new"
-      post "login", to: "sessions#create"
-      delete "logout", to: "sessions#destroy"
       post "purchase", to: "purchase#create"
+
+      post "/users", to: "users#create"
+      get "/me", to: "users#me"
+      post "/auth/login", to: "auth#login"
     end
   end
   root "homepage#index"
 
   get "*path", to: "homepage#index", constraints: ->(req) { req.format.html? && !req.path.start_with?("/images", "/rails/active_storage") }
 
-    # get "signup", to: "users#new"
+  # get "signup", to: "users#new"
 
-
-
-
-    # signup routes
-    # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-    # Defines the root path route ("/")
-    # root "articles#index"
-  end
+  # signup routes
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # Defines the root path route ("/")
+  # root "articles#index"
+end
