@@ -66134,6 +66134,7 @@ var Signup = () => {
   } = useForm({ resolver });
   const { mutate, isLoading } = useMutation(ApiClient_default.registerUser, {
     onSuccess: (data) => {
+      localStorage.setItem("jwt", data.token);
       navigate("/");
     },
     onError: (error2) => {
