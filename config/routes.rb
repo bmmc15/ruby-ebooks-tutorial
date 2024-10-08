@@ -18,10 +18,10 @@ Rails.application.routes.draw do
 
   get "*path", to: "homepage#index", constraints: ->(req) { req.format.html? && !req.path.start_with?("/images", "/rails/active_storage") }
 
-    # get "signup", to: "users#new"
+  # get "signup", to: "users#new"
 
-    # signup routes
-    # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-    # Defines the root path route ("/")
-    # root "articles#index"
+  # signup routes
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # Defines the root path route ("/")
+  # root "articles#index"
 end
