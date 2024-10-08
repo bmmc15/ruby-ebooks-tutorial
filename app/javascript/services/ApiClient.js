@@ -28,15 +28,9 @@ const ApiClient = {
   },
   login: async (loginBody) => {
     try {
-      const response = await apiInstance.post("/auth/login", {
-        auth: {
-          email: "john-doe2@runtime.com",
-          password: "securepassword",
-        },
-      });
+      const response = await apiInstance.post("/auth/login", loginBody);
       const token = response?.data?.token || null;
       if (token) {
-        console.log("Login successful, saving token:", token);
         localStorage.setItem("jwt", token);
       } else {
         console.error("Login response does not contain a valid token");
@@ -67,7 +61,6 @@ const ApiClient = {
 
   placeOrder: async ({ buyerId, ebooksIds }) => {
     try {
-      console.log("PlaceOrder Request");
       const token = localStorage.getItem("jwt");
 
       const response = await apiInstance.post(
@@ -78,7 +71,7 @@ const ApiClient = {
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Inclui o token
+            Authorization: `Bearer ${token}`,
           },
         }
       );

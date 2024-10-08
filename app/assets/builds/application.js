@@ -46311,15 +46311,9 @@ var ApiClient = {
   },
   login: async (loginBody) => {
     try {
-      const response = await apiInstance.post("/auth/login", {
-        auth: {
-          email: "john-doe2@runtime.com",
-          password: "securepassword"
-        }
-      });
+      const response = await apiInstance.post("/auth/login", loginBody);
       const token2 = response?.data?.token || null;
       if (token2) {
-        console.log("Login successful, saving token:", token2);
         localStorage.setItem("jwt", token2);
       } else {
         console.error("Login response does not contain a valid token");
@@ -46346,7 +46340,6 @@ var ApiClient = {
   },
   placeOrder: async ({ buyerId, ebooksIds }) => {
     try {
-      console.log("PlaceOrder Request");
       const token2 = localStorage.getItem("jwt");
       const response = await apiInstance.post(
         "/purchase",
@@ -46357,7 +46350,6 @@ var ApiClient = {
         {
           headers: {
             Authorization: `Bearer ${token2}`
-            // Inclui o token
           }
         }
       );
@@ -67338,18 +67330,16 @@ var Login = () => {
   } = useForm({ resolver: resolver2 });
   const { mutate: login, isLoading } = useMutation(ApiClient_default.login, {
     onSuccess: (data) => {
-      console.log("Login successful: data", data);
       localStorage.setItem("jwt", data.token);
       navigate("/ebooks");
     },
     onError: (error2) => {
       console.error("Login failed:", error2);
-      alert("login failed");
+      alert("Login Failed");
       navigate("/login");
     }
   });
   const onFormSubmit = handleSubmit(async (data) => {
-    console.log("handleSubmit(async (data) => {", data);
     const { email, password } = data;
     await login({
       email,
