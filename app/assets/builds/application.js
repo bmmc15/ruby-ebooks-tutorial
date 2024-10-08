@@ -1688,7 +1688,7 @@ var require_react_development = __commonJS({
           var dispatcher = resolveDispatcher();
           return dispatcher.useRef(initialValue);
         }
-        function useEffect19(create, deps) {
+        function useEffect20(create, deps) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useEffect(create, deps);
         }
@@ -2471,7 +2471,7 @@ var require_react_development = __commonJS({
         exports.useContext = useContext14;
         exports.useDebugValue = useDebugValue2;
         exports.useDeferredValue = useDeferredValue;
-        exports.useEffect = useEffect19;
+        exports.useEffect = useEffect20;
         exports.useId = useId2;
         exports.useImperativeHandle = useImperativeHandle6;
         exports.useInsertionEffect = useInsertionEffect3;
@@ -70631,10 +70631,17 @@ var routes_default = AppRoutes;
 // app/javascript/components/Navbar/Navbar.jsx
 var import_react64 = __toESM(require_react());
 var Navbar = () => {
-  const [open, setOpen] = (0, import_react64.useState)(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   const { navigateTo } = useGetNavigate();
+  const [isLoggedIn, setIsLoggedIn] = (0, import_react64.useState)(false);
+  (0, import_react64.useEffect)(() => {
+    const token2 = localStorage.getItem("jwt");
+    setIsLoggedIn(!!token2);
+  }, []);
+  const handleLogout = () => {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    navigateTo("/")();
+  };
   return /* @__PURE__ */ import_react64.default.createElement("header", { className: "bg-white shadow" }, /* @__PURE__ */ import_react64.default.createElement("div", { className: "container mx-auto flex justify-between items-center p-6" }, /* @__PURE__ */ import_react64.default.createElement(
     "button",
     {
@@ -70663,7 +70670,14 @@ var Navbar = () => {
       className: "text-gray-700 hover:text-indigo-600"
     },
     "About"
-  )), /* @__PURE__ */ import_react64.default.createElement("div", { className: "space-x-4" }, /* @__PURE__ */ import_react64.default.createElement(
+  )), /* @__PURE__ */ import_react64.default.createElement("div", { className: "space-x-4" }, isLoggedIn ? /* @__PURE__ */ import_react64.default.createElement(
+    "button",
+    {
+      className: "bg-red-500 text-white px-4 py-2 rounded-lg",
+      onClick: handleLogout
+    },
+    "Logout"
+  ) : /* @__PURE__ */ import_react64.default.createElement(
     "button",
     {
       className: "bg-indigo-600 text-white px-4 py-2 rounded-lg",
