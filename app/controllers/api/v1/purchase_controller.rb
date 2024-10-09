@@ -3,7 +3,7 @@ class Api::V1::PurchaseController < BaseController
 
     def create
       buyer = current_user
-      
+
       ebooks_ids = purchase_params[:ebooks_ids]
 
       if ebooks_ids.blank?
@@ -35,7 +35,7 @@ class Api::V1::PurchaseController < BaseController
 
       purchases = Purchase.where(buyer_id: buyer.id).includes(:ebook)
 
-      grouped_orders = purchases.group_by { |purchase| purchase.created_at.strftime('%Y-%m-%d %H:%M') }
+      grouped_orders = purchases.group_by { |purchase| purchase.created_at.strftime("%Y-%m-%d %H:%M") }
                                 .map do |datetime, orders|
                                   {
                                     ebooks: orders.map do |order|
@@ -43,7 +43,7 @@ class Api::V1::PurchaseController < BaseController
                                         ebook_id: order.ebook.id,
                                         title: order.ebook.title,
                                         price: order.ebook.price,
-                                        created_at: order.created_at.strftime('%Y-%m-%d %H:%M:%S')
+                                        created_at: order.created_at.strftime("%Y-%m-%d %H:%M:%S")
                                       }
                                     end,
                                     datetime: datetime
