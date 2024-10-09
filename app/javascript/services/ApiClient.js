@@ -80,5 +80,20 @@ const ApiClient = {
       throw err;
     }
   },
+  purchaseEbooks: async () => {
+    try {
+      const token = localStorage.getItem("jwt");
+
+      const response = await apiInstance.get("/purchases", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return response?.data;
+    } catch (err) {
+      throw err;
+    }
+  },
 };
 export default ApiClient;
