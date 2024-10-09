@@ -1,5 +1,6 @@
 class Api::V1::EbooksController < BaseController
   before_action :authorized
+  after_action :track_action
 
   def index
     ebooks = Ebook.all.order(created_at: :desc)
@@ -71,5 +72,9 @@ class Api::V1::EbooksController < BaseController
   private
   def ebook_params
     params.permit(:title, :description, :price, :status, :seller_id, :seller_fee, :pdf, :ebook_cover)
+  end
+
+  def track_action
+    ahoy.track "ebooks actions", request.path_parameters
   end
 end

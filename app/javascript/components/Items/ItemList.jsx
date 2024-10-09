@@ -12,7 +12,8 @@ import Fab from "@mui/material/Fab";
 import { FaCartShopping } from "react-icons/fa6";
 
 import { EBOOKS_QUERY_KEY } from "../../utils/constants";
-import { ApiClient } from '../../services'
+import { ApiClient } from "../../services";
+import ahoy from "ahoy.js";
 
 const items = [
   {
@@ -83,6 +84,7 @@ const ItemList = () => {
   const { isLoading } = useQuery(EBOOKS_QUERY_KEY, ApiClient.fetchEbooks, {
     onSuccess: (data) => {
       console.log("First Rails useQuery sucessful:", data);
+      ahoy.track("Ebooks items", { data });
       setItems(data);
     },
   });

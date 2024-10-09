@@ -1000,27 +1000,27 @@ var require_react_development = __commonJS({
         {
           didWarnAboutStringRefs = {};
         }
-        function hasValidRef(config2) {
+        function hasValidRef(config3) {
           {
-            if (hasOwnProperty2.call(config2, "ref")) {
-              var getter = Object.getOwnPropertyDescriptor(config2, "ref").get;
+            if (hasOwnProperty2.call(config3, "ref")) {
+              var getter = Object.getOwnPropertyDescriptor(config3, "ref").get;
               if (getter && getter.isReactWarning) {
                 return false;
               }
             }
           }
-          return config2.ref !== void 0;
+          return config3.ref !== void 0;
         }
-        function hasValidKey(config2) {
+        function hasValidKey(config3) {
           {
-            if (hasOwnProperty2.call(config2, "key")) {
-              var getter = Object.getOwnPropertyDescriptor(config2, "key").get;
+            if (hasOwnProperty2.call(config3, "key")) {
+              var getter = Object.getOwnPropertyDescriptor(config3, "key").get;
               if (getter && getter.isReactWarning) {
                 return false;
               }
             }
           }
-          return config2.key !== void 0;
+          return config3.key !== void 0;
         }
         function defineKeyPropWarningGetter(props, displayName) {
           var warnAboutAccessingKey = function() {
@@ -1052,12 +1052,12 @@ var require_react_development = __commonJS({
             configurable: true
           });
         }
-        function warnIfStringRefCannotBeAutoConverted(config2) {
+        function warnIfStringRefCannotBeAutoConverted(config3) {
           {
-            if (typeof config2.ref === "string" && ReactCurrentOwner.current && config2.__self && ReactCurrentOwner.current.stateNode !== config2.__self) {
+            if (typeof config3.ref === "string" && ReactCurrentOwner.current && config3.__self && ReactCurrentOwner.current.stateNode !== config3.__self) {
               var componentName = getComponentNameFromType(ReactCurrentOwner.current.type);
               if (!didWarnAboutStringRefs[componentName]) {
-                error2('Component "%s" contains the string ref "%s". Support for string refs will be removed in a future major release. This case cannot be automatically converted to an arrow function. We ask you to manually fix this case by using useRef() or createRef() instead. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-string-ref', componentName, config2.ref);
+                error2('Component "%s" contains the string ref "%s". Support for string refs will be removed in a future major release. This case cannot be automatically converted to an arrow function. We ask you to manually fix this case by using useRef() or createRef() instead. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-string-ref', componentName, config3.ref);
                 didWarnAboutStringRefs[componentName] = true;
               }
             }
@@ -1102,31 +1102,31 @@ var require_react_development = __commonJS({
           }
           return element;
         };
-        function createElement8(type, config2, children) {
+        function createElement8(type, config3, children) {
           var propName;
           var props = {};
           var key = null;
           var ref = null;
           var self2 = null;
           var source = null;
-          if (config2 != null) {
-            if (hasValidRef(config2)) {
-              ref = config2.ref;
+          if (config3 != null) {
+            if (hasValidRef(config3)) {
+              ref = config3.ref;
               {
-                warnIfStringRefCannotBeAutoConverted(config2);
+                warnIfStringRefCannotBeAutoConverted(config3);
               }
             }
-            if (hasValidKey(config2)) {
+            if (hasValidKey(config3)) {
               {
-                checkKeyStringCoercion(config2.key);
+                checkKeyStringCoercion(config3.key);
               }
-              key = "" + config2.key;
+              key = "" + config3.key;
             }
-            self2 = config2.__self === void 0 ? null : config2.__self;
-            source = config2.__source === void 0 ? null : config2.__source;
-            for (propName in config2) {
-              if (hasOwnProperty2.call(config2, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
-                props[propName] = config2[propName];
+            self2 = config3.__self === void 0 ? null : config3.__self;
+            source = config3.__source === void 0 ? null : config3.__source;
+            for (propName in config3) {
+              if (hasOwnProperty2.call(config3, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
+                props[propName] = config3[propName];
               }
             }
           }
@@ -1170,7 +1170,7 @@ var require_react_development = __commonJS({
           var newElement = ReactElement(oldElement.type, newKey, oldElement.ref, oldElement._self, oldElement._source, oldElement._owner, oldElement.props);
           return newElement;
         }
-        function cloneElement13(element, config2, children) {
+        function cloneElement13(element, config3, children) {
           if (element === null || element === void 0) {
             throw new Error("React.cloneElement(...): The argument must be a React element, but you passed " + element + ".");
           }
@@ -1181,27 +1181,27 @@ var require_react_development = __commonJS({
           var self2 = element._self;
           var source = element._source;
           var owner = element._owner;
-          if (config2 != null) {
-            if (hasValidRef(config2)) {
-              ref = config2.ref;
+          if (config3 != null) {
+            if (hasValidRef(config3)) {
+              ref = config3.ref;
               owner = ReactCurrentOwner.current;
             }
-            if (hasValidKey(config2)) {
+            if (hasValidKey(config3)) {
               {
-                checkKeyStringCoercion(config2.key);
+                checkKeyStringCoercion(config3.key);
               }
-              key = "" + config2.key;
+              key = "" + config3.key;
             }
             var defaultProps2;
             if (element.type && element.type.defaultProps) {
               defaultProps2 = element.type.defaultProps;
             }
-            for (propName in config2) {
-              if (hasOwnProperty2.call(config2, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
-                if (config2[propName] === void 0 && defaultProps2 !== void 0) {
+            for (propName in config3) {
+              if (hasOwnProperty2.call(config3, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
+                if (config3[propName] === void 0 && defaultProps2 !== void 0) {
                   props[propName] = defaultProps2[propName];
                 } else {
-                  props[propName] = config2[propName];
+                  props[propName] = config3[propName];
                 }
               }
             }
@@ -1223,7 +1223,7 @@ var require_react_development = __commonJS({
         }
         var SEPARATOR = ".";
         var SUBSEPARATOR = ":";
-        function escape(key) {
+        function escape2(key) {
           var escapeRegex = /[=:]/g;
           var escaperLookup = {
             "=": "=0",
@@ -1244,7 +1244,7 @@ var require_react_development = __commonJS({
             {
               checkKeyStringCoercion(element.key);
             }
-            return escape("" + element.key);
+            return escape2("" + element.key);
           }
           return index.toString(36);
         }
@@ -2310,10 +2310,10 @@ var require_react_development = __commonJS({
               ReactCurrentActQueue.isBatchingLegacy = true;
               result = callback();
               if (!prevIsBatchingLegacy && ReactCurrentActQueue.didScheduleLegacyUpdate) {
-                var queue = ReactCurrentActQueue.current;
-                if (queue !== null) {
+                var queue2 = ReactCurrentActQueue.current;
+                if (queue2 !== null) {
                   ReactCurrentActQueue.didScheduleLegacyUpdate = false;
-                  flushActQueue(queue);
+                  flushActQueue(queue2);
                 }
               }
             } catch (error3) {
@@ -2394,12 +2394,12 @@ var require_react_development = __commonJS({
         }
         function recursivelyFlushAsyncActWork(returnValue, resolve, reject) {
           {
-            var queue = ReactCurrentActQueue.current;
-            if (queue !== null) {
+            var queue2 = ReactCurrentActQueue.current;
+            if (queue2 !== null) {
               try {
-                flushActQueue(queue);
+                flushActQueue(queue2);
                 enqueueTask(function() {
-                  if (queue.length === 0) {
+                  if (queue2.length === 0) {
                     ReactCurrentActQueue.current = null;
                     resolve(returnValue);
                   } else {
@@ -2415,21 +2415,21 @@ var require_react_development = __commonJS({
           }
         }
         var isFlushing = false;
-        function flushActQueue(queue) {
+        function flushActQueue(queue2) {
           {
             if (!isFlushing) {
               isFlushing = true;
               var i10 = 0;
               try {
-                for (; i10 < queue.length; i10++) {
-                  var callback = queue[i10];
+                for (; i10 < queue2.length; i10++) {
+                  var callback = queue2[i10];
                   do {
                     callback = callback(true);
                   } while (callback !== null);
                 }
-                queue.length = 0;
+                queue2.length = 0;
               } catch (error3) {
-                queue = queue.slice(i10 + 1);
+                queue2 = queue2.slice(i10 + 1);
                 throw error3;
               } finally {
                 isFlushing = false;
@@ -4381,7 +4381,7 @@ var require_react_dom_development = __commonJS({
           };
           return tracker;
         }
-        function track(node2) {
+        function track2(node2) {
           if (getTracker(node2)) {
             return;
           }
@@ -4987,8 +4987,8 @@ var require_react_dom_development = __commonJS({
           });
         });
         function dangerousStyleValue(name, value, isCustomProperty3) {
-          var isEmpty4 = value == null || typeof value === "boolean" || value === "";
-          if (isEmpty4) {
+          var isEmpty5 = value == null || typeof value === "boolean" || value === "";
+          if (isEmpty5) {
             return "";
           }
           if (!isCustomProperty3 && typeof value === "number" && value !== 0 && !(isUnitlessNumber.hasOwnProperty(name) && isUnitlessNumber[name])) {
@@ -6944,14 +6944,14 @@ var require_react_dom_development = __commonJS({
           16
         );
         var clz32 = Math.clz32 ? Math.clz32 : clz32Fallback;
-        var log = Math.log;
+        var log2 = Math.log;
         var LN2 = Math.LN2;
         function clz32Fallback(x4) {
           var asUint = x4 >>> 0;
           if (asUint === 0) {
             return 32;
           }
-          return 31 - (log(asUint) / LN2 | 0) | 0;
+          return 31 - (log2(asUint) / LN2 | 0) | 0;
         }
         var TotalLanes = 31;
         var NoLanes = (
@@ -10125,11 +10125,11 @@ var require_react_dom_development = __commonJS({
           setInitialDOMProperties(tag, domElement, rootContainerElement, props, isCustomComponentTag);
           switch (tag) {
             case "input":
-              track(domElement);
+              track2(domElement);
               postMountWrapper(domElement, rawProps, false);
               break;
             case "textarea":
-              track(domElement);
+              track2(domElement);
               postMountWrapper$3(domElement);
               break;
             case "option":
@@ -10483,11 +10483,11 @@ var require_react_dom_development = __commonJS({
           }
           switch (tag) {
             case "input":
-              track(domElement);
+              track2(domElement);
               postMountWrapper(domElement, rawProps, true);
               break;
             case "textarea":
-              track(domElement);
+              track2(domElement);
               postMountWrapper$3(domElement);
               break;
             case "select":
@@ -11656,10 +11656,10 @@ var require_react_dom_development = __commonJS({
             var previousUpdatePriority = getCurrentUpdatePriority();
             try {
               var isSync = true;
-              var queue = syncQueue;
+              var queue2 = syncQueue;
               setCurrentUpdatePriority(DiscreteEventPriority);
-              for (; i10 < queue.length; i10++) {
-                var callback = queue[i10];
+              for (; i10 < queue2.length; i10++) {
+                var callback = queue2[i10];
                 do {
                   callback = callback(isSync);
                 } while (callback !== null);
@@ -13350,66 +13350,66 @@ var require_react_dom_development = __commonJS({
           return value;
         }
         var concurrentQueues = null;
-        function pushConcurrentUpdateQueue(queue) {
+        function pushConcurrentUpdateQueue(queue2) {
           if (concurrentQueues === null) {
-            concurrentQueues = [queue];
+            concurrentQueues = [queue2];
           } else {
-            concurrentQueues.push(queue);
+            concurrentQueues.push(queue2);
           }
         }
         function finishQueueingConcurrentUpdates() {
           if (concurrentQueues !== null) {
             for (var i10 = 0; i10 < concurrentQueues.length; i10++) {
-              var queue = concurrentQueues[i10];
-              var lastInterleavedUpdate = queue.interleaved;
+              var queue2 = concurrentQueues[i10];
+              var lastInterleavedUpdate = queue2.interleaved;
               if (lastInterleavedUpdate !== null) {
-                queue.interleaved = null;
+                queue2.interleaved = null;
                 var firstInterleavedUpdate = lastInterleavedUpdate.next;
-                var lastPendingUpdate = queue.pending;
+                var lastPendingUpdate = queue2.pending;
                 if (lastPendingUpdate !== null) {
                   var firstPendingUpdate = lastPendingUpdate.next;
                   lastPendingUpdate.next = firstInterleavedUpdate;
                   lastInterleavedUpdate.next = firstPendingUpdate;
                 }
-                queue.pending = lastInterleavedUpdate;
+                queue2.pending = lastInterleavedUpdate;
               }
             }
             concurrentQueues = null;
           }
         }
-        function enqueueConcurrentHookUpdate(fiber, queue, update, lane) {
-          var interleaved = queue.interleaved;
+        function enqueueConcurrentHookUpdate(fiber, queue2, update, lane) {
+          var interleaved = queue2.interleaved;
           if (interleaved === null) {
             update.next = update;
-            pushConcurrentUpdateQueue(queue);
+            pushConcurrentUpdateQueue(queue2);
           } else {
             update.next = interleaved.next;
             interleaved.next = update;
           }
-          queue.interleaved = update;
+          queue2.interleaved = update;
           return markUpdateLaneFromFiberToRoot(fiber, lane);
         }
-        function enqueueConcurrentHookUpdateAndEagerlyBailout(fiber, queue, update, lane) {
-          var interleaved = queue.interleaved;
+        function enqueueConcurrentHookUpdateAndEagerlyBailout(fiber, queue2, update, lane) {
+          var interleaved = queue2.interleaved;
           if (interleaved === null) {
             update.next = update;
-            pushConcurrentUpdateQueue(queue);
+            pushConcurrentUpdateQueue(queue2);
           } else {
             update.next = interleaved.next;
             interleaved.next = update;
           }
-          queue.interleaved = update;
+          queue2.interleaved = update;
         }
-        function enqueueConcurrentClassUpdate(fiber, queue, update, lane) {
-          var interleaved = queue.interleaved;
+        function enqueueConcurrentClassUpdate(fiber, queue2, update, lane) {
+          var interleaved = queue2.interleaved;
           if (interleaved === null) {
             update.next = update;
-            pushConcurrentUpdateQueue(queue);
+            pushConcurrentUpdateQueue(queue2);
           } else {
             update.next = interleaved.next;
             interleaved.next = update;
           }
-          queue.interleaved = update;
+          queue2.interleaved = update;
           return markUpdateLaneFromFiberToRoot(fiber, lane);
         }
         function enqueueConcurrentRenderForLane(fiber, lane) {
@@ -13463,7 +13463,7 @@ var require_react_dom_development = __commonJS({
           currentlyProcessingQueue = null;
         }
         function initializeUpdateQueue(fiber) {
-          var queue = {
+          var queue2 = {
             baseState: fiber.memoizedState,
             firstBaseUpdate: null,
             lastBaseUpdate: null,
@@ -13474,12 +13474,12 @@ var require_react_dom_development = __commonJS({
             },
             effects: null
           };
-          fiber.updateQueue = queue;
+          fiber.updateQueue = queue2;
         }
         function cloneUpdateQueue(current2, workInProgress2) {
-          var queue = workInProgress2.updateQueue;
+          var queue2 = workInProgress2.updateQueue;
           var currentQueue = current2.updateQueue;
-          if (queue === currentQueue) {
+          if (queue2 === currentQueue) {
             var clone = {
               baseState: currentQueue.baseState,
               firstBaseUpdate: currentQueue.firstBaseUpdate,
@@ -13542,14 +13542,14 @@ var require_react_dom_development = __commonJS({
           }
         }
         function enqueueCapturedUpdate(workInProgress2, capturedUpdate) {
-          var queue = workInProgress2.updateQueue;
+          var queue2 = workInProgress2.updateQueue;
           var current2 = workInProgress2.alternate;
           if (current2 !== null) {
             var currentQueue = current2.updateQueue;
-            if (queue === currentQueue) {
+            if (queue2 === currentQueue) {
               var newFirst = null;
               var newLast = null;
-              var firstBaseUpdate = queue.firstBaseUpdate;
+              var firstBaseUpdate = queue2.firstBaseUpdate;
               if (firstBaseUpdate !== null) {
                 var update = firstBaseUpdate;
                 do {
@@ -13578,26 +13578,26 @@ var require_react_dom_development = __commonJS({
               } else {
                 newFirst = newLast = capturedUpdate;
               }
-              queue = {
+              queue2 = {
                 baseState: currentQueue.baseState,
                 firstBaseUpdate: newFirst,
                 lastBaseUpdate: newLast,
                 shared: currentQueue.shared,
                 effects: currentQueue.effects
               };
-              workInProgress2.updateQueue = queue;
+              workInProgress2.updateQueue = queue2;
               return;
             }
           }
-          var lastBaseUpdate = queue.lastBaseUpdate;
+          var lastBaseUpdate = queue2.lastBaseUpdate;
           if (lastBaseUpdate === null) {
-            queue.firstBaseUpdate = capturedUpdate;
+            queue2.firstBaseUpdate = capturedUpdate;
           } else {
             lastBaseUpdate.next = capturedUpdate;
           }
-          queue.lastBaseUpdate = capturedUpdate;
+          queue2.lastBaseUpdate = capturedUpdate;
         }
-        function getStateFromUpdate(workInProgress2, queue, update, prevState, nextProps, instance) {
+        function getStateFromUpdate(workInProgress2, queue2, update, prevState, nextProps, instance) {
           switch (update.tag) {
             case ReplaceState: {
               var payload = update.payload;
@@ -13660,16 +13660,16 @@ var require_react_dom_development = __commonJS({
           return prevState;
         }
         function processUpdateQueue(workInProgress2, props, instance, renderLanes2) {
-          var queue = workInProgress2.updateQueue;
+          var queue2 = workInProgress2.updateQueue;
           hasForceUpdate = false;
           {
-            currentlyProcessingQueue = queue.shared;
+            currentlyProcessingQueue = queue2.shared;
           }
-          var firstBaseUpdate = queue.firstBaseUpdate;
-          var lastBaseUpdate = queue.lastBaseUpdate;
-          var pendingQueue = queue.shared.pending;
+          var firstBaseUpdate = queue2.firstBaseUpdate;
+          var lastBaseUpdate = queue2.lastBaseUpdate;
+          var pendingQueue = queue2.shared.pending;
           if (pendingQueue !== null) {
-            queue.shared.pending = null;
+            queue2.shared.pending = null;
             var lastPendingUpdate = pendingQueue;
             var firstPendingUpdate = lastPendingUpdate.next;
             lastPendingUpdate.next = null;
@@ -13694,7 +13694,7 @@ var require_react_dom_development = __commonJS({
             }
           }
           if (firstBaseUpdate !== null) {
-            var newState = queue.baseState;
+            var newState = queue2.baseState;
             var newLanes = NoLanes;
             var newBaseState = null;
             var newFirstBaseUpdate = null;
@@ -13734,15 +13734,15 @@ var require_react_dom_development = __commonJS({
                   };
                   newLastBaseUpdate = newLastBaseUpdate.next = _clone;
                 }
-                newState = getStateFromUpdate(workInProgress2, queue, update, newState, props, instance);
+                newState = getStateFromUpdate(workInProgress2, queue2, update, newState, props, instance);
                 var callback = update.callback;
                 if (callback !== null && // If the update was already committed, we should not queue its
                 // callback again.
                 update.lane !== NoLane) {
                   workInProgress2.flags |= Callback;
-                  var effects = queue.effects;
+                  var effects = queue2.effects;
                   if (effects === null) {
-                    queue.effects = [update];
+                    queue2.effects = [update];
                   } else {
                     effects.push(update);
                   }
@@ -13750,7 +13750,7 @@ var require_react_dom_development = __commonJS({
               }
               update = update.next;
               if (update === null) {
-                pendingQueue = queue.shared.pending;
+                pendingQueue = queue2.shared.pending;
                 if (pendingQueue === null) {
                   break;
                 } else {
@@ -13758,18 +13758,18 @@ var require_react_dom_development = __commonJS({
                   var _firstPendingUpdate = _lastPendingUpdate.next;
                   _lastPendingUpdate.next = null;
                   update = _firstPendingUpdate;
-                  queue.lastBaseUpdate = _lastPendingUpdate;
-                  queue.shared.pending = null;
+                  queue2.lastBaseUpdate = _lastPendingUpdate;
+                  queue2.shared.pending = null;
                 }
               }
             } while (true);
             if (newLastBaseUpdate === null) {
               newBaseState = newState;
             }
-            queue.baseState = newBaseState;
-            queue.firstBaseUpdate = newFirstBaseUpdate;
-            queue.lastBaseUpdate = newLastBaseUpdate;
-            var lastInterleaved = queue.shared.interleaved;
+            queue2.baseState = newBaseState;
+            queue2.firstBaseUpdate = newFirstBaseUpdate;
+            queue2.lastBaseUpdate = newLastBaseUpdate;
+            var lastInterleaved = queue2.shared.interleaved;
             if (lastInterleaved !== null) {
               var interleaved = lastInterleaved;
               do {
@@ -13777,7 +13777,7 @@ var require_react_dom_development = __commonJS({
                 interleaved = interleaved.next;
               } while (interleaved !== lastInterleaved);
             } else if (firstBaseUpdate === null) {
-              queue.shared.lanes = NoLanes;
+              queue2.shared.lanes = NoLanes;
             }
             markSkippedUpdateLanes(newLanes);
             workInProgress2.lanes = newLanes;
@@ -14161,9 +14161,9 @@ var require_react_dom_development = __commonJS({
           if (didScheduleRenderPhaseUpdate) {
             var hook = currentlyRenderingFiber$1.memoizedState;
             while (hook !== null) {
-              var queue = hook.queue;
-              if (queue !== null) {
-                queue.pending = null;
+              var queue2 = hook.queue;
+              if (queue2 !== null) {
+                queue2.pending = null;
               }
               hook = hook.next;
             }
@@ -14257,7 +14257,7 @@ var require_react_dom_development = __commonJS({
             initialState = initialArg;
           }
           hook.memoizedState = hook.baseState = initialState;
-          var queue = {
+          var queue2 = {
             pending: null,
             interleaved: null,
             lanes: NoLanes,
@@ -14265,20 +14265,20 @@ var require_react_dom_development = __commonJS({
             lastRenderedReducer: reducer2,
             lastRenderedState: initialState
           };
-          hook.queue = queue;
-          var dispatch2 = queue.dispatch = dispatchReducerAction.bind(null, currentlyRenderingFiber$1, queue);
+          hook.queue = queue2;
+          var dispatch2 = queue2.dispatch = dispatchReducerAction.bind(null, currentlyRenderingFiber$1, queue2);
           return [hook.memoizedState, dispatch2];
         }
         function updateReducer(reducer2, initialArg, init) {
           var hook = updateWorkInProgressHook();
-          var queue = hook.queue;
-          if (queue === null) {
+          var queue2 = hook.queue;
+          if (queue2 === null) {
             throw new Error("Should have a queue. This is likely a bug in React. Please file an issue.");
           }
-          queue.lastRenderedReducer = reducer2;
+          queue2.lastRenderedReducer = reducer2;
           var current2 = currentHook;
           var baseQueue = current2.baseQueue;
-          var pendingQueue = queue.pending;
+          var pendingQueue = queue2.pending;
           if (pendingQueue !== null) {
             if (baseQueue !== null) {
               var baseFirst = baseQueue.next;
@@ -14292,7 +14292,7 @@ var require_react_dom_development = __commonJS({
               }
             }
             current2.baseQueue = baseQueue = pendingQueue;
-            queue.pending = null;
+            queue2.pending = null;
           }
           if (baseQueue !== null) {
             var first = baseQueue.next;
@@ -14353,9 +14353,9 @@ var require_react_dom_development = __commonJS({
             hook.memoizedState = newState;
             hook.baseState = newBaseState;
             hook.baseQueue = newBaseQueueLast;
-            queue.lastRenderedState = newState;
+            queue2.lastRenderedState = newState;
           }
-          var lastInterleaved = queue.interleaved;
+          var lastInterleaved = queue2.interleaved;
           if (lastInterleaved !== null) {
             var interleaved = lastInterleaved;
             do {
@@ -14365,23 +14365,23 @@ var require_react_dom_development = __commonJS({
               interleaved = interleaved.next;
             } while (interleaved !== lastInterleaved);
           } else if (baseQueue === null) {
-            queue.lanes = NoLanes;
+            queue2.lanes = NoLanes;
           }
-          var dispatch2 = queue.dispatch;
+          var dispatch2 = queue2.dispatch;
           return [hook.memoizedState, dispatch2];
         }
         function rerenderReducer(reducer2, initialArg, init) {
           var hook = updateWorkInProgressHook();
-          var queue = hook.queue;
-          if (queue === null) {
+          var queue2 = hook.queue;
+          if (queue2 === null) {
             throw new Error("Should have a queue. This is likely a bug in React. Please file an issue.");
           }
-          queue.lastRenderedReducer = reducer2;
-          var dispatch2 = queue.dispatch;
-          var lastRenderPhaseUpdate = queue.pending;
+          queue2.lastRenderedReducer = reducer2;
+          var dispatch2 = queue2.dispatch;
+          var lastRenderPhaseUpdate = queue2.pending;
           var newState = hook.memoizedState;
           if (lastRenderPhaseUpdate !== null) {
-            queue.pending = null;
+            queue2.pending = null;
             var firstRenderPhaseUpdate = lastRenderPhaseUpdate.next;
             var update = firstRenderPhaseUpdate;
             do {
@@ -14396,7 +14396,7 @@ var require_react_dom_development = __commonJS({
             if (hook.baseQueue === null) {
               hook.baseState = newState;
             }
-            queue.lastRenderedState = newState;
+            queue2.lastRenderedState = newState;
           }
           return [newState, dispatch2];
         }
@@ -14551,7 +14551,7 @@ var require_react_dom_development = __commonJS({
             initialState = initialState();
           }
           hook.memoizedState = hook.baseState = initialState;
-          var queue = {
+          var queue2 = {
             pending: null,
             interleaved: null,
             lanes: NoLanes,
@@ -14559,8 +14559,8 @@ var require_react_dom_development = __commonJS({
             lastRenderedReducer: basicStateReducer,
             lastRenderedState: initialState
           };
-          hook.queue = queue;
-          var dispatch2 = queue.dispatch = dispatchSetState.bind(null, currentlyRenderingFiber$1, queue);
+          hook.queue = queue2;
+          var dispatch2 = queue2.dispatch = dispatchSetState.bind(null, currentlyRenderingFiber$1, queue2);
           return [hook.memoizedState, dispatch2];
         }
         function updateState(initialState) {
@@ -14874,7 +14874,7 @@ var require_react_dom_development = __commonJS({
           var id = hook.memoizedState;
           return id;
         }
-        function dispatchReducerAction(fiber, queue, action) {
+        function dispatchReducerAction(fiber, queue2, action) {
           {
             if (typeof arguments[3] === "function") {
               error2("State updates from the useState() and useReducer() Hooks don't support the second callback argument. To execute a side effect after rendering, declare it in the component body with useEffect().");
@@ -14889,18 +14889,18 @@ var require_react_dom_development = __commonJS({
             next: null
           };
           if (isRenderPhaseUpdate(fiber)) {
-            enqueueRenderPhaseUpdate(queue, update);
+            enqueueRenderPhaseUpdate(queue2, update);
           } else {
-            var root2 = enqueueConcurrentHookUpdate(fiber, queue, update, lane);
+            var root2 = enqueueConcurrentHookUpdate(fiber, queue2, update, lane);
             if (root2 !== null) {
               var eventTime = requestEventTime();
               scheduleUpdateOnFiber(root2, fiber, lane, eventTime);
-              entangleTransitionUpdate(root2, queue, lane);
+              entangleTransitionUpdate(root2, queue2, lane);
             }
           }
           markUpdateInDevTools(fiber, lane);
         }
-        function dispatchSetState(fiber, queue, action) {
+        function dispatchSetState(fiber, queue2, action) {
           {
             if (typeof arguments[3] === "function") {
               error2("State updates from the useState() and useReducer() Hooks don't support the second callback argument. To execute a side effect after rendering, declare it in the component body with useEffect().");
@@ -14915,11 +14915,11 @@ var require_react_dom_development = __commonJS({
             next: null
           };
           if (isRenderPhaseUpdate(fiber)) {
-            enqueueRenderPhaseUpdate(queue, update);
+            enqueueRenderPhaseUpdate(queue2, update);
           } else {
             var alternate = fiber.alternate;
             if (fiber.lanes === NoLanes && (alternate === null || alternate.lanes === NoLanes)) {
-              var lastRenderedReducer = queue.lastRenderedReducer;
+              var lastRenderedReducer = queue2.lastRenderedReducer;
               if (lastRenderedReducer !== null) {
                 var prevDispatcher;
                 {
@@ -14927,12 +14927,12 @@ var require_react_dom_development = __commonJS({
                   ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
                 }
                 try {
-                  var currentState = queue.lastRenderedState;
+                  var currentState = queue2.lastRenderedState;
                   var eagerState = lastRenderedReducer(currentState, action);
                   update.hasEagerState = true;
                   update.eagerState = eagerState;
                   if (objectIs(eagerState, currentState)) {
-                    enqueueConcurrentHookUpdateAndEagerlyBailout(fiber, queue, update, lane);
+                    enqueueConcurrentHookUpdateAndEagerlyBailout(fiber, queue2, update, lane);
                     return;
                   }
                 } catch (error3) {
@@ -14943,11 +14943,11 @@ var require_react_dom_development = __commonJS({
                 }
               }
             }
-            var root2 = enqueueConcurrentHookUpdate(fiber, queue, update, lane);
+            var root2 = enqueueConcurrentHookUpdate(fiber, queue2, update, lane);
             if (root2 !== null) {
               var eventTime = requestEventTime();
               scheduleUpdateOnFiber(root2, fiber, lane, eventTime);
-              entangleTransitionUpdate(root2, queue, lane);
+              entangleTransitionUpdate(root2, queue2, lane);
             }
           }
           markUpdateInDevTools(fiber, lane);
@@ -14956,23 +14956,23 @@ var require_react_dom_development = __commonJS({
           var alternate = fiber.alternate;
           return fiber === currentlyRenderingFiber$1 || alternate !== null && alternate === currentlyRenderingFiber$1;
         }
-        function enqueueRenderPhaseUpdate(queue, update) {
+        function enqueueRenderPhaseUpdate(queue2, update) {
           didScheduleRenderPhaseUpdateDuringThisPass = didScheduleRenderPhaseUpdate = true;
-          var pending = queue.pending;
+          var pending = queue2.pending;
           if (pending === null) {
             update.next = update;
           } else {
             update.next = pending.next;
             pending.next = update;
           }
-          queue.pending = update;
+          queue2.pending = update;
         }
-        function entangleTransitionUpdate(root2, queue, lane) {
+        function entangleTransitionUpdate(root2, queue2, lane) {
           if (isTransitionLane(lane)) {
-            var queueLanes = queue.lanes;
+            var queueLanes = queue2.lanes;
             queueLanes = intersectLanes(queueLanes, root2.pendingLanes);
             var newQueueLanes = mergeLanes(queueLanes, lane);
-            queue.lanes = newQueueLanes;
+            queue2.lanes = newQueueLanes;
             markRootEntangled(root2, newQueueLanes);
           }
         }
@@ -25533,34 +25533,34 @@ var require_react_jsx_runtime_development = __commonJS({
         {
           didWarnAboutStringRefs = {};
         }
-        function hasValidRef(config2) {
+        function hasValidRef(config3) {
           {
-            if (hasOwnProperty2.call(config2, "ref")) {
-              var getter = Object.getOwnPropertyDescriptor(config2, "ref").get;
+            if (hasOwnProperty2.call(config3, "ref")) {
+              var getter = Object.getOwnPropertyDescriptor(config3, "ref").get;
               if (getter && getter.isReactWarning) {
                 return false;
               }
             }
           }
-          return config2.ref !== void 0;
+          return config3.ref !== void 0;
         }
-        function hasValidKey(config2) {
+        function hasValidKey(config3) {
           {
-            if (hasOwnProperty2.call(config2, "key")) {
-              var getter = Object.getOwnPropertyDescriptor(config2, "key").get;
+            if (hasOwnProperty2.call(config3, "key")) {
+              var getter = Object.getOwnPropertyDescriptor(config3, "key").get;
               if (getter && getter.isReactWarning) {
                 return false;
               }
             }
           }
-          return config2.key !== void 0;
+          return config3.key !== void 0;
         }
-        function warnIfStringRefCannotBeAutoConverted(config2, self2) {
+        function warnIfStringRefCannotBeAutoConverted(config3, self2) {
           {
-            if (typeof config2.ref === "string" && ReactCurrentOwner.current && self2 && ReactCurrentOwner.current.stateNode !== self2) {
+            if (typeof config3.ref === "string" && ReactCurrentOwner.current && self2 && ReactCurrentOwner.current.stateNode !== self2) {
               var componentName = getComponentNameFromType(ReactCurrentOwner.current.type);
               if (!didWarnAboutStringRefs[componentName]) {
-                error2('Component "%s" contains the string ref "%s". Support for string refs will be removed in a future major release. This case cannot be automatically converted to an arrow function. We ask you to manually fix this case by using useRef() or createRef() instead. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-string-ref', getComponentNameFromType(ReactCurrentOwner.current.type), config2.ref);
+                error2('Component "%s" contains the string ref "%s". Support for string refs will be removed in a future major release. This case cannot be automatically converted to an arrow function. We ask you to manually fix this case by using useRef() or createRef() instead. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-string-ref', getComponentNameFromType(ReactCurrentOwner.current.type), config3.ref);
                 didWarnAboutStringRefs[componentName] = true;
               }
             }
@@ -25635,7 +25635,7 @@ var require_react_jsx_runtime_development = __commonJS({
           }
           return element;
         };
-        function jsxDEV(type, config2, maybeKey, source, self2) {
+        function jsxDEV(type, config3, maybeKey, source, self2) {
           {
             var propName;
             var props = {};
@@ -25647,19 +25647,19 @@ var require_react_jsx_runtime_development = __commonJS({
               }
               key = "" + maybeKey;
             }
-            if (hasValidKey(config2)) {
+            if (hasValidKey(config3)) {
               {
-                checkKeyStringCoercion(config2.key);
+                checkKeyStringCoercion(config3.key);
               }
-              key = "" + config2.key;
+              key = "" + config3.key;
             }
-            if (hasValidRef(config2)) {
-              ref = config2.ref;
-              warnIfStringRefCannotBeAutoConverted(config2, self2);
+            if (hasValidRef(config3)) {
+              ref = config3.ref;
+              warnIfStringRefCannotBeAutoConverted(config3, self2);
             }
-            for (propName in config2) {
-              if (hasOwnProperty2.call(config2, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
-                props[propName] = config2[propName];
+            for (propName in config3) {
+              if (hasOwnProperty2.call(config3, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
+                props[propName] = config3[propName];
               }
             }
             if (type && type.defaultProps) {
@@ -26857,8 +26857,8 @@ var submitter = {
 };
 var Config = class {
   #submitter = null;
-  constructor(config2) {
-    Object.assign(this, config2);
+  constructor(config3) {
+    Object.assign(this, config3);
   }
   get submitter() {
     return this.#submitter;
@@ -28017,7 +28017,7 @@ var Idiomorph = /* @__PURE__ */ function() {
       afterHeadMorphed: noOp4
     }
   };
-  function morph(oldNode, newContent, config2 = {}) {
+  function morph(oldNode, newContent, config3 = {}) {
     if (oldNode instanceof Document) {
       oldNode = oldNode.documentElement;
     }
@@ -28025,7 +28025,7 @@ var Idiomorph = /* @__PURE__ */ function() {
       newContent = parseContent(newContent);
     }
     let normalizedContent = normalizeContent(newContent);
-    let ctx = createMorphContext(oldNode, normalizedContent, config2);
+    let ctx = createMorphContext(oldNode, normalizedContent, config3);
     return morphNormalizedContent(oldNode, normalizedContent, ctx);
   }
   function morphNormalizedContent(oldNode, normalizedNewContent, ctx) {
@@ -28292,31 +28292,31 @@ var Idiomorph = /* @__PURE__ */ function() {
   }
   function noOp4() {
   }
-  function mergeDefaults(config2) {
+  function mergeDefaults(config3) {
     let finalConfig = {};
     Object.assign(finalConfig, defaults3);
-    Object.assign(finalConfig, config2);
+    Object.assign(finalConfig, config3);
     finalConfig.callbacks = {};
     Object.assign(finalConfig.callbacks, defaults3.callbacks);
-    Object.assign(finalConfig.callbacks, config2.callbacks);
+    Object.assign(finalConfig.callbacks, config3.callbacks);
     finalConfig.head = {};
     Object.assign(finalConfig.head, defaults3.head);
-    Object.assign(finalConfig.head, config2.head);
+    Object.assign(finalConfig.head, config3.head);
     return finalConfig;
   }
-  function createMorphContext(oldNode, newContent, config2) {
-    config2 = mergeDefaults(config2);
+  function createMorphContext(oldNode, newContent, config3) {
+    config3 = mergeDefaults(config3);
     return {
       target: oldNode,
       newContent,
-      config: config2,
-      morphStyle: config2.morphStyle,
-      ignoreActive: config2.ignoreActive,
-      ignoreActiveValue: config2.ignoreActiveValue,
+      config: config3,
+      morphStyle: config3.morphStyle,
+      ignoreActive: config3.ignoreActive,
+      ignoreActiveValue: config3.ignoreActiveValue,
       idMap: createIdMap(oldNode, newContent),
       deadIds: /* @__PURE__ */ new Set(),
-      callbacks: config2.callbacks,
-      head: config2.head
+      callbacks: config3.callbacks,
+      head: config3.head
     };
   }
   function isIdSetMatch(node1, node2, ctx) {
@@ -35806,14 +35806,14 @@ var onDOMContentLoaded = (callback) => {
 var isRTL = () => document.documentElement.dir === "rtl";
 var defineJQueryPlugin = (plugin) => {
   onDOMContentLoaded(() => {
-    const $2 = getjQuery();
-    if ($2) {
+    const $3 = getjQuery();
+    if ($3) {
       const name = plugin.NAME;
-      const JQUERY_NO_CONFLICT = $2.fn[name];
-      $2.fn[name] = plugin.jQueryInterface;
-      $2.fn[name].Constructor = plugin;
-      $2.fn[name].noConflict = () => {
-        $2.fn[name] = JQUERY_NO_CONFLICT;
+      const JQUERY_NO_CONFLICT = $3.fn[name];
+      $3.fn[name] = plugin.jQueryInterface;
+      $3.fn[name].Constructor = plugin;
+      $3.fn[name].noConflict = () => {
+        $3.fn[name] = JQUERY_NO_CONFLICT;
         return plugin.jQueryInterface;
       };
     }
@@ -36012,16 +36012,16 @@ var EventHandler = {
     if (typeof event !== "string" || !element) {
       return null;
     }
-    const $2 = getjQuery();
+    const $3 = getjQuery();
     const typeEvent = getTypeEvent(event);
     const inNamespace = event !== typeEvent;
     let jQueryEvent = null;
     let bubbles = true;
     let nativeDispatch = true;
     let defaultPrevented = false;
-    if (inNamespace && $2) {
-      jQueryEvent = $2.Event(event, args);
-      $2(element).trigger(jQueryEvent);
+    if (inNamespace && $3) {
+      jQueryEvent = $3.Event(event, args);
+      $3(element).trigger(jQueryEvent);
       bubbles = !jQueryEvent.isPropagationStopped();
       nativeDispatch = !jQueryEvent.isImmediatePropagationStopped();
       defaultPrevented = jQueryEvent.isDefaultPrevented();
@@ -36117,27 +36117,27 @@ var Config2 = class {
   static get NAME() {
     throw new Error('You have to implement the static method "NAME", for each component!');
   }
-  _getConfig(config2) {
-    config2 = this._mergeConfigObj(config2);
-    config2 = this._configAfterMerge(config2);
-    this._typeCheckConfig(config2);
-    return config2;
+  _getConfig(config3) {
+    config3 = this._mergeConfigObj(config3);
+    config3 = this._configAfterMerge(config3);
+    this._typeCheckConfig(config3);
+    return config3;
   }
-  _configAfterMerge(config2) {
-    return config2;
+  _configAfterMerge(config3) {
+    return config3;
   }
-  _mergeConfigObj(config2, element) {
+  _mergeConfigObj(config3, element) {
     const jsonConfig = isElement2(element) ? Manipulator.getDataAttribute(element, "config") : {};
     return {
       ...this.constructor.Default,
       ...typeof jsonConfig === "object" ? jsonConfig : {},
       ...isElement2(element) ? Manipulator.getDataAttributes(element) : {},
-      ...typeof config2 === "object" ? config2 : {}
+      ...typeof config3 === "object" ? config3 : {}
     };
   }
-  _typeCheckConfig(config2, configTypes = this.constructor.DefaultType) {
+  _typeCheckConfig(config3, configTypes = this.constructor.DefaultType) {
     for (const [property, expectedTypes] of Object.entries(configTypes)) {
-      const value = config2[property];
+      const value = config3[property];
       const valueType = isElement2(value) ? "element" : toType(value);
       if (!new RegExp(expectedTypes).test(valueType)) {
         throw new TypeError(`${this.constructor.NAME.toUpperCase()}: Option "${property}" provided type "${valueType}" but expected type "${expectedTypes}".`);
@@ -36147,14 +36147,14 @@ var Config2 = class {
 };
 var VERSION = "5.3.3";
 var BaseComponent = class extends Config2 {
-  constructor(element, config2) {
+  constructor(element, config3) {
     super();
     element = getElement(element);
     if (!element) {
       return;
     }
     this._element = element;
-    this._config = this._getConfig(config2);
+    this._config = this._getConfig(config3);
     Data.set(this._element, this.constructor.DATA_KEY, this);
   }
   // Public
@@ -36168,18 +36168,18 @@ var BaseComponent = class extends Config2 {
   _queueCallback(callback, element, isAnimated = true) {
     executeAfterTransition(callback, element, isAnimated);
   }
-  _getConfig(config2) {
-    config2 = this._mergeConfigObj(config2, this._element);
-    config2 = this._configAfterMerge(config2);
-    this._typeCheckConfig(config2);
-    return config2;
+  _getConfig(config3) {
+    config3 = this._mergeConfigObj(config3, this._element);
+    config3 = this._configAfterMerge(config3);
+    this._typeCheckConfig(config3);
+    return config3;
   }
   // Static
   static getInstance(element) {
     return Data.get(getElement(element), this.DATA_KEY);
   }
-  static getOrCreateInstance(element, config2 = {}) {
-    return this.getInstance(element) || new this(element, typeof config2 === "object" ? config2 : null);
+  static getOrCreateInstance(element, config3 = {}) {
+    return this.getInstance(element) || new this(element, typeof config3 === "object" ? config3 : null);
   }
   static get VERSION() {
     return VERSION;
@@ -36312,16 +36312,16 @@ var Alert = class _Alert extends BaseComponent {
     this.dispose();
   }
   // Static
-  static jQueryInterface(config2) {
+  static jQueryInterface(config3) {
     return this.each(function() {
       const data = _Alert.getOrCreateInstance(this);
-      if (typeof config2 !== "string") {
+      if (typeof config3 !== "string") {
         return;
       }
-      if (data[config2] === void 0 || config2.startsWith("_") || config2 === "constructor") {
-        throw new TypeError(`No method named "${config2}"`);
+      if (data[config3] === void 0 || config3.startsWith("_") || config3 === "constructor") {
+        throw new TypeError(`No method named "${config3}"`);
       }
-      data[config2](this);
+      data[config3](this);
     });
   }
 };
@@ -36344,11 +36344,11 @@ var Button = class _Button extends BaseComponent {
     this._element.setAttribute("aria-pressed", this._element.classList.toggle(CLASS_NAME_ACTIVE$3));
   }
   // Static
-  static jQueryInterface(config2) {
+  static jQueryInterface(config3) {
     return this.each(function() {
       const data = _Button.getOrCreateInstance(this);
-      if (config2 === "toggle") {
-        data[config2]();
+      if (config3 === "toggle") {
+        data[config3]();
       }
     });
   }
@@ -36382,13 +36382,13 @@ var DefaultType$c = {
   rightCallback: "(function|null)"
 };
 var Swipe = class _Swipe extends Config2 {
-  constructor(element, config2) {
+  constructor(element, config3) {
     super();
     this._element = element;
     if (!element || !_Swipe.isSupported()) {
       return;
     }
-    this._config = this._getConfig(config2);
+    this._config = this._getConfig(config3);
     this._deltaX = 0;
     this._supportPointerEvents = Boolean(window.PointerEvent);
     this._initEvents();
@@ -36513,8 +36513,8 @@ var DefaultType$b = {
   wrap: "boolean"
 };
 var Carousel = class _Carousel extends BaseComponent {
-  constructor(element, config2) {
-    super(element, config2);
+  constructor(element, config3) {
+    super(element, config3);
     this._interval = null;
     this._activeElement = null;
     this._isSliding = false;
@@ -36592,9 +36592,9 @@ var Carousel = class _Carousel extends BaseComponent {
     super.dispose();
   }
   // Private
-  _configAfterMerge(config2) {
-    config2.defaultInterval = config2.interval;
-    return config2;
+  _configAfterMerge(config3) {
+    config3.defaultInterval = config3.interval;
+    return config3;
   }
   _addEventListeners() {
     if (this._config.keyboard) {
@@ -36740,18 +36740,18 @@ var Carousel = class _Carousel extends BaseComponent {
     return order2 === ORDER_PREV ? DIRECTION_RIGHT : DIRECTION_LEFT;
   }
   // Static
-  static jQueryInterface(config2) {
+  static jQueryInterface(config3) {
     return this.each(function() {
-      const data = _Carousel.getOrCreateInstance(this, config2);
-      if (typeof config2 === "number") {
-        data.to(config2);
+      const data = _Carousel.getOrCreateInstance(this, config3);
+      if (typeof config3 === "number") {
+        data.to(config3);
         return;
       }
-      if (typeof config2 === "string") {
-        if (data[config2] === void 0 || config2.startsWith("_") || config2 === "constructor") {
-          throw new TypeError(`No method named "${config2}"`);
+      if (typeof config3 === "string") {
+        if (data[config3] === void 0 || config3.startsWith("_") || config3 === "constructor") {
+          throw new TypeError(`No method named "${config3}"`);
         }
-        data[config2]();
+        data[config3]();
       }
     });
   }
@@ -36812,8 +36812,8 @@ var DefaultType$a = {
   toggle: "boolean"
 };
 var Collapse = class _Collapse extends BaseComponent {
-  constructor(element, config2) {
-    super(element, config2);
+  constructor(element, config3) {
+    super(element, config3);
     this._isTransitioning = false;
     this._triggerArray = [];
     const toggleList = SelectorEngine.find(SELECTOR_DATA_TOGGLE$4);
@@ -36921,10 +36921,10 @@ var Collapse = class _Collapse extends BaseComponent {
     return element.classList.contains(CLASS_NAME_SHOW$7);
   }
   // Private
-  _configAfterMerge(config2) {
-    config2.toggle = Boolean(config2.toggle);
-    config2.parent = getElement(config2.parent);
-    return config2;
+  _configAfterMerge(config3) {
+    config3.toggle = Boolean(config3.toggle);
+    config3.parent = getElement(config3.parent);
+    return config3;
   }
   _getDimension() {
     return this._element.classList.contains(CLASS_NAME_HORIZONTAL) ? WIDTH : HEIGHT;
@@ -36955,18 +36955,18 @@ var Collapse = class _Collapse extends BaseComponent {
     }
   }
   // Static
-  static jQueryInterface(config2) {
+  static jQueryInterface(config3) {
     const _config = {};
-    if (typeof config2 === "string" && /show|hide/.test(config2)) {
+    if (typeof config3 === "string" && /show|hide/.test(config3)) {
       _config.toggle = false;
     }
     return this.each(function() {
       const data = _Collapse.getOrCreateInstance(this, _config);
-      if (typeof config2 === "string") {
-        if (typeof data[config2] === "undefined") {
-          throw new TypeError(`No method named "${config2}"`);
+      if (typeof config3 === "string") {
+        if (typeof data[config3] === "undefined") {
+          throw new TypeError(`No method named "${config3}"`);
         }
-        data[config2]();
+        data[config3]();
       }
     });
   }
@@ -37035,8 +37035,8 @@ var DefaultType$9 = {
   reference: "(string|element|object)"
 };
 var Dropdown = class _Dropdown extends BaseComponent {
-  constructor(element, config2) {
-    super(element, config2);
+  constructor(element, config3) {
+    super(element, config3);
     this._popper = null;
     this._parent = this._element.parentNode;
     this._menu = SelectorEngine.next(this._element, SELECTOR_MENU)[0] || SelectorEngine.prev(this._element, SELECTOR_MENU)[0] || SelectorEngine.findOne(SELECTOR_MENU, this._parent);
@@ -37120,12 +37120,12 @@ var Dropdown = class _Dropdown extends BaseComponent {
     Manipulator.removeDataAttribute(this._menu, "popper");
     EventHandler.trigger(this._element, EVENT_HIDDEN$5, relatedTarget);
   }
-  _getConfig(config2) {
-    config2 = super._getConfig(config2);
-    if (typeof config2.reference === "object" && !isElement2(config2.reference) && typeof config2.reference.getBoundingClientRect !== "function") {
+  _getConfig(config3) {
+    config3 = super._getConfig(config3);
+    if (typeof config3.reference === "object" && !isElement2(config3.reference) && typeof config3.reference.getBoundingClientRect !== "function") {
       throw new TypeError(`${NAME$a.toUpperCase()}: Option "reference" provided type "object" without a required "getBoundingClientRect" method.`);
     }
-    return config2;
+    return config3;
   }
   _createPopper() {
     if (typeof lib_exports === "undefined") {
@@ -37218,16 +37218,16 @@ var Dropdown = class _Dropdown extends BaseComponent {
     getNextActiveElement(items, target, key === ARROW_DOWN_KEY$1, !items.includes(target)).focus();
   }
   // Static
-  static jQueryInterface(config2) {
+  static jQueryInterface(config3) {
     return this.each(function() {
-      const data = _Dropdown.getOrCreateInstance(this, config2);
-      if (typeof config2 !== "string") {
+      const data = _Dropdown.getOrCreateInstance(this, config3);
+      if (typeof config3 !== "string") {
         return;
       }
-      if (typeof data[config2] === "undefined") {
-        throw new TypeError(`No method named "${config2}"`);
+      if (typeof data[config3] === "undefined") {
+        throw new TypeError(`No method named "${config3}"`);
       }
-      data[config2]();
+      data[config3]();
     });
   }
   static clearMenus(event) {
@@ -37313,9 +37313,9 @@ var DefaultType$8 = {
   rootElement: "(element|string)"
 };
 var Backdrop = class extends Config2 {
-  constructor(config2) {
+  constructor(config3) {
     super();
-    this._config = this._getConfig(config2);
+    this._config = this._getConfig(config3);
     this._isAppended = false;
     this._element = null;
   }
@@ -37376,9 +37376,9 @@ var Backdrop = class extends Config2 {
     }
     return this._element;
   }
-  _configAfterMerge(config2) {
-    config2.rootElement = getElement(config2.rootElement);
-    return config2;
+  _configAfterMerge(config3) {
+    config3.rootElement = getElement(config3.rootElement);
+    return config3;
   }
   _append() {
     if (this._isAppended) {
@@ -37413,9 +37413,9 @@ var DefaultType$7 = {
   trapElement: "element"
 };
 var FocusTrap = class extends Config2 {
-  constructor(config2) {
+  constructor(config3) {
     super();
-    this._config = this._getConfig(config2);
+    this._config = this._getConfig(config3);
     this._isActive = false;
     this._lastTabNavDirection = null;
   }
@@ -37581,8 +37581,8 @@ var DefaultType$6 = {
   keyboard: "boolean"
 };
 var Modal = class _Modal extends BaseComponent {
-  constructor(element, config2) {
-    super(element, config2);
+  constructor(element, config3) {
+    super(element, config3);
     this._dialog = SelectorEngine.findOne(SELECTOR_DIALOG, this._element);
     this._backdrop = this._initializeBackDrop();
     this._focustrap = this._initializeFocusTrap();
@@ -37775,16 +37775,16 @@ var Modal = class _Modal extends BaseComponent {
     this._element.style.paddingRight = "";
   }
   // Static
-  static jQueryInterface(config2, relatedTarget) {
+  static jQueryInterface(config3, relatedTarget) {
     return this.each(function() {
-      const data = _Modal.getOrCreateInstance(this, config2);
-      if (typeof config2 !== "string") {
+      const data = _Modal.getOrCreateInstance(this, config3);
+      if (typeof config3 !== "string") {
         return;
       }
-      if (typeof data[config2] === "undefined") {
-        throw new TypeError(`No method named "${config2}"`);
+      if (typeof data[config3] === "undefined") {
+        throw new TypeError(`No method named "${config3}"`);
       }
-      data[config2](relatedTarget);
+      data[config3](relatedTarget);
     });
   }
 };
@@ -37843,8 +37843,8 @@ var DefaultType$5 = {
   scroll: "boolean"
 };
 var Offcanvas = class _Offcanvas extends BaseComponent {
-  constructor(element, config2) {
-    super(element, config2);
+  constructor(element, config3) {
+    super(element, config3);
     this._isShown = false;
     this._backdrop = this._initializeBackDrop();
     this._focustrap = this._initializeFocusTrap();
@@ -37959,16 +37959,16 @@ var Offcanvas = class _Offcanvas extends BaseComponent {
     });
   }
   // Static
-  static jQueryInterface(config2) {
+  static jQueryInterface(config3) {
     return this.each(function() {
-      const data = _Offcanvas.getOrCreateInstance(this, config2);
-      if (typeof config2 !== "string") {
+      const data = _Offcanvas.getOrCreateInstance(this, config3);
+      if (typeof config3 !== "string") {
         return;
       }
-      if (data[config2] === void 0 || config2.startsWith("_") || config2 === "constructor") {
-        throw new TypeError(`No method named "${config2}"`);
+      if (data[config3] === void 0 || config3.startsWith("_") || config3 === "constructor") {
+        throw new TypeError(`No method named "${config3}"`);
       }
-      data[config2](this);
+      data[config3](this);
     });
   }
 };
@@ -38106,9 +38106,9 @@ var DefaultContentType = {
   selector: "(string|element)"
 };
 var TemplateFactory = class extends Config2 {
-  constructor(config2) {
+  constructor(config3) {
     super();
-    this._config = this._getConfig(config2);
+    this._config = this._getConfig(config3);
   }
   // Getters
   static get Default() {
@@ -38122,7 +38122,7 @@ var TemplateFactory = class extends Config2 {
   }
   // Public
   getContent() {
-    return Object.values(this._config.content).map((config2) => this._resolvePossibleFunction(config2)).filter(Boolean);
+    return Object.values(this._config.content).map((config3) => this._resolvePossibleFunction(config3)).filter(Boolean);
   }
   hasContent() {
     return this.getContent().length > 0;
@@ -38149,9 +38149,9 @@ var TemplateFactory = class extends Config2 {
     return template;
   }
   // Private
-  _typeCheckConfig(config2) {
-    super._typeCheckConfig(config2);
-    this._checkContent(config2.content);
+  _typeCheckConfig(config3) {
+    super._typeCheckConfig(config3);
+    this._checkContent(config3.content);
   }
   _checkContent(arg2) {
     for (const [selector, content] of Object.entries(arg2)) {
@@ -38264,11 +38264,11 @@ var DefaultType$3 = {
   trigger: "string"
 };
 var Tooltip = class _Tooltip extends BaseComponent {
-  constructor(element, config2) {
+  constructor(element, config3) {
     if (typeof lib_exports === "undefined") {
       throw new TypeError("Bootstrap's tooltips require Popper (https://popper.js.org)");
     }
-    super(element, config2);
+    super(element, config3);
     this._isEnabled = true;
     this._timeout = 0;
     this._isHovered = null;
@@ -38588,48 +38588,48 @@ var Tooltip = class _Tooltip extends BaseComponent {
   _isWithActiveTrigger() {
     return Object.values(this._activeTrigger).includes(true);
   }
-  _getConfig(config2) {
+  _getConfig(config3) {
     const dataAttributes = Manipulator.getDataAttributes(this._element);
     for (const dataAttribute of Object.keys(dataAttributes)) {
       if (DISALLOWED_ATTRIBUTES.has(dataAttribute)) {
         delete dataAttributes[dataAttribute];
       }
     }
-    config2 = {
+    config3 = {
       ...dataAttributes,
-      ...typeof config2 === "object" && config2 ? config2 : {}
+      ...typeof config3 === "object" && config3 ? config3 : {}
     };
-    config2 = this._mergeConfigObj(config2);
-    config2 = this._configAfterMerge(config2);
-    this._typeCheckConfig(config2);
-    return config2;
+    config3 = this._mergeConfigObj(config3);
+    config3 = this._configAfterMerge(config3);
+    this._typeCheckConfig(config3);
+    return config3;
   }
-  _configAfterMerge(config2) {
-    config2.container = config2.container === false ? document.body : getElement(config2.container);
-    if (typeof config2.delay === "number") {
-      config2.delay = {
-        show: config2.delay,
-        hide: config2.delay
+  _configAfterMerge(config3) {
+    config3.container = config3.container === false ? document.body : getElement(config3.container);
+    if (typeof config3.delay === "number") {
+      config3.delay = {
+        show: config3.delay,
+        hide: config3.delay
       };
     }
-    if (typeof config2.title === "number") {
-      config2.title = config2.title.toString();
+    if (typeof config3.title === "number") {
+      config3.title = config3.title.toString();
     }
-    if (typeof config2.content === "number") {
-      config2.content = config2.content.toString();
+    if (typeof config3.content === "number") {
+      config3.content = config3.content.toString();
     }
-    return config2;
+    return config3;
   }
   _getDelegateConfig() {
-    const config2 = {};
+    const config3 = {};
     for (const [key, value] of Object.entries(this._config)) {
       if (this.constructor.Default[key] !== value) {
-        config2[key] = value;
+        config3[key] = value;
       }
     }
-    config2.selector = false;
-    config2.trigger = "manual";
-    return config2;
+    config3.selector = false;
+    config3.trigger = "manual";
+    return config3;
   }
   _disposePopper() {
     if (this._popper) {
@@ -38642,16 +38642,16 @@ var Tooltip = class _Tooltip extends BaseComponent {
     }
   }
   // Static
-  static jQueryInterface(config2) {
+  static jQueryInterface(config3) {
     return this.each(function() {
-      const data = _Tooltip.getOrCreateInstance(this, config2);
-      if (typeof config2 !== "string") {
+      const data = _Tooltip.getOrCreateInstance(this, config3);
+      if (typeof config3 !== "string") {
         return;
       }
-      if (typeof data[config2] === "undefined") {
-        throw new TypeError(`No method named "${config2}"`);
+      if (typeof data[config3] === "undefined") {
+        throw new TypeError(`No method named "${config3}"`);
       }
-      data[config2]();
+      data[config3]();
     });
   }
 };
@@ -38697,16 +38697,16 @@ var Popover = class _Popover extends Tooltip {
     return this._resolvePossibleFunction(this._config.content);
   }
   // Static
-  static jQueryInterface(config2) {
+  static jQueryInterface(config3) {
     return this.each(function() {
-      const data = _Popover.getOrCreateInstance(this, config2);
-      if (typeof config2 !== "string") {
+      const data = _Popover.getOrCreateInstance(this, config3);
+      if (typeof config3 !== "string") {
         return;
       }
-      if (typeof data[config2] === "undefined") {
-        throw new TypeError(`No method named "${config2}"`);
+      if (typeof data[config3] === "undefined") {
+        throw new TypeError(`No method named "${config3}"`);
       }
-      data[config2]();
+      data[config3]();
     });
   }
 };
@@ -38746,8 +38746,8 @@ var DefaultType$1 = {
   threshold: "array"
 };
 var ScrollSpy = class _ScrollSpy extends BaseComponent {
-  constructor(element, config2) {
-    super(element, config2);
+  constructor(element, config3) {
+    super(element, config3);
     this._targetLinks = /* @__PURE__ */ new Map();
     this._observableSections = /* @__PURE__ */ new Map();
     this._rootElement = getComputedStyle(this._element).overflowY === "visible" ? null : this._element;
@@ -38787,13 +38787,13 @@ var ScrollSpy = class _ScrollSpy extends BaseComponent {
     super.dispose();
   }
   // Private
-  _configAfterMerge(config2) {
-    config2.target = getElement(config2.target) || document.body;
-    config2.rootMargin = config2.offset ? `${config2.offset}px 0px -30%` : config2.rootMargin;
-    if (typeof config2.threshold === "string") {
-      config2.threshold = config2.threshold.split(",").map((value) => Number.parseFloat(value));
+  _configAfterMerge(config3) {
+    config3.target = getElement(config3.target) || document.body;
+    config3.rootMargin = config3.offset ? `${config3.offset}px 0px -30%` : config3.rootMargin;
+    if (typeof config3.threshold === "string") {
+      config3.threshold = config3.threshold.split(",").map((value) => Number.parseFloat(value));
     }
-    return config2;
+    return config3;
   }
   _maybeEnableSmoothScroll() {
     if (!this._config.smoothScroll) {
@@ -38900,16 +38900,16 @@ var ScrollSpy = class _ScrollSpy extends BaseComponent {
     }
   }
   // Static
-  static jQueryInterface(config2) {
+  static jQueryInterface(config3) {
     return this.each(function() {
-      const data = _ScrollSpy.getOrCreateInstance(this, config2);
-      if (typeof config2 !== "string") {
+      const data = _ScrollSpy.getOrCreateInstance(this, config3);
+      if (typeof config3 !== "string") {
         return;
       }
-      if (data[config2] === void 0 || config2.startsWith("_") || config2 === "constructor") {
-        throw new TypeError(`No method named "${config2}"`);
+      if (data[config3] === void 0 || config3.startsWith("_") || config3 === "constructor") {
+        throw new TypeError(`No method named "${config3}"`);
       }
-      data[config2]();
+      data[config3]();
     });
   }
 };
@@ -39112,16 +39112,16 @@ var Tab = class _Tab extends BaseComponent {
     return elem.closest(SELECTOR_OUTER) || elem;
   }
   // Static
-  static jQueryInterface(config2) {
+  static jQueryInterface(config3) {
     return this.each(function() {
       const data = _Tab.getOrCreateInstance(this);
-      if (typeof config2 !== "string") {
+      if (typeof config3 !== "string") {
         return;
       }
-      if (data[config2] === void 0 || config2.startsWith("_") || config2 === "constructor") {
-        throw new TypeError(`No method named "${config2}"`);
+      if (data[config3] === void 0 || config3.startsWith("_") || config3 === "constructor") {
+        throw new TypeError(`No method named "${config3}"`);
       }
-      data[config2]();
+      data[config3]();
     });
   }
 };
@@ -39166,8 +39166,8 @@ var Default = {
   delay: 5e3
 };
 var Toast = class _Toast extends BaseComponent {
-  constructor(element, config2) {
-    super(element, config2);
+  constructor(element, config3) {
+    super(element, config3);
     this._timeout = null;
     this._hasMouseInteraction = false;
     this._hasKeyboardInteraction = false;
@@ -39275,14 +39275,14 @@ var Toast = class _Toast extends BaseComponent {
     this._timeout = null;
   }
   // Static
-  static jQueryInterface(config2) {
+  static jQueryInterface(config3) {
     return this.each(function() {
-      const data = _Toast.getOrCreateInstance(this, config2);
-      if (typeof config2 === "string") {
-        if (typeof data[config2] === "undefined") {
-          throw new TypeError(`No method named "${config2}"`);
+      const data = _Toast.getOrCreateInstance(this, config3);
+      if (typeof config3 === "string") {
+        if (typeof data[config3] === "undefined") {
+          throw new TypeError(`No method named "${config3}"`);
         }
-        data[config2](this);
+        data[config3](this);
       }
     });
   }
@@ -41714,14 +41714,14 @@ var CancelledError = function CancelledError2(options) {
 function isCancelledError(value) {
   return value instanceof CancelledError;
 }
-var Retryer = function Retryer2(config2) {
+var Retryer = function Retryer2(config3) {
   var _this = this;
   var cancelRetry = false;
   var cancelFn;
   var continueFn;
   var promiseResolve;
   var promiseReject;
-  this.abort = config2.abort;
+  this.abort = config3.abort;
   this.cancel = function(cancelOptions) {
     return cancelFn == null ? void 0 : cancelFn(cancelOptions);
   };
@@ -41745,7 +41745,7 @@ var Retryer = function Retryer2(config2) {
   var resolve = function resolve2(value) {
     if (!_this.isResolved) {
       _this.isResolved = true;
-      config2.onSuccess == null ? void 0 : config2.onSuccess(value);
+      config3.onSuccess == null ? void 0 : config3.onSuccess(value);
       continueFn == null ? void 0 : continueFn();
       promiseResolve(value);
     }
@@ -41753,7 +41753,7 @@ var Retryer = function Retryer2(config2) {
   var reject = function reject2(value) {
     if (!_this.isResolved) {
       _this.isResolved = true;
-      config2.onError == null ? void 0 : config2.onError(value);
+      config3.onError == null ? void 0 : config3.onError(value);
       continueFn == null ? void 0 : continueFn();
       promiseReject(value);
     }
@@ -41762,11 +41762,11 @@ var Retryer = function Retryer2(config2) {
     return new Promise(function(continueResolve) {
       continueFn = continueResolve;
       _this.isPaused = true;
-      config2.onPause == null ? void 0 : config2.onPause();
+      config3.onPause == null ? void 0 : config3.onPause();
     }).then(function() {
       continueFn = void 0;
       _this.isPaused = false;
-      config2.onContinue == null ? void 0 : config2.onContinue();
+      config3.onContinue == null ? void 0 : config3.onContinue();
     });
   };
   var run = function run2() {
@@ -41775,7 +41775,7 @@ var Retryer = function Retryer2(config2) {
     }
     var promiseOrValue;
     try {
-      promiseOrValue = config2.fn();
+      promiseOrValue = config3.fn();
     } catch (error2) {
       promiseOrValue = Promise.reject(error2);
     }
@@ -41797,8 +41797,8 @@ var Retryer = function Retryer2(config2) {
       if (_this.isResolved) {
         return;
       }
-      var retry = (_config$retry = config2.retry) != null ? _config$retry : 3;
-      var retryDelay = (_config$retryDelay = config2.retryDelay) != null ? _config$retryDelay : defaultRetryDelay;
+      var retry = (_config$retry = config3.retry) != null ? _config$retry : 3;
+      var retryDelay = (_config$retryDelay = config3.retryDelay) != null ? _config$retryDelay : defaultRetryDelay;
       var delay = typeof retryDelay === "function" ? retryDelay(_this.failureCount, error2) : retryDelay;
       var shouldRetry = retry === true || typeof retry === "number" && _this.failureCount < retry || typeof retry === "function" && retry(_this.failureCount, error2);
       if (cancelRetry || !shouldRetry) {
@@ -41806,7 +41806,7 @@ var Retryer = function Retryer2(config2) {
         return;
       }
       _this.failureCount++;
-      config2.onFail == null ? void 0 : config2.onFail(_this.failureCount, error2);
+      config3.onFail == null ? void 0 : config3.onFail(_this.failureCount, error2);
       sleep(delay).then(function() {
         if (!focusManager.isFocused() || !onlineManager.isOnline()) {
           return pause();
@@ -41872,12 +41872,12 @@ var NotifyManager = /* @__PURE__ */ function() {
   };
   _proto.flush = function flush() {
     var _this3 = this;
-    var queue = this.queue;
+    var queue2 = this.queue;
     this.queue = [];
-    if (queue.length) {
+    if (queue2.length) {
       scheduleMicrotask(function() {
         _this3.batchNotifyFn(function() {
-          queue.forEach(function(callback) {
+          queue2.forEach(function(callback) {
             _this3.notifyFn(callback);
           });
         });
@@ -41905,18 +41905,18 @@ function setLogger(newLogger) {
 
 // node_modules/react-query/es/core/query.js
 var Query = /* @__PURE__ */ function() {
-  function Query2(config2) {
+  function Query2(config3) {
     this.abortSignalConsumed = false;
     this.hadObservers = false;
-    this.defaultOptions = config2.defaultOptions;
-    this.setOptions(config2.options);
+    this.defaultOptions = config3.defaultOptions;
+    this.setOptions(config3.options);
     this.observers = [];
-    this.cache = config2.cache;
-    this.queryKey = config2.queryKey;
-    this.queryHash = config2.queryHash;
-    this.initialState = config2.state || this.getDefaultState(this.options);
+    this.cache = config3.cache;
+    this.queryKey = config3.queryKey;
+    this.queryHash = config3.queryHash;
+    this.initialState = config3.state || this.getDefaultState(this.options);
     this.state = this.initialState;
-    this.meta = config2.meta;
+    this.meta = config3.meta;
     this.scheduleGc();
   }
   var _proto = Query2.prototype;
@@ -42298,10 +42298,10 @@ var Query = /* @__PURE__ */ function() {
 // node_modules/react-query/es/core/queryCache.js
 var QueryCache = /* @__PURE__ */ function(_Subscribable) {
   _inheritsLoose(QueryCache2, _Subscribable);
-  function QueryCache2(config2) {
+  function QueryCache2(config3) {
     var _this;
     _this = _Subscribable.call(this) || this;
-    _this.config = config2 || {};
+    _this.config = config3 || {};
     _this.queries = [];
     _this.queriesMap = {};
     return _this;
@@ -42410,13 +42410,13 @@ var QueryCache = /* @__PURE__ */ function(_Subscribable) {
 
 // node_modules/react-query/es/core/mutation.js
 var Mutation = /* @__PURE__ */ function() {
-  function Mutation2(config2) {
-    this.options = _extends4({}, config2.defaultOptions, config2.options);
-    this.mutationId = config2.mutationId;
-    this.mutationCache = config2.mutationCache;
+  function Mutation2(config3) {
+    this.options = _extends4({}, config3.defaultOptions, config3.options);
+    this.mutationId = config3.mutationId;
+    this.mutationCache = config3.mutationCache;
     this.observers = [];
-    this.state = config2.state || getDefaultState();
-    this.meta = config2.meta;
+    this.state = config3.state || getDefaultState();
+    this.meta = config3.meta;
   }
   var _proto = Mutation2.prototype;
   _proto.setState = function setState(state) {
@@ -42604,10 +42604,10 @@ function reducer(state, action) {
 // node_modules/react-query/es/core/mutationCache.js
 var MutationCache = /* @__PURE__ */ function(_Subscribable) {
   _inheritsLoose(MutationCache2, _Subscribable);
-  function MutationCache2(config2) {
+  function MutationCache2(config3) {
     var _this;
     _this = _Subscribable.call(this) || this;
-    _this.config = config2 || {};
+    _this.config = config3 || {};
     _this.mutations = [];
     _this.mutationId = 0;
     return _this;
@@ -42709,9 +42709,9 @@ function infiniteQueryBehavior() {
         var queryFn = context.options.queryFn || function() {
           return Promise.reject("Missing queryFn");
         };
-        var buildNewPages = function buildNewPages2(pages, param2, page, previous) {
+        var buildNewPages = function buildNewPages2(pages, param2, page2, previous) {
           newPageParams = previous ? [param2].concat(newPageParams) : [].concat(newPageParams, [param2]);
-          return previous ? [page].concat(pages) : [].concat(pages, [page]);
+          return previous ? [page2].concat(pages) : [].concat(pages, [page2]);
         };
         var fetchPage = function fetchPage2(pages, manual2, param2, previous) {
           if (cancelled) {
@@ -42727,8 +42727,8 @@ function infiniteQueryBehavior() {
             meta: context.meta
           };
           var queryFnResult = queryFn(queryFnContext);
-          var promise2 = Promise.resolve(queryFnResult).then(function(page) {
-            return buildNewPages(pages, param2, page, previous);
+          var promise2 = Promise.resolve(queryFnResult).then(function(page2) {
+            return buildNewPages(pages, param2, page2, previous);
           });
           if (isCancelable(queryFnResult)) {
             var promiseAsAny = promise2;
@@ -42796,13 +42796,13 @@ function getPreviousPageParam(options, pages) {
 
 // node_modules/react-query/es/core/queryClient.js
 var QueryClient = /* @__PURE__ */ function() {
-  function QueryClient2(config2) {
-    if (config2 === void 0) {
-      config2 = {};
+  function QueryClient2(config3) {
+    if (config3 === void 0) {
+      config3 = {};
     }
-    this.queryCache = config2.queryCache || new QueryCache();
-    this.mutationCache = config2.mutationCache || new MutationCache();
-    this.defaultOptions = config2.defaultOptions || {};
+    this.queryCache = config3.queryCache || new QueryCache();
+    this.mutationCache = config3.mutationCache || new MutationCache();
+    this.defaultOptions = config3.defaultOptions || {};
     this.queryDefaults = [];
     this.mutationDefaults = [];
   }
@@ -44157,7 +44157,7 @@ var utils_default = {
 };
 
 // node_modules/axios/lib/core/AxiosError.js
-function AxiosError(message, code, config2, request, response) {
+function AxiosError(message, code, config3, request, response) {
   Error.call(this);
   if (Error.captureStackTrace) {
     Error.captureStackTrace(this, this.constructor);
@@ -44167,7 +44167,7 @@ function AxiosError(message, code, config2, request, response) {
   this.message = message;
   this.name = "AxiosError";
   code && (this.code = code);
-  config2 && (this.config = config2);
+  config3 && (this.config = config3);
   request && (this.request = request);
   if (response) {
     this.response = response;
@@ -44216,14 +44216,14 @@ var descriptors = {};
 });
 Object.defineProperties(AxiosError, descriptors);
 Object.defineProperty(prototype, "isAxiosError", { value: true });
-AxiosError.from = (error2, code, config2, request, response, customProps) => {
+AxiosError.from = (error2, code, config3, request, response, customProps) => {
   const axiosError = Object.create(prototype);
   utils_default.toFlatObject(error2, axiosError, function filter2(obj) {
     return obj !== Error.prototype;
   }, (prop) => {
     return prop !== "isAxiosError";
   });
-  AxiosError.call(axiosError, error2.message, code, config2, request, response);
+  AxiosError.call(axiosError, error2.message, code, config3, request, response);
   axiosError.cause = error2;
   axiosError.name = error2.name;
   customProps && Object.assign(axiosError, customProps);
@@ -44963,12 +44963,12 @@ var AxiosHeaders_default = AxiosHeaders;
 
 // node_modules/axios/lib/core/transformData.js
 function transformData(fns, response) {
-  const config2 = this || defaults_default;
-  const context = response || config2;
+  const config3 = this || defaults_default;
+  const context = response || config3;
   const headers = AxiosHeaders_default.from(context.headers);
   let data = context.data;
   utils_default.forEach(fns, function transform(fn2) {
-    data = fn2.call(config2, data, headers.normalize(), response ? response.status : void 0);
+    data = fn2.call(config3, data, headers.normalize(), response ? response.status : void 0);
   });
   headers.normalize();
   return data;
@@ -44980,8 +44980,8 @@ function isCancel(value) {
 }
 
 // node_modules/axios/lib/cancel/CanceledError.js
-function CanceledError(message, config2, request) {
-  AxiosError_default.call(this, message == null ? "canceled" : message, AxiosError_default.ERR_CANCELED, config2, request);
+function CanceledError(message, config3, request) {
+  AxiosError_default.call(this, message == null ? "canceled" : message, AxiosError_default.ERR_CANCELED, config3, request);
   this.name = "CanceledError";
 }
 utils_default.inherits(CanceledError, AxiosError_default, {
@@ -45211,8 +45211,8 @@ function buildFullPath(baseURL, requestedURL) {
 
 // node_modules/axios/lib/core/mergeConfig.js
 var headersToObject = (thing) => thing instanceof AxiosHeaders_default ? { ...thing } : thing;
-function mergeConfig(config1, config2) {
-  config2 = config2 || {};
+function mergeConfig(config1, config22) {
+  config22 = config22 || {};
   const config3 = {};
   function getMergedValue(target, source, caseless) {
     if (utils_default.isPlainObject(target) && utils_default.isPlainObject(source)) {
@@ -45244,7 +45244,7 @@ function mergeConfig(config1, config2) {
     }
   }
   function mergeDirectKeys(a15, b7, prop) {
-    if (prop in config2) {
+    if (prop in config22) {
       return getMergedValue(a15, b7);
     } else if (prop in config1) {
       return getMergedValue(void 0, a15);
@@ -45281,20 +45281,20 @@ function mergeConfig(config1, config2) {
     validateStatus: mergeDirectKeys,
     headers: (a15, b7) => mergeDeepProperties(headersToObject(a15), headersToObject(b7), true)
   };
-  utils_default.forEach(Object.keys(Object.assign({}, config1, config2)), function computeConfigValue(prop) {
+  utils_default.forEach(Object.keys(Object.assign({}, config1, config22)), function computeConfigValue(prop) {
     const merge5 = mergeMap[prop] || mergeDeepProperties;
-    const configValue = merge5(config1[prop], config2[prop], prop);
+    const configValue = merge5(config1[prop], config22[prop], prop);
     utils_default.isUndefined(configValue) && merge5 !== mergeDirectKeys || (config3[prop] = configValue);
   });
   return config3;
 }
 
 // node_modules/axios/lib/helpers/resolveConfig.js
-var resolveConfig_default = (config2) => {
-  const newConfig = mergeConfig({}, config2);
+var resolveConfig_default = (config3) => {
+  const newConfig = mergeConfig({}, config3);
   let { data, withXSRFToken, xsrfHeaderName, xsrfCookieName, headers, auth } = newConfig;
   newConfig.headers = headers = AxiosHeaders_default.from(headers);
-  newConfig.url = buildURL(buildFullPath(newConfig.baseURL, newConfig.url), config2.params, config2.paramsSerializer);
+  newConfig.url = buildURL(buildFullPath(newConfig.baseURL, newConfig.url), config3.params, config3.paramsSerializer);
   if (auth) {
     headers.set(
       "Authorization",
@@ -45324,9 +45324,9 @@ var resolveConfig_default = (config2) => {
 
 // node_modules/axios/lib/adapters/xhr.js
 var isXHRAdapterSupported = typeof XMLHttpRequest !== "undefined";
-var xhr_default = isXHRAdapterSupported && function(config2) {
+var xhr_default = isXHRAdapterSupported && function(config3) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
-    const _config = resolveConfig_default(config2);
+    const _config = resolveConfig_default(config3);
     let requestData = _config.data;
     const requestHeaders = AxiosHeaders_default.from(_config.headers).normalize();
     let { responseType, onUploadProgress, onDownloadProgress } = _config;
@@ -45355,7 +45355,7 @@ var xhr_default = isXHRAdapterSupported && function(config2) {
         status: request.status,
         statusText: request.statusText,
         headers: responseHeaders,
-        config: config2,
+        config: config3,
         request
       };
       settle(function _resolve(value) {
@@ -45384,11 +45384,11 @@ var xhr_default = isXHRAdapterSupported && function(config2) {
       if (!request) {
         return;
       }
-      reject(new AxiosError_default("Request aborted", AxiosError_default.ECONNABORTED, config2, request));
+      reject(new AxiosError_default("Request aborted", AxiosError_default.ECONNABORTED, config3, request));
       request = null;
     };
     request.onerror = function handleError() {
-      reject(new AxiosError_default("Network Error", AxiosError_default.ERR_NETWORK, config2, request));
+      reject(new AxiosError_default("Network Error", AxiosError_default.ERR_NETWORK, config3, request));
       request = null;
     };
     request.ontimeout = function handleTimeout() {
@@ -45400,7 +45400,7 @@ var xhr_default = isXHRAdapterSupported && function(config2) {
       reject(new AxiosError_default(
         timeoutErrorMessage,
         transitional2.clarifyTimeoutError ? AxiosError_default.ETIMEDOUT : AxiosError_default.ECONNABORTED,
-        config2,
+        config3,
         request
       ));
       request = null;
@@ -45431,7 +45431,7 @@ var xhr_default = isXHRAdapterSupported && function(config2) {
         if (!request) {
           return;
         }
-        reject(!cancel || cancel.type ? new CanceledError_default(null, config2, request) : cancel);
+        reject(!cancel || cancel.type ? new CanceledError_default(null, config3, request) : cancel);
         request.abort();
         request = null;
       };
@@ -45442,7 +45442,7 @@ var xhr_default = isXHRAdapterSupported && function(config2) {
     }
     const protocol = parseProtocol(_config.url);
     if (protocol && platform_default.protocols.indexOf(protocol) === -1) {
-      reject(new AxiosError_default("Unsupported protocol " + protocol + ":", AxiosError_default.ERR_BAD_REQUEST, config2));
+      reject(new AxiosError_default("Unsupported protocol " + protocol + ":", AxiosError_default.ERR_BAD_REQUEST, config3));
       return;
     }
     request.send(requestData || null);
@@ -45592,8 +45592,8 @@ var resolvers = {
 };
 isFetchSupported && ((res) => {
   ["text", "arrayBuffer", "blob", "formData", "stream"].forEach((type) => {
-    !resolvers[type] && (resolvers[type] = utils_default.isFunction(res[type]) ? (res2) => res2[type]() : (_3, config2) => {
-      throw new AxiosError_default(`Response type '${type}' is not supported`, AxiosError_default.ERR_NOT_SUPPORT, config2);
+    !resolvers[type] && (resolvers[type] = utils_default.isFunction(res[type]) ? (res2) => res2[type]() : (_3, config3) => {
+      throw new AxiosError_default(`Response type '${type}' is not supported`, AxiosError_default.ERR_NOT_SUPPORT, config3);
     });
   });
 })(new Response());
@@ -45625,7 +45625,7 @@ var resolveBodyLength = async (headers, body2) => {
   const length2 = utils_default.toFiniteNumber(headers.getContentLength());
   return length2 == null ? getBodyLength(body2) : length2;
 };
-var fetch_default = isFetchSupported && (async (config2) => {
+var fetch_default = isFetchSupported && (async (config3) => {
   let {
     url,
     method,
@@ -45639,7 +45639,7 @@ var fetch_default = isFetchSupported && (async (config2) => {
     headers,
     withCredentials = "same-origin",
     fetchOptions
-  } = resolveConfig_default(config2);
+  } = resolveConfig_default(config3);
   responseType = responseType ? (responseType + "").toLowerCase() : "text";
   let composedSignal = composeSignals_default([signal, cancelToken && cancelToken.toAbortSignal()], timeout3);
   let request;
@@ -45700,7 +45700,7 @@ var fetch_default = isFetchSupported && (async (config2) => {
       );
     }
     responseType = responseType || "text";
-    let responseData = await resolvers[utils_default.findKey(resolvers, responseType) || "text"](response, config2);
+    let responseData = await resolvers[utils_default.findKey(resolvers, responseType) || "text"](response, config3);
     !isStreamResponse && unsubscribe && unsubscribe();
     return await new Promise((resolve, reject) => {
       settle(resolve, reject, {
@@ -45708,7 +45708,7 @@ var fetch_default = isFetchSupported && (async (config2) => {
         headers: AxiosHeaders_default.from(response.headers),
         status: response.status,
         statusText: response.statusText,
-        config: config2,
+        config: config3,
         request
       });
     });
@@ -45716,13 +45716,13 @@ var fetch_default = isFetchSupported && (async (config2) => {
     unsubscribe && unsubscribe();
     if (err && err.name === "TypeError" && /fetch/i.test(err.message)) {
       throw Object.assign(
-        new AxiosError_default("Network Error", AxiosError_default.ERR_NETWORK, config2, request),
+        new AxiosError_default("Network Error", AxiosError_default.ERR_NETWORK, config3, request),
         {
           cause: err.cause || err
         }
       );
     }
-    throw AxiosError_default.from(err, err && err.code, config2, request);
+    throw AxiosError_default.from(err, err && err.code, config3, request);
   }
 });
 
@@ -45781,41 +45781,41 @@ var adapters_default2 = {
 };
 
 // node_modules/axios/lib/core/dispatchRequest.js
-function throwIfCancellationRequested(config2) {
-  if (config2.cancelToken) {
-    config2.cancelToken.throwIfRequested();
+function throwIfCancellationRequested(config3) {
+  if (config3.cancelToken) {
+    config3.cancelToken.throwIfRequested();
   }
-  if (config2.signal && config2.signal.aborted) {
-    throw new CanceledError_default(null, config2);
+  if (config3.signal && config3.signal.aborted) {
+    throw new CanceledError_default(null, config3);
   }
 }
-function dispatchRequest(config2) {
-  throwIfCancellationRequested(config2);
-  config2.headers = AxiosHeaders_default.from(config2.headers);
-  config2.data = transformData.call(
-    config2,
-    config2.transformRequest
+function dispatchRequest(config3) {
+  throwIfCancellationRequested(config3);
+  config3.headers = AxiosHeaders_default.from(config3.headers);
+  config3.data = transformData.call(
+    config3,
+    config3.transformRequest
   );
-  if (["post", "put", "patch"].indexOf(config2.method) !== -1) {
-    config2.headers.setContentType("application/x-www-form-urlencoded", false);
+  if (["post", "put", "patch"].indexOf(config3.method) !== -1) {
+    config3.headers.setContentType("application/x-www-form-urlencoded", false);
   }
-  const adapter = adapters_default2.getAdapter(config2.adapter || defaults_default.adapter);
-  return adapter(config2).then(function onAdapterResolution(response) {
-    throwIfCancellationRequested(config2);
+  const adapter = adapters_default2.getAdapter(config3.adapter || defaults_default.adapter);
+  return adapter(config3).then(function onAdapterResolution(response) {
+    throwIfCancellationRequested(config3);
     response.data = transformData.call(
-      config2,
-      config2.transformResponse,
+      config3,
+      config3.transformResponse,
       response
     );
     response.headers = AxiosHeaders_default.from(response.headers);
     return response;
   }, function onAdapterRejection(reason) {
     if (!isCancel(reason)) {
-      throwIfCancellationRequested(config2);
+      throwIfCancellationRequested(config3);
       if (reason && reason.response) {
         reason.response.data = transformData.call(
-          config2,
-          config2.transformResponse,
+          config3,
+          config3.transformResponse,
           reason.response
         );
         reason.response.headers = AxiosHeaders_default.from(reason.response.headers);
@@ -45904,9 +45904,9 @@ var Axios = class {
    *
    * @returns {Promise} The Promise to be fulfilled
    */
-  async request(configOrUrl, config2) {
+  async request(configOrUrl, config3) {
     try {
-      return await this._request(configOrUrl, config2);
+      return await this._request(configOrUrl, config3);
     } catch (err) {
       if (err instanceof Error) {
         let dummy;
@@ -45924,15 +45924,15 @@ var Axios = class {
       throw err;
     }
   }
-  _request(configOrUrl, config2) {
+  _request(configOrUrl, config3) {
     if (typeof configOrUrl === "string") {
-      config2 = config2 || {};
-      config2.url = configOrUrl;
+      config3 = config3 || {};
+      config3.url = configOrUrl;
     } else {
-      config2 = configOrUrl || {};
+      config3 = configOrUrl || {};
     }
-    config2 = mergeConfig(this.defaults, config2);
-    const { transitional: transitional2, paramsSerializer, headers } = config2;
+    config3 = mergeConfig(this.defaults, config3);
+    const { transitional: transitional2, paramsSerializer, headers } = config3;
     if (transitional2 !== void 0) {
       validator_default.assertOptions(transitional2, {
         silentJSONParsing: validators2.transitional(validators2.boolean),
@@ -45942,7 +45942,7 @@ var Axios = class {
     }
     if (paramsSerializer != null) {
       if (utils_default.isFunction(paramsSerializer)) {
-        config2.paramsSerializer = {
+        config3.paramsSerializer = {
           serialize: paramsSerializer
         };
       } else {
@@ -45952,10 +45952,10 @@ var Axios = class {
         }, true);
       }
     }
-    config2.method = (config2.method || this.defaults.method || "get").toLowerCase();
+    config3.method = (config3.method || this.defaults.method || "get").toLowerCase();
     let contextHeaders = headers && utils_default.merge(
       headers.common,
-      headers[config2.method]
+      headers[config3.method]
     );
     headers && utils_default.forEach(
       ["delete", "get", "head", "post", "put", "patch", "common"],
@@ -45963,11 +45963,11 @@ var Axios = class {
         delete headers[method];
       }
     );
-    config2.headers = AxiosHeaders_default.concat(contextHeaders, headers);
+    config3.headers = AxiosHeaders_default.concat(contextHeaders, headers);
     const requestInterceptorChain = [];
     let synchronousRequestInterceptors = true;
     this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
-      if (typeof interceptor.runWhen === "function" && interceptor.runWhen(config2) === false) {
+      if (typeof interceptor.runWhen === "function" && interceptor.runWhen(config3) === false) {
         return;
       }
       synchronousRequestInterceptors = synchronousRequestInterceptors && interceptor.synchronous;
@@ -45985,14 +45985,14 @@ var Axios = class {
       chain.unshift.apply(chain, requestInterceptorChain);
       chain.push.apply(chain, responseInterceptorChain);
       len = chain.length;
-      promise = Promise.resolve(config2);
+      promise = Promise.resolve(config3);
       while (i10 < len) {
         promise = promise.then(chain[i10++], chain[i10++]);
       }
       return promise;
     }
     len = requestInterceptorChain.length;
-    let newConfig = config2;
+    let newConfig = config3;
     i10 = 0;
     while (i10 < len) {
       const onFulfilled = requestInterceptorChain[i10++];
@@ -46016,25 +46016,25 @@ var Axios = class {
     }
     return promise;
   }
-  getUri(config2) {
-    config2 = mergeConfig(this.defaults, config2);
-    const fullPath = buildFullPath(config2.baseURL, config2.url);
-    return buildURL(fullPath, config2.params, config2.paramsSerializer);
+  getUri(config3) {
+    config3 = mergeConfig(this.defaults, config3);
+    const fullPath = buildFullPath(config3.baseURL, config3.url);
+    return buildURL(fullPath, config3.params, config3.paramsSerializer);
   }
 };
 utils_default.forEach(["delete", "get", "head", "options"], function forEachMethodNoData(method) {
-  Axios.prototype[method] = function(url, config2) {
-    return this.request(mergeConfig(config2 || {}, {
+  Axios.prototype[method] = function(url, config3) {
+    return this.request(mergeConfig(config3 || {}, {
       method,
       url,
-      data: (config2 || {}).data
+      data: (config3 || {}).data
     }));
   };
 });
 utils_default.forEach(["post", "put", "patch"], function forEachMethodWithData(method) {
   function generateHTTPMethod(isForm) {
-    return function httpMethod(url, data, config2) {
-      return this.request(mergeConfig(config2 || {}, {
+    return function httpMethod(url, data, config3) {
+      return this.request(mergeConfig(config3 || {}, {
         method,
         headers: isForm ? {
           "Content-Type": "multipart/form-data"
@@ -46079,11 +46079,11 @@ var CancelToken = class _CancelToken {
       };
       return promise;
     };
-    executor(function cancel(message, config2, request) {
+    executor(function cancel(message, config3, request) {
       if (token2.reason) {
         return;
       }
-      token2.reason = new CanceledError_default(message, config2, request);
+      token2.reason = new CanceledError_default(message, config3, request);
       resolvePromise(token2.reason);
     });
   }
@@ -47424,12 +47424,12 @@ function callIfFn(maybeFn, arg2) {
   return typeof maybeFn === "function" ? maybeFn(arg2) : maybeFn;
 }
 function unstable_createStyleFunctionSx() {
-  function getThemeValue(prop, val, theme, config2) {
+  function getThemeValue(prop, val, theme, config3) {
     const props = {
       [prop]: val,
       theme
     };
-    const options = config2[prop];
+    const options = config3[prop];
     if (!options) {
       return {
         [prop]: val
@@ -47475,7 +47475,7 @@ function unstable_createStyleFunctionSx() {
     if (!sx) {
       return null;
     }
-    const config2 = theme.unstable_sxConfig ?? defaultSxConfig_default;
+    const config3 = theme.unstable_sxConfig ?? defaultSxConfig_default;
     function traverse(sxInput) {
       let sxObject = sxInput;
       if (typeof sxInput === "function") {
@@ -47493,8 +47493,8 @@ function unstable_createStyleFunctionSx() {
         const value = callIfFn(sxObject[styleKey], theme);
         if (value !== null && value !== void 0) {
           if (typeof value === "object") {
-            if (config2[styleKey]) {
-              css2 = merge_default(css2, getThemeValue(styleKey, value, theme, config2));
+            if (config3[styleKey]) {
+              css2 = merge_default(css2, getThemeValue(styleKey, value, theme, config3));
             } else {
               const breakpointsValues = handleBreakpoints({
                 theme
@@ -47511,7 +47511,7 @@ function unstable_createStyleFunctionSx() {
               }
             }
           } else {
-            css2 = merge_default(css2, getThemeValue(styleKey, value, theme, config2));
+            css2 = merge_default(css2, getThemeValue(styleKey, value, theme, config3));
           }
         }
       });
@@ -47531,9 +47531,9 @@ var splitProps = (props) => {
     systemProps: {},
     otherProps: {}
   };
-  const config2 = props?.theme?.unstable_sxConfig ?? defaultSxConfig_default;
+  const config3 = props?.theme?.unstable_sxConfig ?? defaultSxConfig_default;
   Object.keys(props).forEach((prop) => {
-    if (config2[prop]) {
+    if (config3[prop]) {
       result.systemProps[prop] = props[prop];
     } else {
       result.otherProps[prop] = props[prop];
@@ -50578,12 +50578,12 @@ function getThemeProps2(params) {
   if (!theme || !theme.components || !theme.components[name]) {
     return props;
   }
-  const config2 = theme.components[name];
-  if (config2.defaultProps) {
-    return resolveProps(config2.defaultProps, props);
+  const config3 = theme.components[name];
+  if (config3.defaultProps) {
+    return resolveProps(config3.defaultProps, props);
   }
-  if (!config2.styleOverrides && !config2.variants) {
-    return resolveProps(config2, props);
+  if (!config3.styleOverrides && !config3.variants) {
+    return resolveProps(config3, props);
   }
   return props;
 }
@@ -64838,7 +64838,7 @@ var validateField = async (field, formValues, validateAllFieldCriteria, shouldUs
   const isRadio = isRadioInput(ref);
   const isCheckBox = isCheckBoxInput(ref);
   const isRadioOrCheckbox2 = isRadio || isCheckBox;
-  const isEmpty4 = (valueAsNumber || isFileInput(ref)) && isUndefined2(ref.value) && isUndefined2(inputValue) || isHTMLElement2(ref) && ref.value === "" || inputValue === "" || Array.isArray(inputValue) && !inputValue.length;
+  const isEmpty5 = (valueAsNumber || isFileInput(ref)) && isUndefined2(ref.value) && isUndefined2(inputValue) || isHTMLElement2(ref) && ref.value === "" || inputValue === "" || Array.isArray(inputValue) && !inputValue.length;
   const appendErrorsCurry = appendErrors.bind(null, name, validateAllFieldCriteria, error2);
   const getMinMaxMessage = (exceedMax, maxLengthMessage, minLengthMessage, maxType = INPUT_VALIDATION_RULES.maxLength, minType = INPUT_VALIDATION_RULES.minLength) => {
     const message = exceedMax ? maxLengthMessage : minLengthMessage;
@@ -64849,7 +64849,7 @@ var validateField = async (field, formValues, validateAllFieldCriteria, shouldUs
       ...appendErrorsCurry(exceedMax ? maxType : minType, message)
     };
   };
-  if (isFieldArray ? !Array.isArray(inputValue) || !inputValue.length : required && (!isRadioOrCheckbox2 && (isEmpty4 || isNullOrUndefined(inputValue)) || isBoolean2(inputValue) && !inputValue || isCheckBox && !getCheckboxValue(refs).isValid || isRadio && !getRadioValue(refs).isValid)) {
+  if (isFieldArray ? !Array.isArray(inputValue) || !inputValue.length : required && (!isRadioOrCheckbox2 && (isEmpty5 || isNullOrUndefined(inputValue)) || isBoolean2(inputValue) && !inputValue || isCheckBox && !getCheckboxValue(refs).isValid || isRadio && !getRadioValue(refs).isValid)) {
     const { value, message } = isMessage(required) ? { value: !!required, message: required } : getValueAndMessage(required);
     if (value) {
       error2[name] = {
@@ -64864,7 +64864,7 @@ var validateField = async (field, formValues, validateAllFieldCriteria, shouldUs
       }
     }
   }
-  if (!isEmpty4 && (!isNullOrUndefined(min2) || !isNullOrUndefined(max2))) {
+  if (!isEmpty5 && (!isNullOrUndefined(min2) || !isNullOrUndefined(max2))) {
     let exceedMax;
     let exceedMin;
     const maxOutput = getValueAndMessage(max2);
@@ -64897,7 +64897,7 @@ var validateField = async (field, formValues, validateAllFieldCriteria, shouldUs
       }
     }
   }
-  if ((maxLength || minLength) && !isEmpty4 && (isString2(inputValue) || isFieldArray && Array.isArray(inputValue))) {
+  if ((maxLength || minLength) && !isEmpty5 && (isString2(inputValue) || isFieldArray && Array.isArray(inputValue))) {
     const maxLengthOutput = getValueAndMessage(maxLength);
     const minLengthOutput = getValueAndMessage(minLength);
     const exceedMax = !isNullOrUndefined(maxLengthOutput.value) && inputValue.length > +maxLengthOutput.value;
@@ -64910,7 +64910,7 @@ var validateField = async (field, formValues, validateAllFieldCriteria, shouldUs
       }
     }
   }
-  if (pattern && !isEmpty4 && isString2(inputValue)) {
+  if (pattern && !isEmpty5 && isString2(inputValue)) {
     const { value: patternValue, message } = getValueAndMessage(pattern);
     if (isRegex(patternValue) && !inputValue.match(patternValue)) {
       error2[name] = {
@@ -68825,16 +68825,16 @@ function He(e6, t10) {
     L4.onStart(r13, F2, (D3) => {
       D3 === "enter" ? l7 == null || l7() : D3 === "leave" && (R6 == null || R6());
     });
-  }), $2 = o4((k) => {
+  }), $3 = o4((k) => {
     let F2 = k ? "enter" : "leave";
     W3.current = false, L4.onStop(r13, F2, (D3) => {
       D3 === "enter" ? y5 == null || y5() : D3 === "leave" && (T8 == null || T8());
     }), F2 === "leave" && !U3(L4) && (G2("hidden"), I4(r13));
   });
   (0, import_react57.useEffect)(() => {
-    d8 && n11 || (Z2(c11), $2(c11));
+    d8 && n11 || (Z2(c11), $3(c11));
   }, [c11, d8, n11]);
-  let pe2 = /* @__PURE__ */ (() => !(!n11 || !d8 || !B || ce))(), [, u10] = x2(pe2, a15, c11, { start: Z2, end: $2 }), Ce = m({ ref: j4, className: ((te3 = t3(i10.className, Y2 && P4, Y2 && p5, u10.enter && P4, u10.enter && u10.closed && p5, u10.enter && !u10.closed && m7, u10.leave && h5, u10.leave && !u10.closed && g2, u10.leave && u10.closed && o10, !u10.transition && c11 && C4)) == null ? void 0 : te3.trim()) || void 0, ...R3(u10) }), _3 = 0;
+  let pe2 = /* @__PURE__ */ (() => !(!n11 || !d8 || !B || ce))(), [, u10] = x2(pe2, a15, c11, { start: Z2, end: $3 }), Ce = m({ ref: j4, className: ((te3 = t3(i10.className, Y2 && P4, Y2 && p5, u10.enter && P4, u10.enter && u10.closed && p5, u10.enter && !u10.closed && m7, u10.leave && h5, u10.leave && !u10.closed && g2, u10.leave && u10.closed && o10, !u10.transition && c11 && C4)) == null ? void 0 : te3.trim()) || void 0, ...R3(u10) }), _3 = 0;
   return b7 === "visible" && (_3 |= i7.Open), b7 === "hidden" && (_3 |= i7.Closed), u10.enter && (_3 |= i7.Opening), u10.leave && (_3 |= i7.Closing), import_react57.default.createElement(M6.Provider, { value: L4 }, import_react57.default.createElement(c6, { value: _3 }, H({ ourProps: Ce, theirProps: i10, defaultTag: de, features: fe, visible: b7 === "visible", name: "Transition.Child" })));
 }
 function Ae(e6, t10) {
@@ -70258,11 +70258,11 @@ var SnackbarProvider = /* @__PURE__ */ function(_Component) {
       return _this.processQueue(state);
     };
     _this.processQueue = function(state) {
-      var queue = state.queue, snacks = state.snacks;
-      if (queue.length > 0) {
+      var queue2 = state.queue, snacks = state.snacks;
+      if (queue2.length > 0) {
         return _extends6({}, state, {
-          snacks: [].concat(snacks, [queue[0]]),
-          queue: queue.slice(1, queue.length)
+          snacks: [].concat(snacks, [queue2[0]]),
+          queue: queue2.slice(1, queue2.length)
         });
       }
       return state;
@@ -70327,7 +70327,7 @@ var SnackbarProvider = /* @__PURE__ */ function(_Component) {
       }
       var shouldCloseAll = key === void 0;
       _this.setState(function(_ref2) {
-        var snacks = _ref2.snacks, queue = _ref2.queue;
+        var snacks = _ref2.snacks, queue2 = _ref2.queue;
         return {
           snacks: snacks.map(function(item) {
             if (!shouldCloseAll && item.id !== key) {
@@ -70339,7 +70339,7 @@ var SnackbarProvider = /* @__PURE__ */ function(_Component) {
               requestClose: true
             });
           }),
-          queue: queue.filter(function(item) {
+          queue: queue2.filter(function(item) {
             return item.id !== key;
           })
         };
@@ -70541,6 +70541,455 @@ function FaCartShopping(props) {
   return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 576 512" }, "child": [{ "tag": "path", "attr": { "d": "M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" }, "child": [] }] })(props);
 }
 
+// node_modules/ahoy.js/dist/ahoy.esm.js
+var Cookies = {
+  set: function(name, value, ttl, domain) {
+    var expires = "";
+    var cookieDomain = "";
+    if (ttl) {
+      var date = /* @__PURE__ */ new Date();
+      date.setTime(date.getTime() + ttl * 60 * 1e3);
+      expires = "; expires=" + date.toGMTString();
+    }
+    if (domain) {
+      cookieDomain = "; domain=" + domain;
+    }
+    document.cookie = name + "=" + escape(value) + expires + cookieDomain + "; path=/; samesite=lax";
+  },
+  get: function(name) {
+    var i10, c11;
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(";");
+    for (i10 = 0; i10 < ca.length; i10++) {
+      c11 = ca[i10];
+      while (c11.charAt(0) === " ") {
+        c11 = c11.substring(1, c11.length);
+      }
+      if (c11.indexOf(nameEQ) === 0) {
+        return unescape(c11.substring(nameEQ.length, c11.length));
+      }
+    }
+    return null;
+  }
+};
+var config2 = {
+  urlPrefix: "",
+  visitsUrl: "/ahoy/visits",
+  eventsUrl: "/ahoy/events",
+  page: null,
+  platform: "Web",
+  useBeacon: true,
+  startOnReady: true,
+  trackVisits: true,
+  cookies: true,
+  cookieDomain: null,
+  headers: {},
+  visitParams: {},
+  withCredentials: false,
+  visitDuration: 4 * 60,
+  // default 4 hours
+  visitorDuration: 2 * 365 * 24 * 60
+  // default 2 years
+};
+var ahoy = window.ahoy || window.Ahoy || {};
+ahoy.configure = function(options) {
+  for (var key in options) {
+    if (Object.prototype.hasOwnProperty.call(options, key)) {
+      config2[key] = options[key];
+    }
+  }
+};
+ahoy.configure(ahoy);
+var $2 = window.jQuery || window.Zepto || window.$;
+var visitId;
+var visitorId;
+var track;
+var isReady = false;
+var queue = [];
+var canStringify = typeof JSON !== "undefined" && typeof JSON.stringify !== "undefined";
+var eventQueue = [];
+function visitsUrl() {
+  return config2.urlPrefix + config2.visitsUrl;
+}
+function eventsUrl() {
+  return config2.urlPrefix + config2.eventsUrl;
+}
+function isEmpty4(obj) {
+  return Object.keys(obj).length === 0;
+}
+function canTrackNow() {
+  return (config2.useBeacon || config2.trackNow) && isEmpty4(config2.headers) && canStringify && typeof window.navigator.sendBeacon !== "undefined" && !config2.withCredentials;
+}
+function serialize2(object) {
+  var data = new FormData();
+  for (var key in object) {
+    if (Object.prototype.hasOwnProperty.call(object, key)) {
+      data.append(key, object[key]);
+    }
+  }
+  return data;
+}
+function setCookie(name, value, ttl) {
+  Cookies.set(name, value, ttl, config2.cookieDomain || config2.domain);
+}
+function getCookie(name) {
+  return Cookies.get(name);
+}
+function destroyCookie(name) {
+  Cookies.set(name, "", -1);
+}
+function log(message) {
+  if (getCookie("ahoy_debug")) {
+    window.console.log(message);
+  }
+}
+function setReady() {
+  var callback;
+  while (callback = queue.shift()) {
+    callback();
+  }
+  isReady = true;
+}
+ahoy.ready = function(callback) {
+  if (isReady) {
+    callback();
+  } else {
+    queue.push(callback);
+  }
+};
+function matchesSelector(element, selector) {
+  var matches = element.matches || element.matchesSelector || element.mozMatchesSelector || element.msMatchesSelector || element.oMatchesSelector || element.webkitMatchesSelector;
+  if (matches) {
+    if (matches.apply(element, [selector])) {
+      return element;
+    } else if (element.parentElement) {
+      return matchesSelector(element.parentElement, selector);
+    }
+    return null;
+  } else {
+    log("Unable to match");
+    return null;
+  }
+}
+function onEvent(eventName, selector, callback) {
+  document.addEventListener(eventName, function(e6) {
+    var matchedElement = matchesSelector(e6.target, selector);
+    if (matchedElement) {
+      var skip = getClosest(matchedElement, "data-ahoy-skip");
+      if (skip !== null && skip !== "false") {
+        return;
+      }
+      callback.call(matchedElement, e6);
+    }
+  });
+}
+function documentReady(callback) {
+  if (document.readyState === "interactive" || document.readyState === "complete") {
+    setTimeout(callback, 0);
+  } else {
+    document.addEventListener("DOMContentLoaded", callback);
+  }
+}
+function generateId() {
+  if (window.crypto && window.crypto.randomUUID) {
+    return window.crypto.randomUUID();
+  }
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c11) {
+    var r13 = Math.random() * 16 | 0;
+    var v3 = c11 === "x" ? r13 : r13 & 3 | 8;
+    return v3.toString(16);
+  });
+}
+function saveEventQueue() {
+  if (config2.cookies && canStringify) {
+    setCookie("ahoy_events", JSON.stringify(eventQueue), 1);
+  }
+}
+function csrfToken() {
+  var meta = document.querySelector("meta[name=csrf-token]");
+  return meta && meta.content;
+}
+function csrfParam() {
+  var meta = document.querySelector("meta[name=csrf-param]");
+  return meta && meta.content;
+}
+function CSRFProtection(xhr) {
+  var token2 = csrfToken();
+  if (token2) {
+    xhr.setRequestHeader("X-CSRF-Token", token2);
+  }
+}
+function sendRequest(url, data, success) {
+  if (canStringify) {
+    if ($2 && $2.ajax) {
+      $2.ajax({
+        type: "POST",
+        url,
+        data: JSON.stringify(data),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        beforeSend: CSRFProtection,
+        success,
+        headers: config2.headers,
+        xhrFields: {
+          withCredentials: config2.withCredentials
+        }
+      });
+    } else {
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", url, true);
+      xhr.withCredentials = config2.withCredentials;
+      xhr.setRequestHeader("Content-Type", "application/json");
+      for (var header in config2.headers) {
+        if (Object.prototype.hasOwnProperty.call(config2.headers, header)) {
+          xhr.setRequestHeader(header, config2.headers[header]);
+        }
+      }
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          success();
+        }
+      };
+      CSRFProtection(xhr);
+      xhr.send(JSON.stringify(data));
+    }
+  }
+}
+function eventData(event) {
+  var data = {
+    events: [event]
+  };
+  if (config2.cookies) {
+    data.visit_token = event.visit_token;
+    data.visitor_token = event.visitor_token;
+  }
+  delete event.visit_token;
+  delete event.visitor_token;
+  return data;
+}
+function trackEvent(event) {
+  ahoy.ready(function() {
+    sendRequest(eventsUrl(), eventData(event), function() {
+      for (var i10 = 0; i10 < eventQueue.length; i10++) {
+        if (eventQueue[i10].id === event.id) {
+          eventQueue.splice(i10, 1);
+          break;
+        }
+      }
+      saveEventQueue();
+    });
+  });
+}
+function trackEventNow(event) {
+  ahoy.ready(function() {
+    var data = eventData(event);
+    var param = csrfParam();
+    var token2 = csrfToken();
+    if (param && token2) {
+      data[param] = token2;
+    }
+    data.events_json = JSON.stringify(data.events);
+    delete data.events;
+    window.navigator.sendBeacon(eventsUrl(), serialize2(data));
+  });
+}
+function page() {
+  return config2.page || window.location.pathname;
+}
+function presence(str) {
+  return str && str.length > 0 ? str : null;
+}
+function cleanObject(obj) {
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      if (obj[key] === null) {
+        delete obj[key];
+      }
+    }
+  }
+  return obj;
+}
+function eventProperties() {
+  return cleanObject({
+    tag: this.tagName.toLowerCase(),
+    id: presence(this.id),
+    "class": presence(this.className),
+    page: page(),
+    section: getClosest(this, "data-section")
+  });
+}
+function getClosest(element, attribute) {
+  for (; element && element !== document; element = element.parentNode) {
+    if (element.hasAttribute(attribute)) {
+      return element.getAttribute(attribute);
+    }
+  }
+  return null;
+}
+function createVisit() {
+  isReady = false;
+  visitId = ahoy.getVisitId();
+  visitorId = ahoy.getVisitorId();
+  track = getCookie("ahoy_track");
+  if (config2.cookies === false || config2.trackVisits === false) {
+    log("Visit tracking disabled");
+    setReady();
+  } else if (visitId && visitorId && !track) {
+    log("Active visit");
+    setReady();
+  } else {
+    if (!visitId) {
+      visitId = generateId();
+      setCookie("ahoy_visit", visitId, config2.visitDuration);
+    }
+    if (getCookie("ahoy_visit")) {
+      log("Visit started");
+      if (!visitorId) {
+        visitorId = generateId();
+        setCookie("ahoy_visitor", visitorId, config2.visitorDuration);
+      }
+      var data = {
+        visit_token: visitId,
+        visitor_token: visitorId,
+        platform: config2.platform,
+        landing_page: window.location.href,
+        screen_width: window.screen.width,
+        screen_height: window.screen.height,
+        js: true
+      };
+      if (document.referrer.length > 0) {
+        data.referrer = document.referrer;
+      }
+      for (var key in config2.visitParams) {
+        if (Object.prototype.hasOwnProperty.call(config2.visitParams, key)) {
+          data[key] = config2.visitParams[key];
+        }
+      }
+      log(data);
+      sendRequest(visitsUrl(), data, function() {
+        destroyCookie("ahoy_track");
+        setReady();
+      });
+    } else {
+      log("Cookies disabled");
+      setReady();
+    }
+  }
+}
+ahoy.getVisitId = ahoy.getVisitToken = function() {
+  return getCookie("ahoy_visit");
+};
+ahoy.getVisitorId = ahoy.getVisitorToken = function() {
+  return getCookie("ahoy_visitor");
+};
+ahoy.reset = function() {
+  destroyCookie("ahoy_visit");
+  destroyCookie("ahoy_visitor");
+  destroyCookie("ahoy_events");
+  destroyCookie("ahoy_track");
+  return true;
+};
+ahoy.debug = function(enabled) {
+  if (enabled === false) {
+    destroyCookie("ahoy_debug");
+  } else {
+    setCookie("ahoy_debug", "t", 365 * 24 * 60);
+  }
+  return true;
+};
+ahoy.track = function(name, properties2) {
+  var event = {
+    name,
+    properties: properties2 || {},
+    time: (/* @__PURE__ */ new Date()).getTime() / 1e3,
+    id: generateId(),
+    js: true
+  };
+  ahoy.ready(function() {
+    if (config2.cookies && !ahoy.getVisitId()) {
+      createVisit();
+    }
+    ahoy.ready(function() {
+      log(event);
+      event.visit_token = ahoy.getVisitId();
+      event.visitor_token = ahoy.getVisitorId();
+      if (canTrackNow()) {
+        trackEventNow(event);
+      } else {
+        eventQueue.push(event);
+        saveEventQueue();
+        setTimeout(function() {
+          trackEvent(event);
+        }, 1e3);
+      }
+    });
+  });
+  return true;
+};
+ahoy.trackView = function(additionalProperties) {
+  var properties2 = {
+    url: window.location.href,
+    title: document.title,
+    page: page()
+  };
+  if (additionalProperties) {
+    for (var propName in additionalProperties) {
+      if (Object.prototype.hasOwnProperty.call(additionalProperties, propName)) {
+        properties2[propName] = additionalProperties[propName];
+      }
+    }
+  }
+  ahoy.track("$view", properties2);
+};
+ahoy.trackClicks = function(selector) {
+  if (selector === void 0) {
+    throw new Error("Missing selector");
+  }
+  onEvent("click", selector, function(e6) {
+    var properties2 = eventProperties.call(this, e6);
+    properties2.text = properties2.tag === "input" ? this.value : (this.textContent || this.innerText || this.innerHTML).replace(/[\s\r\n]+/g, " ").trim();
+    properties2.href = this.href;
+    ahoy.track("$click", properties2);
+  });
+};
+ahoy.trackSubmits = function(selector) {
+  if (selector === void 0) {
+    throw new Error("Missing selector");
+  }
+  onEvent("submit", selector, function(e6) {
+    var properties2 = eventProperties.call(this, e6);
+    ahoy.track("$submit", properties2);
+  });
+};
+ahoy.trackChanges = function(selector) {
+  log("trackChanges is deprecated and will be removed in 0.5.0");
+  if (selector === void 0) {
+    throw new Error("Missing selector");
+  }
+  onEvent("change", selector, function(e6) {
+    var properties2 = eventProperties.call(this, e6);
+    ahoy.track("$change", properties2);
+  });
+};
+try {
+  eventQueue = JSON.parse(getCookie("ahoy_events") || "[]");
+} catch (e6) {
+}
+for (i10 = 0; i10 < eventQueue.length; i10++) {
+  trackEvent(eventQueue[i10]);
+}
+var i10;
+ahoy.start = function() {
+  createVisit();
+  ahoy.start = function() {
+  };
+};
+documentReady(function() {
+  if (config2.startOnReady) {
+    ahoy.start();
+  }
+});
+
 // app/javascript/components/Items/ItemList.jsx
 var ItemList = () => {
   const [isCheckoutOpen, setIsCheckoutOpen] = (0, import_react62.useState)(false);
@@ -70561,6 +71010,7 @@ var ItemList = () => {
   const { isLoading } = useQuery(EBOOKS_QUERY_KEY, ApiClient_default.fetchEbooks, {
     onSuccess: (data) => {
       console.log("First Rails useQuery sucessful:", data);
+      ahoy.track("Ebooks items", { ebook_id: 123, price: 9.99 });
       setItems(data);
     }
   });
@@ -70687,6 +71137,19 @@ document.addEventListener("turbo:load", () => {
     document.body.appendChild(document.createElement("div"))
   );
   root.render(/* @__PURE__ */ import_react66.default.createElement(App_default, null));
+});
+
+// app/javascript/application.js
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOMContentLoaded");
+  const userToken = localStorage.getItem("jwt");
+  ahoy.configure({
+    urlPrefix: "http://localhost:3000",
+    visitsUrl: "/ahoy/visits",
+    eventsUrl: "/ahoy/events",
+    userToken
+  });
+  ahoy.trackAll();
 });
 /*! Bundled license information:
 
@@ -70860,6 +71323,14 @@ react-router-dom/dist/index.js:
    * @license MIT
    * This source code is licensed under the MIT license found in the
    * LICENSE file in the root directory of this source tree.
+   *)
+
+ahoy.js/dist/ahoy.esm.js:
+  (*!
+   * Ahoy.js v0.4.4
+   * Simple, powerful JavaScript analytics
+   * https://github.com/ankane/ahoy.js
+   * MIT License
    *)
 */
 //# sourceMappingURL=/assets/application.js.map
