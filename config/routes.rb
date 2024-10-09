@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       end
       resources :users, except: [ :new ]
       post "purchase", to: "purchase#create"
+      get "purchases", to: "purchase#index"
 
       post "/users", to: "users#create"
       get "/me", to: "users#me"

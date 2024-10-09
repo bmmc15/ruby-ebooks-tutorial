@@ -1,14 +1,9 @@
 class Api::V1::PurchaseController < BaseController
-    verify_authenticity_token
+    before_action :authorized
 
     def create
-      buyer = User.find_by(id: purchase_params[:buyer_id])
-
-      unless buyer
-        render json: { message: "Invalid buyer_id" }, status: :bad_request
-        return
-      end
-
+      buyer = current_user
+      
       ebooks_ids = purchase_params[:ebooks_ids]
 
       if ebooks_ids.blank?
@@ -32,7 +27,31 @@ class Api::V1::PurchaseController < BaseController
       render json: { message: "Thank you for your purchase", purchase: @purchase }, status: :created
 
     rescue ActiveRecord::RecordInvalid => e
-        render json: { message: "Purchase failed: #{e.message}" }, status: :unpr
+        render json: { message: "Purchase failed: #{e.message}" }, status: :unprocessable_entity
+    end
+
+    def index
+      buyer = current_user # dealt with it on the baseController
+
+      purchases = Purchase.where(buyer_id: buyer.id).includes(:ebook)
+
+      grouped_orders = purchases.group_by { |purchase| purchase.created_at.strftime('%Y-%m-%d %H:%M') }
+                                .map do |datetime, orders|
+                                  {
+                                    ebooks: orders.map do |order|
+                                      {
+                                        ebook_id: order.ebook.id,
+                                        title: order.ebook.title,
+                                        price: order.ebook.price,
+                                        created_at: order.created_at.strftime('%Y-%m-%d %H:%M:%S')
+                                      }
+                                    end,
+                                    datetime: datetime
+                                  }
+                                end
+
+
+      render json: grouped_orders
     end
 
 
