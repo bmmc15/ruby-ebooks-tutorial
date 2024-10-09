@@ -21,16 +21,16 @@ const Navbar = () => {
         </button>
         <nav className="space-x-6">
           <button
-            onClick={navigateTo("/")}
+            onClick={navigateTo("/ebooks")}
             className="text-gray-700 hover:text-indigo-600"
           >
             Ebooks
           </button>
           <button
-            onClick={navigateTo("/")}
+            onClick={navigateTo("/order-summary")}
             className="text-gray-700 hover:text-indigo-600"
           >
-            Sellers
+            Order Summary
           </button>
           <button
             onClick={navigateTo("/")}

@@ -1,16 +1,16 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
+  Navigate,
   Outlet,
+  Route,
+  Routes
 } from "react-router-dom";
-import Users from "../components/Users";
-import Signup from "../components/Signup";
-import Login from "../components/Login";
-import LandingPage from "../components/LandingPage/LandingPage";
 import ItemList from "../components/Items/ItemList";
-import { Navigate } from "react-router-dom";
+import LandingPage from "../components/LandingPage/LandingPage";
+import Login from "../components/Login";
+import OrdersSummary from "../components/Orders/OrdersSummary";
+import Signup from "../components/Signup";
+import Users from "../components/Users";
 
 const ProtectedRoute = () => {
   const token = localStorage.getItem("jwt");
@@ -31,6 +31,7 @@ const AppRoutes = () => {
         <Route element={<ProtectedRoute />}>
           <Route path="/ebooks" element={<ItemList />} />
           <Route path="/users" element={<Users />} />
+          <Route path="/order-summary" element={<OrdersSummary />} />
         </Route>
         <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<Signup />} />
