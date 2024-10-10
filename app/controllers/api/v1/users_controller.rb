@@ -33,7 +33,14 @@ class Api::V1::UsersController < BaseController
 
     if user
       if user.update(user_update_params)
-        render json: { message: "User updated successfully", user: user.as_json(methods: [ :avatar_url ]) }, status: :ok
+
+        user_payload = {
+        id: user.id,
+        username: user.username,
+        avatar_url: user.avatar_url
+      }
+      token = encode_token(user_payload)
+        render json: { message: "User updated successfully", user: user.as_json(methods: [ :avatar_url ]), token: token }, status: :ok
       else
         render json: { error: "Invalid user update", details: user.errors.full_messages }, status: :unprocessable_entity
       end
