@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ClickAwayListener } from "@mui/base/ClickAwayListener";
+import { UserContext } from "../../contexts/UserProvider";
 
 const AvatarDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
+  const { avatarUrl } = useContext(UserContext);
+
   const token = localStorage.getItem("jwt");
-  const payload = JSON.parse(atob(token.split(".")[1]));
-
-  const avatarUrl = payload.avatar_url;
-
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   const handleOptionClick = (path) => {
@@ -25,10 +24,7 @@ const AvatarDropdown = () => {
           <div className="relative inline-block">
             <button onClick={toggleDropdown} className="focus:outline-none">
               <img
-                src={
-                  avatarUrl ??
-                  "https://placehold.co/50x50/efefef/4f46e5?text=Invalid+Image&font=roboto"
-                }
+                src={avatarUrl ?? "https://robohash.org/1"}
                 alt="User Avatar"
                 className="rounded-full w-10 h-10 border border-gray-300 shadow-sm hover:shadow-md transition"
               />

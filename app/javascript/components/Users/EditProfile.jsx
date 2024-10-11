@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { ApiClient } from "../../services";
 import { Alert, Box, Typography } from "@mui/material";
 import Dropzone from "react-dropzone";
+import { UserContext } from "../../contexts/UserProvider";
 
 const EditProfile = () => {
   const queryClient = useQueryClient();
+
+  const { setAvatarUrl } = useContext(UserContext);
 
   const [file, setFile] = useState(null);
   const [avatarPreview, setAvatarPreview] = useState(null);
@@ -16,6 +19,7 @@ const EditProfile = () => {
       console.log("Avatar updated successfully: data ->", data);
 
       localStorage.setItem("jwt", data.token);
+      setAvatarUrl(data.user.avatar_url);
       queryClient.invalidateQueries("USER_QUERY_KEY");
       setAvatarPreview(null);
     },
