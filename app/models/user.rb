@@ -16,4 +16,10 @@ class User < ApplicationRecord
     def avatar_url
         avatar.attached? ? Rails.application.routes.url_helpers.url_for(avatar) : nil
     end
+
+    def password_expired? # ? is the convention to a method that returns boolean
+        return true unless last_password_update
+    
+        last_password_update < 6.months.ago
+    end
 end

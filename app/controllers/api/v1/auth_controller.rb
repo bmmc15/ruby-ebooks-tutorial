@@ -9,6 +9,9 @@ class Api::V1::AuthController < BaseController
   def login
       @user = User.find_by!(email: login_params[:email])
       if @user.authenticate(login_params[:password])
+        if user.password_expired?
+          render json: { message: 'Password expired. Please update your password.' }, status: :forbidden
+        else
 
           user_payload = {
             id: @user.id,
