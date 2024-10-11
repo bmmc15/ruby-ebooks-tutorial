@@ -51,7 +51,10 @@ const AvatarDropdown = () => {
                   </li>
                   <li
                     className="px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
-                    onClick={() => handleOptionClick("/logout")}
+                    onClick={() => {
+                      localStorage.removeItem("jwt");
+                      handleOptionClick("/");
+                    }}
                   >
                     Logout
                   </li>
