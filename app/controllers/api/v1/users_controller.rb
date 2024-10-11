@@ -15,12 +15,14 @@ class Api::V1::UsersController < BaseController
   def create # Sign-up
     user = User.create!(user_params)
 
+    # Email the buyer
+    UserMailer.with(user: user).welcome_email.deliver_later
+    
     user_payload = {
       id: user.id,
       username: user.username,
       avatar_url: user.avatar_url
     }
-
     token = encode_token(user_payload)
     render json: {
         user: UserSerializer.new(user),
