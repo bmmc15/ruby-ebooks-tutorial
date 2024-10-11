@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useGetNavigate } from "../../hooks/useGetNavigate";
+import AvatarDropdown from "./AvatarDropdown";
 
 const Navbar = () => {
   const { navigateTo } = useGetNavigate();
   const isLoggedIn = !!localStorage.getItem("jwt");
-
-  const handleLogout = () => {
-    localStorage.removeItem("jwt");
-    navigateTo("/")();
-  };
 
   return (
     <header className="bg-white shadow">
@@ -41,12 +37,7 @@ const Navbar = () => {
         </nav>
         <div className="space-x-4">
           {isLoggedIn ? (
-            <button
-              className="bg-red-500 text-white px-4 py-2 rounded-lg"
-              onClick={handleLogout}
-            >
-              Logout
-            </button>
+            <AvatarDropdown />
           ) : (
             <button
               className="bg-indigo-600 text-white px-4 py-2 rounded-lg"

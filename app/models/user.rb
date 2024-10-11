@@ -11,4 +11,9 @@ class User < ApplicationRecord
     has_secure_password
     has_many :ebooks, foreign_key: :seller_id
     has_many :purchases, foreign_key: :buyer_id
+
+    has_one_attached :avatar
+    def avatar_url
+        avatar.attached? ? Rails.application.routes.url_helpers.url_for(avatar) : nil
+    end
 end

@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :email
+  attributes :id, :email, :avatar_url
 end
 
 class Api::V1::AuthController < BaseController
@@ -9,10 +9,17 @@ class Api::V1::AuthController < BaseController
   def login
       @user = User.find_by!(email: login_params[:email])
       if @user.authenticate(login_params[:password])
-          @token = encode_token(user_id: @user.id)
+
+          user_payload = {
+            id: @user.id,
+            username: @user.username,
+            avatar_url: @user.avatar_url
+          }
+
+          token = encode_token(user_payload)
           render json: {
               user: UserSerializer.new(@user),
-              token: @token
+              token: token
           }, status: :accepted
       else
           render json: { message: "Incorrect password" }, status: :unauthorized

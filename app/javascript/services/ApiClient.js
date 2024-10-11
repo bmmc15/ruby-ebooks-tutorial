@@ -95,5 +95,26 @@ const ApiClient = {
       throw err;
     }
   },
+  updateUser: async (avatarFile) => {
+    try {
+      const token = localStorage.getItem("jwt");
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      const userId = payload.id;
+
+      const formData = new FormData();
+      formData.append("avatar", avatarFile);
+
+      const response = await apiInstance.patch(`/users/${userId}`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      return response?.data;
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 export default ApiClient;

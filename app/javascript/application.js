@@ -15,6 +15,4 @@ document.addEventListener("DOMContentLoaded", () => {
     eventsUrl: "/ahoy/events",
     userToken: userToken,
   });
-
-  ahoy.trackAll();
 });

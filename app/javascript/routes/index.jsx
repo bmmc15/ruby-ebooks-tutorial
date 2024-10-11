@@ -1,14 +1,10 @@
 import React from "react";
-import {
-  Navigate,
-  Outlet,
-  Route,
-  Routes
-} from "react-router-dom";
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import ItemList from "../components/Items/ItemList";
 import LandingPage from "../components/LandingPage/LandingPage";
 import Login from "../components/Login";
-import OrdersSummary from "../components/Orders/OrdersSummary";
+import OrdersSummary from "../components/Users/OrdersSummary";
+import EditProfile from "../components/Users/EditProfile";
 import Signup from "../components/Signup";
 import Users from "../components/Users";
 
@@ -32,6 +28,7 @@ const AppRoutes = () => {
           <Route path="/ebooks" element={<ItemList />} />
           <Route path="/users" element={<Users />} />
           <Route path="/order-summary" element={<OrdersSummary />} />
+          <Route path="/edit-profile" element={<EditProfile />} />
         </Route>
         <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<Signup />} />
