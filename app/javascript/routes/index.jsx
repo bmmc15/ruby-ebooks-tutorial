@@ -7,6 +7,7 @@ import OrdersSummary from "../components/Users/OrdersSummary";
 import EditProfile from "../components/Users/EditProfile";
 import Signup from "../components/Signup";
 import Users from "../components/Users";
+import ResetPassword from "../components/ResetPassword";
 
 const ProtectedRoute = () => {
   const token = localStorage.getItem("jwt");
@@ -29,6 +30,7 @@ const AppRoutes = () => {
           <Route path="/users" element={<Users />} />
           <Route path="/order-summary" element={<OrdersSummary />} />
           <Route path="/edit-profile" element={<EditProfile />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Route>
         <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<Signup />} />

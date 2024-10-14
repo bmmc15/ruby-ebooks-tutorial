@@ -45,22 +45,30 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver })
+  } = useForm({ resolver });
 
   const { mutate: login, isLoading } = useMutation(ApiClient.login, {
     onSuccess: (data) => {
-      localStorage.setItem('jwt', data.token)
-      navigate('/ebooks');
+      localStorage.setItem("jwt", data.token);
+      navigate("/ebooks");
     },
     onError: (error) => {
-      console.error("Login failed:", error);
-      alert("Login Failed");
-      navigate('/login');
+      if (error.response?.status === 403) {
+        // Handle password older than 6 months
+        const token = error.response?.data?.token;
+        console.log("Expected: update password with this token:", token);
+        if (token) {
+          localStorage.setItem("jwt", token);
+          navigate("/reset-password");
+        }
+      } else {
+        console.error("Login failed:", error);
+        alert("Login Failed");
+        navigate("/login");
+      }
     },
   });
-
   const onFormSubmit = handleSubmit(async (data) => {
-
     const { email, password } = data;
 
     await login({
@@ -126,12 +134,12 @@ const Login = () => {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href={'#'} variant="body2">
+              <Link href={"#"} variant="body2">
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
-              <Link href={'/signup'} variant="body2">
+              <Link href={"/signup"} variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
