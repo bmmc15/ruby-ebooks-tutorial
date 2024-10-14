@@ -19,7 +19,13 @@ class User < ApplicationRecord
 
     def password_expired? # ? is the convention to a method that returns boolean
         return true unless last_password_update
-    
+
         last_password_update < 6.months.ago
+    end
+
+    def update_password(new_password)
+        self.password = new_password
+        self.last_password_update = Time.current
+        save
     end
 end

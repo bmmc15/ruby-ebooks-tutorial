@@ -13,11 +13,11 @@ class Api::V1::UsersController < BaseController
   end
 
   def create # Sign-up
-    user = User.create!(user_params.merge(last_password_update: Time.current) )
+    user = User.create!(user_params.merge(last_password_update: Time.current))
 
     # Email the buyer
     UserMailer.with(user: user).welcome_email.deliver_later
-    
+
     user_payload = {
       id: user.id,
       username: user.username,

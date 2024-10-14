@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       post "/users", to: "users#create"
       get "/me", to: "users#me"
       post "/auth/login", to: "auth#login"
+      post "/auth/reset-password", to: "auth#update_password"
     end
   end
   root "homepage#index"
