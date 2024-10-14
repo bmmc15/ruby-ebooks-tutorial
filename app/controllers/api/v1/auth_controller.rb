@@ -4,10 +4,15 @@ end
 
 class Api::V1::AuthController < BaseController
   skip_before_action :authorized, only: [ :login ]
-  rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
 
   def login
-      @user = User.find_by!(email: login_params[:email])
+      @user = User.find_by(email: login_params[:email])
+
+      if @user.nil?
+        handle_not_found("User")
+        return
+      end
+
       if @user.authenticate(login_params[:password])
         user_payload = {
           id: @user.id,

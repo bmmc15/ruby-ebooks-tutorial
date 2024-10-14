@@ -33,7 +33,11 @@ class Api::V1::UsersController < BaseController
   def update
     user = User.find_by(id: params[:id])
 
-    if user
+    if user.nil?
+      handle_not_found("User")
+      return
+    end
+
       if user.update(user_update_params)
 
         user_payload = {
@@ -46,9 +50,6 @@ class Api::V1::UsersController < BaseController
       else
         render json: { error: "Invalid user update", details: user.errors.full_messages }, status: :unprocessable_entity
       end
-    else
-      render json: { error: "User not found" }, status: :not_found
-    end
   end
 
   def me

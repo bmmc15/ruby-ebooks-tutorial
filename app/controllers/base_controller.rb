@@ -30,4 +30,10 @@ class BaseController < ActionController::API
         render json: { message: "Please log in" }, status: :unauthorized
         end
     end
+
+    private
+
+    def handle_not_found(resource_name)
+      render json: { message: "#{resource_name} not found" }, status: :not_found
+    end
 end
