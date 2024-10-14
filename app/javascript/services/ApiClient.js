@@ -40,7 +40,29 @@ const ApiClient = {
       throw err;
     }
   },
-
+  resetPassword: async (resetPasswordBody) => {
+    try {
+      let token = localStorage.getItem("jwt");
+      const response = await apiInstance.patch(
+        "/auth/reset-password",
+        resetPasswordBody,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      token = response?.data?.token || null;
+      if (token) {
+        localStorage.setItem("jwt", token);
+      } else {
+        console.error("Reset Password response does not contain a valid token");
+      }
+      return response?.data;
+    } catch (err) {
+      throw err;
+    }
+  },
   fetchEbooks: async () => {
     try {
       console.log("FetchEbooks Request");

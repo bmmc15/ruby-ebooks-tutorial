@@ -9,7 +9,7 @@ export const UserProvider = ({ children }) => {
     const token = localStorage.getItem("jwt");
     if (token) {
       const payload = JSON.parse(atob(token.split(".")[1]));
-      setAvatarUrl(payload.avatar_url); // Usa `avatar_url` do token.
+      setAvatarUrl(payload.avatar_url); // `avatar_url` from token
     }
   }, []);
 
