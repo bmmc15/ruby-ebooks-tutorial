@@ -70310,9 +70310,18 @@ var ItemList = () => {
       onAdd: handleAddToCart,
       onRemove: handleRemoveFromCart
     }
-  ))), /* @__PURE__ */ import_react54.default.createElement("div", { className: "flex justify-center mt-4 space-x-2" }, /* @__PURE__ */ import_react54.default.createElement("button", { onClick: handlePreviousPage, disabled: page2 === 1 }, "Previous"), /* @__PURE__ */ import_react54.default.createElement("span", null, "Page ", page2), /* @__PURE__ */ import_react54.default.createElement(
+  ))), /* @__PURE__ */ import_react54.default.createElement("div", { className: "flex justify-center mt-4 mb-8 space-x-2" }, /* @__PURE__ */ import_react54.default.createElement(
     "button",
     {
+      className: `${page2 === 1 ? "bg-gray-400 hover:bg-gray-500" : "bg-indigo-600 hover:bg-indigo-700"} text-white font-bold py-2 px-4 rounded-lg`,
+      onClick: handlePreviousPage,
+      disabled: page2 === 1
+    },
+    "Previous"
+  ), /* @__PURE__ */ import_react54.default.createElement("span", { className: "font-bold py-2 px-4" }, "Page ", page2), /* @__PURE__ */ import_react54.default.createElement(
+    "button",
+    {
+      className: `${data?.meta.total_pages === page2 ? "bg-gray-400 hover:bg-gray-500" : "bg-indigo-600 hover:bg-indigo-700"} text-white font-bold py-2 px-4 rounded-lg`,
       onClick: handleNextPage,
       disabled: data?.meta.total_pages === page2
     },

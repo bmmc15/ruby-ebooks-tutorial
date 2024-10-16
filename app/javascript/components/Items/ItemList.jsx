@@ -82,13 +82,25 @@ const ItemList = () => {
           />
         ))}
       </div>
-      {/* Pagination controls */}
-      <div className="flex justify-center mt-4 space-x-2">
-        <button onClick={handlePreviousPage} disabled={page === 1}>
+      <div className="flex justify-center mt-4 mb-8 space-x-2">
+        <button
+          className={`${
+            page === 1
+              ? "bg-gray-400 hover:bg-gray-500"
+              : "bg-indigo-600 hover:bg-indigo-700"
+          } text-white font-bold py-2 px-4 rounded-lg`}
+          onClick={handlePreviousPage}
+          disabled={page === 1}
+        >
           Previous
         </button>
-        <span>Page {page}</span>
+        <span className="font-bold py-2 px-4">Page {page}</span>
         <button
+          className={`${
+            data?.meta.total_pages === page
+              ? "bg-gray-400 hover:bg-gray-500"
+              : "bg-indigo-600 hover:bg-indigo-700"
+          } text-white font-bold py-2 px-4 rounded-lg`}
           onClick={handleNextPage}
           disabled={data?.meta.total_pages === page}
         >
