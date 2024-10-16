@@ -21,7 +21,14 @@ class Api::V1::EbooksController < BaseController
     @ebook = Ebook.new(ebook_params)
     @ebook.pdf.attach(params[:pdf])
 
+    tag_names = JSON.parse(params[:tags] || '[]')
+
     if @ebook.save
+      tag_names.each do |name|
+        tag = Tag.find_or_create_by(name: name.strip)
+        @ebook.tags << tag unless @ebook.tags.include?(tag)
+      end
+  
       render json: { message: "Ebook created successfully, check here the pdf preview:#{rails_storage_redirect_path(@ebook.pdf)}", ebook: @ebook.as_json(methods: [ :pdf_url, :ebook_cover_url ]) }, status: :created
     else
       render json: { error: "Invalid ebook creation", details: @ebook.errors.full_messages }, status: :unprocessable_entity
@@ -71,7 +78,7 @@ class Api::V1::EbooksController < BaseController
 
   private
   def ebook_params
-    params.permit(:title, :description, :price, :status, :seller_id, :seller_fee, :pdf, :ebook_cover)
+    params.permit(:title, :description, :price, :status, :seller_id, :seller_fee, :pdf, :ebook_cover, tags: [])
   end
 
   def track_action
