@@ -4,16 +4,21 @@ class Api::V1::EbooksController < BaseController
 
   def index
     tag_names = JSON.parse(params[:tags] || '[]')
-
-    if tag_names.blank?
-      ebooks = Ebook.all.order(created_at: :desc)
-    else
-      ebooks = Ebook.joins(:tags)
-                  .where(tags: { name: tag_names })
-                  .distinct
-                  .order(created_at: :desc)
+    seller_id = params[:seller_id]
+  
+    ebooks = Ebook.joins(:tags)
+  
+    if tag_names.present?
+      ebooks = ebooks.where(tags: { name: tag_names }).distinct
     end
-    render json: ebooks.as_json(methods: [ :pdf_url, :ebook_cover_url ])
+  
+    if seller_id.present?
+      ebooks = ebooks.where(seller_id: seller_id)
+    end
+  
+    ebooks = ebooks.order(created_at: :desc)
+  
+    render json: ebooks.as_json(methods: [:pdf_url, :ebook_cover_url])
   end
 
   def show
