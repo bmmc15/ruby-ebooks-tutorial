@@ -63,17 +63,19 @@ const ApiClient = {
       throw err;
     }
   },
-  fetchEbooks: async ({ tags, seller_id }) => {
+  fetchEbooks: async ({ tags, seller_id, page }) => {
     try {
-      console.log("FetchEbooks Request:", tags, seller_id);
+      console.log("FetchEbooks Request:", page, tags, seller_id);
 
       const token = localStorage.getItem("jwt");
-
+      const perPage = 5
       const query = new URLSearchParams();
       if (tags && tags.length) query.append("tags", JSON.stringify(tags));
       if (seller_id) query.append("seller_id", seller_id);
 
-      console.log("Query ->?", query.toString());
+      query.append("page", page)
+      query.append("per_page", perPage)
+
 
       const response = await apiInstance.get(`/ebooks?${query.toString()}`, {
         headers: {
