@@ -3,7 +3,16 @@ class Api::V1::EbooksController < BaseController
   after_action :track_action
 
   def index
-    ebooks = Ebook.all.order(created_at: :desc)
+    tag_names = JSON.parse(params[:tags] || '[]')
+
+    if tag_names.blank?
+      ebooks = Ebook.all.order(created_at: :desc)
+    else
+      ebooks = Ebook.joins(:tags)
+                  .where(tags: { name: tag_names })
+                  .distinct
+                  .order(created_at: :desc)
+    end
     render json: ebooks.as_json(methods: [ :pdf_url, :ebook_cover_url ])
   end
 
