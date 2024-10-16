@@ -67,3 +67,5 @@ gem "active_model_serializers", "~> 0.10.12"
 gem "dotenv-rails"
 
 gem "ahoy_matey", "~> 5.2"
+
+gem 'kaminari'

@@ -17,8 +17,17 @@ class Api::V1::EbooksController < BaseController
     end
   
     ebooks = ebooks.order(created_at: :desc).distinct
+
+    paginated_ebooks = ebooks.page(params[:page]).per(params[:per_page] || 10)
   
-    render json: ebooks, each_serializer: EbookSerializer
+    render json: {
+      ebooks: ActiveModelSerializers::SerializableResource.new(paginated_ebooks, each_serializer: EbookSerializer),
+      meta: {
+        total_pages: paginated_ebooks.total_pages,
+        current_page: paginated_ebooks.current_page,
+        total_count: paginated_ebooks.total_count
+      }
+    }
   end
 
   def show

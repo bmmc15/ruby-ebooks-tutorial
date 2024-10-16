@@ -8,7 +8,6 @@ const atomicHabitsImage = "/images/atomic-habits.png";
 const priceTomorrowImage = "/images/the-price-of-tomorrow.png";
 
 import { useQuery } from "react-query";
-
 import Fab from "@mui/material/Fab";
 import { FaCartShopping } from "react-icons/fa6";
 
@@ -16,64 +15,19 @@ import { EBOOKS_QUERY_KEY } from "../../utils/constants";
 import { ApiClient } from "../../services";
 import ahoy from "ahoy.js";
 
-const items = [
-  {
-    id: 1,
-    title: "The Price of Tomorrow",
-    description: "The Price of Tomorrow Description",
-    href: "#",
-    color: "Salmon",
-    price: 19.99,
-    quantity: 1,
-    ebook_cover_url: priceTomorrowImage,
-    imageAlt: "The Price of Tomorrow",
-    pdf_url:
-      "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTEsInB1ciI6ImJsb2JfaWQifX0=--f01abf8d10dff5d368032e5cb6f57299189fcc59/In%20This%20Economy%20-%20How%20Money%20%20Markets%20Really%20Work%20-%20Kyla%20Scanlon.pdf",
-  },
-  {
-    id: 2,
-    title: "48 Laws of Power",
-    description: "48 Laws of Power description",
-    href: "#",
-    color: "Blue",
-    price: 32.0,
-    quantity: 1,
-    ebook_cover_url: lawsOfPowerImage,
-    imageAlt: "48 Laws of Power",
-    pdf_url:
-      "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTEsInB1ciI6ImJsb2JfaWQifX0=--f01abf8d10dff5d368032e5cb6f57299189fcc59/In%20This%20Economy%20-%20How%20Money%20%20Markets%20Really%20Work%20-%20Kyla%20Scanlon.pdf",
-  },
-  {
-    id: 3,
-    title: "Atomic Habits",
-    description: "Atomic Habits description",
-    href: "#",
-    color: "Blue",
-    price: 23.99,
-    quantity: 1,
-    ebook_cover_url: atomicHabitsImage,
-    imageAlt: "Atomic Habits",
-    pdf_url:
-      "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTEsInB1ciI6ImJsb2JfaWQifX0=--f01abf8d10dff5d368032e5cb6f57299189fcc59/In%20This%20Economy%20-%20How%20Money%20%20Markets%20Really%20Work%20-%20Kyla%20Scanlon.pdf",
-  },
-];
-
 const ItemList = () => {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [items, setItems] = useState([]);
   const [filters, setFilters] = useState({ tag: [], seller_id: "" });
+  const [page, setPage] = useState(1);
 
   const handleAddToCart = (item) => {
     setSelectedProducts((prev) => [...prev, item]);
-
     console.log("Item added to the cart");
 
-    // Trigger animation when an item is added
     setIsAnimating(true);
-
-    // Stop the animation after a short delay
     setTimeout(() => setIsAnimating(false), 500);
   };
 
@@ -84,22 +38,30 @@ const ItemList = () => {
   };
 
   const handleFilter = (filter) => {
-    console.log("Filter =", filter)
     setFilters(filter);
+    setPage(1);
     refetch();
   };
 
-  const { isLoading, refetch } = useQuery(
-    [EBOOKS_QUERY_KEY, filters],
-    () => ApiClient.fetchEbooks(filters),
+  const { isLoading, data, refetch } = useQuery(
+    [EBOOKS_QUERY_KEY, filters, page],
+    () => ApiClient.fetchEbooks({ ...filters, page }),
     {
       onSuccess: (data) => {
         console.log("Fetch ebooks successful:", data);
         ahoy.track("Ebooks items");
-        setItems(data);
+        setItems(data.ebooks);
       },
     }
   );
+
+  const handleNextPage = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePreviousPage = () => {
+    setPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
 
   return (
     <>
@@ -119,6 +81,19 @@ const ItemList = () => {
             onRemove={handleRemoveFromCart}
           />
         ))}
+      </div>
+      {/* Pagination controls */}
+      <div className="flex justify-center mt-4 space-x-2">
+        <button onClick={handlePreviousPage} disabled={page === 1}>
+          Previous
+        </button>
+        <span>Page {page}</span>
+        <button
+          onClick={handleNextPage}
+          disabled={data?.meta.total_pages === page}
+        >
+          Next
+        </button>
       </div>
       {!isCheckoutOpen && (
         <Fab

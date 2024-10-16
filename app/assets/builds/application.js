@@ -66604,14 +66604,16 @@ var ApiClient = {
       throw err;
     }
   },
-  fetchEbooks: async ({ tags: tags2, seller_id }) => {
+  fetchEbooks: async ({ tags: tags2, seller_id, page: page2 }) => {
     try {
-      console.log("FetchEbooks Request:", tags2, seller_id);
+      console.log("FetchEbooks Request:", page2, tags2, seller_id);
       const token2 = localStorage.getItem("jwt");
+      const perPage = 5;
       const query = new URLSearchParams();
       if (tags2 && tags2.length) query.append("tags", JSON.stringify(tags2));
       if (seller_id) query.append("seller_id", seller_id);
-      console.log("Query ->?", query.toString());
+      query.append("page", page2);
+      query.append("per_page", perPage);
       const response = await apiInstance.get(`/ebooks?${query.toString()}`, {
         headers: {
           Authorization: `Bearer ${token2}`
@@ -70257,6 +70259,7 @@ var ItemList = () => {
   const [selectedProducts, setSelectedProducts] = (0, import_react54.useState)([]);
   const [items, setItems] = (0, import_react54.useState)([]);
   const [filters, setFilters] = (0, import_react54.useState)({ tag: [], seller_id: "" });
+  const [page2, setPage] = (0, import_react54.useState)(1);
   const handleAddToCart = (item) => {
     setSelectedProducts((prev2) => [...prev2, item]);
     console.log("Item added to the cart");
@@ -70269,21 +70272,27 @@ var ItemList = () => {
     );
   };
   const handleFilter = (filter2) => {
-    console.log("Filter =", filter2);
     setFilters(filter2);
+    setPage(1);
     refetch();
   };
-  const { isLoading, refetch } = useQuery(
-    [EBOOKS_QUERY_KEY, filters],
-    () => ApiClient_default.fetchEbooks(filters),
+  const { isLoading, data, refetch } = useQuery(
+    [EBOOKS_QUERY_KEY, filters, page2],
+    () => ApiClient_default.fetchEbooks({ ...filters, page: page2 }),
     {
-      onSuccess: (data) => {
-        console.log("Fetch ebooks successful:", data);
+      onSuccess: (data2) => {
+        console.log("Fetch ebooks successful:", data2);
         ahoy.track("Ebooks items");
-        setItems(data);
+        setItems(data2.ebooks);
       }
     }
   );
+  const handleNextPage = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
+  const handlePreviousPage = () => {
+    setPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
   return /* @__PURE__ */ import_react54.default.createElement(import_react54.default.Fragment, null, /* @__PURE__ */ import_react54.default.createElement(
     FilterComponent_default,
     {
@@ -70301,7 +70310,14 @@ var ItemList = () => {
       onAdd: handleAddToCart,
       onRemove: handleRemoveFromCart
     }
-  ))), !isCheckoutOpen && /* @__PURE__ */ import_react54.default.createElement(
+  ))), /* @__PURE__ */ import_react54.default.createElement("div", { className: "flex justify-center mt-4 space-x-2" }, /* @__PURE__ */ import_react54.default.createElement("button", { onClick: handlePreviousPage, disabled: page2 === 1 }, "Previous"), /* @__PURE__ */ import_react54.default.createElement("span", null, "Page ", page2), /* @__PURE__ */ import_react54.default.createElement(
+    "button",
+    {
+      onClick: handleNextPage,
+      disabled: data?.meta.total_pages === page2
+    },
+    "Next"
+  )), !isCheckoutOpen && /* @__PURE__ */ import_react54.default.createElement(
     Fab_default,
     {
       variant: "extended",
