@@ -9,14 +9,14 @@ class Api::V1::EbooksController < BaseController
     ebooks = Ebook.joins(:tags)
   
     if tag_names.present?
-      ebooks = ebooks.where(tags: { name: tag_names }).distinct
+      ebooks = ebooks.where(tags: { name: tag_names })
     end
   
     if seller_id.present?
       ebooks = ebooks.where(seller_id: seller_id)
     end
   
-    ebooks = ebooks.order(created_at: :desc)
+    ebooks = ebooks.order(created_at: :desc).distinct
   
     render json: ebooks, each_serializer: EbookSerializer
   end

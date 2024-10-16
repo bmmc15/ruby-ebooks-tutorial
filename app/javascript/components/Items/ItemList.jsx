@@ -84,6 +84,7 @@ const ItemList = () => {
   };
 
   const handleFilter = (filter) => {
+    console.log("Filter =", filter)
     setFilters(filter);
     refetch();
   };

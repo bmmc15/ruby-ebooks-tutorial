@@ -63,14 +63,14 @@ const ApiClient = {
       throw err;
     }
   },
-  fetchEbooks: async ({ tag, seller_id }) => {
+  fetchEbooks: async ({ tags, seller_id }) => {
     try {
-      console.log("FetchEbooks Request");
+      console.log("FetchEbooks Request:", tags, seller_id);
 
       const token = localStorage.getItem("jwt");
 
       const query = new URLSearchParams();
-      if (tag && tag.length) query.append("tags", tag.join(","));
+      if (tags && tags.length) query.append("tags", JSON.stringify(tags));
       if (seller_id) query.append("seller_id", seller_id);
 
       console.log("Query ->?", query.toString());

@@ -66604,12 +66604,12 @@ var ApiClient = {
       throw err;
     }
   },
-  fetchEbooks: async ({ tag, seller_id }) => {
+  fetchEbooks: async ({ tags: tags2, seller_id }) => {
     try {
-      console.log("FetchEbooks Request");
+      console.log("FetchEbooks Request:", tags2, seller_id);
       const token2 = localStorage.getItem("jwt");
       const query = new URLSearchParams();
-      if (tag && tag.length) query.append("tags", tag.join(","));
+      if (tags2 && tags2.length) query.append("tags", JSON.stringify(tags2));
       if (seller_id) query.append("seller_id", seller_id);
       console.log("Query ->?", query.toString());
       const response = await apiInstance.get(`/ebooks?${query.toString()}`, {
@@ -70269,6 +70269,7 @@ var ItemList = () => {
     );
   };
   const handleFilter = (filter2) => {
+    console.log("Filter =", filter2);
     setFilters(filter2);
     refetch();
   };
