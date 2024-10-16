@@ -18,14 +18,14 @@ class Api::V1::EbooksController < BaseController
   
     ebooks = ebooks.order(created_at: :desc)
   
-    render json: ebooks.as_json(methods: [:pdf_url, :ebook_cover_url])
+    render json: ebook, serializer: EbookSerializer
   end
 
   def show
-    ebook = Ebook.find_by(id: params[:id])
+    ebook = Ebook.find(params[:id])
 
     if ebook
-      render json: ebooks.as_json(methods: [ :pdf_url, :ebook_cover_url ])
+      render json: ebook, serializer: EbookSerializer
     else
       render json: { error: "Ebook not found" }, status: :not_found
     end
@@ -43,7 +43,8 @@ class Api::V1::EbooksController < BaseController
         @ebook.tags << tag unless @ebook.tags.include?(tag)
       end
   
-      render json: { message: "Ebook created successfully, check here the pdf preview:#{rails_storage_redirect_path(@ebook.pdf)}", ebook: @ebook.as_json(methods: [ :pdf_url, :ebook_cover_url ]) }, status: :created
+      render json: { message: "Ebook created successfully, check here the pdf preview:#{rails_storage_redirect_path(@ebook.pdf)}",
+                      ebook: EbookSerializer.new(@ebook) }, status: :created
     else
       render json: { error: "Invalid ebook creation", details: @ebook.errors.full_messages }, status: :unprocessable_entity
     end
@@ -57,7 +58,8 @@ class Api::V1::EbooksController < BaseController
 
     if ebook
       if ebook.update(ebook_params)
-        render json: { message: "Ebook updated successfully", ebook: ebook.as_json(methods: [ :pdf_url, :ebook_cover_url ]) }, status: :ok
+        render json: { message: "Ebook updated successfully",
+                       ebook: EbookSerializer.new(@ebook) }, status: :ok
       else
         render json: { error: "Invalid ebook update", details: ebook.errors.full_messages }, status: :unprocessable_entity
       end
