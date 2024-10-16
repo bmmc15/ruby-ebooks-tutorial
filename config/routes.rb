@@ -14,6 +14,8 @@ Rails.application.routes.draw do
       get "/me", to: "users#me"
       post "/auth/login", to: "auth#login"
       patch "/auth/reset-password", to: "auth#update_password"
+
+      get "tags", to: "tags#index"
     end
   end
   root "homepage#index"

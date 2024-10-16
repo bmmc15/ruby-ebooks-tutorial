@@ -80,6 +80,23 @@ const ApiClient = {
       throw err;
     }
   },
+  fetchEbooksTags: async () => {
+    try {
+      console.log("FetchEbooksTags Request");
+      const token = localStorage.getItem("jwt");
+
+      const response = await apiInstance.get("/tags", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      console.log("Fetch ebooks tags with success");
+      return response?.data;
+    } catch (err) {
+      throw err;
+    }
+  },
 
   placeOrder: async ({ buyerId, ebooksIds }) => {
     try {

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Item from "./Item";
+import FilterComponent from "./FilterComponent";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
 const lawsOfPowerImage = "/images/48-laws-of-power.png";
@@ -81,6 +82,10 @@ const ItemList = () => {
     );
   };
 
+  const handleFilter = ({ tag, seller_id }) => {
+    console.log("Filtering by:", { tag, seller_id });
+  };
+
   const { isLoading } = useQuery(EBOOKS_QUERY_KEY, ApiClient.fetchEbooks, {
     onSuccess: (data) => {
       console.log("First Rails useQuery sucessful:", data);
@@ -91,6 +96,10 @@ const ItemList = () => {
 
   return (
     <>
+      <FilterComponent
+        tags={items.flatMap((item) => item.tags || [])}
+        onFilter={handleFilter}
+      />
       <div className="flex flex-col">
         {items.map((item, index) => (
           <Item
