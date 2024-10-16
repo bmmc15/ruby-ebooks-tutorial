@@ -13,6 +13,8 @@ class Ebook < ApplicationRecord
 
     belongs_to :seller, class_name: "User", foreign_key: "seller_id"
     has_many :purchases, foreign_key: :ebook_id
+    has_many :tag_ebooks
+    has_many :tags, through: :tag_ebooks
 
     has_one_attached :pdf
     def pdf_url
@@ -23,4 +25,5 @@ class Ebook < ApplicationRecord
     def ebook_cover_url
         ebook_cover.attached? ? Rails.application.routes.url_helpers.url_for(ebook_cover) : nil
     end
+
 end

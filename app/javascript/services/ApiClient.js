@@ -63,18 +63,42 @@ const ApiClient = {
       throw err;
     }
   },
-  fetchEbooks: async () => {
+  fetchEbooks: async ({ tags, seller_id }) => {
     try {
-      console.log("FetchEbooks Request");
+      console.log("FetchEbooks Request:", tags, seller_id);
+
       const token = localStorage.getItem("jwt");
 
-      const response = await apiInstance.get("/ebooks", {
+      const query = new URLSearchParams();
+      if (tags && tags.length) query.append("tags", JSON.stringify(tags));
+      if (seller_id) query.append("seller_id", seller_id);
+
+      console.log("Query ->?", query.toString());
+
+      const response = await apiInstance.get(`/ebooks?${query.toString()}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
       console.log("Fetch books with sucess");
+      return response?.data;
+    } catch (err) {
+      throw err;
+    }
+  },
+  fetchEbooksTags: async () => {
+    try {
+      console.log("FetchEbooksTags Request");
+      const token = localStorage.getItem("jwt");
+
+      const response = await apiInstance.get("/tags", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      console.log("Fetch ebooks tags with success");
       return response?.data;
     } catch (err) {
       throw err;

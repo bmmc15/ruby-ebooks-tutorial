@@ -1,7 +1,3 @@
-class UserSerializer < ActiveModel::Serializer
-  attributes :id, :email, :avatar_url
-end
-
 class Api::V1::AuthController < BaseController
   skip_before_action :authorized, only: [ :login ]
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Item from "./Item";
+import FilterComponent from "./FilterComponent";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
 const lawsOfPowerImage = "/images/48-laws-of-power.png";
@@ -62,6 +63,7 @@ const ItemList = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [items, setItems] = useState([]);
+  const [filters, setFilters] = useState({ tag: [], seller_id: "" });
 
   const handleAddToCart = (item) => {
     setSelectedProducts((prev) => [...prev, item]);
@@ -81,16 +83,30 @@ const ItemList = () => {
     );
   };
 
-  const { isLoading } = useQuery(EBOOKS_QUERY_KEY, ApiClient.fetchEbooks, {
-    onSuccess: (data) => {
-      console.log("First Rails useQuery sucessful:", data);
-      ahoy.track("Ebooks items", { data });
-      setItems(data);
-    },
-  });
+  const handleFilter = (filter) => {
+    console.log("Filter =", filter)
+    setFilters(filter);
+    refetch();
+  };
+
+  const { isLoading, refetch } = useQuery(
+    [EBOOKS_QUERY_KEY, filters],
+    () => ApiClient.fetchEbooks(filters),
+    {
+      onSuccess: (data) => {
+        console.log("Fetch ebooks successful:", data);
+        ahoy.track("Ebooks items");
+        setItems(data);
+      },
+    }
+  );
 
   return (
     <>
+      <FilterComponent
+        tags={items.flatMap((item) => item.tags || [])}
+        onFilter={handleFilter}
+      />
       <div className="flex flex-col">
         {items.map((item, index) => (
           <Item
