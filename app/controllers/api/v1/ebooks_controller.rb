@@ -18,7 +18,7 @@ class Api::V1::EbooksController < BaseController
   
     ebooks = ebooks.order(created_at: :desc)
   
-    render json: ebook, serializer: EbookSerializer
+    render json: ebooks, each_serializer: EbookSerializer
   end
 
   def show

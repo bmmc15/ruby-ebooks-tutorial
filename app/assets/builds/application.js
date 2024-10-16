@@ -1676,7 +1676,7 @@ var require_react_development = __commonJS({
           }
           return dispatcher.useContext(Context2);
         }
-        function useState25(initialState2) {
+        function useState26(initialState2) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useState(initialState2);
         }
@@ -2479,7 +2479,7 @@ var require_react_development = __commonJS({
         exports.useMemo = useMemo9;
         exports.useReducer = useReducer2;
         exports.useRef = useRef24;
-        exports.useState = useState25;
+        exports.useState = useState26;
         exports.useSyncExternalStore = useSyncExternalStore;
         exports.useTransition = useTransition;
         exports.version = ReactVersion;
@@ -2975,9 +2975,9 @@ var require_react_dom_development = __commonJS({
         if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
           __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
         }
-        var React124 = require_react();
+        var React125 = require_react();
         var Scheduler = require_scheduler();
-        var ReactSharedInternals = React124.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        var ReactSharedInternals = React125.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
         var suppressWarning = false;
         function setSuppressWarning(newSuppressWarning) {
           {
@@ -4584,7 +4584,7 @@ var require_react_dom_development = __commonJS({
           {
             if (props.value == null) {
               if (typeof props.children === "object" && props.children !== null) {
-                React124.Children.forEach(props.children, function(child) {
+                React125.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -25212,7 +25212,7 @@ var require_react_jsx_runtime_development = __commonJS({
     if (true) {
       (function() {
         "use strict";
-        var React124 = require_react();
+        var React125 = require_react();
         var REACT_ELEMENT_TYPE = Symbol.for("react.element");
         var REACT_PORTAL_TYPE = Symbol.for("react.portal");
         var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
@@ -25238,7 +25238,7 @@ var require_react_jsx_runtime_development = __commonJS({
           }
           return null;
         }
-        var ReactSharedInternals = React124.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        var ReactSharedInternals = React125.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
         function error2(format) {
           {
             {
@@ -39293,11 +39293,11 @@ enableDismissTrigger(Toast);
 defineJQueryPlugin(Toast);
 
 // app/javascript/components/index.jsx
-var import_react71 = __toESM(require_react());
+var import_react72 = __toESM(require_react());
 var import_client = __toESM(require_client());
 
 // app/javascript/components/App.jsx
-var import_react70 = __toESM(require_react());
+var import_react71 = __toESM(require_react());
 
 // node_modules/react-router-dom/dist/index.js
 var React2 = __toESM(require_react());
@@ -41274,7 +41274,7 @@ function useViewTransitionState(to, opts) {
 }
 
 // app/javascript/routes/index.jsx
-var import_react67 = __toESM(require_react());
+var import_react68 = __toESM(require_react());
 
 // app/javascript/components/Items/ItemList.jsx
 var import_react52 = __toESM(require_react());
@@ -41294,7 +41294,14 @@ var Item = ({ item, selected, onAdd, onRemove }) => {
       alt: "Product",
       className: "w-full h-auto rounded-lg"
     }
-  )), /* @__PURE__ */ import_react.default.createElement("div", { className: "w-2/3 pl-4 flex flex-col justify-center" }, /* @__PURE__ */ import_react.default.createElement("h2", { className: "text-xl font-bold text-gray-800 mb-2" }, item.title ?? "Product Title"), /* @__PURE__ */ import_react.default.createElement("p", { className: "text-gray-600 mb-4" }, item.description ?? "This is a short description of the product. It highlights the key features and benefits."), /* @__PURE__ */ import_react.default.createElement("h2", { className: "text-xl font-bold text-gray-800 mb-2" }, toPriceFormat(item.price)), /* @__PURE__ */ import_react.default.createElement(
+  )), /* @__PURE__ */ import_react.default.createElement("div", { className: "w-2/3 pl-4 flex flex-col justify-center" }, /* @__PURE__ */ import_react.default.createElement("h2", { className: "text-xl font-bold text-gray-800 mb-2" }, item.title ?? "Product Title"), /* @__PURE__ */ import_react.default.createElement("p", { className: "text-gray-600 mb-4" }, item.description ?? "This is a short description of the product. It highlights the key features and benefits."), /* @__PURE__ */ import_react.default.createElement("h2", { className: "text-xl font-bold text-gray-800 mb-2" }, toPriceFormat(item.price)), item.tags && item.tags.length > 0 && /* @__PURE__ */ import_react.default.createElement("div", { className: "mt-2" }, /* @__PURE__ */ import_react.default.createElement("h3", { className: "font-semibold text-gray-700" }, "Tags:"), /* @__PURE__ */ import_react.default.createElement("ul", { className: "flex flex-wrap mt-1" }, item.tags.map((tag, index) => /* @__PURE__ */ import_react.default.createElement(
+    "li",
+    {
+      key: index,
+      className: "mr-2 mb-2 bg-indigo-100 text-indigo-600 px-2 py-1 rounded-full text-sm"
+    },
+    tag.name
+  )))), /* @__PURE__ */ import_react.default.createElement(
     "a",
     {
       className: "mt-0.5 text-sm text-gray-500 hover:text-indigo-700 mb-4 transition duration-200 ease-in-out",
@@ -49157,6 +49164,29 @@ var ApiClient = {
         localStorage.setItem("jwt", token2);
       } else {
         console.error("Login response does not contain a valid token");
+      }
+      return response?.data;
+    } catch (err) {
+      throw err;
+    }
+  },
+  resetPassword: async (resetPasswordBody) => {
+    try {
+      let token2 = localStorage.getItem("jwt");
+      const response = await apiInstance.patch(
+        "/auth/reset-password",
+        resetPasswordBody,
+        {
+          headers: {
+            Authorization: `Bearer ${token2}`
+          }
+        }
+      );
+      token2 = response?.data?.token || null;
+      if (token2) {
+        localStorage.setItem("jwt", token2);
+      } else {
+        console.error("Reset Password response does not contain a valid token");
       }
       return response?.data;
     } catch (err) {
@@ -71506,9 +71536,18 @@ var Login = () => {
       navigate("/ebooks");
     },
     onError: (error2) => {
-      console.error("Login failed:", error2);
-      alert("Login Failed");
-      navigate("/login");
+      if (error2.response?.status === 403) {
+        const token2 = error2.response?.data?.token;
+        console.log("Expected: update password with this token:", token2);
+        if (token2) {
+          localStorage.setItem("jwt", token2);
+          navigate("/reset-password");
+        }
+      } else {
+        console.error("Login failed:", error2);
+        alert("Login Failed");
+        navigate("/login");
+      }
     }
   });
   const onFormSubmit = handleSubmit(async (data) => {
@@ -73233,28 +73272,101 @@ var Users = () => {
 };
 var Users_default = Users;
 
+// app/javascript/components/ResetPassword.jsx
+var import_react67 = __toESM(require_react());
+var ResetPassword = () => {
+  const [newPassword, setNewPassword] = (0, import_react67.useState)("");
+  const [confirmPassword, setConfirmPassword] = (0, import_react67.useState)("");
+  const navigate = useNavigate();
+  const { mutate: resetPassword, isLoading } = useMutation(
+    ApiClient_default.resetPassword,
+    {
+      onSuccess: (data) => {
+        localStorage.setItem("jwt", data.token);
+        navigate("/");
+      },
+      onError: (error2) => {
+        console.error("Reset Password failed:", error2);
+        alert(`Error: ${error2.message}`);
+      }
+    }
+  );
+  const handlePasswordReset = async (e6) => {
+    e6.preventDefault();
+    if (newPassword !== confirmPassword) {
+      alert("Passwords don't match!");
+      return;
+    }
+    const token2 = localStorage.getItem("jwt");
+    const payload = JSON.parse(atob(token2.split(".")[1]));
+    const userId = payload.id;
+    await resetPassword({
+      user_id: userId,
+      new_password: confirmPassword
+    });
+  };
+  return /* @__PURE__ */ import_react67.default.createElement("div", { className: "max-w-md mx-auto p-8 bg-white shadow-lg rounded-lg relative mt-8" }, /* @__PURE__ */ import_react67.default.createElement("h2", { className: "text-3xl font-bold mb-6 text-center text-gray-800" }, "Reset Password"), /* @__PURE__ */ import_react67.default.createElement("form", { onSubmit: handlePasswordReset, className: "space-y-6" }, /* @__PURE__ */ import_react67.default.createElement("div", null, /* @__PURE__ */ import_react67.default.createElement("label", { className: "block text-sm font-medium text-gray-600" }, "New Password"), /* @__PURE__ */ import_react67.default.createElement(
+    "input",
+    {
+      type: "password",
+      value: newPassword,
+      onChange: (e6) => setNewPassword(e6.target.value),
+      required: true,
+      className: "w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring focus:border-blue-300",
+      placeholder: "Enter new password"
+    }
+  )), /* @__PURE__ */ import_react67.default.createElement("div", null, /* @__PURE__ */ import_react67.default.createElement("label", { className: "block text-sm font-medium text-gray-600" }, "Confirm Password"), /* @__PURE__ */ import_react67.default.createElement(
+    "input",
+    {
+      type: "password",
+      value: confirmPassword,
+      onChange: (e6) => setConfirmPassword(e6.target.value),
+      required: true,
+      className: "w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring focus:border-blue-300",
+      placeholder: "Confirm new password"
+    }
+  )), /* @__PURE__ */ import_react67.default.createElement(
+    "button",
+    {
+      type: "submit",
+      className: `w-full bg-gradient-to-r from-blue-600 to-blue-400 text-white font-semibold py-3 mt-6 rounded-lg
+            shadow-lg hover:from-blue-500 hover:to-blue-300 hover:scale-105 transition-transform 
+            transform disabled:opacity-50 disabled:cursor-not-allowed`,
+      disabled: isLoading
+    },
+    isLoading ? "Updating..." : "Reset Password"
+  )), isLoading && /* @__PURE__ */ import_react67.default.createElement("div", { className: "mt-4 w-full bg-gray-200 rounded-full h-2" }, /* @__PURE__ */ import_react67.default.createElement(
+    "div",
+    {
+      className: "bg-blue-600 h-2 rounded-full animate-pulse",
+      style: { width: "75%" }
+    }
+  )));
+};
+var ResetPassword_default = ResetPassword;
+
 // app/javascript/routes/index.jsx
 var ProtectedRoute = () => {
   const token2 = localStorage.getItem("jwt");
   console.log("Acessing a restricted area, token:", token2);
   if (!token2) {
-    return /* @__PURE__ */ import_react67.default.createElement(Navigate, { to: "/login" });
+    return /* @__PURE__ */ import_react68.default.createElement(Navigate, { to: "/login" });
   }
-  return /* @__PURE__ */ import_react67.default.createElement(Outlet, null);
+  return /* @__PURE__ */ import_react68.default.createElement(Outlet, null);
 };
 var AppRoutes = () => {
-  return /* @__PURE__ */ import_react67.default.createElement(import_react67.default.Fragment, null, /* @__PURE__ */ import_react67.default.createElement(Routes, null, /* @__PURE__ */ import_react67.default.createElement(Route, { element: /* @__PURE__ */ import_react67.default.createElement(ProtectedRoute, null) }, /* @__PURE__ */ import_react67.default.createElement(Route, { path: "/ebooks", element: /* @__PURE__ */ import_react67.default.createElement(ItemList_default, null) }), /* @__PURE__ */ import_react67.default.createElement(Route, { path: "/users", element: /* @__PURE__ */ import_react67.default.createElement(Users_default, null) }), /* @__PURE__ */ import_react67.default.createElement(Route, { path: "/order-summary", element: /* @__PURE__ */ import_react67.default.createElement(OrdersSummary_default, null) }), /* @__PURE__ */ import_react67.default.createElement(Route, { path: "/edit-profile", element: /* @__PURE__ */ import_react67.default.createElement(EditProfile_default, null) })), /* @__PURE__ */ import_react67.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react67.default.createElement(LandingPage_default, null) }), /* @__PURE__ */ import_react67.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react67.default.createElement(Signup_default, null) }), /* @__PURE__ */ import_react67.default.createElement(Route, { path: "/login", element: /* @__PURE__ */ import_react67.default.createElement(Login_default, null) })));
+  return /* @__PURE__ */ import_react68.default.createElement(import_react68.default.Fragment, null, /* @__PURE__ */ import_react68.default.createElement(Routes, null, /* @__PURE__ */ import_react68.default.createElement(Route, { element: /* @__PURE__ */ import_react68.default.createElement(ProtectedRoute, null) }, /* @__PURE__ */ import_react68.default.createElement(Route, { path: "/ebooks", element: /* @__PURE__ */ import_react68.default.createElement(ItemList_default, null) }), /* @__PURE__ */ import_react68.default.createElement(Route, { path: "/users", element: /* @__PURE__ */ import_react68.default.createElement(Users_default, null) }), /* @__PURE__ */ import_react68.default.createElement(Route, { path: "/order-summary", element: /* @__PURE__ */ import_react68.default.createElement(OrdersSummary_default, null) }), /* @__PURE__ */ import_react68.default.createElement(Route, { path: "/edit-profile", element: /* @__PURE__ */ import_react68.default.createElement(EditProfile_default, null) }), /* @__PURE__ */ import_react68.default.createElement(Route, { path: "/reset-password", element: /* @__PURE__ */ import_react68.default.createElement(ResetPassword_default, null) })), /* @__PURE__ */ import_react68.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react68.default.createElement(LandingPage_default, null) }), /* @__PURE__ */ import_react68.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react68.default.createElement(Signup_default, null) }), /* @__PURE__ */ import_react68.default.createElement(Route, { path: "/login", element: /* @__PURE__ */ import_react68.default.createElement(Login_default, null) })));
 };
 var routes_default = AppRoutes;
 
 // app/javascript/components/Navbar/Navbar.jsx
-var import_react69 = __toESM(require_react());
+var import_react70 = __toESM(require_react());
 
 // app/javascript/components/Navbar/AvatarDropdown.jsx
-var import_react68 = __toESM(require_react());
+var import_react69 = __toESM(require_react());
 
 // node_modules/@mui/base/ClickAwayListener/ClickAwayListener.js
-var React119 = __toESM(require_react());
+var React120 = __toESM(require_react());
 var import_prop_types60 = __toESM(require_prop_types());
 
 // node_modules/@mui/base/node_modules/@mui/utils/esm/chainPropTypes/chainPropTypes.js
@@ -73332,18 +73444,18 @@ function setRef3(ref, value) {
 }
 
 // node_modules/@mui/base/node_modules/@mui/utils/esm/useEnhancedEffect/useEnhancedEffect.js
-var React115 = __toESM(require_react());
-var useEnhancedEffect3 = typeof window !== "undefined" ? React115.useLayoutEffect : React115.useEffect;
+var React116 = __toESM(require_react());
+var useEnhancedEffect3 = typeof window !== "undefined" ? React116.useLayoutEffect : React116.useEffect;
 var useEnhancedEffect_default3 = useEnhancedEffect3;
 
 // node_modules/@mui/base/node_modules/@mui/utils/esm/useEventCallback/useEventCallback.js
-var React116 = __toESM(require_react());
+var React117 = __toESM(require_react());
 function useEventCallback3(fn2) {
-  const ref = React116.useRef(fn2);
+  const ref = React117.useRef(fn2);
   useEnhancedEffect_default3(() => {
     ref.current = fn2;
   });
-  return React116.useRef((...args) => (
+  return React117.useRef((...args) => (
     // @ts-expect-error hide `this`
     (0, ref.current)(...args)
   )).current;
@@ -73351,9 +73463,9 @@ function useEventCallback3(fn2) {
 var useEventCallback_default3 = useEventCallback3;
 
 // node_modules/@mui/base/node_modules/@mui/utils/esm/useForkRef/useForkRef.js
-var React117 = __toESM(require_react());
+var React118 = __toESM(require_react());
 function useForkRef3(...refs) {
-  return React117.useMemo(() => {
+  return React118.useMemo(() => {
     if (refs.every((ref) => ref == null)) {
       return null;
     }
@@ -73366,9 +73478,9 @@ function useForkRef3(...refs) {
 }
 
 // node_modules/@mui/base/node_modules/@mui/utils/esm/getReactNodeRef/getReactNodeRef.js
-var React118 = __toESM(require_react());
+var React119 = __toESM(require_react());
 function getReactNodeRef2(element) {
-  if (!element || !/* @__PURE__ */ React118.isValidElement(element)) {
+  if (!element || !/* @__PURE__ */ React119.isValidElement(element)) {
     return null;
   }
   return element.props.propertyIsEnumerable("ref") ? element.props.ref : (
@@ -73395,11 +73507,11 @@ function ClickAwayListener(props) {
     onClickAway,
     touchEvent = "onTouchEnd"
   } = props;
-  const movedRef = React119.useRef(false);
-  const nodeRef = React119.useRef(null);
-  const activatedRef = React119.useRef(false);
-  const syntheticEventRef = React119.useRef(false);
-  React119.useEffect(() => {
+  const movedRef = React120.useRef(false);
+  const nodeRef = React120.useRef(null);
+  const activatedRef = React120.useRef(false);
+  const syntheticEventRef = React120.useRef(false);
+  React120.useEffect(() => {
     setTimeout(() => {
       activatedRef.current = true;
     }, 0);
@@ -73448,7 +73560,7 @@ function ClickAwayListener(props) {
   if (touchEvent !== false) {
     childrenProps[touchEvent] = createHandleSynthetic(touchEvent);
   }
-  React119.useEffect(() => {
+  React120.useEffect(() => {
     if (touchEvent !== false) {
       const mappedTouchEvent = mapEventPropToEvent(touchEvent);
       const doc = ownerDocument3(nodeRef.current);
@@ -73467,7 +73579,7 @@ function ClickAwayListener(props) {
   if (mouseEvent !== false) {
     childrenProps[mouseEvent] = createHandleSynthetic(mouseEvent);
   }
-  React119.useEffect(() => {
+  React120.useEffect(() => {
     if (mouseEvent !== false) {
       const mappedMouseEvent = mapEventPropToEvent(mouseEvent);
       const doc = ownerDocument3(nodeRef.current);
@@ -73478,8 +73590,8 @@ function ClickAwayListener(props) {
     }
     return void 0;
   }, [handleClickAway, mouseEvent]);
-  return /* @__PURE__ */ (0, import_jsx_runtime63.jsx)(React119.Fragment, {
-    children: /* @__PURE__ */ React119.cloneElement(children, childrenProps)
+  return /* @__PURE__ */ (0, import_jsx_runtime63.jsx)(React120.Fragment, {
+    children: /* @__PURE__ */ React120.cloneElement(children, childrenProps)
   });
 }
 true ? ClickAwayListener.propTypes = {
@@ -73518,37 +73630,37 @@ if (true) {
 
 // app/javascript/components/Navbar/AvatarDropdown.jsx
 var AvatarDropdown = () => {
-  const [isOpen, setIsOpen] = (0, import_react68.useState)(false);
+  const [isOpen, setIsOpen] = (0, import_react69.useState)(false);
   const navigate = useNavigate();
-  const { avatarUrl } = (0, import_react68.useContext)(UserContext);
+  const { avatarUrl } = (0, import_react69.useContext)(UserContext);
   const token2 = localStorage.getItem("jwt");
   const toggleDropdown = () => setIsOpen(!isOpen);
   const handleOptionClick = (path) => {
     navigate(path);
     setIsOpen(false);
   };
-  return /* @__PURE__ */ import_react68.default.createElement(import_react68.default.Fragment, null, token2 ? /* @__PURE__ */ import_react68.default.createElement(ClickAwayListener, { onClickAway: toggleDropdown }, /* @__PURE__ */ import_react68.default.createElement("div", { className: "relative inline-block" }, /* @__PURE__ */ import_react68.default.createElement("button", { onClick: toggleDropdown, className: "focus:outline-none" }, /* @__PURE__ */ import_react68.default.createElement(
+  return /* @__PURE__ */ import_react69.default.createElement(import_react69.default.Fragment, null, token2 ? /* @__PURE__ */ import_react69.default.createElement(ClickAwayListener, { onClickAway: toggleDropdown }, /* @__PURE__ */ import_react69.default.createElement("div", { className: "relative inline-block" }, /* @__PURE__ */ import_react69.default.createElement("button", { onClick: toggleDropdown, className: "focus:outline-none" }, /* @__PURE__ */ import_react69.default.createElement(
     "img",
     {
       src: avatarUrl ?? "https://robohash.org/1",
       alt: "User Avatar",
       className: "rounded-full w-10 h-10 border border-gray-300 shadow-sm hover:shadow-md transition"
     }
-  )), isOpen && /* @__PURE__ */ import_react68.default.createElement("div", { className: "absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10" }, /* @__PURE__ */ import_react68.default.createElement("ul", { className: "py-1" }, /* @__PURE__ */ import_react68.default.createElement(
+  )), isOpen && /* @__PURE__ */ import_react69.default.createElement("div", { className: "absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10" }, /* @__PURE__ */ import_react69.default.createElement("ul", { className: "py-1" }, /* @__PURE__ */ import_react69.default.createElement(
     "li",
     {
       className: "px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer",
-      onClick: () => handleOptionClick("/previous-orders")
+      onClick: () => handleOptionClick("/order-summary")
     },
     "Previous Orders"
-  ), /* @__PURE__ */ import_react68.default.createElement(
+  ), /* @__PURE__ */ import_react69.default.createElement(
     "li",
     {
       className: "px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer",
       onClick: () => handleOptionClick("/edit-profile")
     },
     "Edit Profile"
-  ), /* @__PURE__ */ import_react68.default.createElement(
+  ), /* @__PURE__ */ import_react69.default.createElement(
     "li",
     {
       className: "px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer",
@@ -73558,7 +73670,7 @@ var AvatarDropdown = () => {
       }
     },
     "Logout"
-  ))))) : /* @__PURE__ */ import_react68.default.createElement("button", { className: "loginBtn", onClick: () => console.log("ddd") }, "Login"));
+  ))))) : /* @__PURE__ */ import_react69.default.createElement("button", { className: "loginBtn", onClick: () => console.log("ddd") }, "Login"));
 };
 var AvatarDropdown_default = AvatarDropdown;
 
@@ -73566,35 +73678,35 @@ var AvatarDropdown_default = AvatarDropdown;
 var Navbar = () => {
   const { navigateTo } = useGetNavigate();
   const isLoggedIn = !!localStorage.getItem("jwt");
-  return /* @__PURE__ */ import_react69.default.createElement("header", { className: "bg-white shadow" }, /* @__PURE__ */ import_react69.default.createElement("div", { className: "container mx-auto flex justify-between items-center p-6" }, /* @__PURE__ */ import_react69.default.createElement(
+  return /* @__PURE__ */ import_react70.default.createElement("header", { className: "bg-white shadow" }, /* @__PURE__ */ import_react70.default.createElement("div", { className: "container mx-auto flex justify-between items-center p-6" }, /* @__PURE__ */ import_react70.default.createElement(
     "button",
     {
       onClick: navigateTo("/"),
       className: "text-xl font-bold text-indigo-500"
     },
     "ebooks.buy"
-  ), /* @__PURE__ */ import_react69.default.createElement("nav", { className: "space-x-6" }, /* @__PURE__ */ import_react69.default.createElement(
+  ), /* @__PURE__ */ import_react70.default.createElement("nav", { className: "space-x-6" }, /* @__PURE__ */ import_react70.default.createElement(
     "button",
     {
       onClick: navigateTo("/ebooks"),
       className: "text-gray-700 hover:text-indigo-600"
     },
     "Ebooks"
-  ), /* @__PURE__ */ import_react69.default.createElement(
+  ), /* @__PURE__ */ import_react70.default.createElement(
     "button",
     {
       onClick: navigateTo("/order-summary"),
       className: "text-gray-700 hover:text-indigo-600"
     },
     "Order Summary"
-  ), /* @__PURE__ */ import_react69.default.createElement(
+  ), /* @__PURE__ */ import_react70.default.createElement(
     "button",
     {
       onClick: navigateTo("/"),
       className: "text-gray-700 hover:text-indigo-600"
     },
     "About"
-  )), /* @__PURE__ */ import_react69.default.createElement("div", { className: "space-x-4" }, isLoggedIn ? /* @__PURE__ */ import_react69.default.createElement(AvatarDropdown_default, null) : /* @__PURE__ */ import_react69.default.createElement(
+  )), /* @__PURE__ */ import_react70.default.createElement("div", { className: "space-x-4" }, isLoggedIn ? /* @__PURE__ */ import_react70.default.createElement(AvatarDropdown_default, null) : /* @__PURE__ */ import_react70.default.createElement(
     "button",
     {
       className: "bg-indigo-600 text-white px-4 py-2 rounded-lg",
@@ -73608,7 +73720,7 @@ var Navbar_default = Navbar;
 // app/javascript/components/App.jsx
 var queryClient = new QueryClient();
 var App = () => {
-  return /* @__PURE__ */ import_react70.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react70.default.createElement(UserProvider, null, /* @__PURE__ */ import_react70.default.createElement(SnackbarProvider, { maxSnack: 3 }, /* @__PURE__ */ import_react70.default.createElement(Navbar_default, null), /* @__PURE__ */ import_react70.default.createElement(QueryClientProvider, { client: queryClient }, /* @__PURE__ */ import_react70.default.createElement(routes_default, null)))));
+  return /* @__PURE__ */ import_react71.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react71.default.createElement(UserProvider, null, /* @__PURE__ */ import_react71.default.createElement(SnackbarProvider, { maxSnack: 3 }, /* @__PURE__ */ import_react71.default.createElement(Navbar_default, null), /* @__PURE__ */ import_react71.default.createElement(QueryClientProvider, { client: queryClient }, /* @__PURE__ */ import_react71.default.createElement(routes_default, null)))));
 };
 var App_default = App;
 
@@ -73617,7 +73729,7 @@ document.addEventListener("turbo:load", () => {
   const root = (0, import_client.createRoot)(
     document.body.appendChild(document.createElement("div"))
   );
-  root.render(/* @__PURE__ */ import_react71.default.createElement(App_default, null));
+  root.render(/* @__PURE__ */ import_react72.default.createElement(App_default, null));
 });
 
 // app/javascript/application.js
