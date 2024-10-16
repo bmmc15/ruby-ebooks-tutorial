@@ -35,7 +35,7 @@ const AvatarDropdown = () => {
                 <ul className="py-1">
                   <li
                     className="px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
-                    onClick={() => handleOptionClick("/previous-orders")}
+                    onClick={() => handleOptionClick("/order-summary")}
                   >
                     Previous Orders
                   </li>
