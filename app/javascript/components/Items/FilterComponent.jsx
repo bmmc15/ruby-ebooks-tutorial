@@ -40,7 +40,7 @@ const FilterComponent = ({ onFilter }) => {
   };
 
   return (
-    <div className="flex flex-row justify-center items-center gap-4 mb-16">
+    <div className="flex flex-row justify-center items-center gap-4 mt-8 mb-16">
       <FormControl variant="outlined" className="w-32">
         <TextField
           id="seller-id"
