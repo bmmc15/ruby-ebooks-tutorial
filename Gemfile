@@ -62,7 +62,7 @@ gem "rack-cors", require: "rack/cors"
 
 gem "jwt", "~> 2.5"
 
-gem "active_model_serializers", "~> 0.10.12"
+gem "active_model_serializers", "~> 0.10.15"
 
 gem "dotenv-rails"
 
